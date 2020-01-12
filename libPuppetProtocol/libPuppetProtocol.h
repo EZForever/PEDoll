@@ -51,10 +51,13 @@ namespace Puppet {
     // Monitor/Doll acknowledges the command sent
     // May followed by other MSG_* packets
     struct PACKET_MSG_ACK : PACKET {
-        ;
+        // Monitor/Doll's response to the command
+        // Meanings may vary
+        // Use 64-bit integer to prevent data loss
+        uint64_t status;
 
-        PACKET_MSG_ACK()
-            : PACKET(sizeof(PACKET_MSG_ACK), PACKET_TYPE::MSG_ACK) {}
+        PACKET_MSG_ACK(uint64_t s = 0)
+            : PACKET(sizeof(PACKET_MSG_ACK), PACKET_TYPE::MSG_ACK), status(s) {}
     };
 
     // A plaintext message sent from a Monitor or a Doll
@@ -95,7 +98,7 @@ namespace Puppet {
 
     private:
         // Copying of a server instance is not allowed
-        IPuppetServer(IPuppetServer& x) = delete;
+        IPuppetServer(const IPuppetServer& x) = delete;
         IPuppetServer& operator=(IPuppetServer& x) = delete;
     };
 
@@ -117,7 +120,7 @@ namespace Puppet {
 
     private:
         // Copying of a client instance is not allowed
-        IPuppetClient(IPuppetClient& x) = delete;
+        IPuppetClient(const IPuppetClient& x) = delete;
         IPuppetClient& operator=(IPuppetClient& x) = delete;
     };
 

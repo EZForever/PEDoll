@@ -1,3 +1,49 @@
 lexer replacement(?): https://github.com/skeeto/optparse
 
 https://github.com/OmarAflak/Asynchronous-Socket-Class-C-Windows/blob/master/src/SocketServer.cpp
+
+How to avoid breakpoint hit on Doll.dll threads?
+	Ans: "Thread Whitelisting"
+	All threads related to Doll.dll are registered
+	Whenever a breakpoint is hit, the first thing to do is to check the calling thread
+	If in whitelist, skip any operation
+	Q: What if I hook GetCurrentThreadId()?
+		A: Unhook first, just like original PeDoll PE.dll
+
+MAKE USE OF Win32 API multi-threading functions!
+	EnterCriticalSection / LeaveCriticalSection
+	CreateEvent / ResetEvent / WaitForSingleObject
+
+DollHookDispatcher(void *pCodeStartAddr) ???
+	All hooks' entry points, /*"marks"*/ and events are stored in a vector
+	Hook assembly code just run "DollHookDispatcher(pCodeStartAddr)"
+
+CMD_HOOK_* expects a MSG_ACK with `status` set to internal hook ID
+Then a CMD_HOOKEVENT is sent
+
+Hook Events:
+	Before...
+		return argument-related data
+		Allow/Deny/Terminate/Prompt
+	After...
+		return argument-related data
+		Continue/Terminate/Prompt
+
+CMD_HOOK_IAT
+	procSize
+		must > 0
+	moduleSize ???
+		> 0 - `module` contains the target module (GetModuleHandle())
+		== 0 - `module` unknown; enumerate all loaded modules
+			TEB / PEB? Since inject code will use it
+	proc
+		vardic-length ASCII string
+	module ???
+		vardic-length ASCII string
+
+CMD_HOOK_BINARY
+	codeSize
+		must > 0
+	code
+		vardic-length byte array
+
