@@ -1,0 +1,3 @@
+lexer replacement(?): https://github.com/skeeto/optparse
+
+https://github.com/OmarAflak/Asynchronous-Socket-Class-C-Windows/blob/master/src/SocketServer.cpp
