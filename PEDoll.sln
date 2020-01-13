@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PEDollMonitor", "PEDollMoni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PEDollController", "PEDollController\PEDollController.csproj", "{EEEC10F7-451A-43AF-B230-DAE937660EAF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dummy", "Dummy\Dummy.vcxproj", "{AF9DEB43-3AFE-4E77-8BEC-D4A0CC7074FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,16 @@ Global
 		{EEEC10F7-451A-43AF-B230-DAE937660EAF}.Release|x64.Build.0 = Release|Any CPU
 		{EEEC10F7-451A-43AF-B230-DAE937660EAF}.Release|x86.ActiveCfg = Release|Any CPU
 		{EEEC10F7-451A-43AF-B230-DAE937660EAF}.Release|x86.Build.0 = Release|Any CPU
+		{AF9DEB43-3AFE-4E77-8BEC-D4A0CC7074FB}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{AF9DEB43-3AFE-4E77-8BEC-D4A0CC7074FB}.Debug|x64.ActiveCfg = Debug|x64
+		{AF9DEB43-3AFE-4E77-8BEC-D4A0CC7074FB}.Debug|x64.Build.0 = Debug|x64
+		{AF9DEB43-3AFE-4E77-8BEC-D4A0CC7074FB}.Debug|x86.ActiveCfg = Debug|Win32
+		{AF9DEB43-3AFE-4E77-8BEC-D4A0CC7074FB}.Debug|x86.Build.0 = Debug|Win32
+		{AF9DEB43-3AFE-4E77-8BEC-D4A0CC7074FB}.Release|Any CPU.ActiveCfg = Release|Win32
+		{AF9DEB43-3AFE-4E77-8BEC-D4A0CC7074FB}.Release|x64.ActiveCfg = Release|x64
+		{AF9DEB43-3AFE-4E77-8BEC-D4A0CC7074FB}.Release|x64.Build.0 = Release|x64
+		{AF9DEB43-3AFE-4E77-8BEC-D4A0CC7074FB}.Release|x86.ActiveCfg = Release|Win32
+		{AF9DEB43-3AFE-4E77-8BEC-D4A0CC7074FB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

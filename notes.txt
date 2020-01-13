@@ -2,32 +2,25 @@ lexer replacement(?): https://github.com/skeeto/optparse
 
 https://github.com/OmarAflak/Asynchronous-Socket-Class-C-Windows/blob/master/src/SocketServer.cpp
 
-How to avoid breakpoint hit on Doll.dll threads?
-	Ans: "Thread Whitelisting"
-	All threads related to Doll.dll are registered
-	Whenever a breakpoint is hit, the first thing to do is to check the calling thread
-	If in whitelist, skip any operation
-	Q: What if I hook GetCurrentThreadId()?
-		A: Unhook first, just like original PeDoll PE.dll
-
 MAKE USE OF Win32 API multi-threading functions!
-	EnterCriticalSection / LeaveCriticalSection
+	InitializeCriticalSection / TryEnterCriticalSection / EnterCriticalSection / LeaveCriticalSection / DeleteCriticalSection
 	CreateEvent / ResetEvent / WaitForSingleObject
 
 DollHookDispatcher(void *pCodeStartAddr) ???
 	All hooks' entry points, /*"marks"*/ and events are stored in a vector
 	Hook assembly code just run "DollHookDispatcher(pCodeStartAddr)"
 
-CMD_HOOK_* expects a MSG_ACK with `status` set to internal hook ID
-Then a CMD_HOOKEVENT is sent
-
 Hook Events:
 	Before...
-		return argument-related data
-		Allow/Deny/Terminate/Prompt
+		return context-related data
+		Allow/Deny(req. stack offset)/Terminate/Prompt
 	After...
-		return argument-related data
+		return context-related data
 		Continue/Terminate/Prompt
+
+"After" works by changing/inline hooking the return address to another function
+	requires [esp] == return address
+*IMPORTANT*: The "binary hooker" PeDoll implements ALSO only work on procedures
 
 CMD_HOOK_IAT
 	procSize
@@ -46,4 +39,48 @@ CMD_HOOK_BINARY
 		must > 0
 	code
 		vardic-length byte array
+
+registers to preserve:
+	x86
+		pushad/popad
+		eax, ecx, edx, ebx, esp, ebp, esi, edi
+	x64
+		rax, rcx, rdx, rbx, rbp, rsp, rdi, rsi, r8, r9
+	FP registers (sub ebp, 16; movdqu xmmword ptr[ebp], xmm0)
+		xmm0, xmm1, xmm2, xmm3
+
+calling conventions:
+	x86
+		cdecl/stdcall (stack)
+		fastcall (rcx, rdx, stack)
+	x64
+		msvc (rcx, rdx, r8, r9, stack)
+		gcc (rdi, rsi, rdx, rcx, r8, r9, stack)
+
+----------
+
+What happens if a call is hooked (What DollOnHook() do):
+
+Record isDoll status
+(if not isDoll) register current thread
+EnterCriticalSection // FIXME: What if I hook EnterCriticalSection()?
+If not isDoll, inform & give context to ThreadHookDispatcher, wait for reply
+	else, sliently continue as if the reply is that
+LeaveCriticalSection
+(if not isDoll) unregister current thread
+
+What will DollOnHook() do to follow reply:
+0. unhook
+1. Restore environment, but [esp] (return address) is replaced by another place (static/global varible?)
+2. switch():
+	Allow / Continue:
+		[esp] == (code block that rehook & jmp to original return address)
+		jmp / call to HookOEP
+	Deny:
+		[esp] == (code block that rehook & jmp to original return address)
+		set eax/rax
+		ret
+	Terminate:
+		[esp] unchanged
+		call to DebugBreak()
 
