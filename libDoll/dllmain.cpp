@@ -42,6 +42,10 @@ extern "C" void DollOnHook(unsigned long* context)
     //    Deny: HookOEP to HookStubOnDeny, OriginalSP to HookStubPhase3
     //    Terminate: HookOEP to DebugBreak, OriginalSP unchanged (This way the call stack is like called DebugBreak() by hand)
 
+    // TODO: HookStubPhase1, along with hooking / unhooking operations are not needed for now
+    // Detours will do all of the things
+    
+
 }
 
 // FIXME: Only here for testing purposes. Should move to a separate file.

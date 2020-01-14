@@ -168,6 +168,9 @@
     <ClCompile Include="ThreadPuppetClient.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Detours\Detours.vcxproj">
+      <Project>{c8d2c05e-499b-4e6e-9813-eddeafc02931}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\libPuppetProtocol\libPuppetProtocol.vcxproj">
       <Project>{781b8bad-43a7-42d1-b9b6-678943f3dfa4}</Project>
     </ProjectReference>

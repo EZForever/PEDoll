@@ -63,8 +63,7 @@ Things dedicated for a hook:
 
 key == HookOEP
 a Critical Section
-hookOriginalSP
-hookOriginalIP
+ptr to Detours trampoline function
 hookDenySPOffset
 hookDenyReturn
 "Before..." operations
