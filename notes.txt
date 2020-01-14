@@ -59,28 +59,28 @@ calling conventions:
 
 ----------
 
-What happens if a call is hooked (What DollOnHook() do):
+Things dedicated for a hook:
 
-Record isDoll status
-(if not isDoll) register current thread
-EnterCriticalSection // FIXME: What if I hook EnterCriticalSection()?
-If not isDoll, inform & give context to ThreadHookDispatcher, wait for reply
-	else, sliently continue as if the reply is that
-LeaveCriticalSection
-(if not isDoll) unregister current thread
+key == HookOEP
+a Critical Section
+hookOriginalSP
+hookOriginalIP
+hookDenySPOffset
+hookDenyReturn
+"Before..." operations
+"After..." operations
 
-What will DollOnHook() do to follow reply:
-0. unhook
-1. Restore environment, but [esp] (return address) is replaced by another place (static/global varible?)
-2. switch():
-	Allow / Continue:
-		[esp] == (code block that rehook & jmp to original return address)
-		jmp / call to HookOEP
-	Deny:
-		[esp] == (code block that rehook & jmp to original return address)
-		set eax/rax
-		ret
-	Terminate:
-		[esp] unchanged
-		call to DebugBreak()
+operations struct:
+
+verdict: uint
+ctx: vector<ctxItem>
+
+ctxItem struct:
+
+register: uint (register number, or -1 for abs. mem address)
+type: uint ((%d, %u, %x), %s, %S) (%f, %lf?)
+poi: bool (eax+0, poi = false => eax, poi = true => [eax])
+offset: ulong
+
+example: %x@[esp-8] => {register: SP, type: NATIVEWORD, poi: true, offset: -8}
 
