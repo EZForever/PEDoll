@@ -1,3 +1,5 @@
+; TODO: Rewrite this file according to HookStub_x86.asm
+
 ; All the comments are identital to the x86 counterpart.
 extern DollOnHook:byte, DollOnAfterHook:byte
 
@@ -17,7 +19,7 @@ pushad macro
     push rcx
     push rdx
     push rbx
-    push rax
+    push rax ; original rsp
     push rbp
     push rsi
     push rdi
@@ -31,11 +33,26 @@ popad macro
     pop rdi
     pop rsi
     pop rbp
-    add rsp, 8 ; pop rsp
+    pop rax ; original rsp
     pop rbx
     pop rdx
     pop rcx
-    pop rax
+    ;   rax == original rsp
+    ;   stack == (original rax), (red zone...)
+    xor rax, rsp
+    xor rsp, rax
+    xor rax, rsp
+    ;   swap(rax, rsp)
+    ;   stack == (original rsp), (red zone...)
+    pop rsp
+endm
+
+; push for 64-bit immediates is not supported on x64 too :(
+
+; TODO: Test this
+pushimm64 macro x
+    sub rsp, 8
+    mov [rsp], x
 endm
 
 HookStubPhase1:

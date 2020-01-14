@@ -9,6 +9,7 @@ void __cdecl ThreadPuppetClient(void*)
 {
     DollThreadRegisterCurrent();
 
-    ((void (*)()) &HookStubPhase1)();
+    // TODO: ALL THE THINGS
+
 }
 

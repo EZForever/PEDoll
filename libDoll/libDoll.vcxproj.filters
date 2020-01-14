@@ -38,6 +38,9 @@
     <ClCompile Include="ThreadPuppetClient.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="HookStub.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="HookStub_x86.asm">
