@@ -6,10 +6,6 @@ MAKE USE OF Win32 API multi-threading functions!
 	InitializeCriticalSection / TryEnterCriticalSection / EnterCriticalSection / LeaveCriticalSection / DeleteCriticalSection
 	CreateEvent / ResetEvent / WaitForSingleObject
 
-DollHookDispatcher(void *pCodeStartAddr) ???
-	All hooks' entry points, /*"marks"*/ and events are stored in a vector
-	Hook assembly code just run "DollHookDispatcher(pCodeStartAddr)"
-
 Hook Events:
 	Before...
 		return context-related data
@@ -18,8 +14,6 @@ Hook Events:
 		return context-related data
 		Continue/Terminate/Prompt
 
-"After" works by changing/inline hooking the return address to another function
-	requires [esp] == return address
 *IMPORTANT*: The "binary hooker" PeDoll implements ALSO only work on procedures
 
 CMD_HOOK_IAT

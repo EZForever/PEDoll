@@ -9,3 +9,4 @@
 #include <exception>
 #include <stdexcept>
 #include <cstddef>
+#include <cstring>

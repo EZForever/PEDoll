@@ -7,18 +7,22 @@ struct LIBDOLL_HOOKEVENTS {
 
 #pragma pack(push, 1)
 
+// The context of an active hook
 // This struct is not code-independent; will be visited by assembly code
 struct LIBDOLL_HOOK {
     unsigned long pTrampoline;
     unsigned long denySPOffset;
     unsigned long denyAX;
-    unsigned long pBeforeA;
-    unsigned long pBeforeB;
-    unsigned long pBeforeDeny;
     unsigned long originalSP;
-    LPCRITICAL_SECTION lock;
+    char* pBeforeA;
+    char* pBeforeB;
+    char* pBeforeDeny;
+    DWORD pBeforeAProtect;
+    DWORD pBeforeBProtect;
+    DWORD pBeforeDenyProtect;
     LIBDOLL_HOOKEVENTS* onBefore;
     LIBDOLL_HOOKEVENTS* onAfter;
+    CRITICAL_SECTION lock;
 };
 
 #pragma pack(pop)

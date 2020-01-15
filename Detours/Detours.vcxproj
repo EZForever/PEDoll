@@ -25,6 +25,7 @@
   <ItemGroup>
     <ClCompile Include="repo\src\creatwth.cpp" />
     <ClCompile Include="repo\src\detours.cpp" />
+    <ClCompile Include="repo\src\disasm.cpp" />
     <ClCompile Include="repo\src\disolx64.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

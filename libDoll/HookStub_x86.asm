@@ -4,8 +4,8 @@
 extern DollThreadIsCurrent:byte, DollGetCurrentHook:byte, \
     DollOnHook:byte, DollOnAfterHook:byte
 
-public HookStubBefore, HookStubBefore_len, \
-    HookStubA, HookStubB, HookStubOnDeny \
+public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
+    HookStubBefore_len, HookStubBefore_HookOEPOffset, HookStubBefore_AddrOffset
 
 .code
 
@@ -18,75 +18,59 @@ public HookStubBefore, HookStubBefore_len, \
 ; Context (Before OnDeny):
 ;     stack == (return addr), (red zone...)
 HookStubBefore:
-    push eax
     push 0CCCCCCCCh ; HookOEP placeholder
-    mov eax, 0CCCCCCCCh ; Address pointer placeholder
-    jmp eax
+    push 0CCCCCCCCh ; Address pointer placeholder
+    ret
 HookStubBefore_end:
 
 ; Side A: Standalone, called from HookStubBeforeA
 ;     Check if current thread a libDoll thread. If not so, save current context then hand execution over to C function
 ; Context:
-;     stack == (HookOEP), (original eax), (return addr), (red zone...)
+;     stack == (HookOEP), (return addr), (red zone...)
 HookStubA:
-    mov eax, [esp + 4]
-    ;   Restore eax while leave space for ret
-    ;   stack == (HookOEP), (ret), (return addr), (red zone...)
     pushad
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (ret), (return addr), (red zone...)
-    mov ecx, esp
-    add ecx, 4 * (8 + 1)
-    ;   ecx == &ret
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (ret), (return addr), (red zone...)
-    push ecx
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     lea eax, DollThreadIsCurrent
     call eax
-    add esp, 4
-    ;   DollThreadIsCurrent(&ret)
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (ret), (return addr), (red zone...)
-    mov ecx, esp
-    add ecx, 4 * (8 + 1)
-    mov eax, [ecx]
+    ;   DollThreadIsCurrent()
     ;   eax == ret
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
+    mov ecx, esp
+    add ecx, 4 * 8
+    ;   ecx == &HookOEP
     test eax, eax
-    ; NOTE: For now ecx is still &ret
     jnz __HookStubA_isDoll
-    ;   ecx == &ret
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (ret), (return addr), (red zone...)
+    ;   ecx == &HookOEP
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     push ecx
     lea eax, DollOnHook
     call eax
     add esp, 4
-    ;   DollOnHook(&ret)
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (newOEP), (return addr), (red zone...)
+    ;   DollOnHook(&HookOEP)
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (newOEP), (return addr), (red zone...)
     popad
-    add esp, 4
     ;   stack == (newOEP), (return addr), (red zone...)
     ret
     ;   Hand control over to newOEP
     ;   stack == (return addr), (red zone...)
 
 __HookStubA_isDoll:
-    ;   ecx == &ret
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (ret), (return addr), (red zone...)
+    ;   ecx == &HookOEP
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     push ecx
     lea eax, DollGetCurrentHook
     call eax
     add esp, 4
-    ;   DollGetCurrentHook(&ret)
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (ret), (return addr), (red zone...)
-    mov ecx, esp
-    add ecx, 4 * (8 + 1)
-    mov ecx, [ecx]
-    ;   ecx == &LIBDOLL_HOOK
-    mov edx, [ecx + 4 * 0] ; offset LIBDOLL_HOOK::pTrampoline
+    ;   DollGetCurrentHook(&HookOEP)
+    ;   eax == &LIBDOLL_HOOK
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
+    mov edx, [eax + 4 * 0] ; offset LIBDOLL_HOOK::pTrampoline
     ;   edx == pTrampoline
-    mov eax, esp
-    add eax, 4 * (8 + 1)
-    mov [eax], edx
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (pTrampoline), (return addr), (red zone...)
+    mov ecx, esp
+    add ecx, 4 * 8
+    mov [ecx], edx
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (pTrampoline), (return addr), (red zone...)
     popad
-    add esp, 4
     ;   stack == (pTrampoline), (return addr), (red zone...)
     ret
     ;   Hand control over to pTrampoline
@@ -95,88 +79,83 @@ __HookStubA_isDoll:
 ; Side B: Standalone, called from HookStubBeforeB
 ;     Save current context then hand execution over to C function
 ; Context:
-;     stack == (HookOEP), (original eax), (red zone...)
+;     stack == (HookOEP), (red zone...)
 HookStubB:
-    mov eax, [esp + 4]
-    ;   Restore eax while leave space for ret
-    ;   stack == (HookOEP), (ret), (red zone...)
     pushad
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (ret), (red zone...)
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (red zone...)
     mov ecx, esp
-    add ecx, 4 * (8 + 1)
-    ;   ecx == &ret
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (ret), (red zone...)
+    add ecx, 4 * 8
+    ;   ecx == &HookOEP
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (red zone...)
     push ecx
     lea eax, DollOnAfterHook
     call eax
     add esp, 4
-    ;   DollOnAfterHook(&ret)
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (pTrampoline), (red zone...)
+    ;   DollOnAfterHook(&HookOEP)
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (return addr), (red zone...)
     popad
-    add esp, 4
-    ;   stack == (pTrampoline), (red zone...)
+    ;   stack == (return addr), (red zone...)
     ret
-    ;   Hand control over to pTrampoline
+    ;   Hand control over to caller code
     ;   stack == (red zone...)
 
 ; Called in place of a denied procedure
 ; Context:
-;     stack == (HookOEP), (original eax), (return addr), (red zone...)
-; NOTE: should act like a __nakedcall function, except that a stack balance may apply
+;     stack == (HookOEP), (return addr), (red zone...)
+; NOTE: should act like a __nakedcall function, except that a stack balance will apply
 ; NOTE: Stack balance is happened in the "red zone"
 HookStubOnDeny:
-    mov eax, [esp + 4]
-    ;   Restore eax while leave space for ret
-    ;   stack == (HookOEP), (ret), (return addr), (red zone...)
     pushad
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (ret), (return addr), (red zone...)
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     mov ecx, esp
-    add ecx, 4 * (8 + 1)
-    ;   ecx == &ret
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (ret), (return addr), (red zone...)
+    add ecx, 4 * 8
+    ;   ecx == &HookOEP
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     push ecx
     lea eax, DollGetCurrentHook
     call eax
     add esp, 4
-    ;   DollGetCurrentHook(&ret)
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (ret), (return addr), (red zone...)
-    mov ecx, esp
-    add ecx, 4 * (8 + 1)
-    mov ecx, [ecx]
-    ;   ecx == &LIBDOLL_HOOK
-    mov edx, [ecx + 4 * 1] ; offset LIBDOLL_HOOK::denySPOffset
+    ;   DollGetCurrentHook(&HookOEP)
+    ;   eax == &LIBDOLL_HOOK
+    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
+    mov edx, [eax + 4 * 1] ; offset LIBDOLL_HOOK::denySPOffset
     ;   edx == denySPOffset
-    mov eax, esp
-    add eax, 4 * 3 ; offset pushad::esp
-    add [eax], edx
-    ;   stack == (pushad: eax, ecx, edx, ebx, espModded, ebp, esi, edi), (HookOEP), (ret), (return addr), (red zone...)
-    mov eax, esp
-    add eax, 4 * (8 + 1 + 2) ; &(return addr)
-    ;   eax == &(return addr)
-    mov esi, [eax]
+    add [esp + 4 * 3], edx ; offset pushad::esp
+    ;   stack == (pushad: eax, ecx, edx, ebx, espModded, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
+    mov ecx, esp
+    add ecx, 4 * (8 + 1) ; &(return addr)
+    ;   ecx == &(return addr)
+    mov esi, [ecx]
     ;   esi == return addr
     ;   Start to use edx already makes me feel pity, now here's another one... :(
-    mov [eax + edx], esi
+    mov [ecx + edx], esi
     ; return addr sent to where it should be
-    ;   stack == (pushad: eax, ecx, edx, ebx, espModded, ebp, esi, edi), (HookOEP), (ret), (return addr), (stack balance area), (return addr), (red zone...)
-    mov edx, [ecx + 4 * 2] ; offset LIBDOLL_HOOK::denyAX
+    ;   stack == (pushad: eax, ecx, edx, ebx, espModded, ebp, esi, edi), (HookOEP), (return addr), [stack balance area], (return addr), (red zone...)
+    mov edx, [eax + 4 * 2] ; offset LIBDOLL_HOOK::denyAX
     ;   edx == denyAX
-    mov eax, esp
-    add eax, 4 * 7 ; offset pushad::eax
-    mov [eax], edx
-    ;   stack == (pushad: eaxModded, ecx, edx, ebx, espModded, ebp, esi, edi), (HookOEP), (ret), (return addr), (stack balance area), (return addr), (red zone...)
+    mov [esp + 4 * 7], edx ; offset pushad::eax
+    ;   stack == (pushad: eaxModded, ecx, edx, ebx, espModded, ebp, esi, edi), (HookOEP), (return addr), [stack balance area], (return addr), (red zone...)
     popad
     ;   Magic happens since we modifyed esp
+    ;   stack == (stack balance area the size of HookOEP), (return addr), (red zone...)
+    add esp, 4
     ;   stack == (return addr), (red zone...)
     ret
     ;   Hand control back to caller code
     ;   stack == (red zone...)
 
-.data
+.const
 
 ; Length of HookStubBefore*, used for copying & fill in HookOEP
-; Consider these as constants
 HookStubBefore_len \
     dd HookStubBefore_end - HookStubBefore
+
+; Offset to HookOEP placeholder
+HookStubBefore_HookOEPOffset \
+    dd 1
+
+; Offset to address pointer placeholder
+HookStubBefore_AddrOffset \
+    dd 6
 
 end
