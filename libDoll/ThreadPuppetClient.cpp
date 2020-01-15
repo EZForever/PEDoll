@@ -11,7 +11,7 @@ void __cdecl ThreadPuppetClient(void*)
     DollThreadRegisterCurrent();
 
     // TODO: ALL THE THINGS
-    unsigned long HookOEP = (unsigned long)system;
+    NATIVEWORD HookOEP = (NATIVEWORD)system;
 
     if (ctx.dollHooks.find(HookOEP) != ctx.dollHooks.end())
         return;
@@ -27,20 +27,20 @@ void __cdecl ThreadPuppetClient(void*)
 
     hook->pBeforeA = new char[HookStubBefore_len];
     memcpy(hook->pBeforeA, &HookStubBefore, HookStubBefore_len);
-    *(unsigned long*)(hook->pBeforeA + HookStubBefore_HookOEPOffset) = HookOEP;
-    *(unsigned long*)(hook->pBeforeA + HookStubBefore_AddrOffset) = (unsigned long)&HookStubA;
+    *(NATIVEWORD*)(hook->pBeforeA + HookStubBefore_HookOEPOffset) = HookOEP;
+    *(NATIVEWORD*)(hook->pBeforeA + HookStubBefore_AddrOffset) = (NATIVEWORD)&HookStubA;
     VirtualProtect(hook->pBeforeA, HookStubBefore_len, PAGE_EXECUTE_READWRITE, &hook->pBeforeAProtect);
     
     hook->pBeforeB = new char[HookStubBefore_len];
     memcpy(hook->pBeforeB, &HookStubBefore, HookStubBefore_len);
-    *(unsigned long*)(hook->pBeforeB + HookStubBefore_HookOEPOffset) = HookOEP;
-    *(unsigned long*)(hook->pBeforeB + HookStubBefore_AddrOffset) = (unsigned long)&HookStubB;
+    *(NATIVEWORD*)(hook->pBeforeB + HookStubBefore_HookOEPOffset) = HookOEP;
+    *(NATIVEWORD*)(hook->pBeforeB + HookStubBefore_AddrOffset) = (NATIVEWORD)&HookStubB;
     VirtualProtect(hook->pBeforeB, HookStubBefore_len, PAGE_EXECUTE_READWRITE, &hook->pBeforeBProtect);
 
     hook->pBeforeDeny = new char[HookStubBefore_len];
     memcpy(hook->pBeforeDeny, &HookStubBefore, HookStubBefore_len);
-    *(unsigned long*)(hook->pBeforeDeny + HookStubBefore_HookOEPOffset) = HookOEP;
-    *(unsigned long*)(hook->pBeforeDeny + HookStubBefore_AddrOffset) = (unsigned long)&HookStubOnDeny;
+    *(NATIVEWORD*)(hook->pBeforeDeny + HookStubBefore_HookOEPOffset) = HookOEP;
+    *(NATIVEWORD*)(hook->pBeforeDeny + HookStubBefore_AddrOffset) = (NATIVEWORD)&HookStubOnDeny;
     VirtualProtect(hook->pBeforeDeny, HookStubBefore_len, PAGE_EXECUTE_READWRITE, &hook->pBeforeDenyProtect);
 
     hook->denySPOffset = 0;

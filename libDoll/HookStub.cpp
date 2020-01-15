@@ -1,18 +1,18 @@
 #include "pch.h"
 #include "libDoll.h"
 
-extern "C" unsigned long DollThreadIsCurrent()
+extern "C" NATIVEWORD DollThreadIsCurrent()
 {
     // Avoid hook on GetCurrentThreadId() to cause endless loop
-    return (unsigned long)(ctx.dollThreads.find(ctx.pRealGetCurrentThreadId()) != ctx.dollThreads.end());
+    return (NATIVEWORD)(ctx.dollThreads.find(ctx.pRealGetCurrentThreadId()) != ctx.dollThreads.end());
 }
 
-extern "C" unsigned long DollGetCurrentHook(unsigned long* context)
+extern "C" NATIVEWORD DollGetCurrentHook(NATIVEWORD* context)
 {
-    return (unsigned long)(ctx.dollHooks.find(*context)->second);
+    return (NATIVEWORD)(ctx.dollHooks.find(*context)->second);
 }
 
-extern "C" void DollOnHook(unsigned long* context)
+extern "C" void DollOnHook(NATIVEWORD* context)
 {
     // TODO: Procedure:
     // register current thread
@@ -39,18 +39,18 @@ extern "C" void DollOnHook(unsigned long* context)
 #if 0
     // Allow
     context[0] = hook->pTrampoline;
-    context[1] = (unsigned long)hook->pBeforeB;
+    context[1] = (NATIVEWORD)hook->pBeforeB;
 
     // Terminate
-    context[0] = (unsigned long)DebugBreak;
+    context[0] = (NATIVEWORD)DebugBreak;
 #endif
 
     // Deny
-    context[0] = (unsigned long)hook->pBeforeDeny;
-    context[1] = (unsigned long)hook->pBeforeB;
+    context[0] = (NATIVEWORD)hook->pBeforeDeny;
+    context[1] = (NATIVEWORD)hook->pBeforeB;
 }
 
-extern "C" void DollOnAfterHook(unsigned long* context)
+extern "C" void DollOnAfterHook(NATIVEWORD* context)
 {
     // TODO: Procedure:
     // "After..." operations
@@ -69,7 +69,7 @@ extern "C" void DollOnAfterHook(unsigned long* context)
 
 #if 0
     // Terminate
-    context[0] = (unsigned long)DebugBreak;
+    context[0] = (NATIVEWORD)DebugBreak;
 #endif
 
     LeaveCriticalSection(&hook->lock);

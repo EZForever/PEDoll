@@ -1,21 +1,21 @@
-; TODO: Rewrite this file according to HookStub_x86.asm
-
+; This file is translated from HookStub_x86.asm
 ; All the comments are identital to the x86 counterpart.
-extern DollOnHook:byte, DollOnAfterHook:byte
+extern DollThreadIsCurrent:byte, DollGetCurrentHook:byte, \
+    DollOnHook:byte, DollOnAfterHook:byte
 
-public HookStubPhase1, HookStubPhase3, HookStubOnDeny, \
-    HookStubPhase1_len, \
-    hookOriginalSP, hookOriginalIP, \
-    hookDenySPOffset, hookDenyReturn
+public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
+    HookStubBefore_len, HookStubBefore_HookOEPOffset, HookStubBefore_AddrOffset
 
 .code
 
-; pushad/popad not supported on x64 :(
+; pushad/popad are not supported on x64 :(
+; sequence: rax, rcx, rdx, rbx, rbp, rsp, rdi, rsi, r8, r9
 
 pushad macro
     push rax
     mov rax, rsp
-    add rax, 8 ; rax == original rsp
+    add rax, 8
+    ;   rax == original rsp
     push rcx
     push rdx
     push rbx
@@ -39,91 +39,130 @@ popad macro
     pop rcx
     ;   rax == original rsp
     ;   stack == (original rax), (red zone...)
-    xor rax, rsp
-    xor rsp, rax
-    xor rax, rsp
-    ;   swap(rax, rsp)
+    xor rax, [rsp]
+    xor [rsp], rax
+    xor rax, [rsp]
+    ;   swap(rax, [rsp])
     ;   stack == (original rsp), (red zone...)
     pop rsp
 endm
 
 ; push for 64-bit immediates is not supported on x64 too :(
 
-; TODO: Test this
 pushimm64 macro x
-    sub rsp, 8
-    mov [rsp], x
-endm
-
-HookStubPhase1:
     push rax
-    mov rax, HookStubPhase2
-    call rax
-HookStubPhase1_end:
-
-HookStubPhase2:
-    pop rax
-    sub rax, [HookStubPhase1_len]
-
+    mov rax, x
+    ;   rax == x
+    ;   stack == (original rax), (red zone...)
     xor rax, [rsp]
     xor [rsp], rax
     xor rax, [rsp]
+    ;   swap(rax, [rsp])
+    ;   stack == (x), (red zone...)
+endm
 
+HookStubBefore:
+    pushimm64 0CCCCCCCCCCCCCCCCh ; HookOEP placeholder
+    pushimm64 0CCCCCCCCCCCCCCCCh ; Address pointer placeholder
+    ret
+HookStubBefore_end:
+
+HookStubA:
     pushad
+
+    lea rax, DollThreadIsCurrent
+    call rax
 
     mov rcx, rsp
     add rcx, 8 * 10
 
+    test rax, rax
+    jnz __HookStubA_isDoll
+
+    push rcx
     lea rax, DollOnHook
     call rax
+    add rsp, 8
 
     popad
 
     ret
 
-HookStubPhase3:
-    push rax
+__HookStubA_isDoll:
 
-    pushad
+    push rcx
+    lea rax, DollGetCurrentHook
+    call rax
+    add rsp, 8
 
-    mov rax, [hookOriginalIP]
+    mov rdx, [rax + 4 * 0] ; offset LIBDOLL_HOOK::pTrampoline
+
     mov rcx, rsp
     add rcx, 8 * 10
-    mov [rcx], rax
+    mov [rcx], rdx
 
+    popad
+
+    ret
+
+HookStubB:
+    pushad
+
+    mov rcx, rsp
+    add rcx, 8 * 10
+
+    push rcx
     lea rax, DollOnAfterHook
     call rax
+    add rsp, 8
+
+    popad
+
+    ret
+
+HookStubOnDeny:
+    pushad
+
+    mov rcx, rsp
+    add rcx, 8 * 10
+
+    push rcx
+    lea rax, DollGetCurrentHook
+    call rax
+    add rsp, 8
+
+    mov rdx, [rax + 8 * 1] ; offset LIBDOLL_HOOK::denySPOffset
+
+    add [rsp + 8 * 5], edx ; offset pushad::rsp
+
+    mov rcx, rsp
+    add rcx, 8 * (10 + 1) ; &(return addr)
+
+    mov rsi, [rcx]
+
+    mov [rcx + rdx], rsi
+
+    mov rdx, [rax + 8 * 2] ; offset LIBDOLL_HOOK::denyAX
+
+    mov [rsp + 8 * 9], rdx ; offset pushad::eax
 
     popad
 
     add rsp, 8
 
-    push [hookOriginalSP]
     ret
 
-HookStubOnDeny:
-    pop rax
-    add rsp, [hookDenySPOffset]
-    push rax
-    
-    mov rax, [hookDenyReturn]
-    ret
+.const
 
-.data
+HookStubBefore_len \
+    dq HookStubBefore_end - HookStubBefore
 
-HookStubPhase1_len \
-    dq HookStubPhase1_end - HookStubPhase1
+; Offset to HookOEP placeholder
+HookStubBefore_HookOEPOffset \
+    dq 3
 
-hookOriginalSP \
-    dq ?
-
-hookOriginalIP \
-    dq ?
-
-hookDenySPOffset \
-    dq ?
-
-hookDenyReturn \
-    dq ?
+; Offset to address pointer placeholder
+HookStubBefore_AddrOffset \
+    dq 26
 
 end

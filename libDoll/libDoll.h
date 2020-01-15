@@ -1,6 +1,14 @@
 #pragma once
 #include "pch.h"
 
+// A type repersenting the machine's native word size
+// Because M$ made sizeof(unsigned long) == 4 on x64
+#ifdef _WIN64
+typedef uint64_t NATIVEWORD;
+#else
+typedef uint32_t NATIVEWORD;
+#endif
+
 struct LIBDOLL_HOOKEVENTS {
     // TODO: fill this struct (will need a LIBDOLL_HOOKEVENT)
 };
@@ -10,10 +18,10 @@ struct LIBDOLL_HOOKEVENTS {
 // The context of an active hook
 // This struct is not code-independent; will be visited by assembly code
 struct LIBDOLL_HOOK {
-    unsigned long pTrampoline;
-    unsigned long denySPOffset;
-    unsigned long denyAX;
-    unsigned long originalSP;
+    NATIVEWORD pTrampoline;
+    NATIVEWORD denySPOffset;
+    NATIVEWORD denyAX;
+    NATIVEWORD originalSP;
     char* pBeforeA;
     char* pBeforeB;
     char* pBeforeDeny;
@@ -29,7 +37,7 @@ struct LIBDOLL_HOOK {
 
 struct LIBDOLL_CTX {
     std::set<DWORD> dollThreads;
-    std::map<unsigned long, LIBDOLL_HOOK*> dollHooks;
+    std::map<NATIVEWORD, LIBDOLL_HOOK*> dollHooks;
     DWORD (__stdcall *pRealGetCurrentThreadId)();
 };
 
