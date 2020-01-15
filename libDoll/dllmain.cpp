@@ -7,7 +7,7 @@ LIBDOLL_CTX ctx;
 
 void DollThreadRegisterCurrent()
 {
-    ctx.dollThreads.insert(GetCurrentThreadId());
+    ctx.dollThreads.emplace(GetCurrentThreadId());
 }
 
 void DollThreadUnregisterCurrent()

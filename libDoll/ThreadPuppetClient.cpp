@@ -11,6 +11,9 @@ void __cdecl ThreadPuppetClient(void*)
     DollThreadRegisterCurrent();
 
     // TODO: ALL THE THINGS
+
+    // NOTE: this is just a simple PoC
+    // If mix Debug & Release, they will have different system() address, thus fail to hook
     NATIVEWORD HookOEP = (NATIVEWORD)system;
 
     if (ctx.dollHooks.find(HookOEP) != ctx.dollHooks.end())

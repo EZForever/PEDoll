@@ -61,6 +61,11 @@ pushimm64 macro x
     ;   stack == (x), (red zone...)
 endm
 
+; NOTE: The `sub/add rsp, 8 * 4`s around calling a function are MANDATORY
+;    That's the "shadow space" left for the caller function
+;    Under Debug it's safe to remove them, but under Release this space may get utilized
+;    See https://stackoverflow.com/a/30194393 for details
+
 HookStubBefore:
     pushimm64 0CCCCCCCCCCCCCCCCh ; HookOEP placeholder
     pushimm64 0CCCCCCCCCCCCCCCCh ; Address pointer placeholder
@@ -70,8 +75,10 @@ HookStubBefore_end:
 HookStubA:
     pushad
 
+    sub rsp, 8 * 4
     lea rax, DollThreadIsCurrent
     call rax
+    add rsp, 8 * 4
 
     mov rcx, rsp
     add rcx, 8 * 10
@@ -79,10 +86,10 @@ HookStubA:
     test rax, rax
     jnz __HookStubA_isDoll
 
-    push rcx
+    sub rsp, 8 * 4
     lea rax, DollOnHook
     call rax
-    add rsp, 8
+    add rsp, 8 * 4
 
     popad
 
@@ -90,10 +97,10 @@ HookStubA:
 
 __HookStubA_isDoll:
 
-    push rcx
+    sub rsp, 8 * 4
     lea rax, DollGetCurrentHook
     call rax
-    add rsp, 8
+    add rsp, 8 * 4
 
     mov rdx, [rax + 4 * 0] ; offset LIBDOLL_HOOK::pTrampoline
 
@@ -111,10 +118,10 @@ HookStubB:
     mov rcx, rsp
     add rcx, 8 * 10
 
-    push rcx
+    sub rsp, 8 * 4
     lea rax, DollOnAfterHook
     call rax
-    add rsp, 8
+    add rsp, 8 * 4
 
     popad
 
@@ -126,10 +133,10 @@ HookStubOnDeny:
     mov rcx, rsp
     add rcx, 8 * 10
 
-    push rcx
+    sub rsp, 8 * 4
     lea rax, DollGetCurrentHook
     call rax
-    add rsp, 8
+    add rsp, 8 * 4
 
     mov rdx, [rax + 8 * 1] ; offset LIBDOLL_HOOK::denySPOffset
 
