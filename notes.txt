@@ -72,23 +72,6 @@ calling conventions:
 
 ----------
 
-operations struct:
-
-verdict: uint
-ctx: vector<ctxItem>
-
-ctxItem struct:
-
-register: uint (register number, or -1 for abs. mem address)
-type: uint ((%d, %u, %x), %s, %S) (%f, %lf?)
-poi: bool (eax+0, poi = false => eax, poi = true => [eax])
-	or: "eax" => eax, "eax+0" => [eax]
-offset: uint64
-
-example: %x@[esp-8] => {register: SP, type: NATIVEWORD, poi: true, offset: -8}
-
-----------
-
 Current lock implemention (one Critical Section per hook) allows multiple threads waiting for different hooks
 Should this be allowed?
 
@@ -98,4 +81,25 @@ Same victim, different thread/hook: another lock/wait (only for Prompt verdicts)
 
 For this to work, libDoll threads MUST NOT be caught into DollOnHook, which is impossible under legacy inline mechanisms
 and that's the reason I merged the "detours" branch
+
+----------
+
+https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.tcplistener?view=netframework-4.8
+
+- Monitor commands
+* doll
+* shell
+* enumprocess
+* ls
+* kill
+
+- Doll commands
+* hook
+* unhook
+* terminate
+* run
+* esp
+* readMemory
+* binary
+* unbinary
 
