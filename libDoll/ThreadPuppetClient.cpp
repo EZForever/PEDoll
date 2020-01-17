@@ -34,6 +34,10 @@ void __cdecl ThreadPuppetClient(void*)
     *(NATIVEWORD*)(hook->pBeforeA + HookStubBefore_AddrOffset) = (NATIVEWORD)&HookStubA;
     VirtualProtect(hook->pBeforeA, HookStubBefore_len, PAGE_EXECUTE_READWRITE, &hook->pBeforeAProtect);
     
+    // NOTE: VirtualProtect() works on memory pages, not bytes
+    //       If protection above is set to PAGE_EXECUTE_READ, the memory allocation below will fail
+    //       due to no write permission to the memory page
+
     hook->pBeforeB = new char[HookStubBefore_len];
     memcpy(hook->pBeforeB, &HookStubBefore, HookStubBefore_len);
     *(NATIVEWORD*)(hook->pBeforeB + HookStubBefore_HookOEPOffset) = HookOEP;

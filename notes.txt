@@ -1,6 +1,22 @@
+If the target is to make a user-friendly Windows API monitor, there are tons of ready-to-use tools lying around:
+	API Monitor: https://www.rohitab.com/apimonitor
+	Process Monitor from Sysinternals: https://docs.microsoft.com/en-us/sysinternals/downloads/procmon
+So my version of PEDoll will NOT focus on pretty-printing Windows APIs, but on better interoperability with internal procedures
+
+----------
+
 lexer replacement(?): https://github.com/skeeto/optparse
 
 https://github.com/OmarAflak/Asynchronous-Socket-Class-C-Windows/blob/master/src/SocketServer.cpp
+
+Check if given ptr is actually execuable:
+https://docs.microsoft.com/zh-cn/windows/win32/api/winbase/nf-winbase-isbadcodeptr
+FARPROC is like `int (__stdcall *)()`
+
+Look for api address:
+https://docs.microsoft.com/zh-cn/windows/win32/toolhelp/traversing-the-module-list
+during traversal, pass MODULEENTRY32::szModule/szExePath to DetourFindFunction()
+NOTE: DetourFindFunction() supports symbols from PDB (incl. M$ symbol server)
 
 MAKE USE OF Win32 API multi-threading functions!
 	InitializeCriticalSection / TryEnterCriticalSection / EnterCriticalSection / LeaveCriticalSection / DeleteCriticalSection
@@ -14,7 +30,10 @@ Hook Events:
 		return context-related data
 		Continue/Terminate/Prompt
 
+Approved / Vetoed?
+
 *IMPORTANT*: The "binary hooker" PeDoll implements ALSO only work on procedures
+		And only support 1 instance
 
 CMD_HOOK_IAT
 	procSize
@@ -40,7 +59,7 @@ registers to preserve:
 		eax, ecx, edx, ebx, esp, ebp, esi, edi
 	x64
 		rax, rcx, rdx, rbx, rbp, rsp, rdi, rsi, r8, r9
-	FP registers (sub ebp, 16; movdqu xmmword ptr[ebp], xmm0)
+	(?) FP registers (sub ebp, 16; movdqu xmmword ptr[ebp], xmm0)
 		xmm0, xmm1, xmm2, xmm3
 
 calling conventions:
@@ -63,7 +82,8 @@ ctxItem struct:
 register: uint (register number, or -1 for abs. mem address)
 type: uint ((%d, %u, %x), %s, %S) (%f, %lf?)
 poi: bool (eax+0, poi = false => eax, poi = true => [eax])
-offset: ulong
+	or: "eax" => eax, "eax+0" => [eax]
+offset: uint64
 
 example: %x@[esp-8] => {register: SP, type: NATIVEWORD, poi: true, offset: -8}
 
@@ -72,7 +92,7 @@ example: %x@[esp-8] => {register: SP, type: NATIVEWORD, poi: true, offset: -8}
 Current lock implemention (one Critical Section per hook) allows multiple threads waiting for different hooks
 Should this be allowed?
 
-Consider "multile victims" is on the roadmap, this should be allowed
+Consider "multiple victims" is on the roadmap, this should be allowed
 Different victims: shown as a list on the Controller side, since we can switch context between victims (Puppet::PACKET::doll)
 Same victim, different thread/hook: another lock/wait (only for Prompt verdicts), latter one will show immediately after the first one being verdicted
 
