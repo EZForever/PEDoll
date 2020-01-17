@@ -14,7 +14,7 @@ extern "C" NATIVEWORD DollGetCurrentHook(NATIVEWORD* context)
 
 extern "C" void DollOnHook(NATIVEWORD* context)
 {
-    // TODO: Procedure:
+    // Procedure:
     // register current thread
     // EnterCriticalSection
     // hookOriginalSP = context[1];
@@ -29,9 +29,9 @@ extern "C" void DollOnHook(NATIVEWORD* context)
 
     DollThreadRegisterCurrent();
 
-    LIBDOLL_HOOK* hook = (LIBDOLL_HOOK*)DollGetCurrentHook(context);
-    EnterCriticalSection(&hook->lock);
+    EnterCriticalSection(&ctx.lockHook);
 
+    LIBDOLL_HOOK* hook = (LIBDOLL_HOOK*)DollGetCurrentHook(context);
     hook->originalSP = context[1];
 
     // TODO: data report & wait for verdict
@@ -52,7 +52,7 @@ extern "C" void DollOnHook(NATIVEWORD* context)
 
 extern "C" void DollOnAfterHook(NATIVEWORD* context)
 {
-    // TODO: Procedure:
+    // Procedure:
     // "After..." operations
     //    If prompted to Terminate, overwrite hookOriginalSP with DebugBreak / __fastfail
     //    since it is not possible to do it "the pretty way" // TODO: Revise this sentence
@@ -72,7 +72,7 @@ extern "C" void DollOnAfterHook(NATIVEWORD* context)
     context[0] = (NATIVEWORD)DebugBreak;
 #endif
 
-    LeaveCriticalSection(&hook->lock);
+    LeaveCriticalSection(&ctx.lockHook);
 
     DollThreadUnregisterCurrent();
 }

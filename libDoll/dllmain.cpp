@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "libDoll.h"
 
-extern void __cdecl ThreadPuppetClient(void*);
+extern void __cdecl ThreadHookDispatcher(void*);
 
 LIBDOLL_CTX ctx;
 
@@ -12,7 +12,33 @@ void DollThreadRegisterCurrent()
 
 void DollThreadUnregisterCurrent()
 {
-    ctx.dollThreads.erase(ctx.dollThreads.find(GetCurrentThreadId()));
+    ctx.dollThreads.erase(GetCurrentThreadId());
+}
+
+BOOL DollDllAttach()
+{
+    // Initialize all the global contexts
+
+    // This will get updated if DetourAttach() / DetourDetach() happened on GetCurrentThreadId
+    ctx.pRealGetCurrentThreadId = GetCurrentThreadId;
+
+    InitializeCriticalSection(&ctx.lockHook);
+    // TODO: Other necessary varibles
+
+    uintptr_t ret = _beginthread(ThreadHookDispatcher, 0, NULL);
+    if (ret == 0 || ret == -1)
+        return FALSE; // these status means error occurred
+
+    return TRUE;
+}
+
+BOOL DollDllDetach()
+{
+    // Clean up
+
+    DeleteCriticalSection(&ctx.lockHook);
+
+    return TRUE;
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
@@ -24,20 +50,11 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
         // Try my best to avoid infinite loop
         DisableThreadLibraryCalls(hModule);
 
-        // Initialize all the global contexts
-        ctx.pRealGetCurrentThreadId = GetCurrentThreadId;
-        // TODO: Update this if DetourAttach() / DetourDetach() happened on GetCurrentThreadId
-        // TODO: Other necessary varibles
-
-        uintptr_t ret = _beginthread(ThreadPuppetClient, 0, NULL);
-        if (ret == 0 || ret == -1)
-            return FALSE; // these status means error occurred
-        break;
+        return DollDllAttach();
     }
     case DLL_PROCESS_DETACH:
     {
-        // TODO: clean up (?)
-        break;
+        return DollDllDetach();
     }
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:

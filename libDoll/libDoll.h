@@ -9,6 +9,9 @@ typedef uint64_t NATIVEWORD;
 typedef uint32_t NATIVEWORD;
 #endif
 
+// The prototype of GetCurrentThreadId()
+typedef DWORD (__stdcall *GET_CURRENT_THREAD_ID)();
+
 struct LIBDOLL_HOOKEVENTS {
     // TODO: fill this struct (will need a LIBDOLL_HOOKEVENT)
 };
@@ -28,9 +31,6 @@ struct LIBDOLL_HOOK {
     DWORD pBeforeAProtect;
     DWORD pBeforeBProtect;
     DWORD pBeforeDenyProtect;
-    LIBDOLL_HOOKEVENTS* onBefore;
-    LIBDOLL_HOOKEVENTS* onAfter;
-    CRITICAL_SECTION lock;
 };
 
 #pragma pack(pop)
@@ -38,7 +38,8 @@ struct LIBDOLL_HOOK {
 struct LIBDOLL_CTX {
     std::set<DWORD> dollThreads;
     std::map<NATIVEWORD, LIBDOLL_HOOK*> dollHooks;
-    DWORD (__stdcall *pRealGetCurrentThreadId)();
+    GET_CURRENT_THREAD_ID pRealGetCurrentThreadId;
+    CRITICAL_SECTION lockHook;
 };
 
 // Global context
@@ -46,8 +47,8 @@ extern LIBDOLL_CTX ctx;
 
 // Register current thread as a libDoll thread
 // libDoll threads will not be affected by hooks, i.e. will follow the hook but sliently continues
-extern void DollThreadRegisterCurrent();
+void DollThreadRegisterCurrent();
 
 // Unregister current thread
-extern void DollThreadUnregisterCurrent();
+void DollThreadUnregisterCurrent();
 

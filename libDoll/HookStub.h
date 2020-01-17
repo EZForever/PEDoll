@@ -17,18 +17,18 @@ extern "C" {
     extern const NATIVEWORD HookStubBefore_HookOEPOffset;
     extern const NATIVEWORD HookStubBefore_AddrOffset;
 
-    extern NATIVEWORD DollThreadIsCurrent();
+    NATIVEWORD DollThreadIsCurrent();
 
     // context[0] = [in]HookOEP
-    extern NATIVEWORD DollGetCurrentHook(NATIVEWORD* context);
+    NATIVEWORD DollGetCurrentHook(NATIVEWORD* context);
 
     // context[0] = [inout]HookOEP, context[1] = [inout]returnAddr
     // context[n] for n > 1 should not be accessed directly
     // context[-1] = [in]{e|r}ax, context[-2] = [in]{e|r}bx, etc
-    extern void DollOnHook(NATIVEWORD* context);
+    void DollOnHook(NATIVEWORD* context);
 
     // Same as DollOnHook() but context[0] = [out]returnAddr and context[1] is now gone
-    extern void DollOnAfterHook(NATIVEWORD* context);
+    void DollOnAfterHook(NATIVEWORD* context);
 
 }
 

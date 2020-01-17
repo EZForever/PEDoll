@@ -27,6 +27,9 @@
     <ClInclude Include="HookStub.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Hook.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -35,10 +38,13 @@
     <ClCompile Include="pch.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadPuppetClient.cpp">
+    <ClCompile Include="HookStub.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="HookStub.cpp">
+    <ClCompile Include="Hook.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadHookDispatcher.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

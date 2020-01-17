@@ -8,6 +8,7 @@ So my version of PEDoll will NOT focus on pretty-printing Windows APIs, but on b
 lexer replacement(?): https://github.com/skeeto/optparse
 
 https://github.com/OmarAflak/Asynchronous-Socket-Class-C-Windows/blob/master/src/SocketServer.cpp
+https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.tcplistener?view=netframework-4.8
 
 Check if given ptr is actually execuable:
 https://docs.microsoft.com/zh-cn/windows/win32/api/winbase/nf-winbase-isbadcodeptr
@@ -17,10 +18,18 @@ Look for api address:
 https://docs.microsoft.com/zh-cn/windows/win32/toolhelp/traversing-the-module-list
 during traversal, pass MODULEENTRY32::szModule/szExePath to DetourFindFunction()
 NOTE: DetourFindFunction() supports symbols from PDB (incl. M$ symbol server)
+UPDATE: DetourEnumerateModules() + GetModuleFileName() ?
+EnumerateExportCallback()?
+
+(Maybe useful) DollSuspendAllThread():
+https://docs.microsoft.com/zh-cn/windows/win32/toolhelp/traversing-the-thread-list
+THREAD_SUSPEND_RESUME
 
 MAKE USE OF Win32 API multi-threading functions!
 	InitializeCriticalSection / TryEnterCriticalSection / EnterCriticalSection / LeaveCriticalSection / DeleteCriticalSection
 	CreateEvent / ResetEvent / WaitForSingleObject
+
+----------
 
 Hook Events:
 	Before...
@@ -30,28 +39,8 @@ Hook Events:
 		return context-related data
 		Continue/Terminate/Prompt
 
-Approved / Vetoed?
-
 *IMPORTANT*: The "binary hooker" PeDoll implements ALSO only work on procedures
 		And only support 1 instance
-
-CMD_HOOK_IAT
-	procSize
-		must > 0
-	moduleSize ???
-		> 0 - `module` contains the target module (GetModuleHandle())
-		== 0 - `module` unknown; enumerate all loaded modules
-			TEB / PEB? Since inject code will use it
-	proc
-		vardic-length ASCII string
-	module ???
-		vardic-length ASCII string
-
-CMD_HOOK_BINARY
-	codeSize
-		must > 0
-	code
-		vardic-length byte array
 
 registers to preserve:
 	x86
@@ -71,35 +60,92 @@ calling conventions:
 		gcc (rdi, rsi, rdx, rcx, r8, r9, stack)
 
 ----------
-
+/*
 Current lock implemention (one Critical Section per hook) allows multiple threads waiting for different hooks
 Should this be allowed?
 
 Consider "multiple victims" is on the roadmap, this should be allowed
 Different victims: shown as a list on the Controller side, since we can switch context between victims (Puppet::PACKET::doll)
 Same victim, different thread/hook: another lock/wait (only for Prompt verdicts), latter one will show immediately after the first one being verdicted
-
+*/
 For this to work, libDoll threads MUST NOT be caught into DollOnHook, which is impossible under legacy inline mechanisms
 and that's the reason I merged the "detours" branch
 
+UPDATE: Considering this it is not necessary to really have one lock per hook by now
+	a global lock is OK, and we only allow one thread with one hook to wait to be verdicted
+	ALL operations (requesting for data, verdict results, etc) are done on the Controller side
+	all a Doll have to do is to wait for Controller's request/reply
+
+Q: Under this "centralized" architechure, How does libDoll know where the server is?
+A: The Monitor/Spawner will create a static channel for a temp one-way communication (shared memory?)
+UPDATE: Even can do with DetourCopyPayloadToProcess() + DetourEnumerateModules() + DetourFindPayload()
+	DetourEnumerateModules() because the payload is in a injected dummy module
+https://github.com/microsoft/Detours/wiki/DetourCopyPayloadToProcess
+
+*IMPORTANT*:
+From https://github.com/microsoft/Detours/wiki/DetourUpdateThread :
+When a detour transaction commmits, Detours insures that all threads enlisted in the transcation via the DetourUpdateThread API are updated if their instruction pointer lies within the rewritten code in either the target function or the trampoline function.
+So we need to DetourUpdateThread() all threads, incl. libDoll ones
+See more at https://stackoverflow.com/a/2637105
+
 ----------
 
-https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.tcplistener?view=netframework-4.8
+How the commands in original PeDoll are implemented:
 
 - Monitor commands
 * doll
+	- "iti": IAT rewriting
+		- Creating a new execuable with PE.dll in the IAT
+	- "bi": OEP rewriting
+		- Creating a new execuable with OEP redirected to the LoadLibrary() shellcode
+	- "di": Remote thread (recommended for attaching)
+		- CreateRemoteThread() with LoadLibrary() as OEP
+	- "db": OEP rewriting approach I (recommended for launching)
+		- CreateProcess(CREATE_SUSPENDED), then redirect OEP to LoadLibrary() shellcode
+	- "ac": OEP rewriting approach II
+		- Basically the same as "db"
 * shell
+	- CreateProcess()
 * enumprocess
+	- CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS)
 * ls
+	- FindFirstFile()
 * kill
+	- Get process handle by CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS), then TerminateProcess()
 
 - Doll commands
 * hook
+	- A big switch() comparing against a known API list
+	- See DLLMain_cn.cpp!HookFunctionCommand
 * unhook
+	- rt
 * terminate
+	- exit(0)
 * run
+	- Did nothing but reply a ACK packet
 * esp
+	- ACK packet with *current* esp value
+	- Is of any use?
 * readMemory
+	- ReadProcessMemory() with GetCurrentProcess()
 * binary
+	- Activate the spare APIHooker
+	- Locate mechanism: Search binary from GetModuleHandle(NULL) to (0x07ffffff - size) step 1
 * unbinary
+	- rt
+
+----------
+
+Q: How does the created/attached process know where "libDoll.dll" exists?
+A: Creating: set PATH; Attaching: ? (PeDoll done these by pre-copying PE.dll to %windir%)
+
+My impl of "doll" command:
+	Create: DetourCreateProcessWithDllEx()
+		- Mechanism: CreateProcess(CREATE_SUSPENDED) then modify IAT
+		- Need libDoll.dll to export at least 1 function (ordinal #1)
+		- Need DllMain() to run DetourRestoreAfterWith()
+	Create static (not for now): Use Detours binary functions to modify execuable fil
+		- Similar to "doll iti" and maybe "doll bi"
+		- For more see https://github.com/microsoft/Detours/wiki/OverviewPayloads
+	Attach: "doll di"
 
