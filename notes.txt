@@ -21,10 +21,6 @@ NOTE: DetourFindFunction() supports symbols from PDB (incl. M$ symbol server)
 UPDATE: DetourEnumerateModules() + GetModuleFileName() ?
 EnumerateExportCallback()?
 
-(Maybe useful) DollSuspendAllThread():
-https://docs.microsoft.com/zh-cn/windows/win32/toolhelp/traversing-the-thread-list
-THREAD_SUSPEND_RESUME
-
 MAKE USE OF Win32 API multi-threading functions!
 	InitializeCriticalSection / TryEnterCriticalSection / EnterCriticalSection / LeaveCriticalSection / DeleteCriticalSection
 	CreateEvent / ResetEvent / WaitForSingleObject
@@ -84,7 +80,7 @@ https://github.com/microsoft/Detours/wiki/DetourCopyPayloadToProcess
 
 *IMPORTANT*:
 From https://github.com/microsoft/Detours/wiki/DetourUpdateThread :
-When a detour transaction commmits, Detours insures that all threads enlisted in the transcation via the DetourUpdateThread API are updated if their instruction pointer lies within the rewritten code in either the target function or the trampoline function.
+> When a detour transaction commmits, Detours insures that all threads enlisted in the transcation via the DetourUpdateThread API are updated if their instruction pointer lies within the rewritten code in either the target function or the trampoline function.
 So we need to DetourUpdateThread() all threads, incl. libDoll ones
 See more at https://stackoverflow.com/a/2637105
 
@@ -134,10 +130,18 @@ How the commands in original PeDoll are implemented:
 * unbinary
 	- rt
 
+NOTE: From https://docs.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/virtual-address-spaces :
+> For a 32-bit process, the virtual address space is usually the 2-gigabyte range 0x00000000 through 0x7FFFFFFF. For a 64-bit process, the virtual address space is the 8-terabyte range 0x000'00000000 through 0x7FF'FFFFFFFF.
+> In 32-bit Windows, the total available virtual address space is 2^32 bytes (4 gigabytes). Usually the lower 2 gigabytes are used for user space, and the upper 2 gigabytes are used for system space.
+> In 64-bit Windows, the theoretical amount of virtual address space is 2^64 bytes (16 exabytes), but only a small portion of the 16-exabyte range is actually used. The 8-terabyte range from 0x000'00000000 through 0x7FF'FFFFFFFF is used for user space, and portions of the 248-terabyte range from 0xFFFF0800'00000000 through 0xFFFFFFFF'FFFFFFFF are used for system space.
+i.e. Searching directly to the end is no longer an option. So how to do?
+
 ----------
 
 Q: How does the created/attached process know where "libDoll.dll" exists?
-A: Creating: set PATH; Attaching: ? (PeDoll done these by pre-copying PE.dll to %windir%)
+PeDoll done these by pre-copying PE.dll to %windir%
+A: For creating, modify monitor's PATH to add current dir
+   For attaching, see below
 
 My impl of "doll" command:
 	Create: DetourCreateProcessWithDllEx()
@@ -148,4 +152,5 @@ My impl of "doll" command:
 		- Similar to "doll iti" and maybe "doll bi"
 		- For more see https://github.com/microsoft/Detours/wiki/OverviewPayloads
 	Attach: "doll di"
+		- Done by: get LoadLibraryA()'s address, copy libDoll *full path* to target memory, then CreateRemoteThread()
 

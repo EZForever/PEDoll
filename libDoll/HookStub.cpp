@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "libDoll.h"
+#include "Thread.h"
 
 extern "C" NATIVEWORD DollThreadIsCurrent()
 {

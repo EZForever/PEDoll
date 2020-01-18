@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libDoll", "libDoll\libDoll.vcxproj", "{2EFB5550-99ED-473C-9132-CA2A04042D15}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libPuppetProtocol", "libPuppetProtocol\libPuppetProtocol.vcxproj", "{781B8BAD-43A7-42D1-B9B6-678943F3DFA4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libPuppet", "libPuppet\libPuppet.vcxproj", "{781B8BAD-43A7-42D1-B9B6-678943F3DFA4}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PEDollMonitor", "PEDollMonitor\PEDollMonitor.vcxproj", "{7ADF8685-7C8E-4CCA-A304-E537176CF2F6}"
 EndProject

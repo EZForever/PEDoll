@@ -4,12 +4,12 @@
 #include "pch.h"
 #include <WinSock2.h>
 #include <WS2tcpip.h> // For some reason IPv6 things are here
-#include "libPuppetProtocol.h"
+#include "libPuppet.h"
 
 namespace Puppet {
 
     // Forward TCP server for Puppet Protocol
-    class PuppetServerTCP : public IPuppetServer
+    class PuppetServerTCP : public IPuppet
     {
     private:
         WSADATA wsa;
@@ -23,9 +23,9 @@ namespace Puppet {
         PuppetServerTCP(int port, const char* host = NULL, bool ipv6 = false);
         ~PuppetServerTCP();
 
-        // IPuppetServer implemention
+        // IPuppet implemention
 
-        void listen();
+        void start();
         void send(const PACKET& packet);
         PACKET* recv();
     };

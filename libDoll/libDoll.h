@@ -8,13 +8,12 @@ typedef uint64_t NATIVEWORD;
 #else
 typedef uint32_t NATIVEWORD;
 #endif
+// XXX: Use uintptr_t from <cstdint> instead?
+// That type is "capable of holding a pointer", but not necessary to be exactly the same size
+// So that may not be an option
 
 // The prototype of GetCurrentThreadId()
 typedef DWORD (__stdcall *GET_CURRENT_THREAD_ID)();
-
-struct LIBDOLL_HOOKEVENTS {
-    // TODO: fill this struct (will need a LIBDOLL_HOOKEVENT)
-};
 
 #pragma pack(push, 1)
 
@@ -44,11 +43,4 @@ struct LIBDOLL_CTX {
 
 // Global context
 extern LIBDOLL_CTX ctx;
-
-// Register current thread as a libDoll thread
-// libDoll threads will not be affected by hooks, i.e. will follow the hook but sliently continues
-void DollThreadRegisterCurrent();
-
-// Unregister current thread
-void DollThreadUnregisterCurrent();
 

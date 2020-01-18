@@ -1,19 +1,9 @@
 ﻿#include "pch.h"
 #include "libDoll.h"
 
-extern void __cdecl ThreadHookDispatcher(void*);
+void __cdecl ThreadHookDispatcher(void*);
 
 LIBDOLL_CTX ctx;
-
-void DollThreadRegisterCurrent()
-{
-    ctx.dollThreads.emplace(GetCurrentThreadId());
-}
-
-void DollThreadUnregisterCurrent()
-{
-    ctx.dollThreads.erase(GetCurrentThreadId());
-}
 
 BOOL DollDllAttach()
 {

@@ -155,7 +155,7 @@
     <ClCompile Include="PEDollMonitor.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\libPuppetProtocol\libPuppetProtocol.vcxproj">
+    <ProjectReference Include="..\libPuppet\libPuppet.vcxproj">
       <Project>{781b8bad-43a7-42d1-b9b6-678943f3dfa4}</Project>
     </ProjectReference>
   </ItemGroup>

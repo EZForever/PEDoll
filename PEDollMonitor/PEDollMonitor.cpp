@@ -2,15 +2,15 @@
 #include <exception>
 #include <stdexcept>
 
-#include "../libPuppetProtocol/libPuppetProtocol.h"
-#include "../libPuppetProtocol/PuppetClientTCP.h"
+#include "../libPuppet/libPuppet.h"
+#include "../libPuppet/PuppetClientTCP.h"
 
 int main()
 {
     try
     {
-        Puppet::IPuppetClient* client = new Puppet::PuppetClientTCP(8888);
-        client->connect();
+        Puppet::IPuppet* client = new Puppet::PuppetClientTCP(8888);
+        client->start();
         
         Puppet::PACKET_MSG_ACK packetOut;
         Puppet::PACKET* packetIn = NULL;

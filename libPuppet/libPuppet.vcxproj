@@ -22,8 +22,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{781B8BAD-43A7-42D1-B9B6-678943F3DFA4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>libPuppetProtocol</RootNamespace>
+    <RootNamespace>libPuppet</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>libPuppet</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -148,13 +149,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
-    <ClInclude Include="libPuppetProtocol.h" />
+    <ClInclude Include="libPuppet.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PuppetClientTCP.h" />
     <ClInclude Include="PuppetServerTCP.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="libPuppetProtocol.cpp" />
+    <ClCompile Include="libPuppet.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

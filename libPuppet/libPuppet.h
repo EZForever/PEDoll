@@ -1,16 +1,10 @@
-// libPuppetProtocol.h
+// libPuppet.h
 // Generic declaration of server, client and packet structures
 #pragma once
 #pragma warning(disable:4200) // nonstandard extension used : zero-sized array in struct/union
 #include <cstdint>
 
 namespace Puppet {
-
-    // Special packet Doll ids
-#   define PUPPET_PACKET_DOLL_DEFAULT ((uint32_t)0)
-#   define PUPPET_PACKET_DOLL_MONITOR ((uint32_t)-1)
-#   define PUPPET_PACKET_DOLL_CONTROLLER ((uint32_t)-2)
-
 
     // ID of packet types
     enum class PACKET_TYPE : uint32_t {
@@ -30,14 +24,13 @@ namespace Puppet {
         // Total size of the packet, in bytes
         // Must be the first field of a packet
         uint32_t size;
-        // Doll ID
-        // Receiver for commands packets, sender otherwise
-        uint32_t doll;
+        // Sequence ID
+        uint32_t seqId;
         // Data type of this packet
         PACKET_TYPE type;
 
         PACKET(decltype(size) s = sizeof(PACKET), decltype(type) t = PACKET_TYPE::INVALID)
-            : size(s), doll(PUPPET_PACKET_DOLL_MONITOR), type(t) {}
+            : size(s), seqId(0), type(t) {}
     };
 
     // Controller tests if the doll is still there
@@ -80,48 +73,28 @@ namespace Puppet {
 
 #   pragma pack(pop)
 
-    // Generic interface for a Puppet Protocol server
-    class IPuppetServer {
+    // Generic interface for a Puppet Protocol server/client
+    class IPuppet {
     public:
-        IPuppetServer() {}
-        ~IPuppetServer() {}
+        IPuppet() {}
+        ~IPuppet() {}
 
-        // Start waiting for client(s). Synchronous function.
-        virtual void listen() = 0;
+        // For a server: Start waiting for a client.
+        // For a client: Establish connection to a server.
+        // Synchronous function.
+        virtual void start() = 0;
 
-        // Send a packet to connected client. Asynchronous function.
+        // Send a packet to connected server/client. Asynchronous function.
         virtual void send(const PACKET& packet) = 0;
 
-        // Wait & receives a packet from connected client. Synchronous function.
+        // Wait & receives a packet from connected server/client. Synchronous function.
         // The returned pointer is malloc()'d.
         virtual PACKET* recv() = 0;
 
     private:
-        // Copying of a server instance is not allowed
-        IPuppetServer(const IPuppetServer& x) = delete;
-        IPuppetServer& operator=(IPuppetServer& x) = delete;
-    };
-
-    // Generic interface for a Puppet Protocol client
-    class IPuppetClient {
-    public:
-        IPuppetClient() {}
-        virtual ~IPuppetClient() {}
-
-        // Establish connection to server. Synchronous function.
-        virtual void connect() = 0;
-
-        // Send a packet to connected server. Asynchronous function.
-        virtual void send(const PACKET& packet) = 0;
-
-        // Wait & receives a packet from connected server. Synchronous function.
-        // The returned pointer is malloc()'d.
-        virtual PACKET* recv() = 0;
-
-    private:
-        // Copying of a client instance is not allowed
-        IPuppetClient(const IPuppetClient& x) = delete;
-        IPuppetClient& operator=(IPuppetClient& x) = delete;
+        // Copying of a instance is not allowed
+        IPuppet(const IPuppet& x) = delete;
+        IPuppet& operator=(IPuppet& x) = delete;
     };
 
     // errno of last faulty action

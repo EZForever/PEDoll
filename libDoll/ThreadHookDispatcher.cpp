@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "libDoll.h"
 
+#include "Thread.h"
 #include "Hook.h"
 
 void __cdecl ThreadHookDispatcher(void* arg)

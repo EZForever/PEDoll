@@ -1,11 +1,11 @@
 #include "pch.h"
-#include "PuppetClientTCP.h"
+#include "PuppetServerTCP.h"
 
 namespace Puppet {
 
-#   define ASSERT(expr, msg) PuppetClientTCP::assert((expr), "PuppetClientTCP::" msg)
+#   define ASSERT(expr, msg) PuppetServerTCP::assert((expr), "PuppetServerTCP::" msg)
 
-    void PuppetClientTCP::assert(bool expr, const char* msg) {
+    void PuppetServerTCP::assert(bool expr, const char* msg) {
         if (expr)
             return;
 
@@ -13,18 +13,19 @@ namespace Puppet {
         throw std::runtime_error(msg);
     }
 
-    PuppetClientTCP::PuppetClientTCP(int port, const char* host, bool ipv6)
-        : clientSocket(INVALID_SOCKET)
+    PuppetServerTCP::PuppetServerTCP(int port, const char *host, bool ipv6)
+        : serverSocket(INVALID_SOCKET), clientSocket(INVALID_SOCKET)
     {
         int ret;
 
-        // Most of the code here is directly copied from PuppetServerTCP.cpp
-        // so all the notes and hints are identical
+        // According to MSDN, multiple calls to WSAStartup() is fine, as long as keep balance with WSACleanup()
+        // Calling WSAStartup() inside of DllMain() is not recommended though,
+        // since WSAStartup() may load other DLLs and may cause deadlocks
         ret = WSAStartup(MAKEWORD(2, 2), &wsa);
         ASSERT(!ret, "(): WSAStartup() failed");
 
-        clientSocket = socket(ipv6 ? AF_INET6 : AF_INET, SOCK_STREAM, 0);
-        ASSERT(clientSocket != INVALID_SOCKET, "(): socket() failed");
+        serverSocket = socket(ipv6 ? AF_INET6 : AF_INET, SOCK_STREAM, 0);
+        ASSERT(serverSocket != INVALID_SOCKET, "(): socket() failed");
 
         if (ipv6)
         {
@@ -32,11 +33,15 @@ namespace Puppet {
             a->sin6_family = AF_INET6;
             a->sin6_port = htons(port);
 
-            if (!host)
-                host = "::1";
-            ret = inet_pton(AF_INET6, host, &a->sin6_addr);
-            ASSERT(ret, "(): Invalid host");
-
+            if (host)
+            {
+                ret = inet_pton(AF_INET6, host, &a->sin6_addr);
+                ASSERT(ret, "(): Invalid host");
+            }
+            else
+            {
+                a->sin6_addr = in6addr_any;
+            }
             addr = (SOCKADDR*)a;
             addrSize = sizeof(*a);
         }
@@ -46,22 +51,31 @@ namespace Puppet {
             a->sin_family = AF_INET;
             a->sin_port = htons(port);
 
-            if (!host)
-                host = "127.0.0.1";
-            ret = inet_pton(AF_INET, host, &a->sin_addr);
-            ASSERT(ret, "(): Invalid host");
-            
+            if (host)
+            {
+                ret = inet_pton(AF_INET, host, &a->sin_addr);
+                ASSERT(ret, "(): Invalid host");
+            }
+            else
+            {
+                a->sin_addr.s_addr = INADDR_ANY;
+            }
             addr = (SOCKADDR*)a;
             addrSize = sizeof(*a);
         }
+        ret = bind(serverSocket, addr, addrSize);
+        ASSERT(!ret, "(): bind() failed");
     }
 
-    PuppetClientTCP::~PuppetClientTCP()
+    PuppetServerTCP::~PuppetServerTCP()
     {
         if (clientSocket != INVALID_SOCKET) {
             shutdown(clientSocket, SD_BOTH);
             closesocket(clientSocket);
         }
+        
+        shutdown(serverSocket, SD_BOTH);
+        closesocket(serverSocket);
 
         delete addr; // XXX: Will type confusion cause something here?
         WSACleanup();
@@ -70,18 +84,25 @@ namespace Puppet {
         //ASSERT(!WSACleanup(), "~(): WSACleanup() failed");
     }
 
-    void PuppetClientTCP::connect()
+    void PuppetServerTCP::start()
     {
-        if (clientSocket == INVALID_SOCKET)
+        if (clientSocket != INVALID_SOCKET)
             return; // FIXME: How to tell if a connection has ended?
 
         int ret;
 
-        ret = ::connect(clientSocket, addr, addrSize); // Blocks
-        ASSERT(!ret, "connect(): connect() failed");
+        ret = ::listen(serverSocket, 1);
+        ASSERT(!ret, "listen(): listen() failed");
+
+        clientSocket = accept(serverSocket, addr, &addrSize); // Blocks
+        ASSERT(clientSocket != INVALID_SOCKET, "listen(): accept() failed");
+
+        // The listener socket can be closed, since we only have 1 client
+        closesocket(serverSocket);
+        serverSocket = INVALID_SOCKET;
     }
 
-    void PuppetClientTCP::send(const PACKET& packet)
+    void PuppetServerTCP::send(const PACKET& packet)
     {
         ASSERT(clientSocket != INVALID_SOCKET, "send(): Connection not established");
 
@@ -91,7 +112,7 @@ namespace Puppet {
         ASSERT(ret == packet.size, "send(): send() failed");
     }
 
-    PACKET* PuppetClientTCP::recv()
+    PACKET* PuppetServerTCP::recv()
     {
         ASSERT(clientSocket != INVALID_SOCKET, "recv(): Connection not established");
 
