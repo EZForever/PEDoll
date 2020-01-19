@@ -13,22 +13,22 @@ extern "C" {
     extern char HookStubB;
     extern char HookStubOnDeny;
 
-    extern const NATIVEWORD HookStubBefore_len;
-    extern const NATIVEWORD HookStubBefore_HookOEPOffset;
-    extern const NATIVEWORD HookStubBefore_AddrOffset;
+    extern const UINT_PTR HookStubBefore_len;
+    extern const UINT_PTR HookStubBefore_HookOEPOffset;
+    extern const UINT_PTR HookStubBefore_AddrOffset;
 
-    NATIVEWORD DollThreadIsCurrent();
+    UINT_PTR DollThreadIsCurrent();
 
     // context[0] = [in]HookOEP
-    NATIVEWORD DollGetCurrentHook(NATIVEWORD* context);
+    UINT_PTR DollGetCurrentHook(UINT_PTR* context);
 
     // context[0] = [inout]HookOEP, context[1] = [inout]returnAddr
     // context[n] for n > 1 should not be accessed directly
     // context[-1] = [in]{e|r}ax, context[-2] = [in]{e|r}bx, etc
-    void DollOnHook(NATIVEWORD* context);
+    void DollOnHook(UINT_PTR* context);
 
     // Same as DollOnHook() but context[0] = [out]returnAddr and context[1] is now gone
-    void DollOnAfterHook(NATIVEWORD* context);
+    void DollOnAfterHook(UINT_PTR* context);
 
 }
 

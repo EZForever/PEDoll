@@ -18,8 +18,9 @@ namespace Puppet {
     {
         int ret;
 
-        // Most of the code here is directly copied from PuppetServerTCP.cpp
-        // so all the notes and hints are identical
+        // According to MSDN, multiple calls to WSAStartup() is fine, as long as keep balance with WSACleanup()
+        // Calling WSAStartup() inside of DllMain() is not recommended though,
+        // since WSAStartup() may load other DLLs and may cause deadlocks
         ret = WSAStartup(MAKEWORD(2, 2), &wsa);
         ASSERT(!ret, "(): WSAStartup() failed");
 

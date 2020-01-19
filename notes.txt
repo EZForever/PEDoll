@@ -30,7 +30,7 @@ MAKE USE OF Win32 API multi-threading functions!
 Hook Events:
 	Before...
 		return context-related data
-		Allow/Deny(req. stack offset)/Terminate/Prompt
+		Approve/Reject(req. stack offset)/Terminate/Prompt
 	After...
 		return context-related data
 		Continue/Terminate/Prompt

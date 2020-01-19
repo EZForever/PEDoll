@@ -2,6 +2,6 @@
 #include "pch.h"
 #include "libDoll.h"
 
-void HookAdd(NATIVEWORD hookOEP, NATIVEWORD denySPOffset, NATIVEWORD denyAX);
-void HookRemove(NATIVEWORD hookOEP);
+void HookAdd(UINT_PTR hookOEP, UINT_PTR denySPOffset, UINT_PTR denyAX);
+void HookRemove(UINT_PTR hookOEP);
 

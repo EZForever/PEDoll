@@ -12,14 +12,14 @@ int main()
         Puppet::IPuppet* client = new Puppet::PuppetClientTCP(8888);
         client->start();
         
-        Puppet::PACKET_MSG_ACK packetOut;
+        Puppet::PACKET_ACK packetOut;
         Puppet::PACKET* packetIn = NULL;
         do
         {
             try
             {
                 packetIn = client->recv();
-                if (packetIn->type == Puppet::PACKET_TYPE::CMD_PING)
+                if (packetIn->type == Puppet::PACKET_TYPE::CMD_ANY)
                     client->send(packetOut);
                 delete packetIn;
             }

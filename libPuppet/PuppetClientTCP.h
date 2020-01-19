@@ -3,7 +3,7 @@
 #pragma once
 #include "pch.h"
 #include <WinSock2.h>
-#include <WS2tcpip.h>
+#include <WS2tcpip.h> // For some reason IPv6 things are here
 #include "libPuppet.h"
 
 namespace Puppet {
