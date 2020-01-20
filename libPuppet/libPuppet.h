@@ -25,13 +25,16 @@ namespace Puppet {
         CMD_END = 0x21,
         CMD_DOLL = 0x22,
         CMD_PS = 0x23,
-        CMD_EXEC = 0x24,
+        CMD_SHELL = 0x24,
         CMD_KILL = 0x25,
-        CMD_HOOK = 0x26,
-        CMD_THREAD = 0x27,
-        CMD_CONTEXT = 0x28,
-        CMD_MEMORY = 0x29,
-        CMD_VERDICT = 0x2a,
+
+        CMD_HOOK = 0x31,
+        CMD_UNHOOK = 0x32,
+        CMD_THREAD = 0x33,
+        CMD_CONTEXT = 0x34,
+        CMD_MEMORY = 0x35,
+        CMD_VERDICT = 0x36,
+        CMD_LOADDLL = 0x37,
     };
 
 #   pragma pack(push, 1)
@@ -59,7 +62,7 @@ namespace Puppet {
             : PACKET(sizeof(PACKET_ACK), PACKET_TYPE::ACK), status(s) {}
     };
 
-    // A generic integer or a memory address
+    // A generic integer, mainly used for memory address
     struct PACKET_INTEGER : PACKET {
         // Data
         // Use 64-bit integer to prevent data loss
@@ -88,9 +91,9 @@ namespace Puppet {
     };
 
     // A Monitor or Doll informs Controller its presence
-    // < MSG_ONLINE
+    // < MSG_ONLINE: isMonitor, bits, pid
     // < STRING: hostname (for Monitor) or execuable name (for Doll)
-    // > ACK
+    // > ACK: 0
     struct PACKET_MSG_ONLINE : PACKET {
         // Non-zero if is a Monitor, vice versa
         uint32_t isMonitor;
@@ -107,7 +110,7 @@ namespace Puppet {
     // A Doll's hook has been triggered
     // < MSG_ONHOOK
     // < INTEGER: hookOEP
-    // > ACK
+    // > ACK: 0
     struct PACKET_MSG_ONHOOK : PACKET {
         ;
 
@@ -117,12 +120,64 @@ namespace Puppet {
 
     // End this Puppet connection
     // > CMD_END
-    // < ACK
+    // < ACK: 0 (42?)
     struct PACKET_CMD_END : PACKET {
         ;
 
         PACKET_CMD_END()
             : PACKET(sizeof(PACKET_CMD_END), PACKET_TYPE::CMD_END) {}
+    };
+
+    // (Monitor) Start a new Doll process
+    // > CMD_DOLL
+    // > STRING (if pid != 0): execuable path
+    // < ACK: 0 on ok, or corresponding Win32 error codes
+    struct PACKET_CMD_DOLL : PACKET {
+        // The PID of target process
+        // If == 0, launch a new execuable instead
+        uint32_t pid;
+
+        PACKET_CMD_DOLL()
+            : PACKET(sizeof(PACKET_CMD_DOLL), PACKET_TYPE::CMD_DOLL),
+              pid(-1) {}
+    };
+
+    // (Monitor) Enumerate processes, like linux command `ps`
+    // > CMD_PS
+    // < ACK: 0 on fail, or n ( > 0) for entry count
+    // (repeat `n` times: )
+    //     < INTEGER: pid
+    //     < STRING: execuable name
+    struct PACKET_CMD_PS : PACKET {
+        ;
+
+        PACKET_CMD_PS()
+            : PACKET(sizeof(PACKET_CMD_PS), PACKET_TYPE::CMD_PS) {}
+    };
+
+    // (Monitor) Execute a shell command
+    // > CMD_SHELL
+    // > STRING: arguments passed to %COMSPEC%
+    // < ACK: 0 on ok, or corresponding Win32 error codes
+    struct PACKET_CMD_SHELL : PACKET {
+        ;
+
+        PACKET_CMD_SHELL()
+            : PACKET(sizeof(PACKET_CMD_SHELL), PACKET_TYPE::CMD_SHELL) {}
+    };
+
+    // (Monitor) Kill a process
+    // > CMD_KILL
+    // > STRING (if pid != 0): execuable name
+    // < ACK: 0 on ok, or corresponding Win32 error codes
+    struct PACKET_CMD_KILL : PACKET {
+        // The PID of target process
+        // If == 0, kill all processes with the name (linux `killall`)
+        uint32_t pid;
+
+        PACKET_CMD_KILL()
+            : PACKET(sizeof(PACKET_CMD_KILL), PACKET_TYPE::CMD_KILL),
+            pid(-1) {}
     };
 
 
@@ -135,15 +190,18 @@ namespace Puppet {
         IPuppet() {}
         ~IPuppet() {}
 
-        // For a server: Start waiting for a client.
-        // For a client: Establish connection to a server.
-        // Synchronous function.
+        // errno of last faulty action
+        // FIXME: This is just a polyfill, will need a new idea for error handling
+        int lastError = 0;
+
+        // For a server: Start waiting for a client
+        // For a client: Establish connection to a server
         virtual void start() = 0;
 
-        // Send a packet to connected server/client. Asynchronous function.
+        // Send a packet to connected server/client
         virtual void send(const PACKET& packet) = 0;
 
-        // Wait & receives a packet from connected server/client. Synchronous function.
+        // Wait & receives a packet from connected server/client
         // The returned pointer is malloc()'d.
         virtual PACKET* recv() = 0;
 
@@ -153,7 +211,4 @@ namespace Puppet {
         IPuppet& operator=(IPuppet& x) = delete;
     };
 
-    // errno of last faulty action
-    // FIXME: This is just a polyfill, will need a new idea for error handling
-    extern int lastError;
 }

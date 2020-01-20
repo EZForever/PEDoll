@@ -7,9 +7,11 @@
 
 int main()
 {
+    Puppet::IPuppet* client = NULL;
+
     try
     {
-        Puppet::IPuppet* client = new Puppet::PuppetClientTCP(8888);
+        client = new Puppet::PuppetClientTCP(8888);
         client->start();
         
         Puppet::PACKET_ACK packetOut;
@@ -25,6 +27,7 @@ int main()
             }
             catch (const std::runtime_error& e)
             {
+                std::cerr << e.what() << std::endl;
                 packetIn = NULL;
             }
         }
@@ -34,7 +37,7 @@ int main()
     catch (const std::runtime_error& e)
     {
         std::cerr << e.what() << std::endl;
-        std::cerr << "Puppet::lastError = " << Puppet::lastError << std::endl;
+        std::cerr << "lastError = " << client->lastError << std::endl;
     }
     return 0;
 }

@@ -3,7 +3,7 @@
 
 namespace Puppet {
 
-#   define ASSERT(expr, msg) PuppetClientTCP::assert((expr), "PuppetClientTCP::" msg)
+#   define ASSERT(expr, msg) assert((expr), "PuppetClientTCP::" msg)
 
     void PuppetClientTCP::assert(bool expr, const char* msg) {
         if (expr)

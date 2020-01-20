@@ -17,7 +17,7 @@ namespace Puppet {
         int addrSize;
         SOCKET clientSocket;
 
-        static void assert(bool expr, const char* msg);
+        void assert(bool expr, const char* msg);
 
     public:
         PuppetClientTCP(int port, const char* host = NULL, bool ipv6 = false);

@@ -6,6 +6,7 @@ So my version of PEDoll will NOT focus on pretty-printing Windows APIs, but on b
 ----------
 
 lexer replacement(?): https://github.com/skeeto/optparse
+https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Options
 
 https://github.com/OmarAflak/Asynchronous-Socket-Class-C-Windows/blob/master/src/SocketServer.cpp
 https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.tcplistener?view=netframework-4.8
@@ -23,7 +24,7 @@ EnumerateExportCallback()?
 
 MAKE USE OF Win32 API multi-threading functions!
 	InitializeCriticalSection / TryEnterCriticalSection / EnterCriticalSection / LeaveCriticalSection / DeleteCriticalSection
-	CreateEvent / ResetEvent / WaitForSingleObject
+	CreateEvent / SetEvent / ResetEvent / WaitForSingleObject (/ WaitForMultipleObjects) / CloseHandle
 
 ----------
 
@@ -136,6 +137,9 @@ NOTE: From https://docs.microsoft.com/en-us/windows-hardware/drivers/gettingstar
 > In 64-bit Windows, the theoretical amount of virtual address space is 2^64 bytes (16 exabytes), but only a small portion of the 16-exabyte range is actually used. The 8-terabyte range from 0x000'00000000 through 0x7FF'FFFFFFFF is used for user space, and portions of the 248-terabyte range from 0xFFFF0800'00000000 through 0xFFFFFFFF'FFFFFFFF are used for system space.
 i.e. Searching directly to the end is no longer an option. So how to do?
 
+(???) Even CheatEngine Uses per-byte method
+http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html
+
 ----------
 
 Q: How does the created/attached process know where "libDoll.dll" exists?
@@ -152,5 +156,7 @@ My impl of "doll" command:
 		- Similar to "doll iti" and maybe "doll bi"
 		- For more see https://github.com/microsoft/Detours/wiki/OverviewPayloads
 	Attach: "doll di"
-		- Done by: get LoadLibraryA()'s address, copy libDoll *full path* to target memory, then CreateRemoteThread()
+		- Done by: get LoadLibraryW()'s address, copy libDoll *full path* to target memory, then CreateRemoteThread()
+		- This works because THREAD_START_ROUTINE's stack layout is exactly the same as LoadLibraryW's.
+		  DWORD (WINAPI *)(LPVOID) vs HMODULE (WINAPI *)(LPCWSTR)
 
