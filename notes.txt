@@ -1,4 +1,5 @@
 If the target is to make a user-friendly Windows API monitor, there are tons of ready-to-use tools lying around:
+	Huorong Sword: https://www.huorong.cn/
 	API Monitor: https://www.rohitab.com/apimonitor
 	Process Monitor from Sysinternals: https://docs.microsoft.com/en-us/sysinternals/downloads/procmon
 So my version of PEDoll will NOT focus on pretty-printing Windows APIs, but on better interoperability with internal procedures
@@ -31,7 +32,7 @@ MAKE USE OF Win32 API multi-threading functions!
 Hook Events:
 	Before...
 		return context-related data
-		Approve/Reject(req. stack offset)/Terminate/Prompt
+		Approve/Reject(req. SPOffset & AX)/Terminate/Prompt
 	After...
 		return context-related data
 		Continue/Terminate/Prompt

@@ -30,7 +30,7 @@ namespace Puppet {
 
         CMD_HOOK = 0x31,
         CMD_UNHOOK = 0x32,
-        CMD_THREAD = 0x33,
+        CMD_BREAK = 0x33,
         CMD_CONTEXT = 0x34,
         CMD_MEMORY = 0x35,
         CMD_VERDICT = 0x36,
@@ -180,7 +180,96 @@ namespace Puppet {
             pid(-1) {}
     };
 
+    // (Doll) Install a new hook
+    // > CMD_HOOK
+    // > STRING (if method == 0): module name (optional) and procedure name
+    // > BINARY (if method == 1): binary blob to search for in memory space
+    // > INTEGER (if method == 2): VA of hookOEP
+    // < ACK: 0 on ok, or corresponding Win32 error codes
+    // < INTEGER: hookOEP
+    struct PACKET_CMD_HOOK : PACKET {
+        // The method of seeking for hookOEP
+        uint32_t method;
 
+        PACKET_CMD_HOOK()
+            : PACKET(sizeof(PACKET_CMD_HOOK), PACKET_TYPE::CMD_HOOK),
+            method(0) {}
+    };
+
+    // (Doll) Uninstall a hook
+    // > CMD_UNHOOK
+    // > INTEGER: hookOEP
+    // < ACK: 0 on ok, or corresponding Win32 error codes
+    struct PACKET_CMD_UNHOOK : PACKET {
+        ;
+
+        PACKET_CMD_UNHOOK()
+            : PACKET(sizeof(PACKET_CMD_UNHOOK), PACKET_TYPE::CMD_UNHOOK) {}
+    };
+
+    // (Doll) Suspend/resume all non-libDoll threads
+    // > CMD_BREAK
+    // < ACK: 0 on ok, or corresponding Win32 error codes
+    struct PACKET_CMD_BREAK : PACKET {
+        ;
+
+        PACKET_CMD_BREAK()
+            : PACKET(sizeof(PACKET_CMD_BREAK), PACKET_TYPE::CMD_BREAK) {}
+    };
+
+    // (Doll, on hook) Read a context register
+    // > CMD_CONTEXT
+    // < ACK: 0 (no error should really happen)
+    // < INTEGER: register value
+    struct PACKET_CMD_CONTEXT : PACKET {
+        // The register's index
+        // Ordered from 0: AX, CX, DX, BX, SP, BP, SI, DI, R8, R9
+        uint32_t idx;
+
+        PACKET_CMD_CONTEXT()
+            : PACKET(sizeof(PACKET_CMD_CONTEXT), PACKET_TYPE::CMD_CONTEXT),
+            idx(-1) {}
+    };
+
+    // (Doll, on hook) Read data from memory
+    // > CMD_MEMORY
+    // > INTEGER: start VA
+    // < ACK: actual read size (0 == fail)
+    // < BINARY: data
+    struct PACKET_CMD_MEMORY : PACKET {
+        // Expected read size
+        uint32_t size;
+
+        PACKET_CMD_MEMORY()
+            : PACKET(sizeof(PACKET_CMD_MEMORY), PACKET_TYPE::CMD_MEMORY),
+            size(-1) {}
+    };
+
+    // (Doll, on hook) Verdict the current hook
+    // > CMD_VERDICT
+    // > INTEGER (if verdict == 1): hooked procedure's SP offset
+    // > INTEGER (if verdict == 1): faked return value
+    // < ACK: 0
+    struct PACKET_CMD_VERDICT : PACKET {
+        // Controller's verdict to the current hook
+        // 0 == Approved, 1 == Rejected, 2 == Terminated
+        uint32_t verdict;
+
+        PACKET_CMD_VERDICT()
+            : PACKET(sizeof(PACKET_CMD_VERDICT), PACKET_TYPE::CMD_VERDICT),
+            verdict(0) {}
+    };
+
+    // (Doll) Load a new DLL into the process via LoadLibrary()
+    // > CMD_LOADDLL
+    // > STRING: DLL path passed to LoadLibrary()
+    // < ACK: 0 on ok, or corresponding Win32 error codes
+    struct PACKET_CMD_LOADDLL : PACKET {
+        ;
+
+        PACKET_CMD_LOADDLL()
+            : PACKET(sizeof(PACKET_CMD_LOADDLL), PACKET_TYPE::CMD_LOADDLL) {}
+    };
 
 #   pragma pack(pop)
 
