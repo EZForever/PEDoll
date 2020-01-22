@@ -47,10 +47,13 @@
     <ClCompile Include="Hook.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadHookDispatcher.cpp">
+    <ClCompile Include="Thread.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Thread.cpp">
+    <ClCompile Include="ThreadHookJudger.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadPuppet.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

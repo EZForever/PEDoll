@@ -9,6 +9,11 @@ void DollThreadRegisterCurrent();
 // Unregister current thread
 void DollThreadUnregisterCurrent();
 
+// Terminate the attached process after a textual message
+// Called when an unrecoverable error has happened
+void DollThreadPanic(const char* msg);
+void DollThreadPanic(const wchar_t* msg);
+
 // Suspend all threads in current process, exclude the current one, and optionally libDoll ones
 void DollThreadSuspendAll(bool skipDollThreads);
 

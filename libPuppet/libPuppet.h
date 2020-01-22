@@ -73,21 +73,23 @@ namespace Puppet {
     };
 
     // A generic (Unicode) string
+    // Use PacketAllocString() to create instance
     struct PACKET_STRING : PACKET {
         // Data
         wchar_t data[0];
 
-        PACKET_STRING(size_t dataLen)
-            : PACKET(sizeof(PACKET_STRING) + sizeof(wchar_t) * (uint32_t)dataLen, PACKET_TYPE::STRING) {}
+        PACKET_STRING()
+            : PACKET(sizeof(PACKET_STRING), PACKET_TYPE::STRING) {}
     };
 
     // A generic binary blob
+    // Use PacketAllocBinary() to create instance
     struct PACKET_BINARY : PACKET {
         // Data
         unsigned char data[0];
 
-        PACKET_BINARY(size_t dataLen)
-            : PACKET(sizeof(PACKET_BINARY) + (uint32_t)dataLen, PACKET_TYPE::BINARY) {}
+        PACKET_BINARY()
+            : PACKET(sizeof(PACKET_BINARY), PACKET_TYPE::BINARY) {}
     };
 
     // A Monitor or Doll informs Controller its presence
@@ -291,7 +293,7 @@ namespace Puppet {
         virtual void send(const PACKET& packet) = 0;
 
         // Wait & receives a packet from connected server/client
-        // The returned pointer is malloc()'d.
+        // Use PacketFree() to free the returned pointer
         virtual PACKET* recv() = 0;
 
     private:
@@ -300,4 +302,11 @@ namespace Puppet {
         IPuppet& operator=(IPuppet& x) = delete;
     };
 
+    // Helper functions to create vardic-length packets
+    // Use PacketFree() to free the returned pointer
+    PACKET_STRING* PacketAllocString(const wchar_t* data);
+    PACKET_BINARY* PacketAllocBinary(const unsigned char* data, uint32_t size);
+
+    // Free a packet returned by PacketAlloc*() or IPuppet::recv()
+    void PacketFree(PACKET* packet);
 }

@@ -4,8 +4,6 @@
 
 #include "Thread.h"
 
-std::set<HANDLE> suspendedThreads;
-
 void DollThreadRegisterCurrent()
 {
     ctx.dollThreads.emplace(ctx.pRealGetCurrentThreadId());
@@ -16,9 +14,19 @@ void DollThreadUnregisterCurrent()
     ctx.dollThreads.erase(ctx.pRealGetCurrentThreadId());
 }
 
+void DollThreadPanic(const char* msg)
+{
+    FatalAppExitA(0, msg);
+}
+
+void DollThreadPanic(const wchar_t* msg)
+{
+    FatalAppExitW(0, msg);
+}
+
 void DollThreadSuspendAll(bool skipDollThreads)
 {
-    if (!suspendedThreads.empty())
+    if (!ctx.suspendedThreads.empty())
         return;
 
     HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
@@ -46,7 +54,7 @@ void DollThreadSuspendAll(bool skipDollThreads)
             continue;
 
         SuspendThread(hThIter);
-        suspendedThreads.emplace(hThIter);
+        ctx.suspendedThreads.emplace(hThIter);
     } while (Thread32Next(hSnapshot, &thEntry));
 
     CloseHandle(hSnapshot);
@@ -54,11 +62,11 @@ void DollThreadSuspendAll(bool skipDollThreads)
 
 void DollThreadResumeAll()
 {
-    for (auto iter = suspendedThreads.begin(); iter != suspendedThreads.end(); iter++)
+    for (auto iter = ctx.suspendedThreads.begin(); iter != ctx.suspendedThreads.end(); iter++)
     {
         ResumeThread(*iter);
         CloseHandle(*iter);
     }
-    suspendedThreads.clear();
+    ctx.suspendedThreads.clear();
 }
 

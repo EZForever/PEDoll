@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <process.h>
 #include <tlhelp32.h>
+#include <psapi.h>
 
 #include <set>
 #include <map>
@@ -11,3 +12,4 @@
 #include <stdexcept>
 #include <cstddef>
 #include <cstring>
+#include <cwchar>
