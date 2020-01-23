@@ -21,7 +21,7 @@ int main()
             try
             {
                 packetIn = client->recv();
-                if (packetIn->type == Puppet::PACKET_TYPE::CMD_ANY)
+                if (packetIn->type == Puppet::PACKET_TYPE::CMD_MONITOR_ANY)
                     client->send(packetOut);
                 delete packetIn;
             }

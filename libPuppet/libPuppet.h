@@ -21,13 +21,14 @@ namespace Puppet {
         MSG_ONHOOK = 0x12,
 
         // Command packets are sent from Controller to a Monitor or Doll, in order to controll them
-        CMD_ANY = 0x20,
+        CMD_MONITOR_ANY = 0x20,
         CMD_END = 0x21,
         CMD_DOLL = 0x22,
         CMD_PS = 0x23,
         CMD_SHELL = 0x24,
         CMD_KILL = 0x25,
 
+        CMD_DOLL_ANY = 0x30,
         CMD_HOOK = 0x31,
         CMD_UNHOOK = 0x32,
         CMD_BREAK = 0x33,

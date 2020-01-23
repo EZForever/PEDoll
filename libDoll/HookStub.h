@@ -20,7 +20,7 @@ extern "C" {
     UINT_PTR DollThreadIsCurrent();
 
     // context[0] = [in]HookOEP
-    UINT_PTR DollGetCurrentHook(UINT_PTR* context);
+    UINT_PTR DollHookGetCurrent(UINT_PTR* context);
 
     // context[0] = [inout]HookOEP, context[1] = [inout]returnAddr
     // context[n] for n > 1 should not be accessed directly

@@ -4,6 +4,7 @@
 #include "../libPuppet/libPuppet.h"
 #include "../libPuppet/PuppetClientTCP.h"
 #include "Thread.h"
+#include "Hook.h"
 
 Puppet::PuppetClientTCP* TPuppetInitializeClientTCP(const wchar_t* serverInfo)
 {
@@ -56,10 +57,70 @@ Puppet::PuppetClientTCP* TPuppetInitializeClientTCP(const wchar_t* serverInfo)
     return puppet;
 }
 
+void TPuppetSendAck(uint32_t status)
+{
+    Puppet::PACKET_ACK packet(status);
+    ctx.puppet->send(packet);
+}
+
+template<class TPacket, Puppet::PACKET_TYPE type>
+TPacket* TPuppetExpect()
+{
+    Puppet::PACKET* packet = ctx.puppet->recv();
+    if (packet->type != type)
+        throw std::runtime_error("TPuppetExpect(): Packet type mismatch");
+    return (TPacket*)packet;
+}
+
 // Called on received the 1st packet of a packet series
 void TPuppetOnRecv(Puppet::PACKET* packet)
 {
-    // TODO
+    bool isHooked = DollHookIsHappened();
+    LIBDOLL_HOOK* hook = NULL;
+    if (isHooked)
+    {
+        hook = ctx.dollHooks.find(ctx.waitingHookOEP)->second;
+
+        switch (packet->type)
+        {
+        case Puppet::PACKET_TYPE::CMD_CONTEXT:
+        {
+            uint32_t idx = ((Puppet::PACKET_CMD_CONTEXT*)packet)->idx;
+
+        }
+        case Puppet::PACKET_TYPE::CMD_VERDICT:
+        {
+            hook->verdict = ((Puppet::PACKET_CMD_VERDICT*)packet)->verdict;
+            if (hook->verdict == 1)
+            {
+                auto packetSPOffset = TPuppetExpect<Puppet::PACKET_INTEGER, Puppet::PACKET_TYPE::INTEGER>();
+                auto packetAX = TPuppetExpect<Puppet::PACKET_INTEGER, Puppet::PACKET_TYPE::INTEGER>();
+                hook->denySPOffset = packetSPOffset->data;
+                hook->denyAX = packetAX->data;
+                Puppet::PacketFree(packetSPOffset);
+                Puppet::PacketFree(packetAX);
+            }
+            TPuppetSendAck(0);
+        }
+            // TODO
+        case Puppet::PACKET_TYPE::ACK:
+            // Should be the reply to MSG_ONHOOK. Do nothing
+            break;
+        default:
+            // A unknown packet to Doll being sent
+            TPuppetSendAck(-1);
+        }
+    }
+    else
+    {
+        switch (packet->type)
+        {
+            // TODO
+        default:
+            // A unknown packet to Doll being sent
+            TPuppetSendAck(-1);
+        }
+    }
 }
 
 void __cdecl TPuppet(void* arg)
@@ -86,13 +147,11 @@ void __cdecl TPuppet(void* arg)
     try {
         ctx.puppet->send(packetOnline);
         ctx.puppet->send(*packetString);
-        Puppet::PACKET* packetRecv = ctx.puppet->recv();
-        if(packetRecv->type != Puppet::PACKET_TYPE::ACK)
-            DollThreadPanic(L"TPuppet(): Wrong MSG_ONLINE reply");
-        Puppet::PacketFree(packetRecv);
+        auto packetAck = TPuppetExpect<Puppet::PACKET_ACK, Puppet::PACKET_TYPE::ACK>();
+        Puppet::PacketFree(packetAck);
     }
-    catch (const std::runtime_error &) {
-        DollThreadPanic(L"TPuppet(): MSG_ONLINE failed");
+    catch (const std::runtime_error & e) {
+        DollThreadPanic(e.what());
     }
     Puppet::PacketFree(packetString);
 
@@ -108,6 +167,6 @@ void __cdecl TPuppet(void* arg)
         }
     }
     catch (const std::runtime_error & e) {
-        // TODO: End current thread/process peacefully
+        // TODO: Process e.what() && end current thread/process peacefully
     }
 }

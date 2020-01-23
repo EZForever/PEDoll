@@ -1,6 +1,6 @@
 ; This file is translated from HookStub_x86.asm
 ; All the comments are identital to the x86 counterpart.
-extern DollThreadIsCurrent:byte, DollGetCurrentHook:byte, \
+extern DollThreadIsCurrent:byte, DollHookGetCurrent:byte, \
     DollOnHook:byte, DollOnAfterHook:byte
 
 public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
@@ -98,7 +98,7 @@ HookStubA:
 __HookStubA_isDoll:
 
     sub rsp, 8 * 4
-    lea rax, DollGetCurrentHook
+    lea rax, DollHookGetCurrent
     call rax
     add rsp, 8 * 4
 
@@ -134,7 +134,7 @@ HookStubOnDeny:
     add rcx, 8 * 10
 
     sub rsp, 8 * 4
-    lea rax, DollGetCurrentHook
+    lea rax, DollHookGetCurrent
     call rax
     add rsp, 8 * 4
 

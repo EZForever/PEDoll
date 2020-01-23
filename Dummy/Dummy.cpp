@@ -48,7 +48,7 @@ int main()
 
     getchar();
 
-    int ret = system("ver");
+    int ret = WinExec("ver", SW_SHOW);
     cout << "ret = " << ret << endl;
 
     FreeLibrary(hDollDLL);

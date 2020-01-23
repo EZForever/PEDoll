@@ -8,7 +8,7 @@ extern "C" UINT_PTR DollThreadIsCurrent()
     return (UINT_PTR)(ctx.dollThreads.find(ctx.pRealGetCurrentThreadId()) != ctx.dollThreads.end());
 }
 
-extern "C" UINT_PTR DollGetCurrentHook(UINT_PTR* context)
+extern "C" UINT_PTR DollHookGetCurrent(UINT_PTR* context)
 {
     return (UINT_PTR)(ctx.dollHooks.find(*context)->second);
 }
@@ -32,23 +32,33 @@ extern "C" void DollOnHook(UINT_PTR* context)
 
     EnterCriticalSection(&ctx.lockHook);
 
-    LIBDOLL_HOOK* hook = (LIBDOLL_HOOK*)DollGetCurrentHook(context);
+    LIBDOLL_HOOK* hook = (LIBDOLL_HOOK*)DollHookGetCurrent(context);
+    hook->context = context;
     hook->originalSP = context[1];
 
-    // TODO: data report & wait for verdict
+    // TODO: Send MSG_ONHOOK packet
 
-#if 0
-    // Allow
-    context[0] = hook->pTrampoline;
-    context[1] = (UINT_PTR)hook->pBeforeB;
+    ctx.waitingHookOEP = context[0];
+    WaitForSingleObject(ctx.hEvtHookVerdict, INFINITE);
 
-    // Terminate
-    context[0] = (UINT_PTR)DebugBreak;
-#endif
-
-    // Deny
-    context[0] = (UINT_PTR)hook->pBeforeDeny;
-    context[1] = (UINT_PTR)hook->pBeforeB;
+    if (hook->verdict == 0)
+    {
+        // Approved
+        context[0] = hook->pTrampoline;
+        context[1] = (UINT_PTR)hook->pBeforeB;
+    }
+    else if (hook->verdict == 1)
+    {
+        // Rejected
+        // Parameters are set by TPuppetOnRecv*()
+        context[0] = (UINT_PTR)hook->pBeforeDeny;
+        context[1] = (UINT_PTR)hook->pBeforeB;
+    }
+    else
+    {
+        // Terminate
+        context[0] = (UINT_PTR)DebugBreak;
+    }
 }
 
 extern "C" void DollOnAfterHook(UINT_PTR* context)
@@ -61,17 +71,23 @@ extern "C" void DollOnAfterHook(UINT_PTR* context)
     // LeaveCriticalSection
     // unregister current thread
 
-    LIBDOLL_HOOK* hook = (LIBDOLL_HOOK*)DollGetCurrentHook(context);
+    LIBDOLL_HOOK* hook = (LIBDOLL_HOOK*)DollHookGetCurrent(context);
 
-    // TODO: data report & wait for verdict
+    // TODO: Send MSG_ONHOOK packet
 
-    // Continue
-    context[0] = hook->originalSP;
+    ctx.waitingHookOEP = context[0];
+    WaitForSingleObject(ctx.hEvtHookVerdict, INFINITE);
 
-#if 0
-    // Terminate
-    context[0] = (UINT_PTR)DebugBreak;
-#endif
+    if (hook->verdict == 0)
+    {
+        // Approved / Continue
+        context[0] = hook->originalSP;
+    }
+    else
+    {
+        // Terminate
+        context[0] = (UINT_PTR)DebugBreak;
+    }
 
     LeaveCriticalSection(&ctx.lockHook);
 

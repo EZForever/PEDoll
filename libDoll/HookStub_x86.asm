@@ -1,7 +1,7 @@
 .model flat, C
 
 ; Machine code (functions) disguised as bytes
-extern DollThreadIsCurrent:byte, DollGetCurrentHook:byte, \
+extern DollThreadIsCurrent:byte, DollHookGetCurrent:byte, \
     DollOnHook:byte, DollOnAfterHook:byte
 
 public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
@@ -58,10 +58,10 @@ __HookStubA_isDoll:
     ;   ecx == &HookOEP
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     push ecx
-    lea eax, DollGetCurrentHook
+    lea eax, DollHookGetCurrent
     call eax
     add esp, 4
-    ;   DollGetCurrentHook(&HookOEP)
+    ;   DollHookGetCurrent(&HookOEP)
     ;   eax == &LIBDOLL_HOOK
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     mov edx, [eax + 4 * 0] ; offset LIBDOLL_HOOK::pTrampoline
@@ -112,10 +112,10 @@ HookStubOnDeny:
     ;   ecx == &HookOEP
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     push ecx
-    lea eax, DollGetCurrentHook
+    lea eax, DollHookGetCurrent
     call eax
     add esp, 4
-    ;   DollGetCurrentHook(&HookOEP)
+    ;   DollHookGetCurrent(&HookOEP)
     ;   eax == &LIBDOLL_HOOK
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     mov edx, [eax + 4 * 1] ; offset LIBDOLL_HOOK::denySPOffset

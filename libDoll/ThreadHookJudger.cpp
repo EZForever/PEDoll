@@ -8,6 +8,6 @@ void __cdecl TJudger(void* arg)
 {
     DollThreadRegisterCurrent();
 
-    // TODO: Wait for OnHook / AddHook / RemoveHook events
+    // TODO: Wait for OnHook event
 
 }

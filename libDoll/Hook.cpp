@@ -5,7 +5,7 @@
 
 #include "../Detours/repo/src/detours.h"
 
-void HookAllocBeforeStub(char* &pBefore, DWORD &pBeforeProtect, UINT_PTR hookOEP, char* target)
+void DollHookAllocBeforeStub(char* &pBefore, DWORD &pBeforeProtect, UINT_PTR hookOEP, char* target)
 {
     // NOTE: VirtualProtect() works on memory pages, not bytes
     //       If protection above is set to PAGE_EXECUTE_READ, the memory allocation below will fail
@@ -18,7 +18,7 @@ void HookAllocBeforeStub(char* &pBefore, DWORD &pBeforeProtect, UINT_PTR hookOEP
     VirtualProtect(pBefore, HookStubBefore_len, PAGE_EXECUTE_READWRITE, &pBeforeProtect);
 }
 
-void HookFreeBeforeStub(char* &pBefore, DWORD& pBeforeProtect)
+void DollHookFreeBeforeStub(char* &pBefore, DWORD& pBeforeProtect)
 {
     VirtualProtect(pBefore, HookStubBefore_len, pBeforeProtect, &pBeforeProtect);
     delete[] pBefore;
@@ -27,7 +27,7 @@ void HookFreeBeforeStub(char* &pBefore, DWORD& pBeforeProtect)
 
 // DetourUpdateThread(GetCurrentThread()) is not necessary
 // but a call to DetourUpdateThread() for each thread is required
-void HookUpdateAllThreads(std::set<HANDLE> &updatedThreads)
+void DollHookUpdateAllThreads(std::set<HANDLE> &updatedThreads)
 {
     if (!updatedThreads.empty())
         return;
@@ -63,7 +63,7 @@ void HookUpdateAllThreads(std::set<HANDLE> &updatedThreads)
     CloseHandle(hSnapshot);
 }
 
-void HookEndUpdateAllThreads(std::set<HANDLE>& updatedThreads)
+void DollHookEndUpdateAllThreads(std::set<HANDLE>& updatedThreads)
 {
     for (auto iter = updatedThreads.begin(); iter != updatedThreads.end(); iter++)
     {
@@ -72,7 +72,17 @@ void HookEndUpdateAllThreads(std::set<HANDLE>& updatedThreads)
     updatedThreads.clear();
 }
 
-void HookAdd(UINT_PTR hookOEP, UINT_PTR denySPOffset, UINT_PTR denyAX)
+bool DollHookIsHappened()
+{
+    if (TryEnterCriticalSection(&ctx.lockHook))
+    {
+        LeaveCriticalSection(&ctx.lockHook);
+        return false;
+    }
+    return true;
+}
+
+void DollHookAdd(UINT_PTR hookOEP, UINT_PTR denySPOffset, UINT_PTR denyAX)
 {
     if (ctx.dollHooks.find(hookOEP) != ctx.dollHooks.end())
         return;
@@ -80,13 +90,13 @@ void HookAdd(UINT_PTR hookOEP, UINT_PTR denySPOffset, UINT_PTR denyAX)
     DetourTransactionBegin();
 
     std::set<HANDLE> updatedThreads;
-    HookUpdateAllThreads(updatedThreads);
+    DollHookUpdateAllThreads(updatedThreads);
 
     LIBDOLL_HOOK* hook = new LIBDOLL_HOOK;
 
-    HookAllocBeforeStub(hook->pBeforeA, hook->pBeforeAProtect, hookOEP, &HookStubA);
-    HookAllocBeforeStub(hook->pBeforeB, hook->pBeforeBProtect, hookOEP, &HookStubB);
-    HookAllocBeforeStub(hook->pBeforeDeny, hook->pBeforeDenyProtect, hookOEP, &HookStubOnDeny);
+    DollHookAllocBeforeStub(hook->pBeforeA, hook->pBeforeAProtect, hookOEP, &HookStubA);
+    DollHookAllocBeforeStub(hook->pBeforeB, hook->pBeforeBProtect, hookOEP, &HookStubB);
+    DollHookAllocBeforeStub(hook->pBeforeDeny, hook->pBeforeDenyProtect, hookOEP, &HookStubOnDeny);
 
     hook->denySPOffset = denySPOffset;
     hook->denyAX = denyAX;
@@ -100,10 +110,10 @@ void HookAdd(UINT_PTR hookOEP, UINT_PTR denySPOffset, UINT_PTR denyAX)
         ctx.pRealGetCurrentThreadId = (GET_CURRENT_THREAD_ID)hook->pTrampoline;
 
     DetourTransactionCommit();
-    HookEndUpdateAllThreads(updatedThreads);
+    DollHookEndUpdateAllThreads(updatedThreads);
 }
 
-void HookRemove(UINT_PTR hookOEP)
+void DollHookRemove(UINT_PTR hookOEP)
 {
     auto hookIter = ctx.dollHooks.find(hookOEP);
     if (hookIter == ctx.dollHooks.end())
@@ -112,7 +122,7 @@ void HookRemove(UINT_PTR hookOEP)
     DetourTransactionBegin();
 
     std::set<HANDLE> updatedThreads;
-    HookUpdateAllThreads(updatedThreads);
+    DollHookUpdateAllThreads(updatedThreads);
 
     LIBDOLL_HOOK* hook = hookIter->second;
 
@@ -123,12 +133,12 @@ void HookRemove(UINT_PTR hookOEP)
 
     ctx.dollHooks.erase(hookIter);
 
-    HookFreeBeforeStub(hook->pBeforeDeny, hook->pBeforeDenyProtect);
-    HookFreeBeforeStub(hook->pBeforeB, hook->pBeforeBProtect);
-    HookFreeBeforeStub(hook->pBeforeA, hook->pBeforeAProtect);
+    DollHookFreeBeforeStub(hook->pBeforeDeny, hook->pBeforeDenyProtect);
+    DollHookFreeBeforeStub(hook->pBeforeB, hook->pBeforeBProtect);
+    DollHookFreeBeforeStub(hook->pBeforeA, hook->pBeforeAProtect);
 
     delete hook;
 
     DetourTransactionCommit();
-    HookEndUpdateAllThreads(updatedThreads);
+    DollHookEndUpdateAllThreads(updatedThreads);
 }

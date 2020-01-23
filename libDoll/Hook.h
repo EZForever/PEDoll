@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "libDoll.h"
 
-void HookAdd(UINT_PTR hookOEP, UINT_PTR denySPOffset, UINT_PTR denyAX);
-void HookRemove(UINT_PTR hookOEP);
+bool DollHookIsHappened();
+void DollHookAdd(UINT_PTR hookOEP, UINT_PTR denySPOffset = 0, UINT_PTR denyAX = 0);
+void DollHookRemove(UINT_PTR hookOEP);
 
