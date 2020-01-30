@@ -28,6 +28,10 @@ Puppet::PACKET_STRING* DollDllFindServerInfo()
 
 BOOL DollDllAttach()
 {
+    // This will get updated if DetourAttach() / DetourDetach() happened on GetCurrentThreadId
+    // Initialize this before usage in DollThreadSuspendAll()
+    ctx.pRealGetCurrentThreadId = GetCurrentThreadId;
+
     // Suspend any victim thread, in case of attaching
     // There should be no libDoll threads for now
     DollThreadSuspendAll(false);
@@ -41,9 +45,6 @@ BOOL DollDllAttach()
         DollThreadPanic(L"DollDllAttach(): No server information found");
         return FALSE;
     }
-
-    // This will get updated if DetourAttach() / DetourDetach() happened on GetCurrentThreadId
-    ctx.pRealGetCurrentThreadId = GetCurrentThreadId;
 
     // The event object handle for informing hooked thread
     ctx.hEvtHookVerdict = CreateEvent(NULL, FALSE, FALSE, NULL);

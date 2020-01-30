@@ -36,6 +36,7 @@ void DollHookUpdateAllThreads(std::set<HANDLE> &updatedThreads)
     if (hSnapshot == INVALID_HANDLE_VALUE)
         return;
 
+    DWORD procSelf = GetCurrentProcessId();
     DWORD thSelf = ctx.pRealGetCurrentThreadId();
     THREADENTRY32 thEntry;
     thEntry.dwSize = sizeof(THREADENTRY32);
@@ -48,6 +49,11 @@ void DollHookUpdateAllThreads(std::set<HANDLE> &updatedThreads)
 
     do
     {
+        // th32ProcessID of CreateToolhelp32Snapshot() only works on modules
+        // So skip any threads owned by other processes in order not to freeze the whole system
+        if (thEntry.th32OwnerProcessID != procSelf)
+            continue;
+
         DWORD thIter = thEntry.th32ThreadID;
         if (thIter == thSelf)
             continue;
