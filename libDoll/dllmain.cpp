@@ -77,10 +77,10 @@ BOOL DollDllDetach()
 
     // Clean up
     DollThreadSuspendAll(false);
-
-    // Free all hooks
-    for (auto iter = ctx.dollHooks.begin(); iter != ctx.dollHooks.end(); iter++)
-        DollHookRemove(iter->first);
+    
+    // Free all hooks but leave all entries, avoiding concurrent modification
+    for (auto iter = ctx.dollHooks.cbegin(); iter != ctx.dollHooks.cend(); iter++)
+        DollHookRemove(iter->first, false);
     ctx.dollHooks.clear();
 
     // FIXME: TerminateThread() will cause huge resource leaks

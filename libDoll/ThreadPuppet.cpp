@@ -263,6 +263,7 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
             {
                 DollHookAdd(hookOEP);
                 TPuppetSendAck(0);
+                TPuppetSendInteger(hookOEP);
             }
             else
             {

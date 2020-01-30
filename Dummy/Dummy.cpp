@@ -37,7 +37,7 @@ static PAYLOAD_SERVER_INFO payload = {
 
 int main()
 {
-    cout << "sizeof(unsigned long) = " << sizeof(unsigned long) << endl;
+    cout << "sizeof(UINT_PTR) = " << sizeof(UINT_PTR) << endl;
 
     HMODULE hDollDLL = LoadLibrary(L"libDoll.dll");
     if (!hDollDLL)

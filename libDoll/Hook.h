@@ -4,5 +4,5 @@
 
 bool DollHookIsHappened();
 void DollHookAdd(UINT_PTR hookOEP, UINT_PTR denySPOffset = 0, UINT_PTR denyAX = 0);
-void DollHookRemove(UINT_PTR hookOEP);
+void DollHookRemove(UINT_PTR hookOEP, bool removeEntry = true);
 

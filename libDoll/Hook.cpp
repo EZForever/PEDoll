@@ -119,7 +119,7 @@ void DollHookAdd(UINT_PTR hookOEP, UINT_PTR denySPOffset, UINT_PTR denyAX)
     DollHookEndUpdateAllThreads(updatedThreads);
 }
 
-void DollHookRemove(UINT_PTR hookOEP)
+void DollHookRemove(UINT_PTR hookOEP, bool removeEntry)
 {
     auto hookIter = ctx.dollHooks.find(hookOEP);
     if (hookIter == ctx.dollHooks.end())
@@ -137,7 +137,8 @@ void DollHookRemove(UINT_PTR hookOEP)
     if (hookOEP == (UINT_PTR)GetCurrentThreadId)
         ctx.pRealGetCurrentThreadId = GetCurrentThreadId;
 
-    ctx.dollHooks.erase(hookIter);
+    if(removeEntry)
+        ctx.dollHooks.erase(hookIter);
 
     DollHookFreeBeforeStub(hook->pBeforeDeny, hook->pBeforeDenyProtect);
     DollHookFreeBeforeStub(hook->pBeforeB, hook->pBeforeBProtect);
