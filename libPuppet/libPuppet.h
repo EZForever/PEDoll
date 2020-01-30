@@ -2,6 +2,9 @@
 // Generic declaration of server, client and packet structures
 #pragma once
 #pragma warning(disable:4200) // nonstandard extension used : zero-sized array in struct/union
+
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 #include <cstdint>
 
 namespace Puppet {
@@ -222,11 +225,12 @@ namespace Puppet {
 
     // (Doll, on hook) Read a context register
     // > CMD_CONTEXT
-    // < ACK: 0 (no error should really happen)
+    // < ACK: 0 on ok, or != 0 on idx overflow
     // < INTEGER: register value
     struct PACKET_CMD_CONTEXT : PACKET {
         // The register's index
         // Ordered from 0: AX, CX, DX, BX, SP, BP, SI, DI, R8, R9
+        // R8 & R9 only available on x64 systems
         uint32_t idx;
 
         PACKET_CMD_CONTEXT()
@@ -241,11 +245,11 @@ namespace Puppet {
     // < BINARY: data
     struct PACKET_CMD_MEMORY : PACKET {
         // Expected read size
-        uint32_t size;
+        uint32_t len;
 
         PACKET_CMD_MEMORY()
             : PACKET(sizeof(PACKET_CMD_MEMORY), PACKET_TYPE::CMD_MEMORY),
-            size(-1) {}
+            len(-1) {}
     };
 
     // (Doll, on hook) Verdict the current hook
@@ -310,4 +314,13 @@ namespace Puppet {
 
     // Free a packet returned by PacketAlloc*() or IPuppet::recv()
     void PacketFree(PACKET* packet);
+
+    // GUID for DetourFindPayload(), representing the server info payload
+    // The payload is a PACKET_STRING
+    // {A2062469-2B45-496D-8FE9-7E894ED72270}
+    extern const GUID PAYLOAD_SERVER_INFO;
+
+    // Default port for libPuppet servers
+    extern const int DEFAULT_PORT;
+
 }

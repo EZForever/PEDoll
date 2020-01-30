@@ -36,7 +36,10 @@ extern "C" void DollOnHook(UINT_PTR* context)
     hook->context = context;
     hook->originalSP = context[1];
 
-    // TODO: Send MSG_ONHOOK packet
+    // FIXME: MSG_ONHOOK should not really be sent at here, since TPuppet may send other packets at the same type and cause data corruption
+    // Replied ACK is received & processed by TPuppetOnRecv()
+    ctx.puppet->send(Puppet::PACKET_MSG_ONHOOK());
+    ctx.puppet->send(Puppet::PACKET_INTEGER(context[0]));
 
     ctx.waitingHookOEP = context[0];
     WaitForSingleObject(ctx.hEvtHookVerdict, INFINITE);
@@ -73,7 +76,10 @@ extern "C" void DollOnAfterHook(UINT_PTR* context)
 
     LIBDOLL_HOOK* hook = (LIBDOLL_HOOK*)DollHookGetCurrent(context);
 
-    // TODO: Send MSG_ONHOOK packet
+    // FIXME: MSG_ONHOOK should not really be sent at here, since TPuppet may send other packets at the same type and cause data corruption
+    // Replied ACK is received & processed by TPuppetOnRecv()
+    ctx.puppet->send(Puppet::PACKET_MSG_ONHOOK());
+    ctx.puppet->send(Puppet::PACKET_INTEGER(context[0]));
 
     ctx.waitingHookOEP = context[0];
     WaitForSingleObject(ctx.hEvtHookVerdict, INFINITE);

@@ -3,6 +3,10 @@
 
 namespace Puppet {
 
+    const GUID PAYLOAD_SERVER_INFO = { 0xa2062469, 0x2b45, 0x496d, { 0x8f, 0xe9, 0x7e, 0x89, 0x4e, 0xd7, 0x22, 0x70 } };
+
+    const int DEFAULT_PORT = 31415;
+
     PACKET_STRING* PacketAllocString(const wchar_t* data)
     {
         uint32_t packetSize = (uint32_t)(sizeof(PACKET_STRING) + sizeof(wchar_t) * (wcslen(data) + 1));

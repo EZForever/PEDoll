@@ -5,12 +5,7 @@
 #include "Thread.h"
 #include "Hook.h"
 
-void __cdecl TJudger(void*);
 void __cdecl TPuppet(void*);
-
-const GUID PAYLOAD_SERVER_INFO = { 0xa2062469, 0x2b45, 0x496d, { 0x8f, 0xe9, 0x7e, 0x89, 0x4e, 0xd7, 0x22, 0x70 } };
-
-const int PUPPET_PORT = 31415;
 
 LIBDOLL_CTX ctx;
 
@@ -22,7 +17,7 @@ Puppet::PACKET_STRING* DollDllFindServerInfo()
 
     while(hIter)
     {
-        payload = (Puppet::PACKET_STRING*)DetourFindPayload(hIter, PAYLOAD_SERVER_INFO, &payloadSize);
+        payload = (Puppet::PACKET_STRING*)DetourFindPayload(hIter, Puppet::PAYLOAD_SERVER_INFO, &payloadSize);
         if (payload && payloadSize == payload->size && payload->type == Puppet::PACKET_TYPE::STRING)
             return payload;
         hIter = DetourEnumerateModules(hIter);
@@ -59,15 +54,6 @@ BOOL DollDllAttach()
     // _beginthread() returns a (uintptr_t)HANDLE to the created thread
     // i.e. the return value of CreateThread()
 
-    // ThreadHookJudger(TJudger) manages the verdict of a hooked procedure
-    uintptr_t hTJudger = _beginthread(TJudger, 0, NULL);
-    if (hTJudger == 0 || hTJudger == -1) // these status means error occurred
-    {
-        DollThreadPanic(L"DollDllAttach(): _beginthread(ThreadHookJudger) failed");
-        return FALSE;
-    }
-    ctx.hTJudger = (HANDLE)hTJudger;
-
     // ThreadPuppet(TPuppet) establishes the connection to Controller
     uintptr_t hTPuppet = _beginthread(TPuppet, 0, NULL);
     if (hTPuppet == 0 || hTPuppet == -1) // these status means error occurred
@@ -79,6 +65,7 @@ BOOL DollDllAttach()
 
     // This is not happened until a CMD_BREAK
     //DollThreadResumeAll();
+    
     return TRUE;
 }
 
@@ -95,14 +82,14 @@ BOOL DollDllDetach()
         DollHookRemove(iter->first);
     ctx.dollHooks.clear();
 
-    // TerminateThread() will cause huge resource leaks
-    // TODO: Inform TPuppet & TJudger about DLL detachment
+    // FIXME: TerminateThread() will cause huge resource leaks
+    // Should inform TPuppet about DLL detachment
+    TerminateThread(ctx.hTPuppet, 0);
 
     // For now no hook should exist, unregister self
     DollThreadUnregisterCurrent();
 
     CloseHandle(ctx.hTPuppet);
-    CloseHandle(ctx.hTJudger);
 
     DeleteCriticalSection(&ctx.lockHook);
 
@@ -120,7 +107,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     {
         // Restore IAT modifyed by inject procedure
         // It is here, not in DollDllAttach(), because IAT must be restored before any API call
-        // Ignore any errors though, since the injection can be done in other ways than DetourCreateProcessWithDllEx()
+        // Ignore any errors though, since the injection can be done in ways other than DetourCreateProcessWithDllEx()
         DetourRestoreAfterWith();
 
         // Try my best to avoid infinite loop
@@ -140,7 +127,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 }
 
 // DetourCreateProcessWithDllEx() requires at least 1 export function (ordinal #1)
-int __declspec(dllexport) DollDllHelloWorld()
+extern "C" int __declspec(dllexport) DollDllHelloWorld()
 {
     return 42;
 }

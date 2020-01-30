@@ -47,7 +47,6 @@ struct LIBDOLL_CTX {
 
     std::set<DWORD> dollThreads;
     std::set<HANDLE> suspendedThreads;
-    HANDLE hTJudger;
     HANDLE hTPuppet;
 
     std::map<UINT_PTR, LIBDOLL_HOOK*> dollHooks;
@@ -58,14 +57,6 @@ struct LIBDOLL_CTX {
     GET_CURRENT_THREAD_ID pRealGetCurrentThreadId;
 
 };
-
-// GUID for DetourFindPayload(), representing the server info payload
-// The payload is a libPuppet PACKET_STRING
-// {A2062469-2B45-496D-8FE9-7E894ED72270}
-extern const GUID PAYLOAD_SERVER_INFO;
-
-// Default port for libPuppet
-extern const int PUPPET_PORT;
 
 // Global context
 extern LIBDOLL_CTX ctx;

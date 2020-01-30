@@ -140,6 +140,7 @@ i.e. Searching directly to the end is no longer an option. So how to do?
 
 (???) Even CheatEngine Uses per-byte method
 http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html
+https://social.msdn.microsoft.com/forums/en-US/65c1ab16-2690-4117-9d3c-aa55f5cbc453/searching-binary-data#778f3f7e-17f3-48dc-8a47-c1678cfc33c8
 
 ----------
 

@@ -176,7 +176,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Thread.cpp" />
-    <ClCompile Include="ThreadHookJudger.cpp" />
     <ClCompile Include="ThreadPuppet.cpp" />
   </ItemGroup>
   <ItemGroup>
