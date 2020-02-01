@@ -43,11 +43,10 @@ struct LIBDOLL_HOOK {
 struct LIBDOLL_CTX {
 
     Puppet::IPuppet* puppet;
-    Puppet::PACKET_STRING* pServerInfo;
+    HANDLE hTPuppet;
 
     std::set<DWORD> dollThreads;
     std::set<HANDLE> suspendedThreads;
-    HANDLE hTPuppet;
 
     std::map<UINT_PTR, LIBDOLL_HOOK*> dollHooks;
     HANDLE hEvtHookVerdict;

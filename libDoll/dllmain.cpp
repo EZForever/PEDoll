@@ -9,16 +9,16 @@ void __cdecl TPuppet(void*);
 
 LIBDOLL_CTX ctx;
 
-Puppet::PACKET_STRING* DollDllFindServerInfo()
+char* DollDllFindServerInfo()
 {
     HMODULE hIter = DetourEnumerateModules(NULL);
-    Puppet::PACKET_STRING* payload;
+    char* payload;
     DWORD payloadSize;
 
     while(hIter)
     {
-        payload = (Puppet::PACKET_STRING*)DetourFindPayload(hIter, Puppet::PAYLOAD_SERVER_INFO, &payloadSize);
-        if (payload && payloadSize == payload->size && payload->type == Puppet::PACKET_TYPE::STRING)
+        payload = (char*)DetourFindPayload(hIter, Puppet::PAYLOAD_SERVER_INFO, &payloadSize);
+        if (payload)
             return payload;
         hIter = DetourEnumerateModules(hIter);
     }
@@ -39,8 +39,9 @@ BOOL DollDllAttach()
     // Initialize all the global contexts
 
     // Fetch server infomation stored by Monitor
-    ctx.pServerInfo = DollDllFindServerInfo();
-    if (!ctx.pServerInfo)
+    // NOTE: This pointer points to a static area in another module, do not "delete[] pServerInfo;"
+    char* pServerInfo = DollDllFindServerInfo();
+    if (!pServerInfo)
     {
         DollThreadPanic(L"DollDllAttach(): No server information found");
         return FALSE;
@@ -56,7 +57,7 @@ BOOL DollDllAttach()
     // i.e. the return value of CreateThread()
 
     // ThreadPuppet(TPuppet) establishes the connection to Controller
-    uintptr_t hTPuppet = _beginthread(TPuppet, 0, NULL);
+    uintptr_t hTPuppet = _beginthread(TPuppet, 0, pServerInfo);
     if (hTPuppet == 0 || hTPuppet == -1) // these status means error occurred
     {
         DollThreadPanic(L"DollDllAttach(): _beginthread(ThreadPuppet) failed");

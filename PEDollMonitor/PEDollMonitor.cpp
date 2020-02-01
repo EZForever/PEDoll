@@ -1,44 +1,71 @@
-﻿#include <iostream>
-#include <exception>
-#include <stdexcept>
+﻿#include "pch.h"
+#include "PEDollMonitor.h"
 
 #include "../libPuppet/libPuppet.h"
 #include "../libPuppet/PuppetClientTCP.h"
 
-int main()
-{
-    Puppet::IPuppet* client = NULL;
+void __cdecl TPuppet(void*);
 
-    try
+MONITOR_CTX ctx;
+
+void MonPanic(const char* msg)
+{
+    std::cerr << msg << std::endl;
+    exit(1);
+}
+
+void MonPanic(const wchar_t* msg)
+{
+    std::wcerr << msg << std::endl;
+    exit(1);
+}
+
+void isr_sigint(int)
+{
+    // FIXME: TerminateThread() will cause huge resource leaks
+    // Should inform TPuppet
+    TerminateThread(ctx.hTPuppet, 0);
+
+    CloseHandle(ctx.hTPuppet);
+
+    exit(0);
+}
+
+int main(int argc, char* argv[])
+{
+    std::cout << "PEDoll Monitor InDev" << std::endl << std::endl;
+
+    const char* serverInfo = NULL;
+    if (argc > 1)
     {
-        client = new Puppet::PuppetClientTCP(8888);
-        client->start();
-        
-        Puppet::PACKET_ACK packetOut;
-        Puppet::PACKET* packetIn = NULL;
-        do
-        {
-            try
-            {
-                packetIn = client->recv();
-                if (packetIn->type == Puppet::PACKET_TYPE::CMD_MONITOR_ANY)
-                    client->send(packetOut);
-                delete packetIn;
-            }
-            catch (const std::runtime_error& e)
-            {
-                std::cerr << e.what() << std::endl;
-                packetIn = NULL;
-            }
-        }
-        while (packetIn);
-        delete client;
+        // PEDollMonitor.exe $serverInfo
+        serverInfo = argv[1];
     }
-    catch (const std::runtime_error& e)
+    else
     {
-        std::cerr << e.what() << std::endl;
-        std::cerr << "lastError = " << client->lastError << std::endl;
+        std::string serverInfoInput;
+        std::cout << "Input connection string [127.0.0.1]: ";
+        std::cin >> serverInfoInput;
+        if (serverInfoInput.empty())
+            serverInfoInput = "127.0.0.1";
+        serverInfo = serverInfoInput.c_str();
     }
-    return 0;
+
+    uintptr_t hTPuppet = _beginthread(TPuppet, 0, (void*)serverInfo);
+    if (hTPuppet == 0 || hTPuppet == -1) // these status means error occurred
+    {
+        MonPanic("main(): _beginthread(TPuppet) failed");
+    }
+    ctx.hTPuppet = (HANDLE)hTPuppet;
+
+    // Register SIGINT (Ctrl-C) handler
+    signal(SIGINT, isr_sigint);
+
+    std::cout << "Initialization complete, press Ctrl-C to stop" << std::endl;
+
+    while (true)
+        Sleep(1000);
+
+    return 42; // Not reached
 }
 

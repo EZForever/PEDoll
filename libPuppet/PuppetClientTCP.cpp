@@ -115,4 +115,56 @@ namespace Puppet {
         return (PACKET*)packet; // XXX: Will type confusion cause something here?
     }
 
+
+    PuppetClientTCP* ClientTCPInitialize(const char* serverInfo)
+    {
+        size_t serverInfoSize = strlen(serverInfo);
+        char* str = new char[serverInfoSize + 1];
+        strcpy_s(str, serverInfoSize + 1, serverInfo);
+
+        int port = DEFAULT_PORT;
+        bool ipv6 = false;
+        char* pSpr = strrchr(str, '.');
+        if (pSpr)
+        {
+            // If '.' is found, this must be an IPv4 address
+            pSpr = strrchr(str, ':');
+            if (pSpr)
+            {
+                // serverInfo == L"$host:$port"
+                *pSpr++ = 0;
+                port = strtol(pSpr, NULL, 10);
+            }
+            // Otherwise serverInfo == L"$host"
+        }
+        else
+        {
+            ipv6 = true;
+            pSpr = strrchr(str, ']');
+            if (pSpr)
+            {
+                // serverInfo == L"[$v6host]:$port"
+                *pSpr++ = 0; // Remove ']'
+                memmove(str, str + 1, strlen(str) - 1); // Remove '['
+                *pSpr++ = 0; // Remove ':'
+                port = strtol(pSpr, NULL, 10);
+            }
+            // Otherwise serverInfo == L"$v6host"
+        }
+
+        PuppetClientTCP* puppet = NULL;
+        try {
+            puppet = new Puppet::PuppetClientTCP(port, str, ipv6);
+            puppet->start();
+        }
+        catch (const std::runtime_error & e) {
+            delete puppet;
+            puppet = NULL;
+            throw;
+        }
+
+        delete[] str;
+        return puppet;
+    }
+
 }

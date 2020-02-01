@@ -30,4 +30,8 @@ namespace Puppet {
         PACKET* recv();
     };
 
+    // Construct a PuppetClientTCP instance from a serverInfo string
+    // e.g. "127.0.0.1", "127.0.0.1:12345", "::1", "[::1]:12345"
+    PuppetClientTCP* ClientTCPInitialize(const char* serverInfo);
+
 }

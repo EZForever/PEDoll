@@ -17,57 +17,6 @@
 // But for some reason I can't get it compiled
 //#include "HookStub.h"
 
-Puppet::PuppetClientTCP* TPuppetInitializeClientTCP(const wchar_t* serverInfo)
-{
-    size_t serverInfoSize = wcslen(serverInfo);
-    char* str = new char[serverInfoSize + 1];
-    wcstombs_s(&serverInfoSize, str, serverInfoSize + 1, serverInfo, serverInfoSize);
-    
-    int port = Puppet::DEFAULT_PORT;
-    bool ipv6 = false;
-    char* pSpr = strrchr(str, '.');
-    if(pSpr)
-    {
-        // If '.' is found, this must be an IPv4 address
-        pSpr = strrchr(str, ':');
-        if (pSpr)
-        {
-            // serverInfo == L"$host:$port"
-            *pSpr++ = 0;
-            port = strtol(pSpr, NULL, 10);
-        }
-        // Otherwise serverInfo == L"$host"
-    }
-    else
-    {
-        ipv6 = true;
-        pSpr = strrchr(str, ']');
-        if (pSpr)
-        {
-            // serverInfo == L"[$v6host]:$port"
-            *pSpr++ = 0; // Remove ']'
-            memmove(str, str + 1, strlen(str) - 1); // Remove '['
-            *pSpr++ = 0; // Remove ':'
-            port = strtol(pSpr, NULL, 10);
-        }
-        // Otherwise serverInfo == L"$v6host"
-    }
-
-    Puppet::PuppetClientTCP* puppet = NULL;
-    try {
-        puppet = new Puppet::PuppetClientTCP(port, str, ipv6);
-        puppet->start();
-    }
-    catch (const std::runtime_error & e) {
-        DollThreadPanic(e.what());
-        delete puppet;
-        puppet = NULL;
-    }
-
-    delete[] str;
-    return puppet;
-}
-
 inline void TPuppetSendAck(uint32_t status)
 {
     ctx.puppet->send(Puppet::PACKET_ACK(status));
@@ -230,6 +179,12 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
     {
         switch (packet->type)
         {
+        case Puppet::PACKET_TYPE::CMD_END:
+        {
+            TPuppetSendAck(0);
+            DebugBreak();
+            break;
+        }
         case Puppet::PACKET_TYPE::CMD_HOOK:
         {
             UINT_PTR hookOEP = 0;
@@ -332,9 +287,14 @@ void __cdecl TPuppet(void* arg)
     DollThreadRegisterCurrent();
 
     // Initialize ctx.puppet
-    ctx.puppet = TPuppetInitializeClientTCP(ctx.pServerInfo->data);
+    try {
+        ctx.puppet = Puppet::ClientTCPInitialize((const char*)arg);
+    }
+    catch (const std::runtime_error & e) {
+        DollThreadPanic(e.what());
+    }
     if (!ctx.puppet)
-        DollThreadPanic(L"TPuppet(): TPuppetInitializeClientTCP() failed");
+        DollThreadPanic(L"TPuppet(): ClientTCPInitialize() failed");
 
     // Prepare MSG_ONLINE packet & current process name
     Puppet::PACKET_MSG_ONLINE packetOnline;
