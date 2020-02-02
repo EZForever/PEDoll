@@ -6,18 +6,6 @@ So my version of PEDoll will NOT focus on pretty-printing Windows APIs, but on b
 
 ----------
 
-lexer replacement(?): https://github.com/skeeto/optparse
-https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Options
-
-https://github.com/OmarAflak/Asynchronous-Socket-Class-C-Windows/blob/master/src/SocketServer.cpp
-https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.tcplistener?view=netframework-4.8
-
-MAKE USE OF Win32 API multi-threading functions!
-	InitializeCriticalSection / TryEnterCriticalSection / EnterCriticalSection / LeaveCriticalSection / DeleteCriticalSection
-	CreateEvent / SetEvent / ResetEvent / WaitForSingleObject (/ WaitForMultipleObjects) / CloseHandle
-
-----------
-
 Hook Events:
 	Before...
 		return context-related data
@@ -45,16 +33,6 @@ calling conventions:
 	x64
 		msvc (rcx, rdx, r8, r9, stack)
 		gcc (rdi, rsi, rdx, rcx, r8, r9, stack)
-
-----------
-ALL operations (requesting for data, verdict results, etc) are done on the Controller side
-	all a Doll have to do is to wait for Controller's request/reply
-
-Q: Under this "centralized" architechure, How does libDoll know where the server is?
-A: The Monitor/Spawner will create a static channel for a temp one-way communication (shared memory?)
-UPDATE: Even can do with DetourCopyPayloadToProcess() + DetourEnumerateModules() + DetourFindPayload()
-	DetourEnumerateModules() because the payload is in a injected dummy module
-https://github.com/microsoft/Detours/wiki/DetourCopyPayloadToProcess
 
 ----------
 
@@ -102,6 +80,18 @@ How the commands in original PeDoll are implemented:
 * unbinary
 	- rt
 
+----------
+
+lexer replacement(?): https://github.com/skeeto/optparse
+https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Options
+
+https://github.com/OmarAflak/Asynchronous-Socket-Class-C-Windows/blob/master/src/SocketServer.cpp
+https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.tcplistener?view=netframework-4.8
+
+----------
+
+TPuppetOEPFromBinary(): // TODO: Boyer-Moore algorithm?
+
 NOTE: From https://docs.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/virtual-address-spaces :
 > For a 32-bit process, the virtual address space is usually the 2-gigabyte range 0x00000000 through 0x7FFFFFFF. For a 64-bit process, the virtual address space is the 8-terabyte range 0x000'00000000 through 0x7FF'FFFFFFFF.
 > In 32-bit Windows, the total available virtual address space is 2^32 bytes (4 gigabytes). Usually the lower 2 gigabytes are used for user space, and the upper 2 gigabytes are used for system space.
@@ -112,23 +102,38 @@ i.e. Searching directly to the end is no longer an option. So how to do?
 http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html
 https://social.msdn.microsoft.com/forums/en-US/65c1ab16-2690-4117-9d3c-aa55f5cbc453/searching-binary-data#778f3f7e-17f3-48dc-8a47-c1678cfc33c8
 
+C implemention at Wikipedia is a good choice:
+https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm#Implementations
+
+Before start searching, use Win32 API to enum all readable + execuable regions, any only perform search in them
+Both improve speed and avoiding segfaults
+https://docs.microsoft.com/zh-cn/windows/win32/api/memoryapi/nf-memoryapi-virtualquery
+https://docs.microsoft.com/zh-cn/windows/win32/api/winnt/ns-winnt-memory_basic_information
+Only perform search when ((State & MEM_COMMIT) && !(Protect & PAGE_NOACCESS) && (Protect & (PAGE_EXECUTE_READ | PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY)))
+PAGE_EXECUTE is not allowed (searching involves reading)
+
+For a written algorithm:
+https://stackoverflow.com/a/4035387
+
 ----------
 
-Q: How does the created/attached process know where "libDoll.dll" exists?
-PeDoll done these by pre-copying PE.dll to %windir%
-A: For creating, modify monitor's PATH to add current dir
-   For attaching, see below
+ARGHHHH C# Interop
 
-My impl of "doll" command:
-	Create: DetourCreateProcessWithDllEx()
-		- Mechanism: CreateProcess(CREATE_SUSPENDED) then modify IAT
-		- Need libDoll.dll to export at least 1 function (ordinal #1)
-		- Need DllMain() to run DetourRestoreAfterWith()
-	Create static (not for now): Use Detours binary functions to modify execuable file
-		- Similar to "doll iti" and maybe "doll bi"
-		- For more see https://github.com/microsoft/Detours/wiki/OverviewPayloads
-	Attach: "doll di"
-		- Done by: get LoadLibraryW()'s address, copy libDoll *full path* to target memory, then CreateRemoteThread()
-		- This works because THREAD_START_ROUTINE's stack layout is exactly the same as LoadLibraryW's.
-		  DWORD (WINAPI *)(LPVOID) vs HMODULE (WINAPI *)(LPCWSTR)
+Recv packet routine:
+	receive sizeof(UInt32) bytes (block at here)
+	convert this byte[] into UInt32 as $size (UInt32 System.BitConverter.ToUInt32(byte[] value, int startIndex))
+	receive ($size - sizeof(UInt32)) bytes
+	combine two byte[]s as $buffer
+	Puppet.Util.Deserialize<PACKET>(buffer) as $packet
+	OnRecv(packet, buffer)
+	(In OnRecv) Puppet.Util.Deserialize(<PACKET_*>|String|Binary)(buffer) as it wish
+
+Send packet routine (not STRING or BINARY):
+	new Puppet.PACKET_*() as $packet
+	Puppet.Util.Serialize<PACKET_*> as $buffer
+	send buffer
+
+Send packet routine (STRING or BINARY):
+	Puppet.Util.Serialize(String|Binary)() as $buffer
+	send buffer
 

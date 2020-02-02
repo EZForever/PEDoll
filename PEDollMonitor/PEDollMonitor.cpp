@@ -53,6 +53,8 @@ int main(int argc, char* argv[])
     ctx.serverInfo = NULL;
     ctx.libDollPath = NULL;
 
+    //TODO: Enable debug privileges for MonDollAttach() to work
+
     ctx.libDollPath = new wchar_t[MAX_PATH];
     wchar_t* pFilePart;
     if (!SearchPathW(NULL, L"libDoll.dll", NULL, MAX_PATH, ctx.libDollPath, &pFilePart))
