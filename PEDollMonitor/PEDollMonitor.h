@@ -5,9 +5,9 @@
 
 struct MONITOR_CTX {
     Puppet::IPuppet* puppet;
-
     HANDLE hTPuppet;
-
+    char* serverInfo;
+    wchar_t* libDollPath;
 };
 
 // Called on a fatal error

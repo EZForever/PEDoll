@@ -4,6 +4,7 @@
 #include "../libPuppet/libPuppet.h"
 #include "../libPuppet/PuppetClientTCP.h"
 #include "Proc.h"
+#include "Doll.h"
 
 // These are directly copied from libDoll/ThreadPuppet.cpp
 
@@ -38,12 +39,30 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
     }
     case Puppet::PACKET_TYPE::CMD_DOLL:
     {
-        // TODO
+        uint32_t pid = ((Puppet::PACKET_CMD_DOLL*)packet)->pid;
+        uint32_t ret;
+        if (pid)
+        {
+            ret = MonDollAttach(pid);
+        }
+        else
+        {
+            auto pktString = TPuppetExpect<Puppet::PACKET_STRING, Puppet::PACKET_TYPE::STRING>();
+            ret = MonDollLaunch(pktString->data);
+            Puppet::PacketFree(pktString);
+        }
+        TPuppetSendAck(ret);
         break;
     }
     case Puppet::PACKET_TYPE::CMD_PS:
     {
-        // TODO
+        std::vector<Puppet::PACKET*> entry;
+        TPuppetSendAck(MonProcPs(entry));
+        for (auto iter = entry.cbegin(); iter != entry.cend(); iter++)
+        {
+            ctx.puppet->send(**iter);
+            Puppet::PacketFree(*iter);
+        }
         break;
     }
     case Puppet::PACKET_TYPE::CMD_SHELL:
@@ -55,7 +74,19 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
     }
     case Puppet::PACKET_TYPE::CMD_KILL:
     {
-        // TODO
+        uint32_t pid = ((Puppet::PACKET_CMD_KILL*)packet)->pid;
+        uint32_t ret;
+        if (pid)
+        {
+            ret = MonProcKillByPID(pid);
+        }
+        else
+        {
+            auto pktString = TPuppetExpect<Puppet::PACKET_STRING, Puppet::PACKET_TYPE::STRING>();
+            ret = MonProcKillByName(pktString->data);
+            Puppet::PacketFree(pktString);
+        }
+        TPuppetSendAck(ret);
         break;
     }
     default:
@@ -68,7 +99,7 @@ void __cdecl TPuppet(void* arg)
 {
     // Initialize ctx.puppet
     try {
-        ctx.puppet = Puppet::ClientTCPInitialize((const char*)arg);
+        ctx.puppet = Puppet::ClientTCPInitialize(ctx.serverInfo);
     }
     catch (const std::runtime_error & e) {
         MonPanic(e.what());

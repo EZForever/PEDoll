@@ -8,32 +8,60 @@ void __cdecl TPuppet(void*);
 
 MONITOR_CTX ctx;
 
+void isr_sigint(int signalId)
+{
+    // FIXME: TerminateThread() will cause huge resource leaks
+    // Should inform TPuppet
+    //TerminateThread(ctx.hTPuppet, 0);
+
+    if(ctx.hTPuppet != INVALID_HANDLE_VALUE)
+        CloseHandle(ctx.hTPuppet);
+
+    if(ctx.puppet)
+        delete ctx.puppet;
+
+    if(ctx.serverInfo)
+        delete[] ctx.serverInfo;
+
+    if(ctx.libDollPath)
+        delete[] ctx.libDollPath;
+
+    exit(signalId == SIGINT ? 0 : 1);
+}
+
 void MonPanic(const char* msg)
 {
     std::cerr << msg << std::endl;
-    exit(1);
+    isr_sigint(SIGTERM);
 }
 
 void MonPanic(const wchar_t* msg)
 {
+    // FIXME: stdout is set to multi-byte mode after the first call to std::cout
+    // Using std::wcout or std::wcerr may cause trouble
     std::wcerr << msg << std::endl;
-    exit(1);
-}
-
-void isr_sigint(int)
-{
-    // FIXME: TerminateThread() will cause huge resource leaks
-    // Should inform TPuppet
-    TerminateThread(ctx.hTPuppet, 0);
-
-    CloseHandle(ctx.hTPuppet);
-
-    exit(0);
+    isr_sigint(SIGTERM);
 }
 
 int main(int argc, char* argv[])
 {
     std::cout << "PEDoll Monitor InDev" << std::endl << std::endl;
+
+    // Pre-initialize all contexts for isr_sigint()
+    ctx.puppet = NULL;
+    ctx.hTPuppet = INVALID_HANDLE_VALUE;
+    ctx.serverInfo = NULL;
+    ctx.libDollPath = NULL;
+
+    ctx.libDollPath = new wchar_t[MAX_PATH];
+    wchar_t* pFilePart;
+    if (!SearchPathW(NULL, L"libDoll.dll", NULL, MAX_PATH, ctx.libDollPath, &pFilePart))
+    {
+        std::cerr << "main(): SearchPathW() failed, GetLastError() = " << GetLastError() << std::endl;
+        MonPanic("main(): libDoll.dll not found");
+    }
+    // SearchPathW() is, actually, not designed for searching a DLL for LoadLibrary()
+    // See https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw#security-remarks
 
     const char* serverInfo = NULL;
     if (argc > 1)
@@ -51,7 +79,11 @@ int main(int argc, char* argv[])
         serverInfo = serverInfoInput.c_str();
     }
 
-    uintptr_t hTPuppet = _beginthread(TPuppet, 0, (void*)serverInfo);
+    size_t serverInfoLen = strlen(serverInfo);
+    ctx.serverInfo = new char[serverInfoLen + 1];
+    strcpy_s(ctx.serverInfo, serverInfoLen + 1, serverInfo);
+
+    uintptr_t hTPuppet = _beginthread(TPuppet, 0, NULL);
     if (hTPuppet == 0 || hTPuppet == -1) // these status means error occurred
     {
         MonPanic("main(): _beginthread(TPuppet) failed");

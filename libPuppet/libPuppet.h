@@ -150,10 +150,11 @@ namespace Puppet {
 
     // (Monitor) Enumerate processes, like linux command `ps`
     // > CMD_PS
-    // < ACK: 0 on fail, or n ( > 0) for entry count
-    // (repeat `n` times: )
+    // < ACK: 0 on ok, or corresponding Win32 error codes
+    // (repeat)
     //     < INTEGER: pid
     //     < STRING: execuable name
+    // < INTEGER: -1
     struct PACKET_CMD_PS : PACKET {
         ;
 

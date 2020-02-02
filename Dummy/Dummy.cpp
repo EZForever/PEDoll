@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#define DETOUR_PAYLOAD
+//#define DETOUR_PAYLOAD
 
 #ifdef DETOUR_PAYLOAD
 

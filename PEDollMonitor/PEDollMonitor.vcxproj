@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Doll.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -162,12 +163,16 @@
     <ClCompile Include="ThreadPuppet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Doll.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PEDollMonitor.h" />
     <ClInclude Include="Proc.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Detours\Detours.vcxproj">
+      <Project>{c8d2c05e-499b-4e6e-9813-eddeafc02931}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\libPuppet\libPuppet.vcxproj">
       <Project>{781b8bad-43a7-42d1-b9b6-678943f3dfa4}</Project>
     </ProjectReference>
