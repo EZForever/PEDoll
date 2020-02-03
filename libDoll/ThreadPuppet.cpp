@@ -6,6 +6,7 @@
 #include "../libPuppet/PuppetClientTCP.h"
 #include "Thread.h"
 #include "Hook.h"
+#include "BoyerMoore.h"
 
 // Registers saved by the pushad instruction
 #ifdef _WIN64
@@ -85,9 +86,41 @@ UINT_PTR TPuppetOEPFromString(wchar_t* strOEP)
     return ret;
 }
 
-UINT_PTR TPuppetOEPFromBinary(unsigned char* data)
+UINT_PTR TPuppetOEPFromBinary(unsigned char* data, uint32_t dataLen)
 {
-    // TODO: Boyer-Moore algorithm?
+    // BoyerMoore searcher cannot work if given pattern is empty
+    if (!dataLen)
+        return 0;
+
+    // Initialize searcher
+    BoyerMoore searcher((const char*)data, dataLen);
+    
+    // Get the bound for application's virtual memory
+    SYSTEM_INFO si;
+    GetSystemInfo(&si);
+
+    // Enum through all memory regions
+    // Credit: https://stackoverflow.com/a/4035387
+    MEMORY_BASIC_INFORMATION mi;
+    for (void* pMem = si.lpMinimumApplicationAddress; pMem < si.lpMaximumApplicationAddress; pMem = (void*)((UINT_PTR)mi.BaseAddress + mi.RegionSize))
+    {
+        if (!VirtualQuery(pMem, &mi, sizeof(MEMORY_BASIC_INFORMATION)))
+            break;
+
+        // Skip non-accessible regions
+        if (!(mi.State & MEM_COMMIT) || (mi.Protect & PAGE_NOACCESS))
+            continue;
+
+        // Skip non-execuable regions (since we're looking for code)
+        if(!(mi.Protect & (PAGE_EXECUTE_READ | PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY)))
+            continue;
+
+        // Perform Boyer-Moore search
+        UINT_PTR ret = (UINT_PTR)searcher.search((const char*)mi.BaseAddress, mi.RegionSize);
+        if (ret)
+            return ret;
+    }
+
     return 0;
 }
 
@@ -200,7 +233,7 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
             case 1:
             {
                 auto pktBinary = TPuppetExpect<Puppet::PACKET_BINARY, Puppet::PACKET_TYPE::BINARY>();
-                hookOEP = TPuppetOEPFromBinary(pktBinary->data);
+                hookOEP = TPuppetOEPFromBinary(pktBinary->data, pktBinary->size - sizeof(Puppet::PACKET_BINARY));
                 Puppet::PacketFree(pktBinary);
                 break;
             }

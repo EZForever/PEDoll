@@ -30,6 +30,9 @@
     <ClCompile Include="Doll.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="SetPrivilege.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PEDollMonitor.h">
@@ -45,6 +48,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Doll.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SetPrivilege.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

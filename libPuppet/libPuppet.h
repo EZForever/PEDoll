@@ -303,7 +303,7 @@ namespace Puppet {
         virtual PACKET* recv() = 0;
 
     private:
-        // Copying of a instance is not allowed
+        // Copying an instance is not allowed
         IPuppet(const IPuppet& x) = delete;
         IPuppet& operator=(IPuppet& x) = delete;
     };

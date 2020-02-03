@@ -158,6 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BoyerMoore.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Hook.h" />
     <ClInclude Include="HookStub.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Thread.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BoyerMoore.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Hook.cpp" />
     <ClCompile Include="HookStub.cpp" />

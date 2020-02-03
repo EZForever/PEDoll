@@ -160,6 +160,7 @@
     </ClCompile>
     <ClCompile Include="PEDollMonitor.cpp" />
     <ClCompile Include="Proc.cpp" />
+    <ClCompile Include="SetPrivilege.cpp" />
     <ClCompile Include="ThreadPuppet.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="PEDollMonitor.h" />
     <ClInclude Include="Proc.h" />
+    <ClInclude Include="SetPrivilege.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Detours\Detours.vcxproj">

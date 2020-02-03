@@ -103,6 +103,7 @@ http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html
 https://social.msdn.microsoft.com/forums/en-US/65c1ab16-2690-4117-9d3c-aa55f5cbc453/searching-binary-data#778f3f7e-17f3-48dc-8a47-c1678cfc33c8
 
 C implemention at Wikipedia is a good choice:
+NO IT'S NOT. It's licensed under CC BY-SA 3.0, which is not trans-licence-able to MIT
 https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm#Implementations
 
 Before start searching, use Win32 API to enum all readable + execuable regions, any only perform search in them

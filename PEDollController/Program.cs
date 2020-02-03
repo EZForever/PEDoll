@@ -24,7 +24,7 @@ namespace PEDollController
             Application.SetCompatibleTextRenderingDefault(false);
 
             taskGUI = new Task(GuiMain);
-            //taskGUI.Start(); // Commented until start to develop GUI
+            //taskGUI.Start(); // TODO: Commented until start to develop GUI
 
             //byte[] pkt = Puppet.Util.SerializeString("Hello");
             byte[] pkt = Puppet.Util.SerializeBinary(new byte[] { 0x12, 0x34, 0x56, 0x78 });
