@@ -2,7 +2,7 @@
 
 #include "SetPrivilege.h"
 
-// Modified from 
+// Modified from https://docs.microsoft.com/en-us/windows/win32/secauthz/enabling-and-disabling-privileges-in-c--
 // CC BY 4.0
 
 BOOL SetPrivilege(HANDLE hProcess, LPCTSTR lpszPrivilege, BOOL bEnablePrivilege)
