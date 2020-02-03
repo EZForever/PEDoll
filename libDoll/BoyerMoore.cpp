@@ -55,21 +55,33 @@ void BoyerMoore::MakeDelta2()
 
 BoyerMoore::BoyerMoore(const char* pattern, size_t patternLen)
 {
+    delta1 = delta2 = NULL;
+
     this->pattern = pattern;
     this->patternLen = patternLen;
 
-    MakeDelta1();
-    MakeDelta2();
+    // My implemention of the algorithm does not work with patternLen == 1
+    if (patternLen >= 2)
+    {
+        MakeDelta1();
+        MakeDelta2();
+    }
 }
 
 BoyerMoore::~BoyerMoore()
 {
-    delete[] delta1;
-    delete[] delta2;
+    if (delta1)
+        delete[] delta1;
+    if (delta2)
+        delete[] delta2;
 }
 
 const char* BoyerMoore::search(const char* haystack, size_t haystackLen)
 {
+    // For the case the algorithm does not work, just use memchr() from stdlib
+    if (patternLen < 2)
+        return (const char*)memchr(haystack, pattern[0], haystackLen);
+
     size_t i = patternLen - 1;
     while (i < haystackLen)
     {
