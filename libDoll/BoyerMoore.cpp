@@ -30,7 +30,7 @@ void BoyerMoore::MakeDelta1()
         delta1[i] = patternLen;
 
     for (size_t i = 0; i < patternLen - 2; i++)
-        delta1[pattern[i]] = (patternLen - 1) - i;
+        delta1[pattern[i] & 0xff] = (patternLen - 1) - i;
 }
 
 void BoyerMoore::MakeDelta2()
