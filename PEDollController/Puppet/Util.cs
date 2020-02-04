@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Runtime.InteropServices;
 
 namespace PEDollController.Puppet
@@ -26,14 +27,13 @@ namespace PEDollController.Puppet
             PACKET_STRING obj = new PACKET_STRING(0);
             int strSize = sizeof(char) * (str.Length + 1);
             obj.header.size += (UInt32)strSize;
+
             byte[] pktHeader = Serialize(obj);
+            byte[] strBytes = Encoding.Unicode.GetBytes(str);
+
             byte[] data = new byte[obj.header.size];
-
-            IntPtr pData = Marshal.StringToHGlobalUni(str);
-            Marshal.Copy(pData, data, pktHeader.Length, strSize);
-            Marshal.FreeHGlobal(pData);
-
             pktHeader.CopyTo(data, 0);
+            strBytes.CopyTo(data, pktHeader.Length);
             return data;
         }
 
@@ -64,11 +64,8 @@ namespace PEDollController.Puppet
 
         public static string DeserializeString(byte[] data)
         {
-            IntPtr pData = Marshal.AllocHGlobal(data.Length);
-            Marshal.Copy(data, 0, pData, data.Length);
-            string str = Marshal.PtrToStringUni(pData + Marshal.SizeOf(typeof(PACKET_STRING)));
-            Marshal.FreeHGlobal(pData);
-            return str;
+            int offset = Marshal.SizeOf(typeof(PACKET_STRING));
+            return Encoding.Unicode.GetString(data, offset, data.Length - offset);
         }
 
         public static byte[] DeserializeBinary(byte[] data)

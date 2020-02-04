@@ -90,34 +90,6 @@ https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.tcplistener?view=
 
 ----------
 
-TPuppetOEPFromBinary(): // TODO: Boyer-Moore algorithm?
-
-NOTE: From https://docs.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/virtual-address-spaces :
-> For a 32-bit process, the virtual address space is usually the 2-gigabyte range 0x00000000 through 0x7FFFFFFF. For a 64-bit process, the virtual address space is the 8-terabyte range 0x000'00000000 through 0x7FF'FFFFFFFF.
-> In 32-bit Windows, the total available virtual address space is 2^32 bytes (4 gigabytes). Usually the lower 2 gigabytes are used for user space, and the upper 2 gigabytes are used for system space.
-> In 64-bit Windows, the theoretical amount of virtual address space is 2^64 bytes (16 exabytes), but only a small portion of the 16-exabyte range is actually used. The 8-terabyte range from 0x000'00000000 through 0x7FF'FFFFFFFF is used for user space, and portions of the 248-terabyte range from 0xFFFF0800'00000000 through 0xFFFFFFFF'FFFFFFFF are used for system space.
-i.e. Searching directly to the end is no longer an option. So how to do?
-
-(???) Even CheatEngine Uses per-byte method
-http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html
-https://social.msdn.microsoft.com/forums/en-US/65c1ab16-2690-4117-9d3c-aa55f5cbc453/searching-binary-data#778f3f7e-17f3-48dc-8a47-c1678cfc33c8
-
-C implemention at Wikipedia is a good choice:
-NO IT'S NOT. It's licensed under CC BY-SA 3.0, which is not trans-licence-able to MIT
-https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm#Implementations
-
-Before start searching, use Win32 API to enum all readable + execuable regions, any only perform search in them
-Both improve speed and avoiding segfaults
-https://docs.microsoft.com/zh-cn/windows/win32/api/memoryapi/nf-memoryapi-virtualquery
-https://docs.microsoft.com/zh-cn/windows/win32/api/winnt/ns-winnt-memory_basic_information
-Only perform search when ((State & MEM_COMMIT) && !(Protect & PAGE_NOACCESS) && (Protect & (PAGE_EXECUTE_READ | PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY)))
-PAGE_EXECUTE is not allowed (searching involves reading)
-
-For a written algorithm:
-https://stackoverflow.com/a/4035387
-
-----------
-
 ARGHHHH C# Interop
 
 Recv packet routine:
