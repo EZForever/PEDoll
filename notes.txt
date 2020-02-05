@@ -87,6 +87,7 @@ https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Options
 
 https://github.com/OmarAflak/Asynchronous-Socket-Class-C-Windows/blob/master/src/SocketServer.cpp
 https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.tcplistener?view=netframework-4.8
+https://stackoverflow.com/a/16300698
 
 ----------
 
@@ -100,6 +101,7 @@ Recv packet routine:
 	Puppet.Util.Deserialize<PACKET>(buffer) as $packet
 	OnRecv(packet, buffer)
 	(In OnRecv) Puppet.Util.Deserialize(<PACKET_*>|String|Binary)(buffer) as it wish
+		Still need a PuppetExpect<>
 
 Send packet routine (not STRING or BINARY):
 	new Puppet.PACKET_*() as $packet
@@ -109,4 +111,44 @@ Send packet routine (not STRING or BINARY):
 Send packet routine (STRING or BINARY):
 	Puppet.Util.Serialize(String|Binary)() as $buffer
 	send buffer
+
+----------
+
+C# has "lock(obj) { ...}"
+a "nothing-but-a-lock" object: "object theLock = new object();"
+
+----------
+
+Threads/Tasks of PEDollController:
+
+(Main thread):
+	initialize
+	start CmdEngine and GUI
+	wait until CmdEngine ends
+	finalize
+
+CmdEngine:
+	initialize readline providers
+	wait for a line
+	OnCommand(cmd, isGUI)
+		may start Listener or stop CmdEngine
+	loop forever
+
+Listener: // Listeners?
+	bind to TCP port
+	wait for incoming connection
+	create & start a new Client
+	loop forever
+
+Client:
+	wait for incoming packet
+	OnRecv(packet, buffer)
+		may stop current Client (put in a DEAD status, not removing from the list)
+	loop forever
+
+GUI:
+	show FSplash
+		initialize GUI-related things
+	show FMain
+	wait until FMain closes
 

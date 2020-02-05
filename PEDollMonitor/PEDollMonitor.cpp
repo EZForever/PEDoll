@@ -80,10 +80,8 @@ int main(int argc, char* argv[])
     {
         std::string serverInfoInput;
         std::cout << "Input connection string [127.0.0.1]: ";
-        std::cin >> serverInfoInput;
-        if (serverInfoInput.empty())
-            serverInfoInput = "127.0.0.1";
-        serverInfo = serverInfoInput.c_str();
+        std::getline(std::cin, serverInfoInput);
+        serverInfo = serverInfoInput.empty() ? "127.0.0.1" : serverInfoInput.c_str();
     }
 
     size_t serverInfoLen = strlen(serverInfo);

@@ -35,7 +35,7 @@
             // tmrClose
             // 
             this.tmrClose.Enabled = true;
-            this.tmrClose.Interval = 1500;
+            this.tmrClose.Interval = 1200;
             this.tmrClose.Tick += new System.EventHandler(this.tmrClose_Tick);
             // 
             // FSplash

@@ -7,7 +7,9 @@ namespace PEDollController.Puppet
 
     static class Util
     {
-        // Credit: https://stackoverflow.com/a/3278956
+        // Credit of (S|Des)erialize<T>: https://stackoverflow.com/a/3278956
+
+        public static readonly int DEFAULT_PORT = 31415;
 
         public static byte[] Serialize<T>(T obj)
         {

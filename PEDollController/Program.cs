@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Threading.Tasks;
+
+using PEDollController.Threads;
 
 namespace PEDollController
 {
     static class Program
     {
-        static Task taskGUI;
-
-        static void GuiMain()
-        {
-            Application.Run(new FSplash());
-            Application.Run(new FMain());
-        }
+        public static event Action OnProgramEnd;
 
         [STAThread]
         static void Main()
@@ -20,24 +15,17 @@ namespace PEDollController
             Console.WriteLine("PEDollController InDev");
             Console.WriteLine();
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-            taskGUI = new Task(GuiMain);
-            //taskGUI.Start(); // TODO: Commented until start to develop GUI
-
-            //byte[] pkt = Puppet.Util.SerializeString("Hello");
-            byte[] pkt = Puppet.Util.SerializeBinary(new byte[] { 0x12, 0x34, 0x56, 0x78 });
-            //byte[] pkt = Puppet.Util.Serialize(new Puppet.PACKET_INTEGER(0x1234));
-            foreach(byte b in pkt)
-            {
-                Console.Write("{0:x2} ", b);
-            }
-            Console.WriteLine();
+            // Initialize CmdEngine, which receives and processes user commands
+            CmdEngine.theTask.Start();
             
+            // Initialize GUI
+            Gui.theTask.Start();
 
-            while (true)
-                Console.WriteLine(Console.ReadLine());
+            // Wait for CmdEngine to finish
+            CmdEngine.theTask.Wait();
+
+            // Then finialize anything
+            OnProgramEnd();
         }
     }
 }
