@@ -15,5 +15,10 @@ namespace PEDollController
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Threads.CmdEngine.theInstance.AddCommand(textBox1.Text);
+        }
     }
 }

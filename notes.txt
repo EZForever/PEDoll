@@ -117,6 +117,11 @@ Send packet routine (STRING or BINARY):
 C# has "lock(obj) { ...}"
 a "nothing-but-a-lock" object: "object theLock = new object();"
 
+Shift-Enter inputs newline in the Visual Studio resource editor
+
+Set Form.Localizable to True
+Change Language to write in values
+
 ----------
 
 Threads/Tasks of PEDollController:

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace PEDollController.Threads
 {
@@ -9,12 +10,23 @@ namespace PEDollController.Threads
         public static CmdEngine theInstance = new CmdEngine();
         public static Task theTask = new Task(theInstance.TaskMain);
 
+        BlockingQueue<string> cmdQueue;
+        AsyncDataProvider<string> cmdProvider;
+
         // Stop engine & all tasks created by CmdEngine (Listener, Client*)
         ManualResetEvent stopTaskEvent;
         public Task stopTaskAsync;
 
+        public void AddCommand(string cmd)
+        {
+            cmdQueue.BlockingEnqueue(cmd);
+        }
+
         CmdEngine()
         {
+            cmdQueue = new BlockingQueue<string>();
+            cmdProvider = new AsyncDataProvider<string>(cmdQueue.BlockingDequeue);
+
             stopTaskEvent = new ManualResetEvent(false);
             stopTaskAsync = new Task(() => stopTaskEvent.WaitOne());
             stopTaskAsync.Start();
@@ -34,14 +46,28 @@ namespace PEDollController.Threads
 
         void TaskMain()
         {
-            // TODO
-            Listener.CreateInstance(false, Puppet.Util.DEFAULT_PORT);
+            // TODO: Initialize CmdEngine (if anything needs to be done; should be in constructor?)
             while(true)
             {
-                int idx = Task.WaitAny(stopTaskAsync);
+                Task<string> taskCmd = cmdProvider.Get();
+                int idx = Task.WaitAny(stopTaskAsync, taskCmd);
+
                 if (idx == 0)
+                {
+                    // stopTaskAsync triggered
                     break;
+                }
+                else
+                {
+                    OnCommand(taskCmd.Result);
+                }
             }
+        }
+
+        void OnCommand(string cmd)
+        {
+            // TODO: The commands
+            Commands.Util.Invoke(cmd);
         }
 
         void Program_OnProgramEnd()
