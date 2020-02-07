@@ -157,3 +157,50 @@ GUI:
 	show FMain
 	wait until FMain closes
 
+----------
+
+Examples of command `hook`:
+
+# (x64) Hooks WinExec(), print the command it trys to execute, then reject it
+hook WinExec --before --echo="lpCmdLine = {str(arg(0))}" --verdict=reject
+
+# (x86) Binary example (pattern from original PeDoll)
+hook *8B5424048B4C240885D2750D --convention=cdecl,0,0 --before --echo="str1 = {str(poi(sp+4+4))}" --echo="str2 = {str(poi(sp+4+8))}" --verdict=reject
+
+# (x86) Reject WriteFile() (shows the usage of context dictionary)
+hook CreateFileA --before --verdict=approve --after --ctx="hFile_{ax}","{str(arg(1))}" --verdict=approve
+hook CreateFileW --before --verdict=approve --after --ctx="hFile_{ax}","{wstr(arg(1))}" --verdict=approve
+hook WriteFile --convention=stdcall,20,1 --before --echo="File: {ctx(\"hFile_\"+ax.ToString())}" --dump={arg(1)},{arg(2)} --verdict=reject
+
+# (x64) Dump all send() and recv() data (shows the usage of "after" hooks)
+hook ws2_32!send --before --dump={arg(1)},{(int)arg(2)} --verdict=approve
+hook ws2_32!recv --before --verdict=approve --after --dump={arg(1)},{(int)ax} --verdict=approve
+
+----------
+
+Extensions to `eval` expressions:
+
+word (uword):
+	Plan A:	Alias to Int32/Int64 based on target's bitness
+	Plan B: Alias to Int64 (match to Puppet.PACKET_INTEGER)
+
+str() (wstr()):
+	(I've forgot to put a string-reading operation into libPuppet)
+	Read sizeof(byte)/sizeof(char) bytes at a time, starting from given address,
+	until read byte/char is zero, or a read error occurred (libDoll did check on this)
+	Convert byte[] into string with Encoding.Default.GetString()/Encoding.Unicode.GetString()
+
+ctx():
+	Read context dictionary
+
+poi():
+	Read sizeof(uword) bytes from given address, fail if read error occurred
+	Convert byte[] into uword with BitConverter.ToUInt32()/BitConverter.ToUInt64()
+
+arg():
+	Return expression based on the convention
+	For stack arguments, like "poi(sp + 4 + 4 * INDEX)"
+
+ax, bx, ...:
+	Fields with only getters, sends Puppet.PACKET_CONTEXT
+

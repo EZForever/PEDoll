@@ -1,0 +1,239 @@
+For more information on a specific command, type `help COMMAND`.
+
+--------------------------------------------------------------------------------
+exit	- Quits the Controller, end all connected clients.
+----------
+Quits the Controller, end all connected clients.
+
+exit
+
+--------------------------------------------------------------------------------
+listen	- Starts to listen for clients.
+----------
+Starts to listen for clients and displays addresses listening on.
+
+listen [--ipv6] [PORT]
+
+--ipv6		Listens on IPv6 interfaces, instead of IPv4 ones.
+PORT		The listening port. Default to 31415.
+
+This command may successfully execute only once; any subsequent call will fail.
+
+--------------------------------------------------------------------------------
+target	- Gets or sets the target client.
+----------
+Gets or sets the target client.
+
+target [ID]
+target --lastDoll
+target --lastMonitor
+
+ID		The new target client's ID.
+		If omitted, displays a list of connected clients.
+--lastDoll	Set target to last targeted Doll client.
+--lastMonitor	Set target to last targeted Monitor client.
+
+--------------------------------------------------------------------------------
+load	- Executes commands from a script.
+----------
+Executes commands from a script.
+
+load SCRIPT
+
+SCRIPT		The script file to execute.
+		If embraced with double-quotes, SCRIPT is treated as a path;
+		otherwise, SCRIPT is the name (w/ or w/o extension) of a script
+		in "Scripts" folder (preferred) or "Scripts\API" folder.
+
+--------------------------------------------------------------------------------
+help	- Provides help information for commands.
+----------
+Provides help information for Windows commands.
+
+help [COMMAND]
+
+COMMAND		Display help information for command COMMAND.
+		If omitted, display a list of available commands.
+
+--------------------------------------------------------------------------------
+rem	- Records comments (remarks) in a script file.
+----------
+Records comments (remarks) in a script file.
+
+rem [...]
+#[...]
+
+--------------------------------------------------------------------------------
+end	- (M/D) Ends the client, stopping its process.
+----------
+Ends the client, stopping its process.
+
+end
+
+--------------------------------------------------------------------------------
+doll	- (M) Creates a new Doll client.
+----------
+Creates a new Doll client by creating or attaching to a process.
+
+doll CMDLINE
+doll --attach PID
+
+CMDLINE		Create a new process by running CMDLINE.
+PID		Attach to process PID.
+		Use `ps` to get the list of available PIDs.
+
+--------------------------------------------------------------------------------
+shell	- (M) Starts a instance of command interpreter.
+----------
+Starts a instance of command interpreter (%COMSPEC%, usually CMD.EXE).
+
+shell [ARGUMENTS ...]
+
+ARGUMENTS	Arguments passed to %COMSPEC%.
+
+--------------------------------------------------------------------------------
+kill	- (M) Terminates process(es) with PID or name.
+----------
+Terminates process(es) with PID or name.
+
+kill PID
+kill --all NAME
+
+PID		The PID of the process to be terminated.
+		Use `ps` to get the list of available PIDs.
+NAME		Terminate all processes with name NAME.
+
+--------------------------------------------------------------------------------
+ps	- (M) Displays a list of running processes.
+----------
+Displays a list of running processes.
+
+ps
+
+--------------------------------------------------------------------------------
+hook	- (D) Installs a new hook and set its actions.
+----------
+Installs a new hook and set its actions.
+
+hook
+hook {[MODULE!]NAME|@ADDR|*PATTERN} [--convention=CONVENTION[,STACK[,RETURN]]]
+     [--before [ACTION ...]] [--after [ACTION ...]]
+
+Type `hook` without any arguments displays a list of hooks.
+
+MODULE		The target module to search for symbol NAME.
+		If omitted, default to the first module containing symbol NAME.
+NAME		The function's symbol name.
+ADDR		The function's virtual address.
+PATTERN		The hexadecimal pattern of the function (e.g. *8B4C240885D2).
+CONVENTION	The function's calling convention. Possible conventions are:
+		x86 client: stdcall(default), cdecl, fastcall
+		x64 client: msvc(default), gcc
+STACK		Count of bytes poped from stack when the function returns.
+		Default to 0.
+RETURN		The value to return on a Rejected verdict.
+		Default to 0.
+ACTION		An action to perform on an activated hook.
+		Possible actions are:
+		--echo=ECHO			- Display a string.
+		--dump=DUMPADDR,DUMPSIZE	- Dump data to storage.
+		--ctx=CTXNAME,CTXVALUE		- Add an entry to dictionary.
+		--verdict=VERDICT		- Set the default verdict.
+		Actions may appear more than once.
+ECHO		A string, may contain expressions, to be displayed.
+DUMPADDR	A expression that evaluates to a `uword` value, as the address.
+DUMPSIZE	A expression that evaluates to an integer value, as the size.
+CTXNAME		A string, may contain expressions, as the key.
+CTXVALUE	A string, may contain expressions, as the value.
+VERDICT		The verdict. Refer to `help verdict` for possible values.
+		If omitted, the "before" hook waits for user reply, while
+		"after" hook sliently continues.
+
+Expressions in the strings are formatted based on their values' type:
+Unsigned integers: zero-padded hexadecimal display.
+Signed integers: decimal display.
+Strings: string with embraced double-quotes.
+
+For help information on expressions, type `help eval`.
+
+--------------------------------------------------------------------------------
+unhook	- (D) Uninstalls a hook.
+----------
+unhook OEP
+
+OEP		Entry point address of the hook.
+
+--------------------------------------------------------------------------------
+break	- (D) Breaks or continues the process's execution.
+----------
+Breaks or continues the process's execution.
+
+break
+
+This command toggles the execution state between running and suspended.
+For a newly-created Doll process, it's state is running.
+For a newly-attached Doll process, it's state is suspended.
+
+--------------------------------------------------------------------------------
+loaddll	- (D) Loads a module into the process's address space.
+----------
+Loads a module into the process's address space.
+
+loaddll MODULE
+
+MODULE		The module path passed to LoadLibrary().
+
+Internally, `loaddll` calls LoadLibrary() on a new thread.
+Call `loaddll` with libDoll will cause nothing but must never be attempted.
+
+--------------------------------------------------------------------------------
+eval	- (D) Evaluates a expression on current context.
+----------
+Evaluates a expression on current context.
+
+eval EXPR
+
+EXPR		The expression to be evaluated.
+
+An "expression" is a C# expression embraced with braces, e.g. {(uint)poi(ax)+4}
+The expression must evaluates to an integer type or a `string`.
+
+The following types, methods and fields are provided as extension to base C#:
+
+(type) word		A integer of the native word size.
+(type) uword		Same as `word` but unsigned.
+string str(uword PTR)	Returns the C-style string PTR points to.
+string wstr(uword PTR)	Returns the C-style wide-char string PTR points to.
+string ctx(string KEY)	Returns the entry under key KEY in context dictionary.
+uword poi(uword PTR)	Returns the integer pointer PTR points to as a `uword`.
+uword arg(int INDEX)	Returns the value of function argument at index INDEX.
+uword ax, bx, cx, dx,	The value of the corresponding register.
+      sp, bp, si, di,	`r8` and `r9` are available only on a x64 client.
+      r8, r9
+
+--------------------------------------------------------------------------------
+dump	- (D) Displays or saves dumped data.
+----------
+Displays or saves dumped data.
+
+dump
+dump ID [--format=FORMAT] [--save=SAVEFILE]
+
+Type `hook` without any arguments displays a list of dumped data.
+
+ID		ID of the dump to operate.
+FORMAT		Show or save data under FORMAT. Possible formats are:
+		hex(default), raw, ascii, unicode, utf8, asmx86, asmx64
+SAVEFILE	Save the data to SAVEFILE instead of displaying it.
+
+--------------------------------------------------------------------------------
+verdict	- (D) Verdicts a activated hook.
+----------
+verdict {approve|terminate|reject}
+
+approve		Continue the execution.
+terminate	Terminate the client process.
+reject		Reject the call to the function and immediately return.
+		Refer to `help hook` for stack and return value information.
+
+--------------------------------------------------------------------------------
