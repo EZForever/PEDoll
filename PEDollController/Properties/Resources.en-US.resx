@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Commands.HelpShort._Header" xml:space="preserve">
-    <value>For more information on a specific command, type HELP command-name
+    <value>For more information on a specific command, type `help COMMAND`.
 </value>
   </data>
   <data name="Commands.Invalid" xml:space="preserve">
-    <value>Invalid command "{0}". Try "HELP {1}".</value>
+    <value>Invalid command "{0}". Try `help {1}`.</value>
   </data>
   <data name="Commands.Unknown" xml:space="preserve">
     <value>Unknown command "{0}".</value>

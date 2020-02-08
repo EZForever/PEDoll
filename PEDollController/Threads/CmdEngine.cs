@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace PEDollController.Threads
 {
@@ -14,7 +13,7 @@ namespace PEDollController.Threads
         AsyncDataProvider<string> cmdProvider;
 
         // Stop engine & all tasks created by CmdEngine (Listener, Client*)
-        ManualResetEvent stopTaskEvent;
+        public ManualResetEvent stopTaskEvent;
         public Task stopTaskAsync;
 
         public void AddCommand(string cmd)
@@ -59,15 +58,26 @@ namespace PEDollController.Threads
                 }
                 else
                 {
-                    OnCommand(taskCmd.Result);
+                    string cmd = taskCmd.Result;
+
+                    Console.ForegroundColor = Logger.colorCmd;
+                    Console.WriteLine("> " + cmd);
+                    Console.ResetColor();
+                    OnCommand(cmd);
                 }
             }
         }
 
         void OnCommand(string cmd)
         {
-            // TODO: The commands
-            Commands.Util.Invoke(cmd);
+            try
+            {
+                Commands.Util.Invoke(cmd);
+            }
+            catch(ArgumentException e)
+            {
+                Logger.E(e.Message); // NOTE: e.ParamName is followed
+            }
         }
 
         void Program_OnProgramEnd()
@@ -80,7 +90,9 @@ namespace PEDollController.Threads
             // Do not just stop the process
             args.Cancel = true;
 
-            Console.WriteLine("\n< Ctrl-C received, press any key to stop engine... >");
+            // TODO: "UI.CtrlC"
+            // "\n< Ctrl-C received, press any key to stop engine... >"
+            Logger.N(Program.GetResourceString("UI.CtrlC"));
             Console.ReadKey();
 
             // Tell TaskMain() about ending task

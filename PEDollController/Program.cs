@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 using PEDollController.Threads;
 
@@ -19,11 +18,17 @@ namespace PEDollController
             return ret;
         }
 
+        public static string GetResourceString(string resId, params object[] args)
+        {
+            return String.Format(GetResourceString(resId), args);
+        }
+
         [STAThread]
         static void Main()
         {
-            Console.WriteLine("PEDollController InDev");
-            Console.WriteLine();
+            // TODO: "UI.Banner"
+            Console.ResetColor();
+            Logger.I(GetResourceString("UI.Banner"));
 
             // Initialize CmdEngine, which receives and processes user commands
             CmdEngine.theTask.Start();

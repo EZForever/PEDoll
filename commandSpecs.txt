@@ -2,14 +2,14 @@ For more information on a specific command, type `help COMMAND`.
 
 --------------------------------------------------------------------------------
 exit	- Quits the Controller, end all connected clients.
-----------
+*----------
 Quits the Controller, end all connected clients.
 
 exit
 
 --------------------------------------------------------------------------------
 listen	- Starts to listen for clients.
-----------
+*----------
 Starts to listen for clients and displays addresses listening on.
 
 listen [--ipv6] [PORT]
@@ -35,7 +35,7 @@ ID		The new target client's ID.
 
 --------------------------------------------------------------------------------
 load	- Executes commands from a script.
-----------
+*----------
 Executes commands from a script.
 
 load SCRIPT
@@ -47,7 +47,7 @@ SCRIPT		The script file to execute.
 
 --------------------------------------------------------------------------------
 help	- Provides help information for commands.
-----------
+*----------
 Provides help information for Windows commands.
 
 help [COMMAND]
@@ -57,7 +57,7 @@ COMMAND		Display help information for command COMMAND.
 
 --------------------------------------------------------------------------------
 rem	- Records comments (remarks) in a script file.
-----------
+*----------
 Records comments (remarks) in a script file.
 
 rem [...]
@@ -207,7 +207,7 @@ string wstr(uword PTR)	Returns the C-style wide-char string PTR points to.
 string ctx(string KEY)	Returns the entry under key KEY in context dictionary.
 uword poi(uword PTR)	Returns the integer pointer PTR points to as a `uword`.
 uword arg(int INDEX)	Returns the value of function argument at index INDEX.
-uword ax, bx, cx, dx,	The value of the corresponding register.
+uword ax, bx, cx, dx,	The value of the corresponding register. Readonly.
       sp, bp, si, di,	`r8` and `r9` are available only on a x64 client.
       r8, r9
 

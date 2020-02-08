@@ -11,10 +11,10 @@ namespace PEDollController.Commands
         // Resource ID of shortened (one-line) help message (`help`)
         string HelpShortResId();
 
-        // Parse a line of command to its options, return null on error
+        // Parses a line of command to its options, throws ArgumentException on error
         Dictionary<string, object> Parse(string cmd);
 
-        // Invoke the command with given options
+        // Invokes the command with given options, throws ArgumentException on error
         // Options are guaranteed to be sanitized but not verifyed
         void Invoke(Dictionary<string, object> options);
     }

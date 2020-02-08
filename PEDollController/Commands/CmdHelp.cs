@@ -20,11 +20,11 @@ namespace PEDollController.Commands
 
             string command;
             if (cmdExplode.Count == 1)
-                command = ""; // Help screen
+                command = null; // Help screen
             else if (cmdExplode.Count == 2)
                 command = cmdExplode[1]; // Help for a command
             else
-                return null;
+                throw new ArgumentException();
 
             return new Dictionary<string, object>()
             {
@@ -36,29 +36,25 @@ namespace PEDollController.Commands
         public void Invoke(Dictionary<string, object> options)
         {
             string command = (string)options["command"];
-            if (command == "")
+            if (String.IsNullOrEmpty(command))
             {
                 ShowHelpScreen();
                 return;
             }
             if(Util.Commands.ContainsKey(command))
-            {
-                Console.WriteLine(Program.GetResourceString(Util.Commands[command].HelpResId()));
-            }
+                Logger.I(Program.GetResourceString(Util.Commands[command].HelpResId()));
             else
-            {
-                Console.WriteLine(Program.GetResourceString("Commands.Unknown"), command);
-            }
+                throw new ArgumentException(Program.GetResourceString("Commands.Unknown", command));
         }
 
         void ShowHelpScreen()
         {
-            Console.WriteLine(Program.GetResourceString("Commands.HelpShort._Header"));
+            Logger.I(Program.GetResourceString("Commands.HelpShort._Header"));
 
             // A sorted list of help messages is more readable
             SortedSet<string> commandNames = new SortedSet<string>(Util.Commands.Keys);
             foreach (string commandName in commandNames)
-                Console.WriteLine(Program.GetResourceString(Util.Commands[commandName].HelpShortResId()));
+                Logger.I(Program.GetResourceString(Util.Commands[commandName].HelpShortResId()));
         }
     }
 }

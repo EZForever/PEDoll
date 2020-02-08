@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Resources;
+using System.Text;
 using System.Collections.Generic;
 
 namespace PEDollController.Commands
@@ -11,6 +11,8 @@ namespace PEDollController.Commands
             { "rem" , new CmdRem() },
             { "help", new CmdHelp() },
             { "load", new CmdLoad() },
+            { "exit", new CmdExit() },
+            { "listen", new CmdListen() },
         };
 
         public static void Invoke(string cmd)
@@ -19,25 +21,23 @@ namespace PEDollController.Commands
             cmd = cmd.Trim();
 
             string[] cmdExplode = cmd.Split(' ');
-            string cmdVerb;
+            string cmdVerb = cmdExplode[0].ToLower(); // cmdExplode will have element as long as cmd is not null
 
             // Any command that's empty or start with a # is considered as a comment
-            if (cmdExplode.Length < 1 || cmdExplode[0].StartsWith("#"))
+            if (String.IsNullOrEmpty(cmdVerb) || cmdVerb.StartsWith("#"))
                 cmdVerb = "rem";
-            else
-                cmdVerb = cmdExplode[0].ToLower();
 
-            if(!Commands.ContainsKey(cmdVerb))
+            if (!Commands.ContainsKey(cmdVerb))
+                throw new ArgumentException(Program.GetResourceString("Commands.Unknown", cmdVerb));
+
+            Dictionary<string, object> options;
+            try
             {
-                Console.WriteLine(Program.GetResourceString("Commands.Unknown"), cmdVerb);
-                return;
+                options = Commands[cmdVerb].Parse(cmd);
             }
-
-            Dictionary<string, object> options = Commands[cmdVerb].Parse(cmd);
-            if(options == null)
+            catch (ArgumentException e)
             {
-                Console.WriteLine(Program.GetResourceString("Commands.Invalid"), cmd, cmdVerb);
-                return;
+                throw new ArgumentException(Program.GetResourceString("Commands.Invalid", cmd, cmdVerb), e.Message);
             }
 
             Commands[cmdVerb].Invoke(options);

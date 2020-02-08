@@ -13,9 +13,18 @@ namespace PEDollController.Threads
 
         public static void CreateInstance(bool ipv6, int port)
         {
-            theInstance = new Listener(ipv6, port);
-            theTask = new Task(theInstance.TaskMain);
-            theTask.Start();
+            try
+            {
+                theInstance = new Listener(ipv6, port);
+                theTask = new Task(theInstance.TaskMain);
+                theTask.Start();
+            }
+            catch(Exception e)
+            {
+                theInstance = null;
+                theTask = null;
+                throw;
+            }
         }
 
         TcpListener listener;
@@ -24,12 +33,11 @@ namespace PEDollController.Threads
         {
             // IPv6Any without IPv6Only will listen on both v4 & v6 interfaces
             listener = new TcpListener(ipv6 ? IPAddress.IPv6Any : IPAddress.Any, port);
+            listener.Start();
         }
 
         void TaskMain()
         {
-            listener.Start();
-
             while(true)
             {
                 Task<TcpClient> taskTcp = listener.AcceptTcpClientAsync();

@@ -30,10 +30,11 @@ namespace PEDollController.Commands
                 }
                 catch(Exception e)
                 {
+                    // TODO: "Commands.Load.InvalidPath"
                     if (e is ArgumentException || e is NotSupportedException || e is PathTooLongException)
-                        return null;
+                        throw new ArgumentException(Program.GetResourceString("Commands.Load.InvalidPath"));
                     else
-                        throw;
+                        throw; // Not expected to be `catch`ed
                 }
             }
             else
@@ -42,7 +43,7 @@ namespace PEDollController.Commands
                 foreach(char c in Path.GetInvalidFileNameChars())
                 {
                     if (script.Contains(c))
-                        return null;
+                        throw new ArgumentException(Program.GetResourceString("Commands.Load.InvalidPath"));
                 }
 
                 if (!Path.HasExtension(script))
@@ -80,12 +81,12 @@ namespace PEDollController.Commands
             catch (FileNotFoundException)
             {
                 // TODO: "Commands.Load.NotFound"
-                Console.WriteLine("Script not found: {0}", script);
+                throw new ArgumentException(Program.GetResourceString("Commands.Load.NotFound", script));
             }
             catch (IOException e)
             {
                 // TODO: "Commands.Load.IOError"
-                Console.WriteLine("IO Error: {0}", e.Message);
+                throw new ArgumentException(Program.GetResourceString("Commands.Load.IOError", e.Message));
             }
         }
     }
