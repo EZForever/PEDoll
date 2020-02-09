@@ -23,7 +23,7 @@ namespace PEDollController.Commands
             { '{', '}' }
         };
 
-        public static List<string> ToArgv(string cmd)
+        public static List<string> ToArgv(string cmd, bool skipArgv0 = false)
         {
             List<string> ret = new List<string>();
             StringBuilder builder = new StringBuilder();
@@ -74,7 +74,12 @@ namespace PEDollController.Commands
                     {
                         if (builder.Length > 0)
                         {
-                            ret.Add(builder.ToString());
+                            // Ignore argv[0] if required
+                            if (skipArgv0)
+                                skipArgv0 = false;
+                            else
+                                ret.Add(builder.ToString());
+
                             builder.Clear();
                         }
                         continue; // Ignore `c`
@@ -84,7 +89,7 @@ namespace PEDollController.Commands
             }
 
             // Add the leftover piece in builder
-            if (builder.Length > 0)
+            if (builder.Length > 0 && !(skipArgv0 && ret.Count == 0))
                 ret.Add(builder.ToString());
 
             // For now, if still in paren-matching state or escaped state, the string is incomplete and should fail
@@ -96,7 +101,7 @@ namespace PEDollController.Commands
         
         public static List<string> ToArgs(string cmd)
         {
-            return ToArgv(cmd).Skip(1).ToList();
+            return ToArgv(cmd, true);
         }
     }
 }

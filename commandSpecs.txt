@@ -1,4 +1,5 @@
 For more information on a specific command, type `help COMMAND`.
+All the commands are case-sensitive.
 
 --------------------------------------------------------------------------------
 exit	- Quits the Controller, end all connected clients.
@@ -21,7 +22,7 @@ This command may successfully execute only once; any subsequent call will fail.
 
 --------------------------------------------------------------------------------
 target	- Gets or sets the target client.
-----------
+*----------
 Gets or sets the target client.
 
 target [ID]
@@ -65,14 +66,14 @@ rem [...]
 
 --------------------------------------------------------------------------------
 end	- (M/D) Ends the client, stopping its process.
-----------
+*----------
 Ends the client, stopping its process.
 
 end
 
 --------------------------------------------------------------------------------
 doll	- (M) Creates a new Doll client.
-----------
+*----------
 Creates a new Doll client by creating or attaching to a process.
 
 doll CMDLINE
@@ -84,7 +85,7 @@ PID		Attach to process PID.
 
 --------------------------------------------------------------------------------
 shell	- (M) Starts a instance of command interpreter.
-----------
+*----------
 Starts a instance of command interpreter (%COMSPEC%, usually CMD.EXE).
 
 shell [ARGUMENTS ...]
@@ -93,7 +94,7 @@ ARGUMENTS	Arguments passed to %COMSPEC%.
 
 --------------------------------------------------------------------------------
 kill	- (M) Terminates process(es) with PID or name.
-----------
+*----------
 Terminates process(es) with PID or name.
 
 kill PID
@@ -105,7 +106,7 @@ NAME		Terminate all processes with name NAME.
 
 --------------------------------------------------------------------------------
 ps	- (M) Displays a list of running processes.
-----------
+*----------
 Displays a list of running processes.
 
 ps
@@ -116,15 +117,17 @@ hook	- (D) Installs a new hook and set its actions.
 Installs a new hook and set its actions.
 
 hook
-hook {[MODULE!]NAME|@ADDR|*PATTERN} [--convention=CONVENTION[,STACK[,RETURN]]]
+hook {[MODULE!]NAME|0xADDR|*PATTERN}
+     [--convention=CONVENTION] [--stack=STACK[,RETURN]]
      [--before [ACTION ...]] [--after [ACTION ...]]
 
 Type `hook` without any arguments displays a list of hooks.
+(?) Call `hook` on an existing hook will overwrite its convention and actions.
 
 MODULE		The target module to search for symbol NAME.
 		If omitted, default to the first module containing symbol NAME.
 NAME		The function's symbol name.
-ADDR		The function's virtual address.
+ADDR		The function's virtual address (e.g. 0x401000).
 PATTERN		The hexadecimal pattern of the function (e.g. *8B4C240885D2).
 CONVENTION	The function's calling convention. Possible conventions are:
 		x86 client: stdcall(default), cdecl, fastcall
@@ -137,17 +140,16 @@ ACTION		An action to perform on an activated hook.
 		Possible actions are:
 		--echo=ECHO			- Display a string.
 		--dump=DUMPADDR,DUMPSIZE	- Dump data to storage.
-		--ctx=CTXNAME,CTXVALUE		- Add an entry to dictionary.
+		--ctx=CTXKEY,CTXVALUE		- Add an entry to dictionary.
 		--verdict=VERDICT		- Set the default verdict.
 		Actions may appear more than once.
 ECHO		A string, may contain expressions, to be displayed.
 DUMPADDR	A expression that evaluates to a `uword` value, as the address.
 DUMPSIZE	A expression that evaluates to an integer value, as the size.
-CTXNAME		A string, may contain expressions, as the key.
+CTXKEY		A string, may contain expressions, as the key.
 CTXVALUE	A string, may contain expressions, as the value.
 VERDICT		The verdict. Refer to `help verdict` for possible values.
-		If omitted, the "before" hook waits for user reply, while
-		"after" hook sliently continues.
+		If omitted, the hook waits for user reply.
 
 Expressions in the strings are formatted based on their values' type:
 Unsigned integers: zero-padded hexadecimal display.
@@ -229,11 +231,11 @@ SAVEFILE	Save the data to SAVEFILE instead of displaying it.
 --------------------------------------------------------------------------------
 verdict	- (D) Verdicts a activated hook.
 ----------
-verdict {approve|terminate|reject}
+verdict {approve|reject|terminate}
 
 approve		Continue the execution.
-terminate	Terminate the client process.
 reject		Reject the call to the function and immediately return.
-		Refer to `help hook` for stack and return value information.
+		Refer to `help hook` for information about stack balancing.
+terminate	Terminate the client process.
 
 --------------------------------------------------------------------------------

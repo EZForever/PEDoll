@@ -1,13 +1,22 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace PEDollController.Threads
 {
+    struct DumpEntry
+    {
+        public string Source;
+        public byte[] Data;
+    }
+
     class CmdEngine
     {
         public static CmdEngine theInstance = new CmdEngine();
         public static Task theTask = new Task(theInstance.TaskMain);
+
+        // ----------
 
         BlockingQueue<string> cmdQueue;
         AsyncDataProvider<string> cmdProvider;
@@ -16,13 +25,14 @@ namespace PEDollController.Threads
         public ManualResetEvent stopTaskEvent;
         public Task stopTaskAsync;
 
-        public void AddCommand(string cmd)
-        {
-            cmdQueue.BlockingEnqueue(cmd);
-        }
+        public int target = -1;
+        public int targetLastDoll = -1;
+        public int targetLastMonitor = -1;
+        public List<DumpEntry> dumps;
 
         CmdEngine()
         {
+            dumps = new List<DumpEntry>();
             cmdQueue = new BlockingQueue<string>();
             cmdProvider = new AsyncDataProvider<string>(cmdQueue.BlockingDequeue);
 
@@ -97,6 +107,30 @@ namespace PEDollController.Threads
 
             // Tell TaskMain() about ending task
             stopTaskEvent.Set();
+        }
+
+        public void AddCommand(string cmd)
+        {
+            cmdQueue.BlockingEnqueue(cmd);
+        }
+
+        public Client GetTargetClient()
+        {
+            if (target < 0 || Client.theInstances[target].isDead)
+                throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotAvailable"));
+            // TODO: "Threads.CmdEngine.TargetNotAvailable"
+
+            return Client.theInstances[target];
+        }
+
+        public Client GetTargetClient(bool isMonitor)
+        {
+            Client client = GetTargetClient();
+            if (client.isMonitor != isMonitor)
+                throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotApplicable"));
+            // TODO: "Threads.CmdEngine.TargetNotApplicable"
+
+            return client;
         }
     }
 }

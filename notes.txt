@@ -82,8 +82,10 @@ How the commands in original PeDoll are implemented:
 
 ----------
 
-lexer replacement(?): https://github.com/skeeto/optparse
 https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Options
+Detailed information: https://github.com/mono/mono/blob/master/mcs/class/Mono.Options/Mono.Options/Options.cs#L40
+custom separator: { "--dump=,", (x, y) => ... }
+default parameters: { "<>", x => ... }
 
 https://github.com/OmarAflak/Asynchronous-Socket-Class-C-Windows/blob/master/src/SocketServer.cpp
 https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.tcplistener?view=netframework-4.8
@@ -121,6 +123,9 @@ Shift-Enter inputs newline in the Visual Studio resource editor
 
 Set Form.Localizable to True
 Change Language to write in values
+
+cmdline to search for untranslated strings (// TODO: "...")
+grep -r --include=*.cs "// TODO: \"" | sed 's/.*TODO: //g' | sort | uniq
 
 ----------
 
@@ -165,12 +170,12 @@ Examples of command `hook`:
 hook WinExec --before --echo="lpCmdLine = {str(arg(0))}" --verdict=reject
 
 # (x86) Binary example (pattern from original PeDoll)
-hook *8B5424048B4C240885D2750D --convention=cdecl,0,0 --before --echo="str1 = {str(poi(sp+4+4))}" --echo="str2 = {str(poi(sp+4+8))}" --verdict=reject
+hook *8B5424048B4C240885D2750D --convention=cdecl --stack=0,0 --before --echo="str1 = {str(poi(sp+4+4))}" --echo="str2 = {str(poi(sp+4+8))}" --verdict=reject
 
 # (x86) Reject WriteFile() (shows the usage of context dictionary)
 hook CreateFileA --before --verdict=approve --after --ctx="hFile_{ax}","{str(arg(1))}" --verdict=approve
 hook CreateFileW --before --verdict=approve --after --ctx="hFile_{ax}","{wstr(arg(1))}" --verdict=approve
-hook WriteFile --convention=stdcall,20,1 --before --echo="File: {ctx(\"hFile_\"+ax.ToString())}" --dump={arg(1)},{arg(2)} --verdict=reject
+hook WriteFile --convention=stdcall --stack=20,1 --before --echo="File: {ctx(\"hFile_\"+ax.ToString())}" --dump={arg(1)},{arg(2)} --verdict=reject
 
 # (x64) Dump all send() and recv() data (shows the usage of "after" hooks)
 hook ws2_32!send --before --dump={arg(1)},{(int)arg(2)} --verdict=approve

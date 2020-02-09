@@ -3,7 +3,7 @@
 
 using namespace std;
 
-//#define DETOUR_PAYLOAD
+#define DETOUR_PAYLOAD
 
 #ifdef DETOUR_PAYLOAD
 
@@ -40,12 +40,16 @@ int main()
 {
     cout << "sizeof(UINT_PTR) = " << sizeof(UINT_PTR) << endl;
 
+#   ifdef DETOUR_PAYLOAD
+
     HMODULE hDollDLL = LoadLibrary(L"libDoll.dll");
     if (!hDollDLL)
     {
         cerr << "LoadLibrary() failed" << endl;
         return 1;
     }
+
+#   endif // DETOUR_PAYLOAD
 
     getchar();
 

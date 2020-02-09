@@ -1,6 +1,8 @@
 ﻿using System;
-using System.Text;
+using System.ComponentModel;
 using System.Collections.Generic;
+
+using Mono.Options;
 
 namespace PEDollController.Commands
 {
@@ -8,11 +10,18 @@ namespace PEDollController.Commands
     {
         public static readonly Dictionary<string, ICommand> Commands = new Dictionary<string, ICommand>()
         {
-            { "rem" , new CmdRem() },
+            { "ps", new CmdPs() },
+            { "rem", new CmdRem() },
+            { "end", new CmdEnd() },
             { "help", new CmdHelp() },
             { "load", new CmdLoad() },
             { "exit", new CmdExit() },
+            { "doll", new CmdDoll() },
+            { "kill", new CmdKill() },
+            { "hook", new CmdHook() },
+            { "shell", new CmdShell() },
             { "listen", new CmdListen() },
+            { "target", new CmdTarget() },
         };
 
         public static void Invoke(string cmd)
@@ -21,7 +30,7 @@ namespace PEDollController.Commands
             cmd = cmd.Trim();
 
             string[] cmdExplode = cmd.Split(' ');
-            string cmdVerb = cmdExplode[0].ToLower(); // cmdExplode will have element as long as cmd is not null
+            string cmdVerb = cmdExplode[0]; // cmdExplode will have element as long as cmd is not null
 
             // Any command that's empty or start with a # is considered as a comment
             if (String.IsNullOrEmpty(cmdVerb) || cmdVerb.StartsWith("#"))
@@ -41,6 +50,25 @@ namespace PEDollController.Commands
             }
 
             Commands[cmdVerb].Invoke(options);
+        }
+
+        public static List<string> ParseOptions(string cmd, OptionSet options)
+        {
+            try
+            {
+                return options.Parse(CommandLine.ToArgs(cmd));
+            }
+            catch (OptionException e)
+            {
+                throw new ArgumentException(e.Message);
+            }
+        }
+        
+        public static string Win32ErrorToMessage(int code)
+        {
+            // TODO: "Commands.Win32Error"
+            // "Win32 Error {0}: {1}"
+            return Program.GetResourceString("Commands.Win32Error", code, new Win32Exception(code).Message);
         }
     }
 }

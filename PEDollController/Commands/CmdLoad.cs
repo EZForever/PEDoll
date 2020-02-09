@@ -18,7 +18,7 @@ namespace PEDollController.Commands
 
         public Dictionary<string, object> Parse(string cmd)
         {
-            string script = String.Join(" ", cmd.Split(' ').Skip(1)).Trim();
+            string script = CommandLine.ToArgs(cmd)[0];
 
             if (script.StartsWith("\"") && script.EndsWith("\""))
             {

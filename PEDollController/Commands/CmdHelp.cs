@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+
+using Mono.Options;
 
 namespace PEDollController.Commands
 {
@@ -15,16 +16,13 @@ namespace PEDollController.Commands
 
         public Dictionary<string, object> Parse(string cmd)
         {
-            List<string> cmdExplode = new List<string>(cmd.Split(' '));
-            cmdExplode.RemoveAll(String.IsNullOrWhiteSpace);
+            string command = null;
 
-            string command;
-            if (cmdExplode.Count == 1)
-                command = null; // Help screen
-            else if (cmdExplode.Count == 2)
-                command = cmdExplode[1]; // Help for a command
-            else
-                throw new ArgumentException();
+            OptionSet options = new OptionSet()
+            {
+                { "<>", x => command = x }
+            };
+            Util.ParseOptions(cmd, options);
 
             return new Dictionary<string, object>()
             {
@@ -37,11 +35,8 @@ namespace PEDollController.Commands
         {
             string command = (string)options["command"];
             if (String.IsNullOrEmpty(command))
-            {
                 ShowHelpScreen();
-                return;
-            }
-            if(Util.Commands.ContainsKey(command))
+            else if(Util.Commands.ContainsKey(command))
                 Logger.I(Program.GetResourceString(Util.Commands[command].HelpResId()));
             else
                 throw new ArgumentException(Program.GetResourceString("Commands.Unknown", command));
