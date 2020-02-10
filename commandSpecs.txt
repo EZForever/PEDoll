@@ -113,20 +113,20 @@ ps
 
 --------------------------------------------------------------------------------
 hook	- (D) Installs a new hook and set its actions.
-----------
+*----------
 Installs a new hook and set its actions.
 
 hook
-hook {[MODULE!]NAME|0xADDR|*PATTERN}
+hook {[MODULE!]SYMBOL|0xADDR|*PATTERN}
      [--convention=CONVENTION] [--stack=STACK[,RETURN]]
      [--before [ACTION ...]] [--after [ACTION ...]]
 
 Type `hook` without any arguments displays a list of hooks.
-(?) Call `hook` on an existing hook will overwrite its convention and actions.
+Call `hook` on an existing hook will overwrite its convention and actions.
 
 MODULE		The target module to search for symbol NAME.
 		If omitted, default to the first module containing symbol NAME.
-NAME		The function's symbol name.
+SYMBOL		The function's symbol name.
 ADDR		The function's virtual address (e.g. 0x401000).
 PATTERN		The hexadecimal pattern of the function (e.g. *8B4C240885D2).
 CONVENTION	The function's calling convention. Possible conventions are:
@@ -160,14 +160,14 @@ For help information on expressions, type `help eval`.
 
 --------------------------------------------------------------------------------
 unhook	- (D) Uninstalls a hook.
-----------
-unhook OEP
+*----------
+unhook 0xOEP
 
 OEP		Entry point address of the hook.
 
 --------------------------------------------------------------------------------
 break	- (D) Breaks or continues the process's execution.
-----------
+*----------
 Breaks or continues the process's execution.
 
 break
@@ -178,7 +178,7 @@ For a newly-attached Doll process, it's state is suspended.
 
 --------------------------------------------------------------------------------
 loaddll	- (D) Loads a module into the process's address space.
-----------
+*----------
 Loads a module into the process's address space.
 
 loaddll MODULE

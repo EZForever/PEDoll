@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CmdBreak.cs" />
     <Compile Include="Commands\CmdDoll.cs" />
     <Compile Include="Commands\CmdEnd.cs" />
     <Compile Include="Commands\CmdExit.cs" />
@@ -61,10 +62,12 @@
     <Compile Include="Commands\CmdKill.cs" />
     <Compile Include="Commands\CmdListen.cs" />
     <Compile Include="Commands\CmdLoad.cs" />
+    <Compile Include="Commands\CmdLoadDll.cs" />
     <Compile Include="Commands\CmdPs.cs" />
     <Compile Include="Commands\CmdRem.cs" />
     <Compile Include="Commands\CmdShell.cs" />
     <Compile Include="Commands\CmdTarget.cs" />
+    <Compile Include="Commands\CmdUnhook.cs" />
     <Compile Include="Commands\CommandLine.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Util.cs" />

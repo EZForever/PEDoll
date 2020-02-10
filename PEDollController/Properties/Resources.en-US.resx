@@ -122,9 +122,9 @@
 </value>
   </data>
   <data name="Commands.Invalid" xml:space="preserve">
-    <value>Invalid command "{0}". Try `help {1}`.</value>
+    <value>Invalid command `{0}`. Try `help {1}`.</value>
   </data>
   <data name="Commands.Unknown" xml:space="preserve">
-    <value>Unknown command "{0}".</value>
+    <value>Unknown command `{0}`.</value>
   </data>
 </root>

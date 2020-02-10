@@ -21,7 +21,7 @@ uint32_t MonDollAttach(uint32_t pid)
     HANDLE hTNew = NULL;
     if ((libDollPath = VirtualAllocEx(hProc, NULL, libDollPathSize, MEM_COMMIT, PAGE_READWRITE))
         && WriteProcessMemory(hProc, libDollPath, ctx.libDollPath, libDollPathSize, &libDollPathSize)
-        && DetourCopyPayloadToProcess(hProc, Puppet::PAYLOAD_SERVER_INFO, ctx.serverInfo, strlen(ctx.serverInfo) + 1)
+        && DetourCopyPayloadToProcess(hProc, Puppet::PAYLOAD_SERVER_INFO, ctx.serverInfo, (DWORD)(strlen(ctx.serverInfo) + 1))
         && (hTNew = CreateRemoteThread(hProc, NULL, 0, (LPTHREAD_START_ROUTINE)LoadLibraryW, libDollPath, 0, NULL)))
     {
         CloseHandle(hTNew);
@@ -55,7 +55,7 @@ uint32_t MonDollLaunch(wchar_t* path)
     }
     delete[] libDollPath;
 
-    if (!DetourCopyPayloadToProcess(pi.hProcess, Puppet::PAYLOAD_SERVER_INFO, ctx.serverInfo, strlen(ctx.serverInfo) + 1))
+    if (!DetourCopyPayloadToProcess(pi.hProcess, Puppet::PAYLOAD_SERVER_INFO, ctx.serverInfo, (DWORD)(strlen(ctx.serverInfo) + 1)))
     {
         ret = GetLastError();
         TerminateProcess(pi.hProcess, 9);

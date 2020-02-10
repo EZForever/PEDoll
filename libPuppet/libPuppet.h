@@ -114,14 +114,15 @@ namespace Puppet {
     };
 
     // A Doll's hook has been triggered
-    // < MSG_ONHOOK
+    // < MSG_ONHOOK: phase
     // < INTEGER: hookOEP
     // > ACK: 0
     struct PACKET_MSG_ONHOOK : PACKET {
-        ;
+        // The phase of this hook: 0 - "before", 1 - "after"
+        uint32_t phase;
 
-        PACKET_MSG_ONHOOK()
-            : PACKET(sizeof(PACKET_MSG_ONHOOK), PACKET_TYPE::MSG_ONHOOK) {}
+        PACKET_MSG_ONHOOK(uint32_t p)
+            : PACKET(sizeof(PACKET_MSG_ONHOOK), PACKET_TYPE::MSG_ONHOOK), phase(p) {}
     };
 
     // End this Puppet connection

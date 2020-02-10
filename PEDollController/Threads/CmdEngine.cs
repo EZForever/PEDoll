@@ -129,6 +129,7 @@ namespace PEDollController.Threads
             if (client.isMonitor != isMonitor)
                 throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotApplicable"));
             // TODO: "Threads.CmdEngine.TargetNotApplicable"
+            // "Requested operation is not applicable to the target."
 
             return client;
         }

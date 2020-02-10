@@ -38,7 +38,7 @@ extern "C" void DollOnHook(UINT_PTR* context)
 
     // FIXME: MSG_ONHOOK should not really be sent at here, since TPuppet may send other packets at the same type and cause data corruption
     // Replied ACK is received & processed by TPuppetOnRecv()
-    ctx.puppet->send(Puppet::PACKET_MSG_ONHOOK());
+    ctx.puppet->send(Puppet::PACKET_MSG_ONHOOK(0));
     ctx.puppet->send(Puppet::PACKET_INTEGER(context[0]));
 
     ctx.waitingHookOEP = context[0];
@@ -78,7 +78,7 @@ extern "C" void DollOnAfterHook(UINT_PTR* context)
 
     // FIXME: MSG_ONHOOK should not really be sent at here, since TPuppet may send other packets at the same type and cause data corruption
     // Replied ACK is received & processed by TPuppetOnRecv()
-    ctx.puppet->send(Puppet::PACKET_MSG_ONHOOK());
+    ctx.puppet->send(Puppet::PACKET_MSG_ONHOOK(1));
     ctx.puppet->send(Puppet::PACKET_INTEGER(context[0]));
 
     ctx.waitingHookOEP = context[0];

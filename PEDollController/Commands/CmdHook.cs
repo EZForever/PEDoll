@@ -9,7 +9,7 @@ namespace PEDollController.Commands
     // Command "hook": Installs a hook.
     // hook
     // hook {[MODULE!]NAME|@ADDR|*PATTERN}
-    //      [--convention=CONVENTION[, STACK[, RETURN]]]
+    //      [--convention=CONVENTION] [--stack=STACK[,RETURN]]
     //      [--before [ACTION ...]] [--after [ACTION ...]]
 
     class CmdHook : ICommand
@@ -35,7 +35,7 @@ namespace PEDollController.Commands
         static void FSMTest(int target, int current)
         {
             if (target > current)
-                throw new ArgumentException("before/after");
+                throw new ArgumentException("symbol/before/after");
         }
 
         static string RemoveQuotes(string x)
@@ -62,35 +62,42 @@ namespace PEDollController.Commands
 
         public Dictionary<string, object> Parse(string cmd)
         {
-            string addrMode = null; // {null|"name"|"addr"|"pattern"}
-            string name = null;
-            UInt64 addr = 0;
-            byte[] pattern = null;
+            Threads.HookEntry entry = new Threads.HookEntry();
+            entry.beforeActions = new List<Dictionary<string, object>>();
+            entry.afterActions = new List<Dictionary<string, object>>();
 
-            string convention = null; // {"stdcall"|"cdecl"|"fastcall"|"msvc"|"gcc"}, default value set on Invoke()
-            UInt64 stack = 0;
-            UInt64 ret = 0;
-
-            List<Dictionary<string, object>> beforeActions = new List<Dictionary<string, object>>();
-            string beforeVerdict = null; // {null|"approve"|"reject"|"terminate"}
-
-            List<Dictionary<string, object>> afterActions = new List<Dictionary<string, object>>();
-            string afterVerdict = null; // {null|"approve"|"terminate"}
-
-            int state = 0; // FSM on option parsing; 0 - Begin, 1 - Before, 2 - After
+            int state = 0; // FSM on option parsing; 0 - Begin, 1 - Convention/Stack, 2 - Before, 3 - After
 
             OptionSet options = new OptionSet()
             {
-                { "before", x => state = (x != null) ? 1 : state },
-                { "after", x => state = (x != null) ? 2 : state },
+                {
+                    "before",
+                    x =>
+                    {
+                        FSMTest(1, state);
+
+                        if(x != null)
+                            state = 2;
+                    }
+                },
+                {
+                    "after",
+                    x =>
+                    {
+                        FSMTest(1, state);
+
+                        if(x != null)
+                            state = 3;
+                    }
+                },
                 {
                     "convention=",
                     x =>
                     {
-                        FSMTest(0, state);
+                        FSMTest(1, state);
 
                         if(Array.IndexOf(conventionsX86, x) >= 0 || Array.IndexOf(conventionsX64, x) >= 0)
-                            convention = x;
+                            entry.convention = x;
                         else
                             throw new ArgumentException("convention");
                     }
@@ -99,13 +106,13 @@ namespace PEDollController.Commands
                     "stack:,",
                     (x, y) =>
                     {
-                        FSMTest(0, state);
+                        FSMTest(1, state);
 
                         try
                         {
-                            stack = Convert.ToUInt64(x);
+                            entry.stack = Convert.ToUInt64(x);
                             if(y != null)
-                                ret = Convert.ToUInt64(y);
+                                entry.ret = Convert.ToUInt64(y);
                         }
                         catch
                         {
@@ -117,9 +124,9 @@ namespace PEDollController.Commands
                     "echo=",
                     x =>
                     {
-                        FSMTest(1, state);
+                        FSMTest(2, state);
 
-                        (state == 1 ? beforeActions : afterActions).Add(new Dictionary<string, object>() {
+                        (state == 1 ? entry.beforeActions : entry.afterActions).Add(new Dictionary<string, object>() {
                             { "verb", "echo" },
                             { "echo", RemoveQuotes(x) }
                         });
@@ -129,12 +136,12 @@ namespace PEDollController.Commands
                     "dump=,",
                     (x, y) =>
                     {
-                        FSMTest(1, state);
+                        FSMTest(2, state);
 
                         if(x[0] != '{' || x[x.Length - 1] != '}' || y[0] != '{' || y[y.Length - 1] != '}')
                             throw new ArgumentException("dump");
 
-                        (state == 1 ? beforeActions : afterActions).Add(new Dictionary<string, object>() {
+                        (state == 1 ? entry.beforeActions : entry.afterActions).Add(new Dictionary<string, object>() {
                             { "verb", "dump" },
                             { "addr", x },
                             { "size", y }
@@ -145,11 +152,11 @@ namespace PEDollController.Commands
                     "ctx=,",
                     (x, y) =>
                     {
-                        FSMTest(1, state);
+                        FSMTest(2, state);
 
-                        (state == 1 ? beforeActions : afterActions).Add(new Dictionary<string, object>() {
+                        (state == 1 ? entry.beforeActions : entry.afterActions).Add(new Dictionary<string, object>() {
                             { "verb", "ctx" },
-                            { "key", RemoveQuotes(x) }, // TODO: Remove embraced quotes
+                            { "key", RemoveQuotes(x) },
                             { "value", RemoveQuotes(y) }
                         });
                     }
@@ -158,15 +165,15 @@ namespace PEDollController.Commands
                     "verdict=",
                     x =>
                     {
-                        FSMTest(1, state);
+                        FSMTest(2, state);
 
-                        if(Array.IndexOf(state == 1 ? verdictsBefore : verdictsAfter, x) < 0)
+                        if(Array.IndexOf(state == 2 ? verdictsBefore : verdictsAfter, x) < 0)
                             throw new ArgumentException("verdict");
 
                         if(state == 1)
-                            beforeVerdict = x;
+                            entry.beforeVerdict = x;
                         else
-                            afterVerdict = x;
+                            entry.afterVerdict = x;
                     }
                 },
                 {
@@ -177,10 +184,10 @@ namespace PEDollController.Commands
 
                         if(x.StartsWith("0x"))
                         {
-                            addrMode = "addr";
+                            entry.addrMode = "addr";
                             try
                             {
-                                addr = Convert.ToUInt64(x);
+                                entry.addr = UInt64.Parse(x.Substring(2), System.Globalization.NumberStyles.HexNumber);
                             }
                             catch
                             {
@@ -189,10 +196,10 @@ namespace PEDollController.Commands
                         }
                         else if(x[0] == '*')
                         {
-                            addrMode = "pattern";
+                            entry.addrMode = "pattern";
                             try
                             {
-                                pattern = PatternToBinary(x);
+                                entry.pattern = PatternToBinary(x);
                             }
                             catch
                             {
@@ -201,9 +208,11 @@ namespace PEDollController.Commands
                         }
                         else
                         {
-                            addrMode = "name";
-                            name = x;
+                            entry.addrMode = "symbol";
+                            entry.symbol = x;
                         }
+                        entry.name = x; // Save hook expression as hook's name
+                        state = 1;
                     } 
                 }
             };
@@ -212,27 +221,89 @@ namespace PEDollController.Commands
             return new Dictionary<string, object>()
             {
                 { "verb", "hook" },
-
-                { "addrMode", addrMode },
-                { "name", name },
-                { "addr", addr },
-                { "pattern", pattern },
-
-                { "convention", convention },
-                { "stack", stack },
-                { "ret", ret },
-
-                { "beforeActions", beforeActions },
-                { "beforeVerdict", beforeVerdict },
-
-                { "afterActions", afterActions },
-                { "afterVerdict", afterVerdict }
+                { "entry", entry }
             };
         }
 
         public void Invoke(Dictionary<string, object> options)
         {
-            // TODO: CmdHook.Invoke()
+            Threads.HookEntry entry = (Threads.HookEntry)options["entry"];
+
+            if(entry.name == null)
+            {
+                // TODO: Show a list of hooks
+                return;
+            }
+
+            Threads.Client client = Threads.CmdEngine.theInstance.GetTargetClient(false);
+
+            // Check convention or fill in default values
+            string[] conventions = (client.bits == 32 ? conventionsX86 : conventionsX64);
+            if (entry.convention == null)
+                entry.convention = conventions[0];
+            else if (Array.IndexOf(conventions, entry.convention) < 0)
+                throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotApplicable"));
+
+            // If the hook already exists, overwrite anything but OEP instead
+            foreach(Threads.HookEntry hook in client.hooks)
+            {
+                if(hook.name == entry.name)
+                {
+                    // TODO: "Commands.Hook.HookExists"
+                    // "Warning: Hook under name \"{0}\" already exists. Overwriting its settings."
+                    Logger.W(Program.GetResourceString("Commands.Hook.HookExists", entry.name));
+                    entry.oep = hook.oep;
+                    client.hooks[client.hooks.IndexOf(hook)] = entry;
+                    return;
+                }
+            }
+
+            // Prepare CMD_HOOK packets
+            Puppet.PACKET_CMD_HOOK pktHook = new Puppet.PACKET_CMD_HOOK(0);
+            byte[] bufMethod;
+
+            switch(entry.addrMode)
+            {
+                case "symbol":
+                    pktHook.method = 0;
+                    bufMethod = Puppet.Util.SerializeString(entry.symbol);
+                    break;
+                case "pattern":
+                    pktHook.method = 1;
+                    bufMethod = Puppet.Util.SerializeBinary(entry.pattern);
+                    break;
+                case "addr":
+                    pktHook.method = 2;
+                    bufMethod = Puppet.Util.Serialize(new Puppet.PACKET_INTEGER(entry.addr));
+                    break;
+                default:
+                    // Input is sanitized so this should not happen
+                    throw new ArgumentException();
+            }
+
+            // Send packets
+            client.Send(Puppet.Util.Serialize(pktHook));
+            client.Send(bufMethod);
+
+            // Expect ACK(0)
+            Puppet.PACKET_ACK pktAck;
+            pktAck = Puppet.Util.Deserialize<Puppet.PACKET_ACK>(client.Expect(Puppet.PACKET_TYPE.ACK));
+            if (pktAck.status != 0)
+                throw new ArgumentException(Util.Win32ErrorToMessage((int)pktAck.status));
+
+            // Fill OEP into entry
+            Puppet.PACKET_INTEGER pktOep;
+            pktOep = Puppet.Util.Deserialize<Puppet.PACKET_INTEGER>(client.Expect(Puppet.PACKET_TYPE.INTEGER));
+            entry.oep = pktOep.data;
+
+            // Add entry to client's hooks
+            client.hooks.Add(entry);
+            // TODO: Refresh hook list
+
+            // TODO: "Commands.Hook.Installed"
+            // "Hook \"{0}\" installed at {1}"
+            // FIXME: Client.OEPString() ?
+            Logger.I(Program.GetResourceString("Commands.Hook.Installed", entry.name, entry.oep));
         }
     }
 }

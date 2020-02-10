@@ -124,10 +124,12 @@ namespace PEDollController.Puppet
     struct PACKET_MSG_ONHOOK
     {
         public PACKET header;
+        public UInt32 phase;
 
         public PACKET_MSG_ONHOOK(int _ = 0)
         {
             header = new PACKET((UInt32)Marshal.SizeOf(typeof(PACKET_MSG_ONHOOK)), PACKET_TYPE.MSG_ONHOOK);
+            phase = 0;
         }
     }
 

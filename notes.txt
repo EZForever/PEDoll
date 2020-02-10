@@ -14,7 +14,7 @@ Hook Events:
 		return context-related data
 		Continue/Terminate/Prompt
 
-*IMPORTANT*: The "binary hooker" PeDoll implements ALSO only work on procedures
+NOTE: The "binary hooker" PeDoll implements ALSO only work on procedures
 		And only support 1 instance
 
 registers to preserve:
@@ -33,6 +33,8 @@ calling conventions:
 	x64
 		msvc (rcx, rdx, r8, r9, stack)
 		gcc (rdi, rsi, rdx, rcx, r8, r9, stack)
+
+*IMPORTANT*: Also save/load EFLAGS|RFLAGS with (PUSHFD/POPFD)|(PUSHFQ|POPFQ)?
 
 ----------
 
@@ -86,10 +88,6 @@ https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Options
 Detailed information: https://github.com/mono/mono/blob/master/mcs/class/Mono.Options/Mono.Options/Options.cs#L40
 custom separator: { "--dump=,", (x, y) => ... }
 default parameters: { "<>", x => ... }
-
-https://github.com/OmarAflak/Asynchronous-Socket-Class-C-Windows/blob/master/src/SocketServer.cpp
-https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.tcplistener?view=netframework-4.8
-https://stackoverflow.com/a/16300698
 
 ----------
 
@@ -183,11 +181,25 @@ hook ws2_32!recv --before --verdict=approve --after --dump={arg(1)},{(int)ax} --
 
 ----------
 
+.NET Framework v4.7.2 is preinstalled starting from Windows 10 v1803, and is installable starting from Windows 7 SP1.
+
+C#'s `using` is like Python's `import` PLUS C++'s `using`/`typedef`
+https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive
+
+using Model = System.ComponentModel; <=> import System.ComponentModel as Model
+using word = System.UInt32; <=> typedef uint32_t word;
+
+C#'s `using static` <=> Python's `from ... import *`
+https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-static
+
+using static System.Math; <=> from System.Math import *
+
 Extensions to `eval` expressions:
 
 word (uword):
-	Plan A:	Alias to Int32/Int64 based on target's bitness
+	Plan A: Alias to Int32/Int64 based on target's bitness
 	Plan B: Alias to Int64 (match to Puppet.PACKET_INTEGER)
+	PlanC: (Above plans does not seem to work) just use ulong and do not provide these things
 
 str() (wstr()):
 	(I've forgot to put a string-reading operation into libPuppet)

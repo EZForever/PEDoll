@@ -72,8 +72,14 @@ namespace PEDollController.Commands
                 else
                     Threads.CmdEngine.theInstance.targetLastDoll = targetLast;
 
+                Threads.Client client = Threads.CmdEngine.theInstance.GetTargetClient();
+
                 // TODO: "Commands.Target.CurrentTarget"
-                Logger.I(Program.GetResourceString("Commands.Target.CurrentTarget", target));
+                // "Current target is #{0} \"{1}\" ({2})"
+                // FIXME: Client.GetStatusString() ?
+                Logger.I(Program.GetResourceString("Commands.Target.CurrentTarget", target, client.clientName));
+
+                // TODO: Refresh GUI info pages (e.g. enable verdict page on a Hooked client)
             }
         }
     }

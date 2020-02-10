@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Collections.Generic;
 
 using Mono.Options;
@@ -20,8 +19,11 @@ namespace PEDollController.Commands
             { "kill", new CmdKill() },
             { "hook", new CmdHook() },
             { "shell", new CmdShell() },
+            { "break", new CmdBreak() },
             { "listen", new CmdListen() },
             { "target", new CmdTarget() },
+            { "unhook", new CmdUnhook() },
+            { "loaddll", new CmdLoadDll() },
         };
 
         public static void Invoke(string cmd)
@@ -68,7 +70,7 @@ namespace PEDollController.Commands
         {
             // TODO: "Commands.Win32Error"
             // "Win32 Error {0}: {1}"
-            return Program.GetResourceString("Commands.Win32Error", code, new Win32Exception(code).Message);
+            return Program.GetResourceString("Commands.Win32Error", code, new System.ComponentModel.Win32Exception(code).Message);
         }
     }
 }

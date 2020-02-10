@@ -8,7 +8,23 @@ namespace PEDollController.Threads
 {
     struct HookEntry
     {
-        // TODO
+        public string name;
+        public UInt64 oep;
+
+        public string addrMode; // {null|"symbol"|"addr"|"pattern"}
+        public string symbol;
+        public UInt64 addr;
+        public byte[] pattern;
+
+        public string convention; // {"stdcall"|"cdecl"|"fastcall"|"msvc"|"gcc"}, default value set on Invoke()
+        public UInt64 stack;
+        public UInt64 ret;
+
+        public List<Dictionary<string, object>> beforeActions;
+        public string beforeVerdict; // {null|"approve"|"reject"|"terminate"}
+
+        public List<Dictionary<string, object>> afterActions;
+        public string afterVerdict; // {null|"approve"|"terminate"}
     }
 
     class Client
@@ -38,6 +54,8 @@ namespace PEDollController.Threads
         public int pid;
         public string clientName;
 
+        public UInt64 hookOep;
+        public UInt32 hookPhase;
         public List<HookEntry> hooks;
         public Dictionary<string, string> context;
 
@@ -81,6 +99,7 @@ namespace PEDollController.Threads
             rxQueue = new BlockingQueue<byte[]>();
 
             // Initialize hook list and context dictionary
+            hookOep = 0; // A Monitor will never enter the Hooked state
             if (!isMonitor)
             {
                 hooks = new List<HookEntry>();
@@ -88,13 +107,6 @@ namespace PEDollController.Threads
             }
 
             int idx = theInstances.Count; // For now the instance is not included into theInstances
-
-            // TODO: "Threads.Client.Connect"?
-            Logger.N("New Client #{0} from {1}: isMonitor = {2}, bits = {3}, pid = {4}, clientName = {5}",
-                idx,
-                client.Client.RemoteEndPoint.ToString(),
-                isMonitor, bits, pid, clientName
-            ); ;
 
             // If no current target, set current target to self
             if (CmdEngine.theInstance.target < 0)
@@ -111,6 +123,13 @@ namespace PEDollController.Threads
                 if (CmdEngine.theInstance.targetLastDoll < 0)
                     CmdEngine.theInstance.targetLastDoll = idx;
             }
+
+            // TODO: "Threads.Client.Connected"
+            Logger.N("New Client #{0} from {1}: isMonitor = {2}, bits = {3}, pid = {4}, clientName = {5}",
+                idx,
+                client.Client.RemoteEndPoint.ToString(),
+                isMonitor, bits, pid, clientName
+            );
 
             // TODO: Refresh targets' list
         }
@@ -147,21 +166,6 @@ namespace PEDollController.Threads
             stream.Write(bufAck, 0, bufAck.Length);
         }
 
-        void OnRecv(byte[] buffer)
-        {
-            switch (Puppet.Util.Deserialize<Puppet.PACKET>(buffer).type)
-            {
-                case Puppet.PACKET_TYPE.MSG_ONHOOK:
-                    // TODO: Change self hooking state
-                    SendAck(0);
-                    break;
-                default:
-                    // Save packet for command usage
-                    rxQueue.BlockingEnqueue(buffer);
-                    break;
-            }
-        }
-
         byte[] ReceiveDirect()
         {
             byte[] bufPacketSize = new byte[sizeof(UInt32)];
@@ -189,6 +193,80 @@ namespace PEDollController.Threads
                     throw new IOException(Program.GetResourceString("Threads.Client.MalformedPacket"));
 
                 return bufPacket;
+            }
+        }
+
+        void OnRecv(byte[] buffer)
+        {
+            switch (Puppet.Util.Deserialize<Puppet.PACKET>(buffer).type)
+            {
+                case Puppet.PACKET_TYPE.MSG_ONHOOK:
+                    // Set hookPhase
+                    hookPhase = Puppet.Util.Deserialize<Puppet.PACKET_MSG_ONHOOK>(buffer).phase;
+
+                    // Receive hookOep
+                    Puppet.PACKET_INTEGER pktOep;
+                    pktOep = Puppet.Util.Deserialize<Puppet.PACKET_INTEGER>(Expect(Puppet.PACKET_TYPE.INTEGER, true));
+                    hookOep = pktOep.data;
+
+                    // Reply with ACK
+                    SendAck(0);
+
+                    OnHook();
+                    break;
+                default:
+                    // Save packet for command usage
+                    rxQueue.BlockingEnqueue(buffer);
+                    break;
+            }
+        }
+
+        void OnHook()
+        {
+            HookEntry entry = new HookEntry();
+            foreach (HookEntry hook in hooks)
+            {
+                if(hook.oep == hookOep)
+                {
+                    entry = hook;
+                    break;
+                }
+            }
+            if (entry.name == null) // Uninitialized
+                throw new IOException(Program.GetResourceString("Threads.Client.UnknownHook"));
+
+            // TODO: "Threads.Client.Hooked"
+            // "Client \"{0}\" hooked on \"{1}\" - phase \"{2}\""
+            // FIXME: Fit description above
+            Logger.N(Program.GetResourceString("Threads.Client.Hooked"));
+
+            List<Dictionary<string, object>> actions = (hookPhase == 0) ? entry.beforeActions : entry.afterActions;
+            string verdict = (hookPhase == 0) ? entry.beforeVerdict : entry.afterVerdict;
+
+            foreach(Dictionary<string, object> action in actions)
+            {
+                // TODO: Implement actions (Req. EvalEngine)
+                switch((string)action["verb"])
+                {
+                    case "echo":
+                        break;
+                    case "dump":
+                        break;
+                    case "ctx":
+                        break;
+                    default:
+                        // Unknown action. Should not happen.
+                        throw new IOException();
+                }
+            }
+
+            if(verdict == null)
+            {
+                // TODO: Refresh hooked state
+            }
+            else
+            {
+                // TODO: `verdict` but must be command-line independant, due to target changing
             }
         }
 

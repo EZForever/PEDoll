@@ -215,7 +215,7 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
         case Puppet::PACKET_TYPE::CMD_END:
         {
             TPuppetSendAck(0);
-            DebugBreak();
+            FatalExit(0); // DebugBreak() will cause serveral seconds of latency here
             break;
         }
         case Puppet::PACKET_TYPE::CMD_HOOK:
@@ -286,6 +286,9 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
             {
                 DollThreadSuspendAll(true);
             }
+
+            TPuppetSendAck(0);
+            break;
         }
         case Puppet::PACKET_TYPE::CMD_LOADDLL:
         {
