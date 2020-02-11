@@ -126,7 +126,7 @@ namespace PEDollController.Commands
                     {
                         FSMTest(2, state);
 
-                        (state == 1 ? entry.beforeActions : entry.afterActions).Add(new Dictionary<string, object>() {
+                        (state == 2 ? entry.beforeActions : entry.afterActions).Add(new Dictionary<string, object>() {
                             { "verb", "echo" },
                             { "echo", RemoveQuotes(x) }
                         });
@@ -141,10 +141,10 @@ namespace PEDollController.Commands
                         if(x[0] != '{' || x[x.Length - 1] != '}' || y[0] != '{' || y[y.Length - 1] != '}')
                             throw new ArgumentException("dump");
 
-                        (state == 1 ? entry.beforeActions : entry.afterActions).Add(new Dictionary<string, object>() {
+                        (state == 2 ? entry.beforeActions : entry.afterActions).Add(new Dictionary<string, object>() {
                             { "verb", "dump" },
-                            { "addr", x },
-                            { "size", y }
+                            { "addr", x.Substring(1, x.Length - 2) },
+                            { "size", y.Substring(1, y.Length - 2) }
                         });
                     }
                 },
@@ -154,7 +154,7 @@ namespace PEDollController.Commands
                     {
                         FSMTest(2, state);
 
-                        (state == 1 ? entry.beforeActions : entry.afterActions).Add(new Dictionary<string, object>() {
+                        (state == 2 ? entry.beforeActions : entry.afterActions).Add(new Dictionary<string, object>() {
                             { "verb", "ctx" },
                             { "key", RemoveQuotes(x) },
                             { "value", RemoveQuotes(y) }

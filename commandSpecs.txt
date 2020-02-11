@@ -126,7 +126,7 @@ Call `hook` on an existing hook will overwrite its convention and actions.
 
 MODULE		The target module to search for symbol NAME.
 		If omitted, default to the first module containing symbol NAME.
-SYMBOL		The function's symbol name.
+SYMBOL		The function's symbol name (e.g. WinExec or kernel32!Sleep).
 ADDR		The function's virtual address (e.g. 0x401000).
 PATTERN		The hexadecimal pattern of the function (e.g. *8B4C240885D2).
 CONVENTION	The function's calling convention. Possible conventions are:
@@ -152,9 +152,12 @@ VERDICT		The verdict. Refer to `help verdict` for possible values.
 		If omitted, the hook waits for user reply.
 
 Expressions in the strings are formatted based on their values' type:
-Unsigned integers: zero-padded hexadecimal display.
+Unsigned integers and `byte`s: zero-padded hexadecimal display.
 Signed integers: decimal display.
-Strings: string with embraced double-quotes.
+Strings: string embraced with double-quotes.
+`char`s: Character embraced with quotes.
+Array of above types: Comma-separated formatted elements, embraced with braces.
+Any other type: Triggers an evaluation error.
 
 For help information on expressions, type `help eval`.
 
@@ -190,7 +193,7 @@ Call `loaddll` with libDoll will cause nothing but must never be attempted.
 
 --------------------------------------------------------------------------------
 eval	- (D) Evaluates a expression on current context.
-----------
+*----------
 Evaluates a expression on current context.
 
 eval EXPR
@@ -198,20 +201,29 @@ eval EXPR
 EXPR		The expression to be evaluated.
 
 An "expression" is a C# expression embraced with braces, e.g. {(uint)poi(ax)+4}
-The expression must evaluates to an integer type or a `string`.
 
-The following types, methods and fields are provided as extension to base C#:
+The types, methods and fields from namespaces "System" and "System.Linq",
+among with the following, are provided:
 
-(type) word		A integer of the native word size.
-(type) uword		Same as `word` but unsigned.
-string str(uword PTR)	Returns the C-style string PTR points to.
-string wstr(uword PTR)	Returns the C-style wide-char string PTR points to.
-string ctx(string KEY)	Returns the entry under key KEY in context dictionary.
-uword poi(uword PTR)	Returns the integer pointer PTR points to as a `uword`.
-uword arg(int INDEX)	Returns the value of function argument at index INDEX.
-uword ax, bx, cx, dx,	The value of the corresponding register. Readonly.
-      sp, bp, si, di,	`r8` and `r9` are available only on a x64 client.
-      r8, r9
+(type alias) word
+	A integer of the native word size (`int` on x86 or `long` on x64).
+(type alias) uword
+	Similar to `word` but unsigned.
+string str(uword PTR)
+	Returns the C-style string PTR points to.
+string wstr(uword PTR)
+	Returns the C-style wide-char string PTR points to.
+string ctx(string KEY)
+	Returns the entry under key KEY in context dictionary.
+byte[] mem(uword PTR, uint LEN)
+	Returns a binary blob of length <= LEN pointer PTR points to.
+uword poi(uword PTR)
+	Returns the integer pointer PTR points to as a `uword`.
+uword arg(uint INDEX)
+	Returns the value of function argument at zero-based index INDEX.
+uword ax, cx, dx, bx, sp, bp, si, di, r8, r9
+	The value of the corresponding register. Readonly.
+	`r8` and `r9` are available only on a x64 client.
 
 --------------------------------------------------------------------------------
 dump	- (D) Displays or saves dumped data.

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -59,6 +61,8 @@ namespace PEDollController.Threads
         public List<HookEntry> hooks;
         public Dictionary<string, string> context;
 
+        public readonly Delegate[] Exports;
+
         Client(TcpClient client)
         {
             this.client = client;
@@ -97,6 +101,18 @@ namespace PEDollController.Threads
 
             // Initialize packet receive queue
             rxQueue = new BlockingQueue<byte[]>();
+
+            // Initialize EvalEngine exports
+            Exports = new Delegate[]
+            {
+                new Func<uint, UInt64>(eval_getContext),
+                new Func<UInt64, string>(eval_str),
+                new Func<UInt64, string>(eval_wstr),
+                new Func<string, string>(eval_ctx),
+                new Func<UInt64, uint, byte[]>(eval_mem),
+                new Func<UInt64, UInt64>(eval_poi),
+                new Func<uint, UInt64>(eval_arg),
+            };
 
             // Initialize hook list and context dictionary
             hookOep = 0; // A Monitor will never enter the Hooked state
@@ -187,6 +203,9 @@ namespace PEDollController.Threads
             else
             {
                 int size = (int)BitConverter.ToUInt32(bufPacketSize, 0);
+                if(size < bufPacketSize.Length)
+                    throw new IOException(Program.GetResourceString("Threads.Client.MalformedPacket"));
+
                 byte[] bufPacket = new byte[size];
                 bufPacketSize.CopyTo(bufPacket, 0);
                 if (stream.Read(bufPacket, sizeof(UInt32), size - sizeof(UInt32)) + sizeof(UInt32) < size)
@@ -212,7 +231,9 @@ namespace PEDollController.Threads
                     // Reply with ACK
                     SendAck(0);
 
-                    OnHook();
+                    // NOTE: OnHook() Must run in another thread, since it uses EvalEngine, which indirectly wait for packets.
+                    // Make EvalEngine directly wait for packets will cause trouble in command `eval`.
+                    new Task(OnHook).Start();
                     break;
                 default:
                     // Save packet for command usage
@@ -223,15 +244,7 @@ namespace PEDollController.Threads
 
         void OnHook()
         {
-            HookEntry entry = new HookEntry();
-            foreach (HookEntry hook in hooks)
-            {
-                if(hook.oep == hookOep)
-                {
-                    entry = hook;
-                    break;
-                }
-            }
+            HookEntry entry = hooks.Where(x => x.oep == hookOep).FirstOrDefault();
             if (entry.name == null) // Uninitialized
                 throw new IOException(Program.GetResourceString("Threads.Client.UnknownHook"));
 
@@ -245,29 +258,326 @@ namespace PEDollController.Threads
 
             foreach(Dictionary<string, object> action in actions)
             {
-                // TODO: Implement actions (Req. EvalEngine)
-                switch((string)action["verb"])
+                try
                 {
-                    case "echo":
-                        break;
-                    case "dump":
-                        break;
-                    case "ctx":
-                        break;
-                    default:
-                        // Unknown action. Should not happen.
-                        throw new IOException();
+                    switch((string)action["verb"])
+                    {
+                        case "echo":
+                        {
+                            string evalEcho = EvalEngine.EvalString(this, (string)action["echo"]);
+                            // TODO: "Threads.Client.Echo"
+                            // "echo: {0}"
+                            Logger.N(Program.GetResourceString("Threads.Client.Echo", evalEcho));
+                            break;
+                        }
+                        case "dump":
+                        {
+
+                            object[] evalResults = EvalEngine.Eval(this, new string[] { (string)action["addr"], (string)action["size"] });
+
+                            UInt64 ptr;
+                            if(bits == 64 ? evalResults[0] is UInt64 : evalResults[0] is UInt32)
+                            {
+                                ptr = (UInt64)evalResults[0];
+                            }
+                            else
+                            {
+                                // TODO: "Threads.Client.TypeMismatch"
+                                throw new ArgumentException(Program.GetResourceString("Threads.Client.TypeMismatch"));
+                            }
+
+                            uint len;
+                            try
+                            {
+                                len = (uint)evalResults[1];
+                            }
+                            catch(InvalidCastException)
+                            {
+                                throw new ArgumentException(Program.GetResourceString("Threads.Client.TypeMismatch"));
+                            }
+
+                            int idx = CmdEngine.theInstance.dumps.Count;
+
+                            DumpEntry dumpEntry = new DumpEntry();
+                            dumpEntry.Source = this.clientName;
+                            dumpEntry.Data = eval_mem(ptr, len);
+                            CmdEngine.theInstance.dumps.Add(dumpEntry);
+
+                            // TODO: "Threads.Client.Dump"
+                            // "dump: Binary blob #{0}, size = {1}"
+                            Logger.N(Program.GetResourceString("Threads.Client.Dump", idx, dumpEntry.Data.Length));
+                            // TODO: Update dump list
+                            break;
+                        }
+                        case "ctx":
+                        {
+                            string evalKey = EvalEngine.EvalString(this, (string)action["key"]);
+                            string evalValue = EvalEngine.EvalString(this, (string)action["value"]);
+                            this.context.Add(evalKey, evalValue);
+                            // TODO: "Threads.Client.Ctx"
+                            // "ctx: Dictionary entry added: \"{0}\" => \"{1}\""
+                            Logger.N(Program.GetResourceString("Threads.Client.Ctx", evalKey, evalValue));
+                            break;
+                        }
+                    }
+                }
+                catch(ArgumentException e)
+                {
+                    // TODO: "Threads.Client.ActionError"
+                    // "Action \"{0}\" failed: {1}"
+                    Logger.E(Program.GetResourceString("Threads.Client.ActionError", (string)action["verb"], e.Message));
                 }
             }
 
             if(verdict == null)
             {
-                // TODO: Refresh hooked state
+                // TODO: "Threads.Client.VerdictWait"
+                // "verdict: Waiting for verdict"
+                Logger.N(Program.GetResourceString("Threads.Client.VerdictWait"));
+                // TODO: Update target list
             }
             else
             {
+                // TODO: "Threads.Client.Verdict"
+                // "verdict: Executing verdict \"{0}\""
+                Logger.N(Program.GetResourceString("Threads.Client.Verdict", verdict));
                 // TODO: `verdict` but must be command-line independant, due to target changing
             }
+        }
+
+        byte[] eval_readString(UInt64 ptr, int charSize, int maxSize = 256)
+        {
+            List<byte> strBuffer = new List<byte>();
+
+            // Prepare CMD_MEMORY
+            Puppet.PACKET_CMD_MEMORY pktMem = new Puppet.PACKET_CMD_MEMORY(0);
+            pktMem.len = (UInt32)charSize;
+
+            UInt64 ptrCurrent = ptr;
+            while (true)
+            {
+                // Send packets
+                this.Send(Puppet.Util.Serialize(pktMem));
+                this.Send(Puppet.Util.Serialize(new Puppet.PACKET_INTEGER(ptrCurrent)));
+
+                // Expent ACK
+                Puppet.PACKET_ACK pktAck;
+                pktAck = Puppet.Util.Deserialize<Puppet.PACKET_ACK>(this.Expect(Puppet.PACKET_TYPE.ACK));
+
+                if (pktAck.status == 0 || pktAck.status < (UInt32)charSize)
+                {
+                    // Do not allow MemoryReadWarning
+                    if (pktAck.status != 0)
+                        this.Expect(Puppet.PACKET_TYPE.BINARY); // Dispose BINARY packet
+
+                    // TODO: "Threads.Client.StringReadWarning"
+                    // "Warning: Truncated incomplete string"
+                    Logger.W(Program.GetResourceString("Threads.Client.StringIncompleteWarning"));
+                    break;
+                }
+
+                // Expect blob
+                byte[] blob = Puppet.Util.DeserializeBinary(this.Expect(Puppet.PACKET_TYPE.BINARY));
+
+                if (Array.TrueForAll(blob, x => x == 0))
+                {
+                    // Discard & end reading if got zero terminator (C-style string)
+                    break;
+                }
+                else if(strBuffer.Count / charSize >= maxSize)
+                {
+                    // TODO: "Threads.Client.StringTooLongWarning"
+                    // "Warning: Truncated long string"
+                    Logger.W(Program.GetResourceString("Threads.Client.StringTooLongWarning"));
+                    break;
+                }
+
+                strBuffer.AddRange(blob);
+                ptrCurrent += (UInt64)charSize;
+            }
+
+            return strBuffer.ToArray();
+        }
+
+        UInt64 eval_getContext(uint index)
+        {
+            // TODO: Caching?
+
+            // Prepare CMD_CONTEXT
+            Puppet.PACKET_CMD_CONTEXT pktCtx = new Puppet.PACKET_CMD_CONTEXT(0);
+            pktCtx.idx = index; // libDoll will check this
+
+            // Send CMD_CONTEXT
+            this.Send(Puppet.Util.Serialize(pktCtx));
+
+            // Expect ACK(0)
+            Puppet.PACKET_ACK pktAck;
+            pktAck = Puppet.Util.Deserialize<Puppet.PACKET_ACK>(this.Expect(Puppet.PACKET_TYPE.ACK));
+            if (pktAck.status != 0)
+                throw new ArgumentException(Program.GetResourceString("Threads.Client.ContextReadError", index));
+            // TODO: "Threads.Client.ContextReadError"
+            // "Register #{0} read error"
+
+            // Expect register value
+            Puppet.PACKET_INTEGER pktVal;
+            pktVal = Puppet.Util.Deserialize<Puppet.PACKET_INTEGER>(this.Expect(Puppet.PACKET_TYPE.INTEGER));
+            return pktVal.data;
+        }
+
+        string eval_str(UInt64 ptr)
+        {
+            byte[] strBuffer = eval_readString(ptr, sizeof(byte));
+            return Encoding.Default.GetString(strBuffer);
+        }
+
+        string eval_wstr(UInt64 ptr)
+        {
+            byte[] strBuffer = eval_readString(ptr, sizeof(byte));
+            return Encoding.Unicode.GetString(strBuffer);
+        }
+
+        string eval_ctx(string key)
+        {
+            if(!this.context.ContainsKey(key))
+                throw new ArgumentException(Program.GetResourceString("Threads.Client.ContextReadError", key));
+            // TODO: "Threads.Client.ContextReadError"
+            // "Dictionary entry \"{0}\" not found"
+            return this.context[key];
+        }
+
+        byte[] eval_mem(UInt64 ptr, uint len)
+        {
+            // Prepare CMD_MEMORY
+            Puppet.PACKET_CMD_MEMORY pktMem = new Puppet.PACKET_CMD_MEMORY(0);
+            pktMem.len = len;
+
+            // Send packets
+            this.Send(Puppet.Util.Serialize(pktMem));
+            this.Send(Puppet.Util.Serialize(new Puppet.PACKET_INTEGER(ptr)));
+
+            // Expent ACK
+            Puppet.PACKET_ACK pktAck;
+            pktAck = Puppet.Util.Deserialize<Puppet.PACKET_ACK>(this.Expect(Puppet.PACKET_TYPE.ACK));
+
+            if (pktAck.status == 0)
+            {
+                // TODO: "Threads.Client.MemoryReadError"
+                throw new ArgumentException(Program.GetResourceString("Threads.Client.MemoryReadError"));
+            }
+
+            // TODO: "Threads.Client.MemoryReadWarning"
+            // "Warning: Binary blob size expected = {0}, got = {1}"
+            if (pktAck.status < len)
+                Logger.W(Program.GetResourceString("Threads.Client.MemoryReadWarning", len, pktAck.status));
+
+            // Expect blob
+            return Puppet.Util.DeserializeBinary(this.Expect(Puppet.PACKET_TYPE.BINARY));
+        }
+
+        UInt64 eval_poi(UInt64 ptr)
+        {
+            HookEntry entry = hooks.Where(x => x.oep == hookOep).First();
+            int wordsize = this.bits / 8;
+
+            // Prepare CMD_MEMORY
+            Puppet.PACKET_CMD_MEMORY pktMem = new Puppet.PACKET_CMD_MEMORY(0);
+            pktMem.len = (UInt32)wordsize;
+
+            // Send packets
+            this.Send(Puppet.Util.Serialize(pktMem));
+            this.Send(Puppet.Util.Serialize(new Puppet.PACKET_INTEGER(ptr)));
+
+            // Expent ACK
+            Puppet.PACKET_ACK pktAck;
+            pktAck = Puppet.Util.Deserialize<Puppet.PACKET_ACK>(this.Expect(Puppet.PACKET_TYPE.ACK));
+
+            if (pktAck.status == 0 || pktAck.status < (UInt32)wordsize)
+            {
+                // Do not allow MemoryReadWarning
+                if (pktAck.status != 0)
+                    this.Expect(Puppet.PACKET_TYPE.BINARY); // Dispose BINARY packet
+
+                throw new ArgumentException(Program.GetResourceString("Threads.Client.MemoryReadError"));
+            }
+
+            // Expect blob
+            byte[] blob = Puppet.Util.DeserializeBinary(this.Expect(Puppet.PACKET_TYPE.BINARY));
+
+            if (this.bits == 64)
+                return BitConverter.ToUInt64(blob, 0);
+            else
+                return BitConverter.ToUInt32(blob, 0);
+        }
+
+        UInt64 eval_arg(uint index)
+        {
+            HookEntry entry = hooks.Where(x => x.oep == hookOep).First();
+            int wordsize = this.bits / 8;
+
+            UInt64 val = 0;
+            long ptrOffset = -1; // int * int == long
+            switch(entry.convention)
+            {
+                case "stdcall":
+                case "cdecl":
+                {
+                    // stack
+                    ptrOffset = (wordsize * index);
+                    break;
+                }
+                case "fastcall":
+                {
+                    // cx, dx, stack
+                    switch(index)
+                    {
+                        case 0: val = eval_getContext(1); break;
+                        case 1: val = eval_getContext(2); break;
+                        default: ptrOffset = (wordsize * (index - 2)); break;
+                    }
+                    break;
+                }
+                case "msvc":
+                {
+                    // cx, dx, r8, r9, stack (4 * wordsize offset)
+                    switch (index)
+                    {
+                        case 0: val = eval_getContext(1); break;
+                        case 1: val = eval_getContext(2); break;
+                        case 2: val = eval_getContext(8); break;
+                        case 3: val = eval_getContext(9); break;
+                        default: ptrOffset = (wordsize * (index - 4 + 4)); break;
+                    }
+                    break;
+                }
+                case "gcc":
+                {
+                    // di, si, dx, cx, r8, r9, stack
+                    switch (index)
+                    {
+                        case 0: val = eval_getContext(7); break;
+                        case 1: val = eval_getContext(6); break;
+                        case 2: val = eval_getContext(2); break;
+                        case 3: val = eval_getContext(1); break;
+                        case 4: val = eval_getContext(8); break;
+                        case 5: val = eval_getContext(9); break;
+                        default: ptrOffset = (wordsize * (index - 6)); break;
+                    }
+                    break;
+                }
+            }
+
+            if(ptrOffset >= 0)
+            {
+                // Value is from stack
+
+                // Calculate stack ptr
+                UInt64 ptr = eval_getContext(4) + (UInt64)wordsize; // Argument stack base
+                ptr += (UInt64)ptrOffset;
+
+                val = eval_poi(ptr);
+            }
+
+            return val;
         }
 
         public void Send(byte[] buffer)

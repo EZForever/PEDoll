@@ -19,7 +19,7 @@ namespace PEDollController.Threads
                 theTask = new Task(theInstance.TaskMain);
                 theTask.Start();
             }
-            catch(Exception e)
+            catch
             {
                 theInstance = null;
                 theTask = null;

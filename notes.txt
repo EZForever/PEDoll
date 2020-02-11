@@ -29,7 +29,7 @@ registers to preserve:
 calling conventions:
 	x86
 		cdecl/stdcall (stack)
-		fastcall (rcx, rdx, stack)
+		fastcall (ecx, edx, stack)
 	x64
 		msvc (rcx, rdx, r8, r9, stack)
 		gcc (rdi, rsi, rdx, rcx, r8, r9, stack)
@@ -189,10 +189,12 @@ https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using
 using Model = System.ComponentModel; <=> import System.ComponentModel as Model
 using word = System.UInt32; <=> typedef uint32_t word;
 
+~~ Not available in C# 5
 C#'s `using static` <=> Python's `from ... import *`
 https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-static
 
 using static System.Math; <=> from System.Math import *
+~~
 
 Extensions to `eval` expressions:
 
@@ -210,6 +212,9 @@ str() (wstr()):
 ctx():
 	Read context dictionary
 
+mem():
+	CMD_MEMORY
+
 poi():
 	Read sizeof(uword) bytes from given address, fail if read error occurred
 	Convert byte[] into uword with BitConverter.ToUInt32()/BitConverter.ToUInt64()
@@ -218,6 +223,6 @@ arg():
 	Return expression based on the convention
 	For stack arguments, like "poi(sp + 4 + 4 * INDEX)"
 
-ax, bx, ...:
-	Fields with only getters, sends Puppet.PACKET_CONTEXT
+ax, bx, ... (getContext(x)):
+	CMD_CONTEXT
 

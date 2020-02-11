@@ -67,14 +67,14 @@ namespace PEDollController.Puppet
         public static string DeserializeString(byte[] data)
         {
             int offset = Marshal.SizeOf(typeof(PACKET_STRING));
-            return Encoding.Unicode.GetString(data, offset, data.Length - offset);
+            return Encoding.Unicode.GetString(data, offset, data.Length - offset - 2); // remove L'\0'
         }
 
         public static byte[] DeserializeBinary(byte[] data)
         {
             int size = data.Length - Marshal.SizeOf(typeof(PACKET_BINARY));
             byte[] bin = new byte[size];
-            data.CopyTo(bin, Marshal.SizeOf(typeof(PACKET_BINARY)));
+            Array.Copy(data, Marshal.SizeOf(typeof(PACKET_BINARY)), bin, 0, size);
             return bin;
         }
 

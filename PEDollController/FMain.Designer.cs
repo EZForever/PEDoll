@@ -57,6 +57,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Name = "FMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FMain";
             this.ResumeLayout(false);
             this.PerformLayout();

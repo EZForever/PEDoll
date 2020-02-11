@@ -18,6 +18,7 @@ namespace PEDollController.Commands
             { "doll", new CmdDoll() },
             { "kill", new CmdKill() },
             { "hook", new CmdHook() },
+            { "eval", new CmdEval() },
             { "shell", new CmdShell() },
             { "break", new CmdBreak() },
             { "listen", new CmdListen() },

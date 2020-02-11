@@ -137,6 +137,15 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
 {
     bool isHooked = DollHookIsHappened();
     LIBDOLL_HOOK* hook = NULL;
+
+    // CMD_END should be available no matter hooked or not
+    if (packet->type == Puppet::PACKET_TYPE::CMD_END)
+    {
+        TPuppetSendAck(0);
+        FatalExit(0); // DebugBreak() will cause serveral seconds of latency here
+        return;
+    }
+
     if (isHooked)
     {
         hook = ctx.dollHooks.find(ctx.waitingHookOEP)->second;
@@ -212,12 +221,6 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
     {
         switch (packet->type)
         {
-        case Puppet::PACKET_TYPE::CMD_END:
-        {
-            TPuppetSendAck(0);
-            FatalExit(0); // DebugBreak() will cause serveral seconds of latency here
-            break;
-        }
         case Puppet::PACKET_TYPE::CMD_HOOK:
         {
             UINT_PTR hookOEP = 0;

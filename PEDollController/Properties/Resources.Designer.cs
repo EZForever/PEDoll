@@ -59,5 +59,23 @@ namespace PEDollController.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   查找类似 Invalid command `{0}`. Try `help {1}`. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Invalid {
+            get {
+                return ResourceManager.GetString("Commands.Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Unknown command `{0}`. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Unknown {
+            get {
+                return ResourceManager.GetString("Commands.Unknown", resourceCulture);
+            }
+        }
     }
 }

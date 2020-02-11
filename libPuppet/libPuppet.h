@@ -228,7 +228,7 @@ namespace Puppet {
     // (Doll, on hook) Read a context register
     // > CMD_CONTEXT
     // < ACK: 0 on ok, or != 0 on idx overflow
-    // < INTEGER: register value
+    // < INTEGER (if ACK == 0): register value
     struct PACKET_CMD_CONTEXT : PACKET {
         // The register's index
         // Ordered from 0: AX, CX, DX, BX, SP, BP, SI, DI, R8, R9
@@ -244,7 +244,7 @@ namespace Puppet {
     // > CMD_MEMORY
     // > INTEGER: start VA
     // < ACK: actual read size (0 == fail)
-    // < BINARY: data
+    // < BINARY (if ACK != 0): data
     struct PACKET_CMD_MEMORY : PACKET {
         // Expected read size
         uint32_t len;

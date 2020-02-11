@@ -56,6 +56,7 @@
     <Compile Include="Commands\CmdBreak.cs" />
     <Compile Include="Commands\CmdDoll.cs" />
     <Compile Include="Commands\CmdEnd.cs" />
+    <Compile Include="Commands\CmdEval.cs" />
     <Compile Include="Commands\CmdExit.cs" />
     <Compile Include="Commands\CmdHelp.cs" />
     <Compile Include="Commands\CmdHook.cs" />
@@ -92,6 +93,8 @@
     <Compile Include="Threads\BlockingQueue.cs" />
     <Compile Include="Threads\Client.cs" />
     <Compile Include="Threads\CmdEngine.cs" />
+    <Compile Include="Threads\EvalEngine.cs" />
+    <EmbeddedResource Include="Threads\EvalEngineContext.cs" />
     <Compile Include="Threads\Gui.cs" />
     <Compile Include="Threads\Listener.cs" />
     <EmbeddedResource Include="FMain.resx">
@@ -100,7 +103,6 @@
     <EmbeddedResource Include="FSplash.resx">
       <DependentUpon>FSplash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.en-US.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
