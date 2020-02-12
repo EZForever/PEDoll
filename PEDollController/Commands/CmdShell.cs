@@ -14,7 +14,7 @@ namespace PEDollController.Commands
 
         public Dictionary<string, object> Parse(string cmd)
         {
-            string arguments = String.Join(" ", CommandLine.ToArgs(cmd));
+            string arguments = String.Join(" ", Commandline.ToArgs(cmd));
 
             return new Dictionary<string, object>()
             {

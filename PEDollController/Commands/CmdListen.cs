@@ -18,17 +18,14 @@ namespace PEDollController.Commands
         public Dictionary<string, object> Parse(string cmd)
         {
             bool ipv6 = false;
-            int port = -1;
+            int port = Puppet.Util.DEFAULT_PORT;
 
             OptionSet options = new OptionSet()
             {
                 { "ipv6", x => ipv6 = (x != null) },
-                { "<>", (int x) => port = x }
+                { "<>", (ushort x) => port = x }
             };
             Util.ParseOptions(cmd, options);
-
-            if (port == -1)
-                port = Puppet.Util.DEFAULT_PORT;
 
             return new Dictionary<string, object>()
             {

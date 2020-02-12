@@ -65,6 +65,7 @@ namespace PEDollController.Commands
             Threads.HookEntry entry = new Threads.HookEntry();
             entry.beforeActions = new List<Dictionary<string, object>>();
             entry.afterActions = new List<Dictionary<string, object>>();
+            entry.stack = 0xffffffffffffffff; // For the default value processing in Invoke()
 
             int state = 0; // FSM on option parsing; 0 - Begin, 1 - Convention/Stack, 2 - Before, 3 - After
 
@@ -170,7 +171,7 @@ namespace PEDollController.Commands
                         if(Array.IndexOf(state == 2 ? verdictsBefore : verdictsAfter, x) < 0)
                             throw new ArgumentException("verdict");
 
-                        if(state == 1)
+                        if(state == 2)
                             entry.beforeVerdict = x;
                         else
                             entry.afterVerdict = x;
@@ -228,14 +229,30 @@ namespace PEDollController.Commands
         public void Invoke(Dictionary<string, object> options)
         {
             Threads.HookEntry entry = (Threads.HookEntry)options["entry"];
+            Threads.Client client = Threads.CmdEngine.theInstance.GetTargetClient(false);
 
             if(entry.name == null)
             {
-                // TODO: Show a list of hooks
+                // TODO: "Commands.Hook.Header"
+                Logger.I(Program.GetResourceString("Commands.Hook.Header"));
+
+                for(int i = 0; i < client.hooks.Count; i++)
+                {
+                    Threads.HookEntry hook = client.hooks[i];
+
+                    // Skip the removed hooks
+                    if (hook.name == null)
+                        continue;
+
+                    // TODO: "Commands.Hook.Format"
+                    Logger.I(Program.GetResourceString("Commands.Hook.Format",
+                        i,
+                        client.OepToString(hook.oep),
+                        hook.name
+                    ));
+                }
                 return;
             }
-
-            Threads.Client client = Threads.CmdEngine.theInstance.GetTargetClient(false);
 
             // Check convention or fill in default values
             string[] conventions = (client.bits == 32 ? conventionsX86 : conventionsX64);
@@ -244,8 +261,12 @@ namespace PEDollController.Commands
             else if (Array.IndexOf(conventions, entry.convention) < 0)
                 throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotApplicable"));
 
+            // Set default stack offset for msvc convention ((4 * 8) instead of 0)
+            if (entry.stack == 0xffffffffffffffff)
+                entry.stack = (entry.convention == "msvc") ? (UInt64)(4 * 8) : 0;
+
             // If the hook already exists, overwrite anything but OEP instead
-            foreach(Threads.HookEntry hook in client.hooks)
+            foreach (Threads.HookEntry hook in client.hooks)
             {
                 if(hook.name == entry.name)
                 {
@@ -297,13 +318,13 @@ namespace PEDollController.Commands
             entry.oep = pktOep.data;
 
             // Add entry to client's hooks
+            int id = client.hooks.Count;
             client.hooks.Add(entry);
             // TODO: Refresh hook list
 
             // TODO: "Commands.Hook.Installed"
-            // "Hook \"{0}\" installed at {1}"
-            // FIXME: Client.OEPString() ?
-            Logger.I(Program.GetResourceString("Commands.Hook.Installed", entry.name, entry.oep));
+            // "Hook #{0} \"{1}\" installed at {2}"
+            Logger.I(Program.GetResourceString("Commands.Hook.Installed", id, entry.name, client.OepToString(entry.oep)));
         }
     }
 }

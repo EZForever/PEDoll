@@ -75,7 +75,9 @@ namespace PEDollController.Threads
                     }
                     else
                     {
-                        throw new ArgumentException("Invalid expression type " + typeName);
+                        // TODO: "Threads.EvalEngine.InvalidType"
+                        // "Invalid type {0}"
+                        throw new ArgumentException(Program.GetResourceString("Threads.EvalEngine.InvalidType", typeName));
                     }
             }
 
@@ -105,7 +107,9 @@ namespace PEDollController.Threads
                 if (error.IsWarning)
                     continue; // Programmers never care about warnings
 
-                throw new ArgumentException(String.Format("Compile error: {0}", error.ErrorText));
+                // TODO: "Threads.EvalEngine.CompileError"
+                // "Compile error: {0}"
+                throw new ArgumentException(Program.GetResourceString("Threads.EvalEngine.CompileError", error.ErrorText));
             }
 
             // Create EvalEngineScope.Context instance and fill in import delegates
@@ -124,7 +128,9 @@ namespace PEDollController.Threads
             }
             catch(TargetInvocationException e)
             {
-                throw new ArgumentException(String.Format("Runtime exception {0}: {1}", e.InnerException.GetType().Name, e.InnerException.Message));
+                // TODO: "Threads.EvalEngine.RuntimeError"
+                // "Runtime exception {0}: {1}"
+                throw new ArgumentException(Program.GetResourceString("Threads.EvalEngine.RuntimeError", e.InnerException.GetType().Name, e.InnerException.Message));
             }
 
             return ret;
@@ -172,7 +178,9 @@ namespace PEDollController.Threads
                             }
                             else if (stk < 0)
                             {
-                                throw new ArgumentException("Parens mismatch");
+                                // TODO: "Commands.ParensMismatch"
+                                // "Parens mismatch"
+                                throw new ArgumentException(Program.GetResourceString("Commands.ParensMismatch"));
                             }
                         }
                     }
@@ -180,11 +188,15 @@ namespace PEDollController.Threads
                 }
 
                 if (isEscaped || stk != 0)
-                    throw new ArgumentException("Incomplete string");
+                    throw new ArgumentException(Program.GetResourceString("Commands.Incomplete"));
+                // TODO: "Commands.Incomplete"
+                // "Incomplete string"
 
                 string expr = str.Substring(prevIdx + 1, currentIdx - prevIdx - 1);
                 if (String.IsNullOrWhiteSpace(expr))
-                    throw new ArgumentException("Empty expression");
+                    throw new ArgumentException(Program.GetResourceString("Threads.EvalEngine.Empty"));
+                // TODO: "Threads.EvalEngine.Empty"
+                // "Empty expression"
                 exprs.Add(expr);
 
                 // Insert format identifier into string pieces

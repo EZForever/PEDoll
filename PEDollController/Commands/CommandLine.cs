@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace PEDollController.Commands
 {
-    public static class CommandLine
+    public static class Commandline
     {
 
-        // CommandLine.ToArgv() provides an simple implemention of CommandLineToArgvW()
+        // Commandline.ToArgv() provides an simple implemention of CommandLineToArgvW()
         // https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-commandlinetoargvw
         // However, this implemention allows parens outside of quotes
 
-        // CommandLine.ToArgs() Removes argv[0] from result, make it easlier for Mono.Options to parse
+        // Commandline.ToArgs() Removes argv[0] from result, make it easlier for Mono.Options to parse
 
         static Dictionary<char, char> PairingCharacters = new Dictionary<char, char>()
         {
@@ -68,7 +68,7 @@ namespace PEDollController.Commands
                         if (c == PairingCharacters[stackTop])
                             pairingStack.Pop();
                         else
-                            throw new ArgumentException("Parens mismatch");
+                            throw new ArgumentException(Program.GetResourceString("Commands.ParensMismatch"));
                     }
                     else if (Char.IsWhiteSpace(c) && pairingStack.Count == 0)
                     {
@@ -94,7 +94,7 @@ namespace PEDollController.Commands
 
             // For now, if still in paren-matching state or escaped state, the string is incomplete and should fail
             if (isEscaped || pairingStack.Count != 0)
-                throw new ArgumentException("Incomplete string");
+                throw new ArgumentException(Program.GetResourceString("Commands.Incomplete"));
 
             return ret;
         }

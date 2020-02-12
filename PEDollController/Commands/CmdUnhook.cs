@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using Mono.Options;
@@ -16,62 +17,38 @@ namespace PEDollController.Commands
 
         public Dictionary<string, object> Parse(string cmd)
         {
-            UInt64 oep = 0;
+            int id = -1;
 
             OptionSet options = new OptionSet()
             {
-                {
-                    "<>",
-                    x =>
-                    {
-                        if(!x.StartsWith("0x"))
-                            throw new ArgumentException("oep");
-                        try
-                        {
-                            oep = UInt64.Parse(x.Substring(2), System.Globalization.NumberStyles.HexNumber);
-                        }
-                        catch
-                        {
-                            throw new ArgumentException("oep");
-                        }
-
-                    }
-                }
+                { "<>", (uint x) => id = (int)x }
             };
             Util.ParseOptions(cmd, options);
 
             return new Dictionary<string, object>()
             {
                 { "verb", "unhook" },
-                { "oep", oep }
+                { "id", id }
             };
         }
 
         public void Invoke(Dictionary<string, object> options)
         {
+            int id = (int)options["id"];
             Threads.Client client = Threads.CmdEngine.theInstance.GetTargetClient(false);
 
-            UInt64 oep = (UInt64)options["oep"];
-            Threads.HookEntry entry = new Threads.HookEntry();
-            foreach(Threads.HookEntry hook in client.hooks)
-            {
-                if(hook.oep == oep)
-                {
-                    // If client is under the current hook, cancel the operation with TargetNotApplicable
-                    if (client.hookOep == oep)
-                        throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotApplicable"));
-
-                    entry = hook;
-                    break;
-                }
-            }
-            if (entry.name == null) // Uninitialized
+            if(id >= client.hooks.Count || client.hooks[id].name == null)
                 throw new ArgumentException("Commands.Unhook.NotFound");
             // TODO: "Commands.Unhook.NotFound"
 
+            Threads.HookEntry entry = client.hooks[id];
+            // If client is under the current hook, cancel the operation with TargetNotApplicable
+            if (client.hookOep == entry.oep)
+                throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotApplicable"));
+
             // Prepare & send CMD_UNHOOK packets
             client.Send(Puppet.Util.Serialize(new Puppet.PACKET_CMD_UNHOOK(0)));
-            client.Send(Puppet.Util.Serialize(new Puppet.PACKET_INTEGER(oep)));
+            client.Send(Puppet.Util.Serialize(new Puppet.PACKET_INTEGER(entry.oep)));
 
             // Expect ACK(0)
             Puppet.PACKET_ACK pktAck;
@@ -80,13 +57,14 @@ namespace PEDollController.Commands
                 throw new ArgumentException(Util.Win32ErrorToMessage((int)pktAck.status));
 
             // Remove entry from client's hooks
-            client.hooks.Remove(entry);
+            //client.hooks.Remove(entry); // This will cause following hooks' IDs change
+            client.hooks[id] = new Threads.HookEntry();
             // TODO: Refresh hook list
 
             // TODO: "Commands.Unhook.Uninstalled"
-            // "Hook \"{0}\" at {1} removed"
+            // "Hook #{0} \"{1}\" removed"
             // FIXME: Client.OEPString() ?
-            Logger.I(Program.GetResourceString("Commands.Unhook.Uninstalled", entry.name, entry.oep));
+            Logger.I(Program.GetResourceString("Commands.Unhook.Uninstalled", id, entry.name));
         }
     }
 }

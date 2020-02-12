@@ -19,12 +19,14 @@ namespace PEDollController.Commands
             { "kill", new CmdKill() },
             { "hook", new CmdHook() },
             { "eval", new CmdEval() },
+            { "dump", new CmdDump() },
             { "shell", new CmdShell() },
             { "break", new CmdBreak() },
             { "listen", new CmdListen() },
             { "target", new CmdTarget() },
             { "unhook", new CmdUnhook() },
             { "loaddll", new CmdLoadDll() },
+            { "verdict", new CmdVerdict() },
         };
 
         public static void Invoke(string cmd)
@@ -59,7 +61,7 @@ namespace PEDollController.Commands
         {
             try
             {
-                return options.Parse(CommandLine.ToArgs(cmd));
+                return options.Parse(Commandline.ToArgs(cmd));
             }
             catch (OptionException e)
             {

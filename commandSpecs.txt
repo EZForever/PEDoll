@@ -3,14 +3,14 @@ All the commands are case-sensitive.
 
 --------------------------------------------------------------------------------
 exit	- Quits the Controller, end all connected clients.
-*----------
+----------
 Quits the Controller, end all connected clients.
 
 exit
 
 --------------------------------------------------------------------------------
 listen	- Starts to listen for clients.
-*----------
+----------
 Starts to listen for clients and displays addresses listening on.
 
 listen [--ipv6] [PORT]
@@ -22,7 +22,7 @@ This command may successfully execute only once; any subsequent call will fail.
 
 --------------------------------------------------------------------------------
 target	- Gets or sets the target client.
-*----------
+----------
 Gets or sets the target client.
 
 target [ID]
@@ -36,7 +36,7 @@ ID		The new target client's ID.
 
 --------------------------------------------------------------------------------
 load	- Executes commands from a script.
-*----------
+----------
 Executes commands from a script.
 
 load SCRIPT
@@ -48,7 +48,7 @@ SCRIPT		The script file to execute.
 
 --------------------------------------------------------------------------------
 help	- Provides help information for commands.
-*----------
+----------
 Provides help information for Windows commands.
 
 help [COMMAND]
@@ -58,7 +58,7 @@ COMMAND		Display help information for command COMMAND.
 
 --------------------------------------------------------------------------------
 rem	- Records comments (remarks) in a script file.
-*----------
+----------
 Records comments (remarks) in a script file.
 
 rem [...]
@@ -66,14 +66,14 @@ rem [...]
 
 --------------------------------------------------------------------------------
 end	- (M/D) Ends the client, stopping its process.
-*----------
+----------
 Ends the client, stopping its process.
 
 end
 
 --------------------------------------------------------------------------------
 doll	- (M) Creates a new Doll client.
-*----------
+----------
 Creates a new Doll client by creating or attaching to a process.
 
 doll CMDLINE
@@ -85,7 +85,7 @@ PID		Attach to process PID.
 
 --------------------------------------------------------------------------------
 shell	- (M) Starts a instance of command interpreter.
-*----------
+----------
 Starts a instance of command interpreter (%COMSPEC%, usually CMD.EXE).
 
 shell [ARGUMENTS ...]
@@ -94,7 +94,7 @@ ARGUMENTS	Arguments passed to %COMSPEC%.
 
 --------------------------------------------------------------------------------
 kill	- (M) Terminates process(es) with PID or name.
-*----------
+----------
 Terminates process(es) with PID or name.
 
 kill PID
@@ -106,14 +106,14 @@ NAME		Terminate all processes with name NAME.
 
 --------------------------------------------------------------------------------
 ps	- (M) Displays a list of running processes.
-*----------
+----------
 Displays a list of running processes.
 
 ps
 
 --------------------------------------------------------------------------------
 hook	- (D) Installs a new hook and set its actions.
-*----------
+----------
 Installs a new hook and set its actions.
 
 hook
@@ -163,14 +163,14 @@ For help information on expressions, type `help eval`.
 
 --------------------------------------------------------------------------------
 unhook	- (D) Uninstalls a hook.
-*----------
-unhook 0xOEP
+----------
+unhook ID
 
-OEP		Entry point address of the hook.
+ID		ID of the hook.
 
 --------------------------------------------------------------------------------
 break	- (D) Breaks or continues the process's execution.
-*----------
+----------
 Breaks or continues the process's execution.
 
 break
@@ -181,7 +181,7 @@ For a newly-attached Doll process, it's state is suspended.
 
 --------------------------------------------------------------------------------
 loaddll	- (D) Loads a module into the process's address space.
-*----------
+----------
 Loads a module into the process's address space.
 
 loaddll MODULE
@@ -193,7 +193,7 @@ Call `loaddll` with libDoll will cause nothing but must never be attempted.
 
 --------------------------------------------------------------------------------
 eval	- (D) Evaluates a expression on current context.
-*----------
+----------
 Evaluates a expression on current context.
 
 eval EXPR
@@ -237,8 +237,9 @@ Type `hook` without any arguments displays a list of dumped data.
 
 ID		ID of the dump to operate.
 FORMAT		Show or save data under FORMAT. Possible formats are:
-		hex(default), raw, ascii, unicode, utf8, asmx86, asmx64
-SAVEFILE	Save the data to SAVEFILE instead of displaying it.
+		hex(default), raw, ansi, unicode, utf8, x86, x64
+SAVEFILE	Save the data to SAVEFILE instead of displaying them.
+		SAVEFILE will be overwritten if it exists.
 
 --------------------------------------------------------------------------------
 verdict	- (D) Verdicts a activated hook.

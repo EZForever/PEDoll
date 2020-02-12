@@ -157,7 +157,7 @@ namespace Puppet {
             puppet = new Puppet::PuppetClientTCP(port, str, ipv6);
             puppet->start();
         }
-        catch (const std::runtime_error & e) {
+        catch (const std::runtime_error &) {
             delete puppet;
             puppet = NULL;
             throw;

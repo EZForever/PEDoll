@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,6 +40,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Gee.External.Capstone, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gee.External.Capstone.2.0.2\lib\net45\Gee.External.Capstone.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Options, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Options.6.6.0.161\lib\net40\Mono.Options.dll</HintPath>
     </Reference>
@@ -53,8 +58,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlobFormatters\FmtHex.cs" />
+    <Compile Include="BlobFormatters\FmtRaw.cs" />
+    <Compile Include="BlobFormatters\FmtText.cs" />
+    <Compile Include="BlobFormatters\FmtX86.cs" />
+    <Compile Include="BlobFormatters\IBlobFormatter.cs" />
+    <Compile Include="BlobFormatters\Util.cs" />
     <Compile Include="Commands\CmdBreak.cs" />
     <Compile Include="Commands\CmdDoll.cs" />
+    <Compile Include="Commands\CmdDump.cs" />
     <Compile Include="Commands\CmdEnd.cs" />
     <Compile Include="Commands\CmdEval.cs" />
     <Compile Include="Commands\CmdExit.cs" />
@@ -69,7 +81,8 @@
     <Compile Include="Commands\CmdShell.cs" />
     <Compile Include="Commands\CmdTarget.cs" />
     <Compile Include="Commands\CmdUnhook.cs" />
-    <Compile Include="Commands\CommandLine.cs" />
+    <Compile Include="Commands\CmdVerdict.cs" />
+    <Compile Include="Commands\Commandline.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Util.cs" />
     <Compile Include="FMain.cs">
@@ -127,4 +140,11 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Gee.External.Capstone.2.0.2\build\Gee.External.Capstone.targets" Condition="Exists('..\packages\Gee.External.Capstone.2.0.2\build\Gee.External.Capstone.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Gee.External.Capstone.2.0.2\build\Gee.External.Capstone.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Gee.External.Capstone.2.0.2\build\Gee.External.Capstone.targets'))" />
+  </Target>
 </Project>

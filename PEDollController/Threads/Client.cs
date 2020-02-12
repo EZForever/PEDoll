@@ -10,7 +10,7 @@ namespace PEDollController.Threads
 {
     struct HookEntry
     {
-        public string name;
+        public string name; // Removed hook if name == null
         public UInt64 oep;
 
         public string addrMode; // {null|"symbol"|"addr"|"pattern"}
@@ -87,7 +87,7 @@ namespace PEDollController.Threads
                 clientName = Puppet.Util.DeserializeString(bufOnlineName);
 
                 // Reply with ACK
-                SendAck(0);
+                this.Send(Puppet.Util.Serialize(new Puppet.PACKET_ACK(0)));
             }
             catch (IOException e)
             {
@@ -176,12 +176,6 @@ namespace PEDollController.Threads
             }
         }
 
-        void SendAck(UInt32 status)
-        {
-            byte[] bufAck = Puppet.Util.Serialize(new Puppet.PACKET_ACK(status));
-            stream.Write(bufAck, 0, bufAck.Length);
-        }
-
         byte[] ReceiveDirect()
         {
             byte[] bufPacketSize = new byte[sizeof(UInt32)];
@@ -229,7 +223,7 @@ namespace PEDollController.Threads
                     hookOep = pktOep.data;
 
                     // Reply with ACK
-                    SendAck(0);
+                    this.Send(Puppet.Util.Serialize(new Puppet.PACKET_ACK(0)));
 
                     // NOTE: OnHook() Must run in another thread, since it uses EvalEngine, which indirectly wait for packets.
                     // Make EvalEngine directly wait for packets will cause trouble in command `eval`.
@@ -249,7 +243,7 @@ namespace PEDollController.Threads
                 throw new IOException(Program.GetResourceString("Threads.Client.UnknownHook"));
 
             // TODO: "Threads.Client.Hooked"
-            // "Client \"{0}\" hooked on \"{1}\" - phase \"{2}\""
+            // "Client \"{0}\" hooked on #{1} \"{2}\" - phase \"{3}\""
             // FIXME: Fit description above
             Logger.N(Program.GetResourceString("Threads.Client.Hooked"));
 
@@ -278,7 +272,7 @@ namespace PEDollController.Threads
                             UInt64 ptr;
                             if(bits == 64 ? evalResults[0] is UInt64 : evalResults[0] is UInt32)
                             {
-                                ptr = (UInt64)evalResults[0];
+                                ptr = Convert.ToUInt64(evalResults[0]);
                             }
                             else
                             {
@@ -289,7 +283,7 @@ namespace PEDollController.Threads
                             uint len;
                             try
                             {
-                                len = (uint)evalResults[1];
+                                len = Convert.ToUInt32(evalResults[1]);
                             }
                             catch(InvalidCastException)
                             {
@@ -338,10 +332,7 @@ namespace PEDollController.Threads
             }
             else
             {
-                // TODO: "Threads.Client.Verdict"
-                // "verdict: Executing verdict \"{0}\""
-                Logger.N(Program.GetResourceString("Threads.Client.Verdict", verdict));
-                // TODO: `verdict` but must be command-line independant, due to target changing
+                SendVerdict(verdict);
             }
         }
 
@@ -401,7 +392,7 @@ namespace PEDollController.Threads
 
         UInt64 eval_getContext(uint index)
         {
-            // TODO: Caching?
+            // XXX: Caching?
 
             // Prepare CMD_CONTEXT
             Puppet.PACKET_CMD_CONTEXT pktCtx = new Puppet.PACKET_CMD_CONTEXT(0);
@@ -580,9 +571,79 @@ namespace PEDollController.Threads
             return val;
         }
 
+        public string OepToString(UInt64 oep)
+        {
+            return "0x" + oep.ToString(this.bits == 64 ? "x16" : "x8");
+        }
+
+        public string GetTypeString()
+        {
+            // TODO: "Threads.Client.Type.Monitor"
+            // TODO: "Threads.Client.Type.Doll"
+            return Program.GetResourceString(this.isMonitor ? "Threads.Client.Type.Monitor" : "Threads.Client.Type.Doll");
+        }
+
+        public string GetStatusString()
+        {
+            string resId;
+
+            // TODO: "Threads.Client.Status.Dead"
+            // TODO: "Threads.Client.Status.Hooked"
+            // TODO: "Threads.Client.Status.Alive"
+            if (this.isDead)
+                resId = "Threads.Client.Status.Dead";
+            else if(this.hookOep != 0)
+                resId = "Threads.Client.Status.Hooked";
+            else
+                resId = "Threads.Client.Status.Alive";
+
+            return Program.GetResourceString(resId);
+        }
+
         public void Send(byte[] buffer)
         {
             stream.Write(buffer, 0, buffer.Length);
+        }
+
+        public void SendVerdict(string verdict)
+        {
+            HookEntry entry = hooks.Where(x => x.oep == hookOep).First();
+
+            // TODO: "Threads.Client.Verdict"
+            // "verdict: Executing verdict \"{0}\""
+            Logger.N(Program.GetResourceString("Threads.Client.Verdict", verdict));
+
+            // Verdict string to ID
+            UInt32 verdictId = 0;
+            switch(verdict)
+            {
+                case "approve":
+                    verdictId = 0; break;
+                case "reject":
+                    verdictId = 1; break;
+                case "terminate":
+                    verdictId = 2; break;
+            }
+
+            // Prepare & send CMD_VERDICT
+            Puppet.PACKET_CMD_VERDICT pktVerdict = new Puppet.PACKET_CMD_VERDICT(0);
+            pktVerdict.verdict = verdictId;
+            this.Send(Puppet.Util.Serialize(pktVerdict));
+
+            // If verdict == "reject", send SP offset and AX
+            if(verdictId == 1)
+            {
+                this.Send(Puppet.Util.Serialize(new Puppet.PACKET_INTEGER(entry.stack)));
+                this.Send(Puppet.Util.Serialize(new Puppet.PACKET_INTEGER(entry.ret)));
+            }
+
+            // Expect ACK
+            this.Expect(Puppet.PACKET_TYPE.ACK);
+
+            // Clear hook status
+            hookOep = 0;
+            hookPhase = 0;
+            // TODO: Refresh targets' list
         }
 
         public byte[] Receive()

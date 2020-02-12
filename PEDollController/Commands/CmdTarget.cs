@@ -50,37 +50,55 @@ namespace PEDollController.Commands
 
             if(target == -1 && !lastDoll && !lastMonitor)
             {
-                // TODO: "Commands.Target.AvailableTargets"
-                Logger.I(Program.GetResourceString("Commands.Target.AvailableTargets"));
+                // TODO: "Commands.Target.Header"
+                Logger.I(Program.GetResourceString("Commands.Target.Header"));
 
-                // TODO: Show a list of targets
+                for(int i = 0; i < Threads.Client.theInstances.Count; i++)
+                {
+                    Threads.Client instance = Threads.Client.theInstances[i];
+
+                    // TODO: "Commands.Target.Format"
+                    Logger.I(Program.GetResourceString("Commands.Target.Format",
+                        (i == Threads.CmdEngine.theInstance.target) ? '*' : ' ',
+                        i,
+                        instance.clientName,
+                        instance.GetTypeString(),
+                        instance.GetStatusString(),
+                        instance.bits,
+                        instance.pid
+                    ));
+                }
+                return;
             }
+
+            if(lastDoll)
+                target = Threads.CmdEngine.theInstance.targetLastDoll;
+            else if(lastMonitor)
+                target = Threads.CmdEngine.theInstance.targetLastMonitor;
+
+            if(target < 0 || target >= Threads.Client.theInstances.Count)
+                throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotAvailable"));
+
+            int targetLast = Threads.CmdEngine.theInstance.target;
+            Threads.CmdEngine.theInstance.target = target;
+            if (Threads.Client.theInstances[targetLast].isMonitor)
+                Threads.CmdEngine.theInstance.targetLastMonitor = targetLast;
             else
-            {
-                if(lastDoll)
-                    target = Threads.CmdEngine.theInstance.targetLastDoll;
-                else if(lastMonitor)
-                    target = Threads.CmdEngine.theInstance.targetLastMonitor;
+                Threads.CmdEngine.theInstance.targetLastDoll = targetLast;
 
-                if(target < 0 || target >= Threads.Client.theInstances.Count)
-                    throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotAvailable"));
+            Threads.Client client = Threads.CmdEngine.theInstance.GetTargetClient();
 
-                int targetLast = Threads.CmdEngine.theInstance.target;
-                Threads.CmdEngine.theInstance.target = target;
-                if (Threads.Client.theInstances[targetLast].isMonitor)
-                    Threads.CmdEngine.theInstance.targetLastMonitor = targetLast;
-                else
-                    Threads.CmdEngine.theInstance.targetLastDoll = targetLast;
+            // TODO: "Commands.Target.CurrentTarget"
+            // "Current target is #{0} \"{1}\" ({2}, {3})"
+            // FIXME: Client.GetStatusString() ?
+            Logger.I(Program.GetResourceString("Commands.Target.CurrentTarget",
+                target,
+                client.clientName,
+                client.GetTypeString(),
+                client.GetStatusString()
+            ));
 
-                Threads.Client client = Threads.CmdEngine.theInstance.GetTargetClient();
-
-                // TODO: "Commands.Target.CurrentTarget"
-                // "Current target is #{0} \"{1}\" ({2})"
-                // FIXME: Client.GetStatusString() ?
-                Logger.I(Program.GetResourceString("Commands.Target.CurrentTarget", target, client.clientName));
-
-                // TODO: Refresh GUI info pages (e.g. enable verdict page on a Hooked client)
-            }
+            // TODO: Refresh GUI info pages (e.g. enable verdict page on a Hooked client)
         }
     }
 

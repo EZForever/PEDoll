@@ -44,7 +44,8 @@ namespace PEDollController.Commands
 
         void ShowHelpScreen()
         {
-            Logger.I(Program.GetResourceString("Commands.HelpShort._Header"));
+            // TODO: "Commands.HelpShort.Header"
+            Logger.I(Program.GetResourceString("Commands.HelpShort.Header"));
 
             // A sorted list of help messages is more readable
             SortedSet<string> commandNames = new SortedSet<string>(Util.Commands.Keys);

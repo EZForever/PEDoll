@@ -28,6 +28,7 @@ namespace PEDollController.Threads
         public int target = -1;
         public int targetLastDoll = -1;
         public int targetLastMonitor = -1;
+
         public List<DumpEntry> dumps;
 
         CmdEngine()
@@ -55,9 +56,9 @@ namespace PEDollController.Threads
 
         void TaskMain()
         {
-            // TODO: Initialize CmdEngine (if anything needs to be done; should be in constructor?)
             while(true)
             {
+                // XXX: Also wait for commands from Console.ReadLine()?
                 Task<string> taskCmd = cmdProvider.Get();
                 int idx = Task.WaitAny(stopTaskAsync, taskCmd);
 
@@ -101,8 +102,8 @@ namespace PEDollController.Threads
             args.Cancel = true;
 
             // TODO: "UI.CtrlC"
-            // "\n< Ctrl-C received, press any key to stop engine... >"
-            Logger.N(Program.GetResourceString("UI.CtrlC"));
+            // "\n[ Ctrl-C received, press any key to stop engine... ]"
+            Logger.W(Program.GetResourceString("UI.CtrlC"));
             Console.ReadKey();
 
             // Tell TaskMain() about ending task

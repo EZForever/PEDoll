@@ -18,7 +18,7 @@ namespace PEDollController.Commands
 
         public Dictionary<string, object> Parse(string cmd)
         {
-            string script = CommandLine.ToArgs(cmd)[0];
+            string script = Commandline.ToArgs(cmd)[0];
 
             if (script.StartsWith("\"") && script.EndsWith("\""))
             {
@@ -68,9 +68,10 @@ namespace PEDollController.Commands
         {
             string script = (string)options["script"];
 
+            StreamReader reader = null;
             try
             {
-                StreamReader reader = new StreamReader(script);
+                reader = new StreamReader(script);
 
                 string line;
                 while ((line = reader.ReadLine()) != null)
@@ -78,15 +79,16 @@ namespace PEDollController.Commands
 
                 reader.Close();
             }
-            catch (FileNotFoundException)
+            catch (Exception e)
             {
-                // TODO: "Commands.Load.NotFound"
-                throw new ArgumentException(Program.GetResourceString("Commands.Load.NotFound", script));
+                // TODO: "Commands.IOError"
+                // "I/O exception {0}: {1}"
+                throw new ArgumentException(Program.GetResourceString("Commands.IOError", e.GetType().Name, e.Message));
             }
-            catch (IOException e)
+            finally
             {
-                // TODO: "Commands.Load.IOError"
-                throw new ArgumentException(Program.GetResourceString("Commands.Load.IOError", e.Message));
+                if (reader != null)
+                    reader.Dispose();
             }
         }
     }
