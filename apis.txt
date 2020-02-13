@@ -1,0 +1,47 @@
+kernel32!DeleteFileA
+kernel32!DeleteFileW
+kernel32!CreateProcessInternalW
+kernel32!CreateProcessW
+kernel32!CreateProcessA
+kernel32!Process32FirstW
+kernel32!Process32NextW
+kernel32!TerminateProcess
+kernel32!OpenProcess
+kernel32!LoadLibraryExW
+user32!ExitWindowsEx
+user32!CreateWindowExW
+user32!SetWindowPos
+advapi32!RegQueryValueExA
+advapi32!RegQueryValueExW
+advapi32!RegOpenKeyExA
+advapi32!RegOpenKeyExW
+advapi32!RegOpenKeyA
+advapi32!RegSetKeyValueA
+advapi32!RegSetValueExA
+advapi32!RegSetValueExW
+advapi32!RegCreateKeyA
+advapi32!RegCreateKeyExA
+advapi32!RegCreateKeyExW
+ws2_32!connect
+ws2_32!recv
+ws2_32!recvfrom
+ws2_32!send
+ws2_32!sendto
+user32!FindWindowExA
+user32!FindWindowExW
+kernel32!CreateFileA
+kernel32!CreateFileW
+kernel32!SetFileAttributesA
+kernel32!SetFileAttributesW
+user32!SetWindowTextA
+user32!SetWindowTextW
+user32!MessageBoxA
+user32!MessageBoxW
+kernel32!WriteFile
+kernel32!DeviceIoControl
+kernel32!WriteProcessMemory
+
+ntdll!NtDeviceIoControlFile // This is happened on `hook HTTP`
+https://docs.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntdeviceiocontrolfile
+IoControlCode == AFD_SEND || IoControlCode == AFD_RECV
+((PAFD_INFO)InputBuffer)->BufferArray->{buf|len}, look for {GET|POST|HTTP}

@@ -117,4 +117,967 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="mnuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mnuStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mnuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>802, 28</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mnuStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mnuStrip.Name" xml:space="preserve">
+    <value>mnuStrip</value>
+  </data>
+  <data name="&gt;&gt;mnuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuStrip.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mnuStrip.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mnuFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 24</value>
+  </data>
+  <data name="mnuFile.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="mnuFileLoad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="mnuFileLoad.Text" xml:space="preserve">
+    <value>&amp;Load Script...</value>
+  </data>
+  <data name="mnuFileSpr1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 6</value>
+  </data>
+  <data name="mnuFileExit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="mnuFileExit.Text" xml:space="preserve">
+    <value>&amp;Exit</value>
+  </data>
+  <data name="mnuHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 24</value>
+  </data>
+  <data name="mnuHelp.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <data name="mnuHelpCommands.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="mnuHelpCommands.Text" xml:space="preserve">
+    <value>&amp;Commands</value>
+  </data>
+  <data name="mnuHelpSpr1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 6</value>
+  </data>
+  <data name="mnuHelpAbout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="mnuHelpAbout.Text" xml:space="preserve">
+    <value>&amp;About...</value>
+  </data>
+  <data name="&gt;&gt;tabPageListener.Name" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;tabPageListener.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageListener.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageListener.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.Name" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.Name" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.Name" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;tabPageDumps.Name" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;tabPageDumps.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageDumps.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageDumps.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tabPanels.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 31</value>
+  </data>
+  <data name="tabPanels.Size" type="System.Drawing.Size, System.Drawing">
+    <value>800, 369</value>
+  </data>
+  <data name="tabPanels.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tabPanels.Name" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPanels.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPanels.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabPanels.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblListener2.Name" xml:space="preserve">
+    <value>lblListener2</value>
+  </data>
+  <data name="&gt;&gt;lblListener2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblListener2.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;lblListener2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpListenerStart.Name" xml:space="preserve">
+    <value>grpListenerStart</value>
+  </data>
+  <data name="&gt;&gt;grpListenerStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpListenerStart.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;grpListenerStart.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.Name" xml:space="preserve">
+    <value>lstListenerTargets</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabPageListener.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tabPageListener.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPageListener.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 340</value>
+  </data>
+  <data name="tabPageListener.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPageListener.Text" xml:space="preserve">
+    <value>Listener</value>
+  </data>
+  <data name="&gt;&gt;tabPageListener.Name" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;tabPageListener.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageListener.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageListener.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorCurrent.Name" xml:space="preserve">
+    <value>grpMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorCurrent.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorCurrent.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPageMonitor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="tabPageMonitor.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPageMonitor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 340</value>
+  </data>
+  <data name="tabPageMonitor.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPageMonitor.Text" xml:space="preserve">
+    <value>Monitor </value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.Name" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;grpDollCurrent.Name" xml:space="preserve">
+    <value>grpDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;grpDollCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpDollCurrent.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;grpDollCurrent.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPageDoll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="tabPageDoll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 340</value>
+  </data>
+  <data name="tabPageDoll.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabPageDoll.Text" xml:space="preserve">
+    <value>Doll    </value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.Name" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabPageHooked.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="tabPageHooked.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 340</value>
+  </data>
+  <data name="tabPageHooked.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabPageHooked.Text" xml:space="preserve">
+    <value>Hooked  </value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.Name" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tabPageDumps.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="tabPageDumps.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 354</value>
+  </data>
+  <data name="tabPageDumps.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tabPageDumps.Text" xml:space="preserve">
+    <value>Dumps   </value>
+  </data>
+  <data name="&gt;&gt;tabPageDumps.Name" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;tabPageDumps.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageDumps.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageDumps.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lstListenerTargets.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 97</value>
+  </data>
+  <data name="lstListenerTargets.Size" type="System.Drawing.Size, System.Drawing">
+    <value>780, 237</value>
+  </data>
+  <data name="lstListenerTargets.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.Name" xml:space="preserve">
+    <value>lstListenerTargets</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="clmName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="clmName.Width" type="System.Int32, mscorlib">
+    <value>240</value>
+  </data>
+  <data name="clmType.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="clmType.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="clmStatus.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="clmStatus.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="clmPID.Text" xml:space="preserve">
+    <value>PID</value>
+  </data>
+  <data name="clmBits.Text" xml:space="preserve">
+    <value>Bits</value>
+  </data>
+  <data name="txtCLICommand.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="txtCLICommand.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="txtCLICommand.Size" type="System.Drawing.Size, System.Drawing">
+    <value>688, 25</value>
+  </data>
+  <data name="txtCLICommand.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtCLICommand.Name" xml:space="preserve">
+    <value>txtCLICommand</value>
+  </data>
+  <data name="&gt;&gt;txtCLICommand.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtCLICommand.Parent" xml:space="preserve">
+    <value>grpCLI</value>
+  </data>
+  <data name="&gt;&gt;txtCLICommand.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnCLIExecute.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btnCLIExecute.Location" type="System.Drawing.Point, System.Drawing">
+    <value>703, 19</value>
+  </data>
+  <data name="btnCLIExecute.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 25</value>
+  </data>
+  <data name="btnCLIExecute.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="btnCLIExecute.Text" xml:space="preserve">
+    <value>Execute</value>
+  </data>
+  <data name="&gt;&gt;btnCLIExecute.Name" xml:space="preserve">
+    <value>btnCLIExecute</value>
+  </data>
+  <data name="&gt;&gt;btnCLIExecute.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCLIExecute.Parent" xml:space="preserve">
+    <value>grpCLI</value>
+  </data>
+  <data name="&gt;&gt;btnCLIExecute.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grpCLI.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="grpCLI.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 403</value>
+  </data>
+  <data name="grpCLI.Size" type="System.Drawing.Size, System.Drawing">
+    <value>802, 50</value>
+  </data>
+  <data name="grpCLI.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="grpCLI.Text" xml:space="preserve">
+    <value>Manual Command</value>
+  </data>
+  <data name="&gt;&gt;grpCLI.Name" xml:space="preserve">
+    <value>grpCLI</value>
+  </data>
+  <data name="&gt;&gt;grpCLI.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpCLI.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpCLI.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.Name" xml:space="preserve">
+    <value>btnListenerStart</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.Parent" xml:space="preserve">
+    <value>grpListenerStart</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.Name" xml:space="preserve">
+    <value>chkListenerStartIPv6</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.Parent" xml:space="preserve">
+    <value>grpListenerStart</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.Name" xml:space="preserve">
+    <value>txtListenerStartPort</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.Parent" xml:space="preserve">
+    <value>grpListenerStart</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Name" xml:space="preserve">
+    <value>lblListener1</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Parent" xml:space="preserve">
+    <value>grpListenerStart</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="grpListenerStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>545, 6</value>
+  </data>
+  <data name="grpListenerStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>241, 85</value>
+  </data>
+  <data name="grpListenerStart.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="grpListenerStart.Text" xml:space="preserve">
+    <value>Start Listener</value>
+  </data>
+  <data name="&gt;&gt;grpListenerStart.Name" xml:space="preserve">
+    <value>grpListenerStart</value>
+  </data>
+  <data name="&gt;&gt;grpListenerStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpListenerStart.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;grpListenerStart.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblListener1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="lblListener1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 25</value>
+  </data>
+  <data name="lblListener1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblListener1.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="lblListener1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Name" xml:space="preserve">
+    <value>lblListener1</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Parent" xml:space="preserve">
+    <value>grpListenerStart</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtListenerStartPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 21</value>
+  </data>
+  <data name="txtListenerStartPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 25</value>
+  </data>
+  <data name="txtListenerStartPort.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.Name" xml:space="preserve">
+    <value>txtListenerStartPort</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.Parent" xml:space="preserve">
+    <value>grpListenerStart</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chkListenerStartIPv6.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="chkListenerStartIPv6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 52</value>
+  </data>
+  <data name="chkListenerStartIPv6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 25</value>
+  </data>
+  <data name="chkListenerStartIPv6.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="chkListenerStartIPv6.Text" xml:space="preserve">
+    <value>IPv6</value>
+  </data>
+  <data name="chkListenerStartIPv6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.Name" xml:space="preserve">
+    <value>chkListenerStartIPv6</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.Parent" xml:space="preserve">
+    <value>grpListenerStart</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnListenerStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>134, 51</value>
+  </data>
+  <data name="btnListenerStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 25</value>
+  </data>
+  <data name="btnListenerStart.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="btnListenerStart.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.Name" xml:space="preserve">
+    <value>btnListenerStart</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.Parent" xml:space="preserve">
+    <value>grpListenerStart</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblListener2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblListener2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 76</value>
+  </data>
+  <data name="lblListener2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 15</value>
+  </data>
+  <data name="lblListener2.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="lblListener2.Text" xml:space="preserve">
+    <value>Available Targets:</value>
+  </data>
+  <data name="&gt;&gt;lblListener2.Name" xml:space="preserve">
+    <value>lblListener2</value>
+  </data>
+  <data name="&gt;&gt;lblListener2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblListener2.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;lblListener2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Name" xml:space="preserve">
+    <value>btnMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Parent" xml:space="preserve">
+    <value>grpMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Name" xml:space="preserve">
+    <value>lblMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Parent" xml:space="preserve">
+    <value>grpMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grpMonitorCurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>425, 6</value>
+  </data>
+  <data name="grpMonitorCurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 57</value>
+  </data>
+  <data name="grpMonitorCurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="grpMonitorCurrent.Text" xml:space="preserve">
+    <value>Current Client</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorCurrent.Name" xml:space="preserve">
+    <value>grpMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorCurrent.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorCurrent.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblMonitorCurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="lblMonitorCurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 25</value>
+  </data>
+  <data name="lblMonitorCurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblMonitorCurrent.Text" xml:space="preserve">
+    <value>#0: EZFOREVER</value>
+  </data>
+  <data name="lblMonitorCurrent.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Name" xml:space="preserve">
+    <value>lblMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Parent" xml:space="preserve">
+    <value>grpMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnMonitorCurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 21</value>
+  </data>
+  <data name="btnMonitorCurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnMonitorCurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnMonitorCurrent.Text" xml:space="preserve">
+    <value>End Client</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Name" xml:space="preserve">
+    <value>btnMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Parent" xml:space="preserve">
+    <value>grpMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Name" xml:space="preserve">
+    <value>btnDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Parent" xml:space="preserve">
+    <value>grpDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Name" xml:space="preserve">
+    <value>lblDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Parent" xml:space="preserve">
+    <value>grpDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grpDollCurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>425, 6</value>
+  </data>
+  <data name="grpDollCurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 57</value>
+  </data>
+  <data name="grpDollCurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="grpDollCurrent.Text" xml:space="preserve">
+    <value>Current Client</value>
+  </data>
+  <data name="&gt;&gt;grpDollCurrent.Name" xml:space="preserve">
+    <value>grpDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;grpDollCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpDollCurrent.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;grpDollCurrent.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnDollCurrent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDollCurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 21</value>
+  </data>
+  <data name="btnDollCurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnDollCurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnDollCurrent.Text" xml:space="preserve">
+    <value>End Client</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Name" xml:space="preserve">
+    <value>btnDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Parent" xml:space="preserve">
+    <value>grpDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblDollCurrent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDollCurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="lblDollCurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 25</value>
+  </data>
+  <data name="lblDollCurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblDollCurrent.Text" xml:space="preserve">
+    <value>#0: Dummy.exe</value>
+  </data>
+  <data name="lblDollCurrent.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Name" xml:space="preserve">
+    <value>lblDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Parent" xml:space="preserve">
+    <value>grpDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 15</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>802, 453</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>PEDoll Controller</value>
+  </data>
+  <data name="&gt;&gt;mnuFile.Name" xml:space="preserve">
+    <value>mnuFile</value>
+  </data>
+  <data name="&gt;&gt;mnuFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuFileLoad.Name" xml:space="preserve">
+    <value>mnuFileLoad</value>
+  </data>
+  <data name="&gt;&gt;mnuFileLoad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuFileSpr1.Name" xml:space="preserve">
+    <value>mnuFileSpr1</value>
+  </data>
+  <data name="&gt;&gt;mnuFileSpr1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuFileExit.Name" xml:space="preserve">
+    <value>mnuFileExit</value>
+  </data>
+  <data name="&gt;&gt;mnuFileExit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuHelp.Name" xml:space="preserve">
+    <value>mnuHelp</value>
+  </data>
+  <data name="&gt;&gt;mnuHelp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuHelpCommands.Name" xml:space="preserve">
+    <value>mnuHelpCommands</value>
+  </data>
+  <data name="&gt;&gt;mnuHelpCommands.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuHelpSpr1.Name" xml:space="preserve">
+    <value>mnuHelpSpr1</value>
+  </data>
+  <data name="&gt;&gt;mnuHelpSpr1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuHelpAbout.Name" xml:space="preserve">
+    <value>mnuHelpAbout</value>
+  </data>
+  <data name="&gt;&gt;mnuHelpAbout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmName.Name" xml:space="preserve">
+    <value>clmName</value>
+  </data>
+  <data name="&gt;&gt;clmName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmType.Name" xml:space="preserve">
+    <value>clmType</value>
+  </data>
+  <data name="&gt;&gt;clmType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmStatus.Name" xml:space="preserve">
+    <value>clmStatus</value>
+  </data>
+  <data name="&gt;&gt;clmStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmPID.Name" xml:space="preserve">
+    <value>clmPID</value>
+  </data>
+  <data name="&gt;&gt;clmPID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmBits.Name" xml:space="preserve">
+    <value>clmBits</value>
+  </data>
+  <data name="&gt;&gt;clmBits.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FMain</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

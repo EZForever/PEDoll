@@ -101,7 +101,11 @@ int main(int argc, char* argv[])
     std::cout << "Initialization complete, press Ctrl-C to stop" << std::endl;
 
     while (true)
-        Sleep(1000);
+    {
+        // An experiment: Yield execution if possible, sleep otherwise
+        if(!SwitchToThread())
+            Sleep(1000);
+    }
 
     return 42; // Not reached
 }

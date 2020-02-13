@@ -10,6 +10,10 @@ v4.5 is similar, but preinstalled starting from Windows 8.
 The "binary hooker" PeDoll implements ALSO only work on procedures
 	And only support 1 instance
 
+put this into FAQ:
+https://github.com/microsoft/Detours/wiki/FAQ#why-dont-i-see-any-calls-to-my-detour-of-malloc
+
+
 ----------
 
 registers to preserve:
@@ -60,7 +64,7 @@ grep -rn --include=*.cs "TODO: \"" | awk '{ print $1 "\t" $4 }' | sort -k2
 Examples of command `hook`:
 
 # (x64) Hooks WinExec(), print the command it trys to execute, then reject it
-hook WinExec --before --echo="lpCmdLine = {str(arg(0))}" --verdict=reject
+hook WinExec --before --echo="lpCmdLine = {str(arg(0))}" --verdict=reject --after --verdict=approve
 
 # (x86) Binary example (pattern from original PeDoll)
 hook *8B5424048B4C240885D2750D --convention=cdecl --stack=0,0 --before --echo="str1 = {str(poi(sp+4+4))}" --echo="str2 = {str(poi(sp+4+8))}" --verdict=reject

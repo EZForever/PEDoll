@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Reflection;
+using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using PEDollController.Threads;
 
@@ -7,7 +10,7 @@ namespace PEDollController
 {
     static class Program
     {
-        public static event Action OnProgramEnd;
+        #region GetResourceString()
 
         public static string GetResourceString(string resId)
         {
@@ -22,6 +25,39 @@ namespace PEDollController
             return String.Format(GetResourceString(resId), args);
         }
 
+        #endregion
+
+        #region TabPage.My{Show|Hide}()
+
+        // NOTE: Always MyHide() before MyShow()! Or the indexes recorded will be messed up
+
+        // <page, <parent, index>>
+        static Dictionary<TabPage, Tuple<TabControl, int>> tabLounge = new Dictionary<TabPage, Tuple<TabControl, int>>();
+
+        public static void MyShow(this TabPage page)
+        {
+            if (!tabLounge.ContainsKey(page))
+                throw new ArgumentException();
+
+            TabControl parent = tabLounge[page].Item1;
+            parent.TabPages.Insert(tabLounge[page].Item2, page);
+            tabLounge.Remove(page);
+        }
+
+        public static void MyHide(this TabPage page)
+        {
+            TabControl parent = page.Parent as TabControl;
+            if (parent == null)
+                throw new ArgumentException();
+
+            tabLounge.Add(page, new Tuple<TabControl, int>(parent, parent.TabPages.IndexOf(page)));
+            parent.TabPages.Remove(page);
+        }
+
+        #endregion
+
+        public static event Action OnProgramEnd;
+
         [STAThread]
         static void Main()
         {
@@ -34,8 +70,10 @@ namespace PEDollController
             // Initialize GUI
             Gui.theTask.Start();
 
-            // Wait for CmdEngine to finish
-            CmdEngine.theTask.Wait();
+            // Wait for CmdEngine or GUI to finish
+            Task.WaitAny(CmdEngine.theTask, Gui.theTask);
+            // XXX: Was `CmdEngine.theTask.Wait();` (i.e. Only wait for CmdEngine, allow Gui to end prematurely)
+            // Revert this change if also read commands from `Console.ReadLine()` (See XXX in CmdEngine.TaskMain())
 
             // Then finialize anything
             OnProgramEnd();

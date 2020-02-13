@@ -15,10 +15,25 @@ namespace PEDollController
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        
+        void SendCmd()
         {
-            Threads.CmdEngine.theInstance.AddCommand(textBox1.Text);
+            Threads.CmdEngine.theInstance.AddCommand(txtCLICommand.Text);
+            txtCLICommand.Text = String.Empty;
+        }
+
+        private void txtCLICommand_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                SendCmd();
+                e.Handled = true;
+            }
+        }
+
+        private void btnCLIExecute_Click(object sender, EventArgs e)
+        {
+            SendCmd();
         }
     }
 }
