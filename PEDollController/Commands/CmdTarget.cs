@@ -24,8 +24,8 @@ namespace PEDollController.Commands
 
             OptionSet options = new OptionSet()
             {
-                { "lastDoll", x => lastDoll = (x != null) },
-                { "lastMonitor", x => lastMonitor = (x != null) },
+                { "doll", x => lastDoll = (x != null) },
+                { "monitor", x => lastMonitor = (x != null) },
                 { "<>", (int x) => target = x }
             };
             Util.ParseOptions(cmd, options);

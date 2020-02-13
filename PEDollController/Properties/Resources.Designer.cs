@@ -90,6 +90,475 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Breaks or continues the process&apos;s execution.
+        ///
+        ///break
+        ///
+        ///This command toggles the execution state between running and suspended.
+        ///For a newly-created Doll process, it&apos;s state is running.
+        ///For a newly-attached Doll process, it&apos;s state is suspended.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Break {
+            get {
+                return ResourceManager.GetString("Commands.Help.Break", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Creates a new Doll client by creating or attaching to a process.
+        ///
+        ///doll CMDLINE
+        ///doll --attach PID
+        ///
+        ///CMDLINE		Create a new process by running CMDLINE.
+        ///PID		Attach to process PID.
+        ///		Use `ps` to get the list of available PIDs.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Doll {
+            get {
+                return ResourceManager.GetString("Commands.Help.Doll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Displays or saves dumped data.
+        ///
+        ///dump
+        ///dump ID [--format=FORMAT] [--save=SAVEFILE]
+        ///
+        ///Type `hook` without any arguments displays a list of dumped data.
+        ///
+        ///ID		ID of the dump to operate.
+        ///FORMAT		Show or save data under FORMAT. Possible formats are:
+        ///		hex(default), raw, ansi, unicode, utf8, x86, x64
+        ///SAVEFILE	Save the data to SAVEFILE instead of displaying them.
+        ///		SAVEFILE will be overwritten if it exists.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Dump {
+            get {
+                return ResourceManager.GetString("Commands.Help.Dump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Ends the client, stopping its process.
+        ///
+        ///end
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_End {
+            get {
+                return ResourceManager.GetString("Commands.Help.End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Evaluates a expression on current context.
+        ///
+        ///eval EXPR
+        ///
+        ///EXPR		The expression to be evaluated.
+        ///
+        ///An &quot;expression&quot; is a C# expression embraced with braces, e.g. {(uint)poi(ax)+4}
+        ///
+        ///The types, methods and fields from namespaces &quot;System&quot; and &quot;System.Linq&quot;,
+        ///among with the following, are provided:
+        ///
+        ///(type alias) word
+        ///	A integer of the native word size (`int` on x86 or `long` on x64).
+        ///(type alias) uword
+        ///	Similar to `word` but unsigned.
+        ///string str(uword PTR)
+        ///	Returns the C-style string PTR points to.
+        ///st [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Eval {
+            get {
+                return ResourceManager.GetString("Commands.Help.Eval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Quits the Controller, end all connected clients.
+        ///
+        ///exit
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Exit {
+            get {
+                return ResourceManager.GetString("Commands.Help.Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Provides help information for commands.
+        ///
+        ///help [COMMAND]
+        ///
+        ///COMMAND		Display help information for command COMMAND.
+        ///		If omitted, display a list of available commands.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Help {
+            get {
+                return ResourceManager.GetString("Commands.Help.Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Installs a new hook and set its actions.
+        ///
+        ///hook
+        ///hook {[MODULE!]SYMBOL|0xADDR|*PATTERN}
+        ///     [--convention=CONVENTION] [--stack=STACK[,RETURN]]
+        ///     [--before [ACTION ...]] [--after [ACTION ...]]
+        ///
+        ///Type `hook` without any arguments displays a list of hooks.
+        ///Call `hook` on an existing hook will overwrite its convention and actions.
+        ///
+        ///MODULE		The target module to search for symbol NAME.
+        ///		If omitted, default to the first module containing symbol NAME.
+        ///SYMBOL		The function&apos;s symbol name (e.g. WinExec o [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Hook {
+            get {
+                return ResourceManager.GetString("Commands.Help.Hook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Terminates process(es) with PID or name.
+        ///
+        ///kill PID
+        ///kill --all NAME
+        ///
+        ///PID		The PID of the process to be terminated.
+        ///		Use `ps` to get the list of available PIDs.
+        ///NAME		Terminate all processes with name NAME.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Kill {
+            get {
+                return ResourceManager.GetString("Commands.Help.Kill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Starts to listen for clients and displays addresses listening on.
+        ///
+        ///listen [--ipv6] [PORT]
+        ///
+        ///--ipv6		Listens on IPv6 interfaces, instead of IPv4 ones.
+        ///PORT		The listening port. Default to 31415.
+        ///
+        ///This command may successfully execute only once; any subsequent call will fail.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Listen {
+            get {
+                return ResourceManager.GetString("Commands.Help.Listen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Executes commands from a script.
+        ///
+        ///load SCRIPT [ARGUMENTS ...]
+        ///
+        ///SCRIPT		The script file to execute.
+        ///		If embraced with double-quotes, SCRIPT is treated as a path;
+        ///		otherwise, SCRIPT is the name (w/ or w/o extension) of a script
+        ///		in &quot;Scripts&quot; folder (preferred) or &quot;Scripts\API&quot; folder.
+        ///ARGUMENTS	Arguments passed to the script.
+        ///		The arguments will be inserted into any command in the script,
+        ///		given the command ends with a single `*`.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Load {
+            get {
+                return ResourceManager.GetString("Commands.Help.Load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Loads a module into the process&apos;s address space.
+        ///
+        ///loaddll MODULE
+        ///
+        ///MODULE		The module path passed to LoadLibrary().
+        ///
+        ///Internally, `loaddll` calls LoadLibrary() on a new thread.
+        ///Call `loaddll` with libDoll will cause nothing but must never be attempted.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_LoadDll {
+            get {
+                return ResourceManager.GetString("Commands.Help.LoadDll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Displays a list of running processes.
+        ///
+        ///ps
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Ps {
+            get {
+                return ResourceManager.GetString("Commands.Help.Ps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Records comments (remarks) in a script file.
+        ///
+        ///rem [...]
+        ///#[...]
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Rem {
+            get {
+                return ResourceManager.GetString("Commands.Help.Rem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Starts a instance of command interpreter (%COMSPEC%, usually CMD.EXE).
+        ///
+        ///shell [ARGUMENTS ...]
+        ///
+        ///ARGUMENTS	Arguments passed to %COMSPEC%.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Shell {
+            get {
+                return ResourceManager.GetString("Commands.Help.Shell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Gets or sets the target client.
+        ///
+        ///target [ID]
+        ///target --doll
+        ///target --monitor
+        ///
+        ///ID		The new target client&apos;s ID.
+        ///		If omitted, displays a list of connected clients.
+        ///--doll		Set target to last targeted Doll client.
+        ///--monitor	Set target to last targeted Monitor client.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Target {
+            get {
+                return ResourceManager.GetString("Commands.Help.Target", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 unhook ID
+        ///
+        ///ID		ID of the hook.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Unhook {
+            get {
+                return ResourceManager.GetString("Commands.Help.Unhook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 verdict {approve|reject|terminate}
+        ///
+        ///approve		Continue the execution.
+        ///reject		Reject the call to the function and immediately return.
+        ///		Refer to `help hook` for information about stack balancing.
+        ///terminate	Terminate the client process.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Help_Verdict {
+            get {
+                return ResourceManager.GetString("Commands.Help.Verdict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 break	- (D) Breaks or continues the process&apos;s execution. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Break {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Break", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 doll	- (M) Creates a new Doll client. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Doll {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Doll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 dump	- (D) Displays or saves dumped data. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Dump {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Dump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 end	- (M/D) Ends the client, stopping its process. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_End {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 eval	- (D) Evaluates a expression on current context. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Eval {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Eval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 exit	- Quits the Controller, end all connected clients. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Exit {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 For more information on a specific command, type `help COMMAND`.
+        ///All the commands are case-sensitive.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Header {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 help	- Provides help information for commands. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Help {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 hook	- (D) Installs a new hook and set its actions. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Hook {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Hook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 kill	- (M) Terminates process(es) with PID or name. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Kill {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Kill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 listen	- Starts to listen for clients. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Listen {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Listen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 load	- Executes commands from a script. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Load {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 loaddll	- (D) Loads a module into the process&apos;s address space. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_LoadDll {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.LoadDll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ps	- (M) Displays a list of running processes. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Ps {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Ps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 rem	- Records comments (remarks) in a script file. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Rem {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Rem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 shell	- (M) Starts a instance of command interpreter. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Shell {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Shell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 target	- Gets or sets the target client. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Target {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Target", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 unhook	- (D) Uninstalls a hook. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Unhook {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Unhook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 verdict	- (D) Verdicts an activated hook. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_HelpShort_Verdict {
+            get {
+                return ResourceManager.GetString("Commands.HelpShort.Verdict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 {0,-4} {1,-18} {2} 的本地化字符串。
         /// </summary>
         internal static string Commands_Hook_Format {
@@ -163,20 +632,12 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Available addresses: 的本地化字符串。
+        ///   查找类似 Available addresses:
+        /// 的本地化字符串。
         /// </summary>
         internal static string Commands_Listen_AvailableAddresses {
             get {
                 return ResourceManager.GetString("Commands.Listen.AvailableAddresses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Invali 的本地化字符串。
-        /// </summary>
-        internal static string Commands_Load_InvalidPath {
-            get {
-                return ResourceManager.GetString("Commands.Load.InvalidPath", resourceCulture);
             }
         }
         
@@ -190,7 +651,7 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
-        ///   查找类似 {0,-6}   {1} 的本地化字符串。
+        ///   查找类似 {0,-8} {1} 的本地化字符串。
         /// </summary>
         internal static string Commands_Ps_Format {
             get {

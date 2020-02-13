@@ -163,14 +163,15 @@
     <value>The listener has already been started.</value>
   </data>
   <data name="Commands.Listen.AvailableAddresses" xml:space="preserve">
-    <value>Available addresses:</value>
+    <value>Available addresses:
+</value>
   </data>
   <data name="Commands.Ps.Header" xml:space="preserve">
     <value>PID      Name
 --------+--------------------------------</value>
   </data>
   <data name="Commands.Ps.Format" xml:space="preserve">
-    <value>{0,-6}   {1}</value>
+    <value>{0,-8} {1}</value>
   </data>
   <data name="Commands.Target.Header" xml:space="preserve">
     <value>  #    Name                             Type     Status   PID      Bits
@@ -282,5 +283,306 @@
   </data>
   <data name="UI.Cli.Format" xml:space="preserve">
     <value>&gt; {0}</value>
+  </data>
+  <data name="Commands.HelpShort.Header" xml:space="preserve">
+    <value>For more information on a specific command, type `help COMMAND`.
+All the commands are case-sensitive.
+</value>
+  </data>
+  <data name="Commands.HelpShort.Break" xml:space="preserve">
+    <value>break	- (D) Breaks or continues the process's execution.</value>
+  </data>
+  <data name="Commands.HelpShort.Doll" xml:space="preserve">
+    <value>doll	- (M) Creates a new Doll client.</value>
+  </data>
+  <data name="Commands.HelpShort.Dump" xml:space="preserve">
+    <value>dump	- (D) Displays or saves dumped data.</value>
+  </data>
+  <data name="Commands.HelpShort.End" xml:space="preserve">
+    <value>end	- (M/D) Ends the client, stopping its process.</value>
+  </data>
+  <data name="Commands.HelpShort.Eval" xml:space="preserve">
+    <value>eval	- (D) Evaluates a expression on current context.</value>
+  </data>
+  <data name="Commands.HelpShort.Exit" xml:space="preserve">
+    <value>exit	- Quits the Controller, end all connected clients.</value>
+  </data>
+  <data name="Commands.HelpShort.Help" xml:space="preserve">
+    <value>help	- Provides help information for commands.</value>
+  </data>
+  <data name="Commands.HelpShort.Hook" xml:space="preserve">
+    <value>hook	- (D) Installs a new hook and set its actions.</value>
+  </data>
+  <data name="Commands.HelpShort.Kill" xml:space="preserve">
+    <value>kill	- (M) Terminates process(es) with PID or name.</value>
+  </data>
+  <data name="Commands.HelpShort.Listen" xml:space="preserve">
+    <value>listen	- Starts to listen for clients.</value>
+  </data>
+  <data name="Commands.HelpShort.Load" xml:space="preserve">
+    <value>load	- Executes commands from a script.</value>
+  </data>
+  <data name="Commands.HelpShort.LoadDll" xml:space="preserve">
+    <value>loaddll	- (D) Loads a module into the process's address space.</value>
+  </data>
+  <data name="Commands.HelpShort.Ps" xml:space="preserve">
+    <value>ps	- (M) Displays a list of running processes.</value>
+  </data>
+  <data name="Commands.HelpShort.Rem" xml:space="preserve">
+    <value>rem	- Records comments (remarks) in a script file.</value>
+  </data>
+  <data name="Commands.HelpShort.Shell" xml:space="preserve">
+    <value>shell	- (M) Starts a instance of command interpreter.</value>
+  </data>
+  <data name="Commands.HelpShort.Target" xml:space="preserve">
+    <value>target	- Gets or sets the target client.</value>
+  </data>
+  <data name="Commands.HelpShort.Unhook" xml:space="preserve">
+    <value>unhook	- (D) Uninstalls a hook.</value>
+  </data>
+  <data name="Commands.HelpShort.Verdict" xml:space="preserve">
+    <value>verdict	- (D) Verdicts an activated hook.</value>
+  </data>
+  <data name="Commands.Help.Break" xml:space="preserve">
+    <value>Breaks or continues the process's execution.
+
+break
+
+This command toggles the execution state between running and suspended.
+For a newly-created Doll process, it's state is running.
+For a newly-attached Doll process, it's state is suspended.
+</value>
+  </data>
+  <data name="Commands.Help.Doll" xml:space="preserve">
+    <value>Creates a new Doll client by creating or attaching to a process.
+
+doll CMDLINE
+doll --attach PID
+
+CMDLINE		Create a new process by running CMDLINE.
+PID		Attach to process PID.
+		Use `ps` to get the list of available PIDs.
+</value>
+  </data>
+  <data name="Commands.Help.Dump" xml:space="preserve">
+    <value>Displays or saves dumped data.
+
+dump
+dump ID [--format=FORMAT] [--save=SAVEFILE]
+
+Type `hook` without any arguments displays a list of dumped data.
+
+ID		ID of the dump to operate.
+FORMAT		Show or save data under FORMAT. Possible formats are:
+		hex(default), raw, ansi, unicode, utf8, x86, x64
+SAVEFILE	Save the data to SAVEFILE instead of displaying them.
+		SAVEFILE will be overwritten if it exists.
+</value>
+  </data>
+  <data name="Commands.Help.End" xml:space="preserve">
+    <value>Ends the client, stopping its process.
+
+end
+</value>
+  </data>
+  <data name="Commands.Help.Eval" xml:space="preserve">
+    <value>Evaluates a expression on current context.
+
+eval EXPR
+
+EXPR		The expression to be evaluated.
+
+An "expression" is a C# expression embraced with braces, e.g. {(uint)poi(ax)+4}
+
+The types, methods and fields from namespaces "System" and "System.Linq",
+among with the following, are provided:
+
+(type alias) word
+	A integer of the native word size (`int` on x86 or `long` on x64).
+(type alias) uword
+	Similar to `word` but unsigned.
+string str(uword PTR)
+	Returns the C-style string PTR points to.
+string wstr(uword PTR)
+	Returns the C-style wide-char string PTR points to.
+string ctx(string KEY)
+	Returns the entry under key KEY in context dictionary.
+byte[] mem(uword PTR, uint LEN)
+	Returns a binary blob of length &lt;= LEN pointer PTR points to.
+uword poi(uword PTR)
+	Returns the integer pointer PTR points to as a `uword`.
+uword arg(uint INDEX)
+	Returns the value of function argument at zero-based index INDEX.
+uword ax, cx, dx, bx, sp, bp, si, di, r8, r9
+	The value of the corresponding register. Readonly.
+	`r8` and `r9` are available only on a x64 client.
+</value>
+  </data>
+  <data name="Commands.Help.Exit" xml:space="preserve">
+    <value>Quits the Controller, end all connected clients.
+
+exit
+</value>
+  </data>
+  <data name="Commands.Help.Help" xml:space="preserve">
+    <value>Provides help information for commands.
+
+help [COMMAND]
+
+COMMAND		Display help information for command COMMAND.
+		If omitted, display a list of available commands.
+</value>
+  </data>
+  <data name="Commands.Help.Hook" xml:space="preserve">
+    <value>Installs a new hook and set its actions.
+
+hook
+hook {[MODULE!]SYMBOL|0xADDR|*PATTERN}
+     [--convention=CONVENTION] [--stack=STACK[,RETURN]]
+     [--before [ACTION ...]] [--after [ACTION ...]]
+
+Type `hook` without any arguments displays a list of hooks.
+Call `hook` on an existing hook will overwrite its convention and actions.
+
+MODULE		The target module to search for symbol NAME.
+		If omitted, default to the first module containing symbol NAME.
+SYMBOL		The function's symbol name (e.g. WinExec or kernel32!Sleep).
+ADDR		The function's virtual address (e.g. 0x401000).
+PATTERN		The hexadecimal pattern of the function (e.g. *8B4C240885D2).
+CONVENTION	The function's calling convention. Possible conventions are:
+		x86 client: stdcall(default), cdecl, fastcall
+		x64 client: msvc(default), gcc
+STACK		Count of bytes poped from stack when the function returns.
+		Default to 0.
+RETURN		The value to return on a Rejected verdict.
+		Default to 0.
+ACTION		An action to perform on an activated hook.
+		Possible actions are:
+		--echo=ECHO			- Display a string.
+		--dump=DUMPADDR,DUMPSIZE	- Dump data to storage.
+		--ctx=CTXKEY,CTXVALUE		- Add an entry to dictionary.
+		--verdict=VERDICT		- Set the default verdict.
+		Actions may appear more than once.
+ECHO		A string, may contain expressions, to be displayed.
+DUMPADDR	A expression that evaluates to a `uword` value, as the address.
+DUMPSIZE	A expression that evaluates to an integer value, as the size.
+CTXKEY		A string, may contain expressions, as the key.
+CTXVALUE	A string, may contain expressions, as the value.
+VERDICT		The verdict. Refer to `help verdict` for possible values.
+		If omitted, the hook waits for user reply.
+
+Expressions in the strings are formatted based on their values' type:
+
+Unsigned integers and `byte`s:
+	Zero-padded hexadecimal display.
+Signed integers:
+	Decimal display.
+Strings:
+	String embraced with double-quotes.
+`char`s:
+	Character embraced with quotes.
+Array of above types:
+	Comma-separated formatted elements, embraced with braces.
+Any other type:
+	Triggers an evaluation error.
+
+For help information on expressions, type `help eval`.
+</value>
+  </data>
+  <data name="Commands.Help.Kill" xml:space="preserve">
+    <value>Terminates process(es) with PID or name.
+
+kill PID
+kill --all NAME
+
+PID		The PID of the process to be terminated.
+		Use `ps` to get the list of available PIDs.
+NAME		Terminate all processes with name NAME.
+</value>
+  </data>
+  <data name="Commands.Help.Listen" xml:space="preserve">
+    <value>Starts to listen for clients and displays addresses listening on.
+
+listen [--ipv6] [PORT]
+
+--ipv6		Listens on IPv6 interfaces, instead of IPv4 ones.
+PORT		The listening port. Default to 31415.
+
+This command may successfully execute only once; any subsequent call will fail.
+</value>
+  </data>
+  <data name="Commands.Help.Load" xml:space="preserve">
+    <value>Executes commands from a script.
+
+load SCRIPT [ARGUMENTS ...]
+
+SCRIPT		The script file to execute.
+		If embraced with double-quotes, SCRIPT is treated as a path;
+		otherwise, SCRIPT is the name (w/ or w/o extension) of a script
+		in "Scripts" folder (preferred) or "Scripts\API" folder.
+ARGUMENTS	Arguments passed to the script.
+		The arguments will be inserted into any command in the script,
+		given the command ends with a single `*`.
+</value>
+  </data>
+  <data name="Commands.Help.LoadDll" xml:space="preserve">
+    <value>Loads a module into the process's address space.
+
+loaddll MODULE
+
+MODULE		The module path passed to LoadLibrary().
+
+Internally, `loaddll` calls LoadLibrary() on a new thread.
+Call `loaddll` with libDoll will cause nothing but must never be attempted.
+</value>
+  </data>
+  <data name="Commands.Help.Ps" xml:space="preserve">
+    <value>Displays a list of running processes.
+
+ps
+</value>
+  </data>
+  <data name="Commands.Help.Rem" xml:space="preserve">
+    <value>Records comments (remarks) in a script file.
+
+rem [...]
+#[...]
+</value>
+  </data>
+  <data name="Commands.Help.Shell" xml:space="preserve">
+    <value>Starts a instance of command interpreter (%COMSPEC%, usually CMD.EXE).
+
+shell [ARGUMENTS ...]
+
+ARGUMENTS	Arguments passed to %COMSPEC%.
+</value>
+  </data>
+  <data name="Commands.Help.Target" xml:space="preserve">
+    <value>Gets or sets the target client.
+
+target [ID]
+target --doll
+target --monitor
+
+ID		The new target client's ID.
+		If omitted, displays a list of connected clients.
+--doll		Set target to last targeted Doll client.
+--monitor	Set target to last targeted Monitor client.
+</value>
+  </data>
+  <data name="Commands.Help.Unhook" xml:space="preserve">
+    <value>unhook ID
+
+ID		ID of the hook.
+</value>
+  </data>
+  <data name="Commands.Help.Verdict" xml:space="preserve">
+    <value>verdict {approve|reject|terminate}
+
+approve		Continue the execution.
+reject		Reject the call to the function and immediately return.
+		Refer to `help hook` for information about stack balancing.
+terminate	Terminate the client process.
+</value>
   </data>
 </root>

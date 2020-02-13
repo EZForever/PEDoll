@@ -26,33 +26,33 @@ target	- Gets or sets the target client.
 Gets or sets the target client.
 
 target [ID]
-target --lastDoll
-target --lastMonitor
+target --doll
+target --monitor
 
 ID		The new target client's ID.
 		If omitted, displays a list of connected clients.
---lastDoll	Set target to last targeted Doll client.
---lastMonitor	Set target to last targeted Monitor client.
+--doll		Set target to last targeted Doll client.
+--monitor	Set target to last targeted Monitor client.
 
 --------------------------------------------------------------------------------
 load	- Executes commands from a script.
 ----------
 Executes commands from a script.
 
-load SCRIPT [PARAMETERS ...]
+load SCRIPT [ARGUMENTS ...]
 
 SCRIPT		The script file to execute.
 		If embraced with double-quotes, SCRIPT is treated as a path;
 		otherwise, SCRIPT is the name (w/ or w/o extension) of a script
 		in "Scripts" folder (preferred) or "Scripts\API" folder.
-PARAMETERS	Parameters passed to script.
-		The parameters will be inserted into any command in the script,
+ARGUMENTS	Arguments passed to the script.
+		The arguments will be inserted into any command in the script,
 		given the command ends with a single `*`.
 
 --------------------------------------------------------------------------------
 help	- Provides help information for commands.
 ----------
-Provides help information for Windows commands.
+Provides help information for commands.
 
 help [COMMAND]
 
@@ -155,12 +155,19 @@ VERDICT		The verdict. Refer to `help verdict` for possible values.
 		If omitted, the hook waits for user reply.
 
 Expressions in the strings are formatted based on their values' type:
-Unsigned integers and `byte`s: zero-padded hexadecimal display.
-Signed integers: decimal display.
-Strings: string embraced with double-quotes.
-`char`s: Character embraced with quotes.
-Array of above types: Comma-separated formatted elements, embraced with braces.
-Any other type: Triggers an evaluation error.
+
+Unsigned integers and `byte`s:
+	Zero-padded hexadecimal display.
+Signed integers:
+	Decimal display.
+Strings:
+	String embraced with double-quotes.
+`char`s:
+	Character embraced with quotes.
+Array of above types:
+	Comma-separated formatted elements, embraced with braces.
+Any other type:
+	Triggers an evaluation error.
 
 For help information on expressions, type `help eval`.
 
@@ -245,7 +252,7 @@ SAVEFILE	Save the data to SAVEFILE instead of displaying them.
 		SAVEFILE will be overwritten if it exists.
 
 --------------------------------------------------------------------------------
-verdict	- (D) Verdicts a activated hook.
+verdict	- (D) Verdicts an activated hook.
 ----------
 verdict {approve|reject|terminate}
 

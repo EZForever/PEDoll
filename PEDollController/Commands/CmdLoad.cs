@@ -20,7 +20,7 @@ namespace PEDollController.Commands
         {
             List<string> args = Commandline.ToArgs(cmd);
             string script = args[0];
-            string parameters = String.Join(" ", args.Skip(1));
+            string arguments = String.Join(" ", args.Skip(1));
 
             if (script.StartsWith("\"") && script.EndsWith("\""))
             {
@@ -62,14 +62,14 @@ namespace PEDollController.Commands
             {
                 { "verb", "load" },
                 { "script", script },
-                { "parameters", parameters }
+                { "arguments", arguments }
             };
         }
 
         public void Invoke(Dictionary<string, object> options)
         {
             string script = (string)options["script"];
-            string parameters = (string)options["parameters"];
+            string arguments = (string)options["arguments"];
 
             StreamReader reader = null;
             try
@@ -80,7 +80,7 @@ namespace PEDollController.Commands
                 while ((line = reader.ReadLine()) != null)
                 {
                     if (line.EndsWith("*"))
-                        line = line.TrimEnd('*') + parameters;
+                        line = line.TrimEnd('*') + arguments;
                     Threads.CmdEngine.theInstance.AddCommand(line);
                 }
 

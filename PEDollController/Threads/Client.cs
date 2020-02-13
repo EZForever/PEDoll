@@ -347,7 +347,7 @@ namespace PEDollController.Threads
                     if (pktAck.status != 0)
                         this.Expect(Puppet.PACKET_TYPE.BINARY); // Dispose BINARY packet
 
-                    Logger.W(Program.GetResourceString("Threads.Client.StringIncompleteWarning"));
+                    Logger.W(Program.GetResourceString("Threads.Client.StringReadWarning"));
                     break;
                 }
 
@@ -403,7 +403,7 @@ namespace PEDollController.Threads
 
         string eval_wstr(UInt64 ptr)
         {
-            byte[] strBuffer = eval_readString(ptr, sizeof(byte));
+            byte[] strBuffer = eval_readString(ptr, sizeof(char));
             return Encoding.Unicode.GetString(strBuffer);
         }
 
