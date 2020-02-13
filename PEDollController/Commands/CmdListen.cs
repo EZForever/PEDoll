@@ -37,7 +37,6 @@ namespace PEDollController.Commands
 
         public void Invoke(Dictionary<string, object> options)
         {
-            // TODO: "Commands.Listen.AlreadyStarted"
             if (Threads.Listener.theInstance != null)
                 throw new ArgumentException(Program.GetResourceString("Commands.Listen.AlreadyStarted"));
 
@@ -53,7 +52,6 @@ namespace PEDollController.Commands
                 throw new ArgumentException(e.ToString());
             }
 
-            // TODO: "Commands.Listen.AvailableAddresses"
             Logger.I(Program.GetResourceString("Commands.Listen.AvailableAddresses"));
 
             List<IPAddress> addresses = new List<IPAddress>(Dns.GetHostAddresses(Dns.GetHostName()));

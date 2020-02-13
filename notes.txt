@@ -53,7 +53,7 @@ Change Language to write in values
 cmdline to search for untranslated strings (// TODO: "...")
 grep -r --include=*.cs "// TODO: \"" | sed 's/.*TODO: //g' | sort | uniq
 and their locations:
-grep -rn --include=*.cs "TODO: \"" | awk '{ print $1, "\t", $4 }' | sort -k2
+grep -rn --include=*.cs "TODO: \"" | awk '{ print $1 "\t" $4 }' | sort -k2
 
 ----------
 

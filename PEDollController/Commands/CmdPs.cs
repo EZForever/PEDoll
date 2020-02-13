@@ -35,7 +35,6 @@ namespace PEDollController.Commands
             if (pktAck.status != 0)
                 throw new ArgumentException(Util.Win32ErrorToMessage((int)pktAck.status));
 
-            // TODO: "Commands.Ps.Header"
             Logger.I(Program.GetResourceString("Commands.Ps.Header"));
 
             // Obtain entries
@@ -47,7 +46,6 @@ namespace PEDollController.Commands
                     break;
 
                 string name = Puppet.Util.DeserializeString(client.Expect(Puppet.PACKET_TYPE.STRING));
-                // TODO: "Commands.Ps.Format"
                 Logger.I(Program.GetResourceString("Commands.Ps.Format", pktInt.data, name));
             }
         }

@@ -50,22 +50,20 @@ namespace PEDollController.Commands
 
             if(target == -1 && !lastDoll && !lastMonitor)
             {
-                // TODO: "Commands.Target.Header"
                 Logger.I(Program.GetResourceString("Commands.Target.Header"));
 
                 for(int i = 0; i < Threads.Client.theInstances.Count; i++)
                 {
                     Threads.Client instance = Threads.Client.theInstances[i];
 
-                    // TODO: "Commands.Target.Format"
                     Logger.I(Program.GetResourceString("Commands.Target.Format",
                         (i == Threads.CmdEngine.theInstance.target) ? '*' : ' ',
                         i,
                         instance.clientName,
                         instance.GetTypeString(),
                         instance.GetStatusString(),
-                        instance.bits,
-                        instance.pid
+                        instance.pid,
+                        instance.bits
                     ));
                 }
                 return;
@@ -88,9 +86,6 @@ namespace PEDollController.Commands
 
             Threads.Client client = Threads.CmdEngine.theInstance.GetTargetClient();
 
-            // TODO: "Commands.Target.CurrentTarget"
-            // "Current target is #{0} \"{1}\" ({2}, {3})"
-            // FIXME: Client.GetStatusString() ?
             Logger.I(Program.GetResourceString("Commands.Target.CurrentTarget",
                 target,
                 client.clientName,

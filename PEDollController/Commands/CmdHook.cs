@@ -233,7 +233,6 @@ namespace PEDollController.Commands
 
             if(entry.name == null)
             {
-                // TODO: "Commands.Hook.Header"
                 Logger.I(Program.GetResourceString("Commands.Hook.Header"));
 
                 for(int i = 0; i < client.hooks.Count; i++)
@@ -244,7 +243,6 @@ namespace PEDollController.Commands
                     if (hook.name == null)
                         continue;
 
-                    // TODO: "Commands.Hook.Format"
                     Logger.I(Program.GetResourceString("Commands.Hook.Format",
                         i,
                         client.OepToString(hook.oep),
@@ -270,8 +268,6 @@ namespace PEDollController.Commands
             {
                 if(hook.name == entry.name)
                 {
-                    // TODO: "Commands.Hook.HookExists"
-                    // "Warning: Hook under name \"{0}\" already exists. Overwriting its settings."
                     Logger.W(Program.GetResourceString("Commands.Hook.HookExists", entry.name));
                     entry.oep = hook.oep;
                     client.hooks[client.hooks.IndexOf(hook)] = entry;
@@ -322,8 +318,6 @@ namespace PEDollController.Commands
             client.hooks.Add(entry);
             // TODO: Refresh hook list
 
-            // TODO: "Commands.Hook.Installed"
-            // "Hook #{0} \"{1}\" installed at {2}"
             Logger.I(Program.GetResourceString("Commands.Hook.Installed", id, entry.name, client.OepToString(entry.oep)));
         }
     }

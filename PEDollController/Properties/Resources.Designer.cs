@@ -61,6 +61,81 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
+        ///   查找类似 {0,-4} {1,-6} {2} 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Dump_Format {
+            get {
+                return ResourceManager.GetString("Commands.Dump.Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 #    Size   Source
+        ///----+------+--------------------------- 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Dump_Header {
+            get {
+                return ResourceManager.GetString("Commands.Dump.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Dump #{0} from hook &quot;{1}&quot; ({2} bytes), under format &quot;{3}&quot;:
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Dump_Title {
+            get {
+                return ResourceManager.GetString("Commands.Dump.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0,-4} {1,-18} {2} 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Hook_Format {
+            get {
+                return ResourceManager.GetString("Commands.Hook.Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 #    OEP                Name
+        ///----+------------------+------------------------- 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Hook_Header {
+            get {
+                return ResourceManager.GetString("Commands.Hook.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Warning: Hook under name &quot;{0}&quot; already exists. Overwriting its settings. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Hook_HookExists {
+            get {
+                return ResourceManager.GetString("Commands.Hook.HookExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Hook #{0} &quot;{1}&quot; installed at {2}. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Hook_Installed {
+            get {
+                return ResourceManager.GetString("Commands.Hook.Installed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 String incomplete. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Incomplete {
+            get {
+                return ResourceManager.GetString("Commands.Incomplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Invalid command `{0}`. Try `help {1}`. 的本地化字符串。
         /// </summary>
         internal static string Commands_Invalid {
@@ -70,11 +145,411 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
+        ///   查找类似 I/O exception {0}: {1} 的本地化字符串。
+        /// </summary>
+        internal static string Commands_IOError {
+            get {
+                return ResourceManager.GetString("Commands.IOError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The listener has already been started. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Listen_AlreadyStarted {
+            get {
+                return ResourceManager.GetString("Commands.Listen.AlreadyStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Available addresses: 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Listen_AvailableAddresses {
+            get {
+                return ResourceManager.GetString("Commands.Listen.AvailableAddresses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Invali 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Load_InvalidPath {
+            get {
+                return ResourceManager.GetString("Commands.Load.InvalidPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Parens mismatch. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_ParensMismatch {
+            get {
+                return ResourceManager.GetString("Commands.ParensMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0,-6}   {1} 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Ps_Format {
+            get {
+                return ResourceManager.GetString("Commands.Ps.Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 PID      Name
+        ///--------+-------------------------------- 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Ps_Header {
+            get {
+                return ResourceManager.GetString("Commands.Ps.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Current target is #{0} &quot;{1}&quot; ({2}, {3}). 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Target_CurrentTarget {
+            get {
+                return ResourceManager.GetString("Commands.Target.CurrentTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} {1,-4} {2,-32} {3,-8} {4,-8} {5,-8} {6,-4} 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Target_Format {
+            get {
+                return ResourceManager.GetString("Commands.Target.Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似   #    Name                             Type     Status   PID      Bits
+        ///-+----+--------------------------------+--------+--------+--------+---- 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Target_Header {
+            get {
+                return ResourceManager.GetString("Commands.Target.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The specified hook does not exist. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Unhook_NotFound {
+            get {
+                return ResourceManager.GetString("Commands.Unhook.NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Hook #{0} &quot;{1}&quot; removed. 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Unhook_Uninstalled {
+            get {
+                return ResourceManager.GetString("Commands.Unhook.Uninstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Unknown command `{0}`. 的本地化字符串。
         /// </summary>
         internal static string Commands_Unknown {
             get {
                 return ResourceManager.GetString("Commands.Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Win32 Error {0}: {1} 的本地化字符串。
+        /// </summary>
+        internal static string Commands_Win32Error {
+            get {
+                return ResourceManager.GetString("Commands.Win32Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Action &quot;{0}&quot; failed: {1} 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_ActionError {
+            get {
+                return ResourceManager.GetString("Threads.Client.ActionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 New client from {0}: #{1} &quot;{2}&quot; ({3}). 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Connected {
+            get {
+                return ResourceManager.GetString("Threads.Client.Connected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Error reading register #{0}. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_ContextReadError {
+            get {
+                return ResourceManager.GetString("Threads.Client.ContextReadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ctx: Dictionary entry created: {0} =&gt; {1}. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Ctx {
+            get {
+                return ResourceManager.GetString("Threads.Client.Ctx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Dictionary entry &quot;{0}&quot; not found. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_DictionaryReadError {
+            get {
+                return ResourceManager.GetString("Threads.Client.DictionaryReadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Client &quot;{0}&quot; disconnected, reason: {1} 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Disconnected {
+            get {
+                return ResourceManager.GetString("Threads.Client.Disconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 dump: Dump #{0} created ({1} bytes). 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Dump {
+            get {
+                return ResourceManager.GetString("Threads.Client.Dump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 echo: {0} 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Echo {
+            get {
+                return ResourceManager.GetString("Threads.Client.Echo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Client &quot;{0}&quot; hooked on #{1} &quot;{2}&quot; - phase &quot;{3}&quot;. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Hooked {
+            get {
+                return ResourceManager.GetString("Threads.Client.Hooked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Malformed libPuppet packet. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_MalformedPacket {
+            get {
+                return ResourceManager.GetString("Threads.Client.MalformedPacket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Error reading memory. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_MemoryReadError {
+            get {
+                return ResourceManager.GetString("Threads.Client.MemoryReadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Warning: Reading memory: Size expected = {0}, got = {1} 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_MemoryReadWarning {
+            get {
+                return ResourceManager.GetString("Threads.Client.MemoryReadWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Alive 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Status_Alive {
+            get {
+                return ResourceManager.GetString("Threads.Client.Status.Alive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Dead 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Status_Dead {
+            get {
+                return ResourceManager.GetString("Threads.Client.Status.Dead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Hooked 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Status_Hooked {
+            get {
+                return ResourceManager.GetString("Threads.Client.Status.Hooked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Warning: Reading string: Truncated incomplete string. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_StringReadWarning {
+            get {
+                return ResourceManager.GetString("Threads.Client.StringReadWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Warning: Reading string: Truncated long string. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_StringTooLongWarning {
+            get {
+                return ResourceManager.GetString("Threads.Client.StringTooLongWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Doll 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Type_Doll {
+            get {
+                return ResourceManager.GetString("Threads.Client.Type.Doll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Monitor 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Type_Monitor {
+            get {
+                return ResourceManager.GetString("Threads.Client.Type.Monitor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Expression type mismatch. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_TypeMismatch {
+            get {
+                return ResourceManager.GetString("Threads.Client.TypeMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 verdict: Executing verdict &quot;{0}&quot;. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Verdict {
+            get {
+                return ResourceManager.GetString("Threads.Client.Verdict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 verdict: Waiting for verdict 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_VerdictWait {
+            get {
+                return ResourceManager.GetString("Threads.Client.VerdictWait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Requested operation is not applicable to the specified target. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_CmdEngine_TargetNotApplicable {
+            get {
+                return ResourceManager.GetString("Threads.CmdEngine.TargetNotApplicable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The specified target is dead or does not exist. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_CmdEngine_TargetNotAvailable {
+            get {
+                return ResourceManager.GetString("Threads.CmdEngine.TargetNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Compile error: {0} 的本地化字符串。
+        /// </summary>
+        internal static string Threads_EvalEngine_CompileError {
+            get {
+                return ResourceManager.GetString("Threads.EvalEngine.CompileError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Empty expression. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_EvalEngine_Empty {
+            get {
+                return ResourceManager.GetString("Threads.EvalEngine.Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Cannot evaluate expression of type {0}. 的本地化字符串。
+        /// </summary>
+        internal static string Threads_EvalEngine_InvalidType {
+            get {
+                return ResourceManager.GetString("Threads.EvalEngine.InvalidType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Runtime exception {0}: {1} 的本地化字符串。
+        /// </summary>
+        internal static string Threads_EvalEngine_RuntimeError {
+            get {
+                return ResourceManager.GetString("Threads.EvalEngine.RuntimeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 PEDoll Controller v{0}
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string UI_Cli_Banner {
+            get {
+                return ResourceManager.GetString("UI.Cli.Banner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 
+        ///[ Ctrl-C received, press any key to stop the engine... ] 的本地化字符串。
+        /// </summary>
+        internal static string UI_Cli_CtrlC {
+            get {
+                return ResourceManager.GetString("UI.Cli.CtrlC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 &gt; {0} 的本地化字符串。
+        /// </summary>
+        internal static string UI_Cli_Format {
+            get {
+                return ResourceManager.GetString("UI.Cli.Format", resourceCulture);
             }
         }
     }

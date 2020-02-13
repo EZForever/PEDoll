@@ -39,12 +39,15 @@ load	- Executes commands from a script.
 ----------
 Executes commands from a script.
 
-load SCRIPT
+load SCRIPT [PARAMETERS ...]
 
 SCRIPT		The script file to execute.
 		If embraced with double-quotes, SCRIPT is treated as a path;
 		otherwise, SCRIPT is the name (w/ or w/o extension) of a script
 		in "Scripts" folder (preferred) or "Scripts\API" folder.
+PARAMETERS	Parameters passed to script.
+		The parameters will be inserted into any command in the script,
+		given the command ends with a single `*`.
 
 --------------------------------------------------------------------------------
 help	- Provides help information for commands.

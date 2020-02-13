@@ -71,9 +71,7 @@ namespace PEDollController.Threads
                 {
                     string cmd = taskCmd.Result;
 
-                    Console.ForegroundColor = Logger.colorCmd;
-                    Console.WriteLine("> " + cmd);
-                    Console.ResetColor();
+                    Logger.H(Program.GetResourceString("UI.Cli.Format", cmd));
                     OnCommand(cmd);
                 }
             }
@@ -101,9 +99,7 @@ namespace PEDollController.Threads
             // Do not just stop the process
             args.Cancel = true;
 
-            // TODO: "UI.CtrlC"
-            // "\n[ Ctrl-C received, press any key to stop engine... ]"
-            Logger.W(Program.GetResourceString("UI.CtrlC"));
+            Logger.H(Program.GetResourceString("UI.Cli.CtrlC"));
             Console.ReadKey();
 
             // Tell TaskMain() about ending task
@@ -119,7 +115,6 @@ namespace PEDollController.Threads
         {
             if (target < 0 || Client.theInstances[target].isDead)
                 throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotAvailable"));
-            // TODO: "Threads.CmdEngine.TargetNotAvailable"
 
             return Client.theInstances[target];
         }
@@ -129,8 +124,6 @@ namespace PEDollController.Threads
             Client client = GetTargetClient();
             if (client.isMonitor != isMonitor)
                 throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotApplicable"));
-            // TODO: "Threads.CmdEngine.TargetNotApplicable"
-            // "Requested operation is not applicable to the target."
 
             return client;
         }

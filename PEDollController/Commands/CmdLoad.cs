@@ -18,7 +18,9 @@ namespace PEDollController.Commands
 
         public Dictionary<string, object> Parse(string cmd)
         {
-            string script = Commandline.ToArgs(cmd)[0];
+            List<string> args = Commandline.ToArgs(cmd);
+            string script = args[0];
+            string parameters = String.Join(" ", args.Skip(1));
 
             if (script.StartsWith("\"") && script.EndsWith("\""))
             {
@@ -30,9 +32,8 @@ namespace PEDollController.Commands
                 }
                 catch(Exception e)
                 {
-                    // TODO: "Commands.Load.InvalidPath"
                     if (e is ArgumentException || e is NotSupportedException || e is PathTooLongException)
-                        throw new ArgumentException(Program.GetResourceString("Commands.Load.InvalidPath"));
+                        throw new ArgumentException("script");
                     else
                         throw; // Not expected to be `catch`ed
                 }
@@ -43,7 +44,7 @@ namespace PEDollController.Commands
                 foreach(char c in Path.GetInvalidFileNameChars())
                 {
                     if (script.Contains(c))
-                        throw new ArgumentException(Program.GetResourceString("Commands.Load.InvalidPath"));
+                        throw new ArgumentException("script");
                 }
 
                 if (!Path.HasExtension(script))
@@ -60,13 +61,15 @@ namespace PEDollController.Commands
             return new Dictionary<string, object>()
             {
                 { "verb", "load" },
-                { "script", script }
+                { "script", script },
+                { "parameters", parameters }
             };
         }
 
         public void Invoke(Dictionary<string, object> options)
         {
             string script = (string)options["script"];
+            string parameters = (string)options["parameters"];
 
             StreamReader reader = null;
             try
@@ -75,14 +78,16 @@ namespace PEDollController.Commands
 
                 string line;
                 while ((line = reader.ReadLine()) != null)
+                {
+                    if (line.EndsWith("*"))
+                        line = line.TrimEnd('*') + parameters;
                     Threads.CmdEngine.theInstance.AddCommand(line);
+                }
 
                 reader.Close();
             }
             catch (Exception e)
             {
-                // TODO: "Commands.IOError"
-                // "I/O exception {0}: {1}"
                 throw new ArgumentException(Program.GetResourceString("Commands.IOError", e.GetType().Name, e.Message));
             }
             finally

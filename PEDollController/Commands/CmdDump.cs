@@ -70,18 +70,16 @@ namespace PEDollController.Commands
 
             if(id < 0)
             {
-                // TODO: "Commands.Dump.Header"
                 Logger.I(Program.GetResourceString("Commands.Dump.Header"));
 
                 for (int i = 0; i < Threads.CmdEngine.theInstance.dumps.Count; i++)
                 {
                     Threads.DumpEntry entry = Threads.CmdEngine.theInstance.dumps[i];
 
-                    // TODO: "Commands.Dump.Format"
                     Logger.I(Program.GetResourceString("Commands.Dump.Format",
                         i,
-                        entry.Source,
-                        entry.Data.Length
+                        entry.Data.Length,
+                        entry.Source
                     ));
                 }
                 return;
@@ -92,9 +90,7 @@ namespace PEDollController.Commands
 
             if(save == null)
             {
-                // TODO: "Commands.Dump.Header"
-                // "Dump #{0} from hook \"{1}\" ({2} bytes), under format \"{3}\":\n"
-                Logger.I(Program.GetResourceString("Commands.Dump.Header", id, dump.Source, dump.Data.Length, format));
+                Logger.I(Program.GetResourceString("Commands.Dump.Title", id, dump.Source, dump.Data.Length, format));
                 Logger.I(formatter.ToScreen(dump.Data));
             }
             else

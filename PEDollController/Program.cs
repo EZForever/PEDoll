@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 using PEDollController.Threads;
 
@@ -24,9 +25,8 @@ namespace PEDollController
         [STAThread]
         static void Main()
         {
-            // TODO: "UI.Banner"
             Console.ResetColor();
-            Logger.I(GetResourceString("UI.Banner"));
+            Logger.H(GetResourceString("UI.Cli.Banner", Assembly.GetExecutingAssembly().GetName().Version.ToString(3)));
 
             // Initialize CmdEngine, which receives and processes user commands
             CmdEngine.theTask.Start();

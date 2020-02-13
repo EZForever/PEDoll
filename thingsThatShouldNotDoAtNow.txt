@@ -2,7 +2,7 @@ https://www.flaticon.com/packs/magic-50
 
 https://www.flaticon.com/free-icon/puppet_1036672?term=puppeteer&page=1&position=5
 
-Controller: a "puppet controller"
+Controller: a "puppet controller" (official name "marionette control bar")
 
 Monitor: ?
 

@@ -123,4 +123,164 @@
   <data name="Commands.Unknown" xml:space="preserve">
     <value>Unknown command `{0}`.</value>
   </data>
+  <data name="Commands.IOError" xml:space="preserve">
+    <value>I/O exception {0}: {1}</value>
+  </data>
+  <data name="Commands.Win32Error" xml:space="preserve">
+    <value>Win32 Error {0}: {1}</value>
+  </data>
+  <data name="Commands.ParensMismatch" xml:space="preserve">
+    <value>Parens mismatch.</value>
+  </data>
+  <data name="Commands.Incomplete" xml:space="preserve">
+    <value>String incomplete.</value>
+  </data>
+  <data name="Commands.Dump.Header" xml:space="preserve">
+    <value>#    Size   Source
+----+------+---------------------------</value>
+  </data>
+  <data name="Commands.Dump.Format" xml:space="preserve">
+    <value>{0,-4} {1,-6} {2}</value>
+  </data>
+  <data name="Commands.Dump.Title" xml:space="preserve">
+    <value>Dump #{0} from hook "{1}" ({2} bytes), under format "{3}":
+</value>
+  </data>
+  <data name="Commands.Hook.Header" xml:space="preserve">
+    <value>#    OEP                Name
+----+------------------+-------------------------</value>
+  </data>
+  <data name="Commands.Hook.Format" xml:space="preserve">
+    <value>{0,-4} {1,-18} {2}</value>
+  </data>
+  <data name="Commands.Hook.HookExists" xml:space="preserve">
+    <value>Warning: Hook under name "{0}" already exists. Overwriting its settings.</value>
+  </data>
+  <data name="Commands.Hook.Installed" xml:space="preserve">
+    <value>Hook #{0} "{1}" installed at {2}.</value>
+  </data>
+  <data name="Commands.Listen.AlreadyStarted" xml:space="preserve">
+    <value>The listener has already been started.</value>
+  </data>
+  <data name="Commands.Listen.AvailableAddresses" xml:space="preserve">
+    <value>Available addresses:</value>
+  </data>
+  <data name="Commands.Ps.Header" xml:space="preserve">
+    <value>PID      Name
+--------+--------------------------------</value>
+  </data>
+  <data name="Commands.Ps.Format" xml:space="preserve">
+    <value>{0,-6}   {1}</value>
+  </data>
+  <data name="Commands.Target.Header" xml:space="preserve">
+    <value>  #    Name                             Type     Status   PID      Bits
+-+----+--------------------------------+--------+--------+--------+----</value>
+  </data>
+  <data name="Commands.Target.Format" xml:space="preserve">
+    <value>{0} {1,-4} {2,-32} {3,-8} {4,-8} {5,-8} {6,-4}</value>
+  </data>
+  <data name="Commands.Target.CurrentTarget" xml:space="preserve">
+    <value>Current target is #{0} "{1}" ({2}, {3}).</value>
+  </data>
+  <data name="Commands.Unhook.NotFound" xml:space="preserve">
+    <value>The specified hook does not exist.</value>
+  </data>
+  <data name="Commands.Unhook.Uninstalled" xml:space="preserve">
+    <value>Hook #{0} "{1}" removed.</value>
+  </data>
+  <data name="Threads.Client.Disconnected" xml:space="preserve">
+    <value>Client "{0}" disconnected, reason: {1}</value>
+  </data>
+  <data name="Threads.Client.Connected" xml:space="preserve">
+    <value>New client from {0}: #{1} "{2}" ({3}).</value>
+  </data>
+  <data name="Threads.Client.Hooked" xml:space="preserve">
+    <value>Client "{0}" hooked on #{1} "{2}" - phase "{3}".</value>
+  </data>
+  <data name="Threads.Client.ActionError" xml:space="preserve">
+    <value>Action "{0}" failed: {1}</value>
+  </data>
+  <data name="Threads.Client.MalformedPacket" xml:space="preserve">
+    <value>Malformed libPuppet packet.</value>
+  </data>
+  <data name="Threads.Client.StringReadWarning" xml:space="preserve">
+    <value>Warning: Reading string: Truncated incomplete string.</value>
+  </data>
+  <data name="Threads.Client.StringTooLongWarning" xml:space="preserve">
+    <value>Warning: Reading string: Truncated long string.</value>
+  </data>
+  <data name="Threads.Client.MemoryReadError" xml:space="preserve">
+    <value>Error reading memory.</value>
+  </data>
+  <data name="Threads.Client.MemoryReadWarning" xml:space="preserve">
+    <value>Warning: Reading memory: Size expected = {0}, got = {1}</value>
+  </data>
+  <data name="Threads.Client.ContextReadError" xml:space="preserve">
+    <value>Error reading register #{0}.</value>
+  </data>
+  <data name="Threads.Client.DictionaryReadError" xml:space="preserve">
+    <value>Dictionary entry "{0}" not found.</value>
+  </data>
+  <data name="Threads.Client.Type.Doll" xml:space="preserve">
+    <value>Doll</value>
+  </data>
+  <data name="Threads.Client.Type.Monitor" xml:space="preserve">
+    <value>Monitor</value>
+  </data>
+  <data name="Threads.Client.Status.Alive" xml:space="preserve">
+    <value>Alive</value>
+  </data>
+  <data name="Threads.Client.Status.Dead" xml:space="preserve">
+    <value>Dead</value>
+  </data>
+  <data name="Threads.Client.Status.Hooked" xml:space="preserve">
+    <value>Hooked</value>
+  </data>
+  <data name="Threads.Client.Echo" xml:space="preserve">
+    <value>echo: {0}</value>
+  </data>
+  <data name="Threads.Client.Dump" xml:space="preserve">
+    <value>dump: Dump #{0} created ({1} bytes).</value>
+  </data>
+  <data name="Threads.Client.Ctx" xml:space="preserve">
+    <value>ctx: Dictionary entry created: {0} =&gt; {1}.</value>
+  </data>
+  <data name="Threads.Client.TypeMismatch" xml:space="preserve">
+    <value>Expression type mismatch.</value>
+  </data>
+  <data name="Threads.Client.Verdict" xml:space="preserve">
+    <value>verdict: Executing verdict "{0}".</value>
+  </data>
+  <data name="Threads.Client.VerdictWait" xml:space="preserve">
+    <value>verdict: Waiting for verdict</value>
+  </data>
+  <data name="Threads.CmdEngine.TargetNotApplicable" xml:space="preserve">
+    <value>Requested operation is not applicable to the specified target.</value>
+  </data>
+  <data name="Threads.CmdEngine.TargetNotAvailable" xml:space="preserve">
+    <value>The specified target is dead or does not exist.</value>
+  </data>
+  <data name="Threads.EvalEngine.Empty" xml:space="preserve">
+    <value>Empty expression.</value>
+  </data>
+  <data name="Threads.EvalEngine.InvalidType" xml:space="preserve">
+    <value>Cannot evaluate expression of type {0}.</value>
+  </data>
+  <data name="Threads.EvalEngine.CompileError" xml:space="preserve">
+    <value>Compile error: {0}</value>
+  </data>
+  <data name="Threads.EvalEngine.RuntimeError" xml:space="preserve">
+    <value>Runtime exception {0}: {1}</value>
+  </data>
+  <data name="UI.Cli.Banner" xml:space="preserve">
+    <value>PEDoll Controller v{0}
+</value>
+  </data>
+  <data name="UI.Cli.CtrlC" xml:space="preserve">
+    <value>
+[ Ctrl-C received, press any key to stop the engine... ]</value>
+  </data>
+  <data name="UI.Cli.Format" xml:space="preserve">
+    <value>&gt; {0}</value>
+  </data>
 </root>

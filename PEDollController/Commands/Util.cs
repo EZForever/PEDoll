@@ -71,8 +71,6 @@ namespace PEDollController.Commands
         
         public static string Win32ErrorToMessage(int code)
         {
-            // TODO: "Commands.Win32Error"
-            // "Win32 Error {0}: {1}"
             return Program.GetResourceString("Commands.Win32Error", code, new System.ComponentModel.Win32Exception(code).Message);
         }
     }

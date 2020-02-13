@@ -75,8 +75,6 @@ namespace PEDollController.Threads
                     }
                     else
                     {
-                        // TODO: "Threads.EvalEngine.InvalidType"
-                        // "Invalid type {0}"
                         throw new ArgumentException(Program.GetResourceString("Threads.EvalEngine.InvalidType", typeName));
                     }
             }
@@ -107,8 +105,6 @@ namespace PEDollController.Threads
                 if (error.IsWarning)
                     continue; // Programmers never care about warnings
 
-                // TODO: "Threads.EvalEngine.CompileError"
-                // "Compile error: {0}"
                 throw new ArgumentException(Program.GetResourceString("Threads.EvalEngine.CompileError", error.ErrorText));
             }
 
@@ -128,8 +124,6 @@ namespace PEDollController.Threads
             }
             catch(TargetInvocationException e)
             {
-                // TODO: "Threads.EvalEngine.RuntimeError"
-                // "Runtime exception {0}: {1}"
                 throw new ArgumentException(Program.GetResourceString("Threads.EvalEngine.RuntimeError", e.InnerException.GetType().Name, e.InnerException.Message));
             }
 
@@ -178,8 +172,6 @@ namespace PEDollController.Threads
                             }
                             else if (stk < 0)
                             {
-                                // TODO: "Commands.ParensMismatch"
-                                // "Parens mismatch"
                                 throw new ArgumentException(Program.GetResourceString("Commands.ParensMismatch"));
                             }
                         }
@@ -189,14 +181,10 @@ namespace PEDollController.Threads
 
                 if (isEscaped || stk != 0)
                     throw new ArgumentException(Program.GetResourceString("Commands.Incomplete"));
-                // TODO: "Commands.Incomplete"
-                // "Incomplete string"
 
                 string expr = str.Substring(prevIdx + 1, currentIdx - prevIdx - 1);
                 if (String.IsNullOrWhiteSpace(expr))
                     throw new ArgumentException(Program.GetResourceString("Threads.EvalEngine.Empty"));
-                // TODO: "Threads.EvalEngine.Empty"
-                // "Empty expression"
                 exprs.Add(expr);
 
                 // Insert format identifier into string pieces

@@ -4,12 +4,12 @@ namespace PEDollController
 {
     static class Logger
     {
+        // Info, Notice, Highlight, Warning, Error
         static readonly ConsoleColor colorI = ConsoleColor.Gray;
         static readonly ConsoleColor colorN = ConsoleColor.Green;
+        static readonly ConsoleColor colorH = ConsoleColor.White;
         static readonly ConsoleColor colorW = ConsoleColor.Yellow;
         static readonly ConsoleColor colorE = ConsoleColor.Red;
-
-        public static readonly ConsoleColor colorCmd = ConsoleColor.White;
 
         public static void Write(ConsoleColor color, string msg, object[] args = null)
         {
@@ -26,6 +26,9 @@ namespace PEDollController
 
         public static void N(string msg) => Write(colorN, msg);
         public static void N(string msg, params object[] args) => Write(colorN, msg, args);
+
+        public static void H(string msg) => Write(colorH, msg);
+        public static void H(string msg, params object[] args) => Write(colorH, msg, args);
 
         public static void W(string msg) => Write(colorW, msg);
         public static void W(string msg, params object[] args) => Write(colorW, msg, args);

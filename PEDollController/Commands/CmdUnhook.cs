@@ -38,8 +38,7 @@ namespace PEDollController.Commands
             Threads.Client client = Threads.CmdEngine.theInstance.GetTargetClient(false);
 
             if(id >= client.hooks.Count || client.hooks[id].name == null)
-                throw new ArgumentException("Commands.Unhook.NotFound");
-            // TODO: "Commands.Unhook.NotFound"
+                throw new ArgumentException(Program.GetResourceString("Commands.Unhook.NotFound"));
 
             Threads.HookEntry entry = client.hooks[id];
             // If client is under the current hook, cancel the operation with TargetNotApplicable
@@ -61,9 +60,6 @@ namespace PEDollController.Commands
             client.hooks[id] = new Threads.HookEntry();
             // TODO: Refresh hook list
 
-            // TODO: "Commands.Unhook.Uninstalled"
-            // "Hook #{0} \"{1}\" removed"
-            // FIXME: Client.OEPString() ?
             Logger.I(Program.GetResourceString("Commands.Unhook.Uninstalled", id, entry.name));
         }
     }

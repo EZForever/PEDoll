@@ -91,9 +91,7 @@ namespace PEDollController.Threads
             }
             catch (IOException e)
             {
-                // TODO: "Threads.Client.Disconnected"
-                // "Client '{0}' disconnected, reason: {1}"
-                Logger.W(Program.GetResourceString("Threads.Client.Disconnect", clientName, e.Message));
+                Logger.W(Program.GetResourceString("Threads.Client.Disconnected", clientName, e.Message));
                 stream.Close();
                 client.Close();
                 // TODO: Refresh targets' list
@@ -140,12 +138,12 @@ namespace PEDollController.Threads
                     CmdEngine.theInstance.targetLastDoll = idx;
             }
 
-            // TODO: "Threads.Client.Connected"
-            Logger.N("New Client #{0} from {1}: isMonitor = {2}, bits = {3}, pid = {4}, clientName = {5}",
-                idx,
+            Logger.N(Program.GetResourceString("Threads.Client.Connected",
                 client.Client.RemoteEndPoint.ToString(),
-                isMonitor, bits, pid, clientName
-            );
+                idx,
+                clientName,
+                this.GetTypeString()
+            ));
 
             // TODO: Refresh targets' list
         }
@@ -164,9 +162,7 @@ namespace PEDollController.Threads
             }
             catch(IOException e)
             {
-                // TODO: "Threads.Client.Disconnected"
-                // "Client '{0}' disconnected, reason: {1}"
-                Logger.W(Program.GetResourceString("Threads.Client.Disconnect", clientName, e.Message));
+                Logger.W(Program.GetResourceString("Threads.Client.Disconnected", clientName, e.Message));
             }
             finally
             {
@@ -189,7 +185,6 @@ namespace PEDollController.Threads
             }
             else if (taskRecv.Status == TaskStatus.Faulted || taskRecv.Result < sizeof(UInt32))
             {
-                // TODO: "Threads.Client.MalformedPacket"
                 throw (taskRecv.Exception == null) ? 
                     new IOException(Program.GetResourceString("Threads.Client.MalformedPacket"))
                     : taskRecv.Exception.InnerException;
@@ -242,10 +237,12 @@ namespace PEDollController.Threads
             if (entry.name == null) // Uninitialized
                 throw new IOException(Program.GetResourceString("Threads.Client.UnknownHook"));
 
-            // TODO: "Threads.Client.Hooked"
-            // "Client \"{0}\" hooked on #{1} \"{2}\" - phase \"{3}\""
-            // FIXME: Fit description above
-            Logger.N(Program.GetResourceString("Threads.Client.Hooked"));
+            Logger.N(Program.GetResourceString("Threads.Client.Hooked",
+                this.clientName,
+                hooks.IndexOf(entry),
+                entry.name,
+                (hookPhase == 0) ? "before" : "after"
+            ));
 
             List<Dictionary<string, object>> actions = (hookPhase == 0) ? entry.beforeActions : entry.afterActions;
             string verdict = (hookPhase == 0) ? entry.beforeVerdict : entry.afterVerdict;
@@ -259,8 +256,6 @@ namespace PEDollController.Threads
                         case "echo":
                         {
                             string evalEcho = EvalEngine.EvalString(this, (string)action["echo"]);
-                            // TODO: "Threads.Client.Echo"
-                            // "echo: {0}"
                             Logger.N(Program.GetResourceString("Threads.Client.Echo", evalEcho));
                             break;
                         }
@@ -276,7 +271,6 @@ namespace PEDollController.Threads
                             }
                             else
                             {
-                                // TODO: "Threads.Client.TypeMismatch"
                                 throw new ArgumentException(Program.GetResourceString("Threads.Client.TypeMismatch"));
                             }
 
@@ -297,8 +291,6 @@ namespace PEDollController.Threads
                             dumpEntry.Data = eval_mem(ptr, len);
                             CmdEngine.theInstance.dumps.Add(dumpEntry);
 
-                            // TODO: "Threads.Client.Dump"
-                            // "dump: Binary blob #{0}, size = {1}"
                             Logger.N(Program.GetResourceString("Threads.Client.Dump", idx, dumpEntry.Data.Length));
                             // TODO: Update dump list
                             break;
@@ -308,8 +300,6 @@ namespace PEDollController.Threads
                             string evalKey = EvalEngine.EvalString(this, (string)action["key"]);
                             string evalValue = EvalEngine.EvalString(this, (string)action["value"]);
                             this.context.Add(evalKey, evalValue);
-                            // TODO: "Threads.Client.Ctx"
-                            // "ctx: Dictionary entry added: \"{0}\" => \"{1}\""
                             Logger.N(Program.GetResourceString("Threads.Client.Ctx", evalKey, evalValue));
                             break;
                         }
@@ -317,16 +307,12 @@ namespace PEDollController.Threads
                 }
                 catch(ArgumentException e)
                 {
-                    // TODO: "Threads.Client.ActionError"
-                    // "Action \"{0}\" failed: {1}"
                     Logger.E(Program.GetResourceString("Threads.Client.ActionError", (string)action["verb"], e.Message));
                 }
             }
 
             if(verdict == null)
             {
-                // TODO: "Threads.Client.VerdictWait"
-                // "verdict: Waiting for verdict"
                 Logger.N(Program.GetResourceString("Threads.Client.VerdictWait"));
                 // TODO: Update target list
             }
@@ -361,8 +347,6 @@ namespace PEDollController.Threads
                     if (pktAck.status != 0)
                         this.Expect(Puppet.PACKET_TYPE.BINARY); // Dispose BINARY packet
 
-                    // TODO: "Threads.Client.StringReadWarning"
-                    // "Warning: Truncated incomplete string"
                     Logger.W(Program.GetResourceString("Threads.Client.StringIncompleteWarning"));
                     break;
                 }
@@ -377,8 +361,6 @@ namespace PEDollController.Threads
                 }
                 else if(strBuffer.Count / charSize >= maxSize)
                 {
-                    // TODO: "Threads.Client.StringTooLongWarning"
-                    // "Warning: Truncated long string"
                     Logger.W(Program.GetResourceString("Threads.Client.StringTooLongWarning"));
                     break;
                 }
@@ -406,8 +388,6 @@ namespace PEDollController.Threads
             pktAck = Puppet.Util.Deserialize<Puppet.PACKET_ACK>(this.Expect(Puppet.PACKET_TYPE.ACK));
             if (pktAck.status != 0)
                 throw new ArgumentException(Program.GetResourceString("Threads.Client.ContextReadError", index));
-            // TODO: "Threads.Client.ContextReadError"
-            // "Register #{0} read error"
 
             // Expect register value
             Puppet.PACKET_INTEGER pktVal;
@@ -430,9 +410,7 @@ namespace PEDollController.Threads
         string eval_ctx(string key)
         {
             if(!this.context.ContainsKey(key))
-                throw new ArgumentException(Program.GetResourceString("Threads.Client.ContextReadError", key));
-            // TODO: "Threads.Client.ContextReadError"
-            // "Dictionary entry \"{0}\" not found"
+                throw new ArgumentException(Program.GetResourceString("Threads.Client.DictionaryReadError", key));
             return this.context[key];
         }
 
@@ -452,12 +430,9 @@ namespace PEDollController.Threads
 
             if (pktAck.status == 0)
             {
-                // TODO: "Threads.Client.MemoryReadError"
                 throw new ArgumentException(Program.GetResourceString("Threads.Client.MemoryReadError"));
             }
 
-            // TODO: "Threads.Client.MemoryReadWarning"
-            // "Warning: Binary blob size expected = {0}, got = {1}"
             if (pktAck.status < len)
                 Logger.W(Program.GetResourceString("Threads.Client.MemoryReadWarning", len, pktAck.status));
 
@@ -578,8 +553,6 @@ namespace PEDollController.Threads
 
         public string GetTypeString()
         {
-            // TODO: "Threads.Client.Type.Monitor"
-            // TODO: "Threads.Client.Type.Doll"
             return Program.GetResourceString(this.isMonitor ? "Threads.Client.Type.Monitor" : "Threads.Client.Type.Doll");
         }
 
@@ -587,9 +560,6 @@ namespace PEDollController.Threads
         {
             string resId;
 
-            // TODO: "Threads.Client.Status.Dead"
-            // TODO: "Threads.Client.Status.Hooked"
-            // TODO: "Threads.Client.Status.Alive"
             if (this.isDead)
                 resId = "Threads.Client.Status.Dead";
             else if(this.hookOep != 0)
@@ -609,8 +579,6 @@ namespace PEDollController.Threads
         {
             HookEntry entry = hooks.Where(x => x.oep == hookOep).First();
 
-            // TODO: "Threads.Client.Verdict"
-            // "verdict: Executing verdict \"{0}\""
             Logger.N(Program.GetResourceString("Threads.Client.Verdict", verdict));
 
             // Verdict string to ID
