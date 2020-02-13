@@ -110,6 +110,7 @@ namespace PEDollController.Threads
                 new Func<UInt64, uint, byte[]>(eval_mem),
                 new Func<UInt64, UInt64>(eval_poi),
                 new Func<uint, UInt64>(eval_arg),
+                new Func<byte[], int>(eval_dump),
             };
 
             // Initialize hook list and context dictionary
@@ -284,15 +285,7 @@ namespace PEDollController.Threads
                                 throw new ArgumentException(Program.GetResourceString("Threads.Client.TypeMismatch"));
                             }
 
-                            int idx = CmdEngine.theInstance.dumps.Count;
-
-                            DumpEntry dumpEntry = new DumpEntry();
-                            dumpEntry.Source = this.clientName;
-                            dumpEntry.Data = eval_mem(ptr, len);
-                            CmdEngine.theInstance.dumps.Add(dumpEntry);
-
-                            Logger.N(Program.GetResourceString("Threads.Client.Dump", idx, dumpEntry.Data.Length));
-                            // TODO: Update dump list
+                            eval_dump(eval_mem(ptr, len));
                             break;
                         }
                         case "ctx":
@@ -544,6 +537,20 @@ namespace PEDollController.Threads
             }
 
             return val;
+        }
+
+        int eval_dump(byte[] blob)
+        {
+            int idx = CmdEngine.theInstance.dumps.Count;
+
+            DumpEntry dumpEntry = new DumpEntry();
+            dumpEntry.Source = this.clientName;
+            dumpEntry.Data = blob;
+            CmdEngine.theInstance.dumps.Add(dumpEntry);
+
+            Logger.N(Program.GetResourceString("Threads.Client.Dump", idx, dumpEntry.Data.Length));
+            // TODO: Update dump list
+            return idx;
         }
 
         public string OepToString(UInt64 oep)

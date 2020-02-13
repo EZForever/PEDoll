@@ -164,6 +164,8 @@ Strings:
 	String embraced with double-quotes.
 `char`s:
 	Character embraced with quotes.
+`bool`s:
+	"True" or "False", respectively.
 Array of above types:
 	Comma-separated formatted elements, embraced with braces.
 Any other type:
@@ -231,6 +233,8 @@ uword poi(uword PTR)
 	Returns the integer pointer PTR points to as a `uword`.
 uword arg(uint INDEX)
 	Returns the value of function argument at zero-based index INDEX.
+int dump(byte[] BLOB)
+	Dumps BLOB, then returns the index of the dump entry.
 uword ax, cx, dx, bx, sp, bp, si, di, r8, r9
 	The value of the corresponding register. Readonly.
 	`r8` and `r9` are available only on a x64 client.

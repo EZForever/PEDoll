@@ -33,6 +33,7 @@ namespace EvalEngineScope
         readonly Func<UInt64, uint, byte[]> _mem;
         readonly Func<UInt64, UInt64> _poi;
         readonly Func<uint, UInt64> _arg;
+        readonly Func<byte[], int> _dump;
 
         // Methods
         public string str(uword ptr) { return _str(ptr); }
@@ -41,6 +42,7 @@ namespace EvalEngineScope
         public byte[] mem(uword ptr, uint len) { return _mem(ptr, len); }
         public uword poi(uword ptr) { return (uword)_poi(ptr); }
         public uword arg(uint index) { return (uword)_arg(index); }
+        public int dump(byte[] blob) { return _dump(blob); }
 
         // Readonly register fields
         public uword ax { get { return (uword)_getContext(0); } }
@@ -66,6 +68,7 @@ namespace EvalEngineScope
             _mem = (Func<UInt64, uint, byte[]>)imports[4];
             _poi = (Func<UInt64, UInt64>)imports[5];
             _arg = (Func<uint, UInt64>)imports[6];
+            _dump = (Func<byte[], int>)imports[7];
         }
 
         public object[] Invoke()

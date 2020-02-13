@@ -70,7 +70,7 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
-        ///   查找类似 #    Size   Source
+        ///   查找类似 #    Size   Client
         ///----+------+--------------------------- 的本地化字符串。
         /// </summary>
         internal static string Commands_Dump_Header {
@@ -80,7 +80,7 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Dump #{0} from hook &quot;{1}&quot; ({2} bytes), under format &quot;{3}&quot;:
+        ///   查找类似 Dump #{0} from client &quot;{1}&quot; ({2} bytes), under format &quot;{3}&quot;:
         /// 的本地化字符串。
         /// </summary>
         internal static string Commands_Dump_Title {

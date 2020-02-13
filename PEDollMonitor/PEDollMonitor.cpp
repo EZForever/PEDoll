@@ -71,6 +71,7 @@ int main(int argc, char* argv[])
     // See https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw#security-remarks
 
     const char* serverInfo = NULL;
+    std::string serverInfoInput;
     if (argc > 1)
     {
         // PEDollMonitor.exe $serverInfo
@@ -78,7 +79,6 @@ int main(int argc, char* argv[])
     }
     else
     {
-        std::string serverInfoInput;
         std::cout << "Input connection string [127.0.0.1]: ";
         std::getline(std::cin, serverInfoInput);
         serverInfo = serverInfoInput.empty() ? "127.0.0.1" : serverInfoInput.c_str();
