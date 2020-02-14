@@ -296,7 +296,7 @@ All the commands are case-sensitive.
     <value>doll	- (M) Creates a new Doll client.</value>
   </data>
   <data name="Commands.HelpShort.Dump" xml:space="preserve">
-    <value>dump	- (D) Displays or saves dumped data.</value>
+    <value>dump	- Displays or saves dumped data.</value>
   </data>
   <data name="Commands.HelpShort.End" xml:space="preserve">
     <value>end	- (M/D) Ends the client, stopping its process.</value>
@@ -588,5 +588,22 @@ reject		Reject the call to the function and immediately return.
 		Refer to `help hook` for information about stack balancing.
 terminate	Terminate the client process.
 </value>
+  </data>
+  <data name="UI.Gui.Ready" xml:space="preserve">
+    <value>Initialization complete, Type `help` for more information.
+Start the Listener via GUI or command `listen`.
+</value>
+  </data>
+  <data name="UI.Gui.Title.Doll" xml:space="preserve">
+    <value>Current client: #{0} {1}</value>
+  </data>
+  <data name="UI.Gui.Title.Hooked" xml:space="preserve">
+    <value>Current hook: #{0} "{1}" phase "{2}"</value>
+  </data>
+  <data name="UI.Gui.Title.Monitor" xml:space="preserve">
+    <value>Current client: #{0} {1}</value>
+  </data>
+  <data name="UI.Gui.Dump.Format" xml:space="preserve">
+    <value>Dump_#{0}_{1}.txt</value>
   </data>
 </root>

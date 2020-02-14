@@ -4,7 +4,8 @@ extern DollThreadIsCurrent:byte, DollHookGetCurrent:byte, \
     DollOnHook:byte, DollOnAfterHook:byte
 
 public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
-    HookStubBefore_len, HookStubBefore_HookOEPOffset, HookStubBefore_AddrOffset
+    HookStubBefore_len, HookStubBefore_HookOEPOffset, HookStubBefore_AddrOffset, \
+    pushad_count
 
 .code
 
@@ -171,5 +172,9 @@ HookStubBefore_HookOEPOffset \
 ; Offset to address pointer placeholder
 HookStubBefore_AddrOffset \
     dq 26
+
+; Registers saved by the pushad instruction
+pushad_count \
+    dq 10
 
 end

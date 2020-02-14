@@ -404,7 +404,7 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
-        ///   查找类似 dump	- (D) Displays or saves dumped data. 的本地化字符串。
+        ///   查找类似 dump	- Displays or saves dumped data. 的本地化字符串。
         /// </summary>
         internal static string Commands_HelpShort_Dump {
             get {
@@ -1011,6 +1011,53 @@ namespace PEDollController.Properties {
         internal static string UI_Cli_Format {
             get {
                 return ResourceManager.GetString("UI.Cli.Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Dump_#{0}_{1}.txt 的本地化字符串。
+        /// </summary>
+        internal static string UI_Gui_Dump_Format {
+            get {
+                return ResourceManager.GetString("UI.Gui.Dump.Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Initialization complete, Type `help` for more information.
+        ///Start the Listener via GUI or command `listen`.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string UI_Gui_Ready {
+            get {
+                return ResourceManager.GetString("UI.Gui.Ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Current client: #{0} {1} 的本地化字符串。
+        /// </summary>
+        internal static string UI_Gui_Title_Doll {
+            get {
+                return ResourceManager.GetString("UI.Gui.Title.Doll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Current hook: #{0} &quot;{1}&quot; phase &quot;{2}&quot; 的本地化字符串。
+        /// </summary>
+        internal static string UI_Gui_Title_Hooked {
+            get {
+                return ResourceManager.GetString("UI.Gui.Title.Hooked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Current client: #{0} {1} 的本地化字符串。
+        /// </summary>
+        internal static string UI_Gui_Title_Monitor {
+            get {
+                return ResourceManager.GetString("UI.Gui.Title.Monitor", resourceCulture);
             }
         }
     }

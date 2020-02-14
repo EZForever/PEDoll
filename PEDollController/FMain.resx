@@ -120,12 +120,42 @@
   <metadata name="mnuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="mnuStrip.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mnuFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 24</value>
+  </data>
+  <data name="mnuFile.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="mnuHelpCommands.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="mnuHelpCommands.Text" xml:space="preserve">
+    <value>&amp;Commands</value>
+  </data>
+  <data name="mnuHelpSpr1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 6</value>
+  </data>
+  <data name="mnuHelpAbout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 26</value>
+  </data>
+  <data name="mnuHelpAbout.Text" xml:space="preserve">
+    <value>&amp;About...</value>
+  </data>
+  <data name="mnuHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 24</value>
+  </data>
+  <data name="mnuHelp.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
   <data name="mnuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="mnuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>802, 28</value>
+    <value>942, 28</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mnuStrip.TabIndex" type="System.Int32, mscorlib">
@@ -143,17 +173,11 @@
   <data name="&gt;&gt;mnuStrip.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="mnuFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 24</value>
-  </data>
-  <data name="mnuFile.Text" xml:space="preserve">
-    <value>&amp;File</value>
-  </data>
   <data name="mnuFileLoad.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 26</value>
   </data>
   <data name="mnuFileLoad.Text" xml:space="preserve">
-    <value>&amp;Load Script...</value>
+    <value>&amp;Load script...</value>
   </data>
   <data name="mnuFileSpr1.Size" type="System.Drawing.Size, System.Drawing">
     <value>221, 6</value>
@@ -164,27 +188,24 @@
   <data name="mnuFileExit.Text" xml:space="preserve">
     <value>&amp;Exit</value>
   </data>
-  <data name="mnuHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 24</value>
-  </data>
-  <data name="mnuHelp.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
-  <data name="mnuHelpCommands.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="mnuHelpCommands.Text" xml:space="preserve">
-    <value>&amp;Commands</value>
-  </data>
-  <data name="mnuHelpSpr1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 6</value>
-  </data>
-  <data name="mnuHelpAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="mnuHelpAbout.Text" xml:space="preserve">
-    <value>&amp;About...</value>
-  </data>
+  <metadata name="tabPanels.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tabPageListener.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tabPageDumps.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tabPageMonitor.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tabPageDoll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tabPageHooked.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="&gt;&gt;tabPageListener.Name" xml:space="preserve">
     <value>tabPageListener</value>
   </data>
@@ -197,6 +218,18 @@
   <data name="&gt;&gt;tabPageListener.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;tabPageDumps.Name" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;tabPageDumps.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageDumps.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageDumps.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;tabPageMonitor.Name" xml:space="preserve">
     <value>tabPageMonitor</value>
   </data>
@@ -207,7 +240,7 @@
     <value>tabPanels</value>
   </data>
   <data name="&gt;&gt;tabPageMonitor.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;tabPageDoll.Name" xml:space="preserve">
     <value>tabPageDoll</value>
@@ -219,7 +252,7 @@
     <value>tabPanels</value>
   </data>
   <data name="&gt;&gt;tabPageDoll.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;tabPageHooked.Name" xml:space="preserve">
     <value>tabPageHooked</value>
@@ -231,25 +264,13 @@
     <value>tabPanels</value>
   </data>
   <data name="&gt;&gt;tabPageHooked.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;tabPageDumps.Name" xml:space="preserve">
-    <value>tabPageDumps</value>
-  </data>
-  <data name="&gt;&gt;tabPageDumps.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageDumps.Parent" xml:space="preserve">
-    <value>tabPanels</value>
-  </data>
-  <data name="&gt;&gt;tabPageDumps.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="tabPanels.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 31</value>
   </data>
   <data name="tabPanels.Size" type="System.Drawing.Size, System.Drawing">
-    <value>800, 369</value>
+    <value>939, 476</value>
   </data>
   <data name="tabPanels.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -266,6 +287,57 @@
   <data name="&gt;&gt;tabPanels.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="tabPageListener.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="pnlListenerStart.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="grpListenerTarget.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblListener1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblListener2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;pnlListenerStart.Name" xml:space="preserve">
+    <value>pnlListenerStart</value>
+  </data>
+  <data name="&gt;&gt;pnlListenerStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlListenerStart.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;pnlListenerStart.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpListenerTarget.Name" xml:space="preserve">
+    <value>grpListenerTarget</value>
+  </data>
+  <data name="&gt;&gt;grpListenerTarget.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpListenerTarget.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;grpListenerTarget.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Name" xml:space="preserve">
+    <value>lblListener1</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="&gt;&gt;lblListener2.Name" xml:space="preserve">
     <value>lblListener2</value>
   </data>
@@ -276,31 +348,7 @@
     <value>tabPageListener</value>
   </data>
   <data name="&gt;&gt;lblListener2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;grpListenerStart.Name" xml:space="preserve">
-    <value>grpListenerStart</value>
-  </data>
-  <data name="&gt;&gt;grpListenerStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpListenerStart.Parent" xml:space="preserve">
-    <value>tabPageListener</value>
-  </data>
-  <data name="&gt;&gt;grpListenerStart.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lstListenerTargets.Name" xml:space="preserve">
-    <value>lstListenerTargets</value>
-  </data>
-  <data name="&gt;&gt;lstListenerTargets.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lstListenerTargets.Parent" xml:space="preserve">
-    <value>tabPageListener</value>
-  </data>
-  <data name="&gt;&gt;lstListenerTargets.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="tabPageListener.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>
@@ -310,7 +358,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPageListener.Size" type="System.Drawing.Size, System.Drawing">
-    <value>792, 340</value>
+    <value>931, 447</value>
   </data>
   <data name="tabPageListener.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -330,110 +378,482 @@
   <data name="&gt;&gt;tabPageListener.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;grpMonitorCurrent.Name" xml:space="preserve">
-    <value>grpMonitorCurrent</value>
+  <metadata name="pnlListenerStart.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblListener3.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtListenerStartPort.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="chkListenerStartIPv6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnListenerStart.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;lblListener3.Name" xml:space="preserve">
+    <value>lblListener3</value>
   </data>
-  <data name="&gt;&gt;grpMonitorCurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblListener3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpMonitorCurrent.Parent" xml:space="preserve">
-    <value>tabPageMonitor</value>
+  <data name="&gt;&gt;lblListener3.Parent" xml:space="preserve">
+    <value>pnlListenerStart</value>
   </data>
-  <data name="&gt;&gt;grpMonitorCurrent.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblListener3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabPageMonitor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
+  <data name="&gt;&gt;txtListenerStartPort.Name" xml:space="preserve">
+    <value>txtListenerStartPort</value>
   </data>
-  <data name="tabPageMonitor.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="&gt;&gt;txtListenerStartPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tabPageMonitor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>792, 340</value>
+  <data name="&gt;&gt;txtListenerStartPort.Parent" xml:space="preserve">
+    <value>pnlListenerStart</value>
   </data>
-  <data name="tabPageMonitor.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;txtListenerStartPort.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="tabPageMonitor.Text" xml:space="preserve">
-    <value>Monitor </value>
+  <data name="&gt;&gt;chkListenerStartIPv6.Name" xml:space="preserve">
+    <value>chkListenerStartIPv6</value>
   </data>
-  <data name="&gt;&gt;tabPageMonitor.Name" xml:space="preserve">
-    <value>tabPageMonitor</value>
+  <data name="&gt;&gt;chkListenerStartIPv6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPageMonitor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;chkListenerStartIPv6.Parent" xml:space="preserve">
+    <value>pnlListenerStart</value>
   </data>
-  <data name="&gt;&gt;tabPageMonitor.Parent" xml:space="preserve">
-    <value>tabPanels</value>
+  <data name="&gt;&gt;chkListenerStartIPv6.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;tabPageMonitor.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;btnListenerStart.Name" xml:space="preserve">
+    <value>btnListenerStart</value>
   </data>
-  <data name="&gt;&gt;grpDollCurrent.Name" xml:space="preserve">
-    <value>grpDollCurrent</value>
+  <data name="&gt;&gt;btnListenerStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpDollCurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnListenerStart.Parent" xml:space="preserve">
+    <value>pnlListenerStart</value>
   </data>
-  <data name="&gt;&gt;grpDollCurrent.Parent" xml:space="preserve">
-    <value>tabPageDoll</value>
+  <data name="&gt;&gt;btnListenerStart.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;grpDollCurrent.ZOrder" xml:space="preserve">
+  <data name="pnlListenerStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>625, 6</value>
+  </data>
+  <data name="pnlListenerStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>300, 25</value>
+  </data>
+  <data name="pnlListenerStart.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;pnlListenerStart.Name" xml:space="preserve">
+    <value>pnlListenerStart</value>
+  </data>
+  <data name="&gt;&gt;pnlListenerStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlListenerStart.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;pnlListenerStart.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabPageDoll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
+  <metadata name="lblListener3.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblListener3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
-  <data name="tabPageDoll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>792, 340</value>
+  <data name="lblListener3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 3</value>
   </data>
-  <data name="tabPageDoll.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblListener3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 19</value>
+  </data>
+  <data name="lblListener3.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="lblListener3.Text" xml:space="preserve">
+    <value>Port:</value>
+  </data>
+  <data name="lblListener3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;lblListener3.Name" xml:space="preserve">
+    <value>lblListener3</value>
+  </data>
+  <data name="&gt;&gt;lblListener3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblListener3.Parent" xml:space="preserve">
+    <value>pnlListenerStart</value>
+  </data>
+  <data name="&gt;&gt;lblListener3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="txtListenerStartPort.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtListenerStartPort.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="txtListenerStartPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>67, 0</value>
+  </data>
+  <data name="txtListenerStartPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 25</value>
+  </data>
+  <data name="txtListenerStartPort.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="txtListenerStartPort.Text" xml:space="preserve">
+    <value>31415</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.Name" xml:space="preserve">
+    <value>txtListenerStartPort</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.Parent" xml:space="preserve">
+    <value>pnlListenerStart</value>
+  </data>
+  <data name="&gt;&gt;txtListenerStartPort.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="chkListenerStartIPv6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="chkListenerStartIPv6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="chkListenerStartIPv6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkListenerStartIPv6.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="chkListenerStartIPv6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>133, 3</value>
+  </data>
+  <data name="chkListenerStartIPv6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 19</value>
+  </data>
+  <data name="chkListenerStartIPv6.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="chkListenerStartIPv6.Text" xml:space="preserve">
+    <value>IPv6</value>
+  </data>
+  <data name="chkListenerStartIPv6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.Name" xml:space="preserve">
+    <value>chkListenerStartIPv6</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.Parent" xml:space="preserve">
+    <value>pnlListenerStart</value>
+  </data>
+  <data name="&gt;&gt;chkListenerStartIPv6.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="tabPageDoll.Text" xml:space="preserve">
-    <value>Doll    </value>
+  <metadata name="btnListenerStart.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnListenerStart.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;tabPageDoll.Name" xml:space="preserve">
-    <value>tabPageDoll</value>
+  <data name="btnListenerStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;tabPageDoll.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnListenerStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 0</value>
   </data>
-  <data name="&gt;&gt;tabPageDoll.Parent" xml:space="preserve">
-    <value>tabPanels</value>
+  <data name="btnListenerStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
   </data>
-  <data name="&gt;&gt;tabPageDoll.ZOrder" xml:space="preserve">
+  <data name="btnListenerStart.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnListenerStart.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.Name" xml:space="preserve">
+    <value>btnListenerStart</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.Parent" xml:space="preserve">
+    <value>pnlListenerStart</value>
+  </data>
+  <data name="&gt;&gt;btnListenerStart.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="grpListenerTarget.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lstListenerTargets.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;lstListenerTargets.Name" xml:space="preserve">
+    <value>lstListenerTargets</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.Parent" xml:space="preserve">
+    <value>grpListenerTarget</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grpListenerTarget.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 40</value>
+  </data>
+  <data name="grpListenerTarget.Size" type="System.Drawing.Size, System.Drawing">
+    <value>916, 401</value>
+  </data>
+  <data name="grpListenerTarget.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="grpListenerTarget.Text" xml:space="preserve">
+    <value>Available clients (target)</value>
+  </data>
+  <data name="&gt;&gt;grpListenerTarget.Name" xml:space="preserve">
+    <value>grpListenerTarget</value>
+  </data>
+  <data name="&gt;&gt;grpListenerTarget.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpListenerTarget.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;grpListenerTarget.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="lstListenerTargets.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lstListenerTargets.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="lstListenerTargets.Size" type="System.Drawing.Size, System.Drawing">
+    <value>904, 371</value>
+  </data>
+  <data name="lstListenerTargets.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.Name" xml:space="preserve">
+    <value>lstListenerTargets</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.Parent" xml:space="preserve">
+    <value>grpListenerTarget</value>
+  </data>
+  <data name="&gt;&gt;lstListenerTargets.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="clmTargetsSelected.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="clmTargetsSelected.Width" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="clmTargetsID.Text" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="clmTargetsName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="clmTargetsName.Width" type="System.Int32, mscorlib">
+    <value>240</value>
+  </data>
+  <data name="clmTargetsType.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="clmTargetsType.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="clmTargetsStatus.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="clmTargetsStatus.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="clmTargetsPID.Text" xml:space="preserve">
+    <value>PID</value>
+  </data>
+  <data name="clmTargetsBits.Text" xml:space="preserve">
+    <value>Bits</value>
+  </data>
+  <metadata name="lblListener1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblListener1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblListener1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 34</value>
+  </data>
+  <data name="lblListener1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>916, 3</value>
+  </data>
+  <data name="lblListener1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Name" xml:space="preserve">
+    <value>lblListener1</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;lblListener1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="tabPageHooked.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
+  <metadata name="lblListener2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblListener2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="tabPageHooked.Size" type="System.Drawing.Size, System.Drawing">
-    <value>792, 340</value>
+  <data name="lblListener2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
   </data>
-  <data name="tabPageHooked.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblListener2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>613, 25</value>
+  </data>
+  <data name="lblListener2.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="tabPageHooked.Text" xml:space="preserve">
-    <value>Hooked  </value>
+  <data name="lblListener2.Text" xml:space="preserve">
+    <value>To enable Controller listening for new clients, Click "Start".</value>
   </data>
-  <data name="&gt;&gt;tabPageHooked.Name" xml:space="preserve">
-    <value>tabPageHooked</value>
+  <data name="lblListener2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;tabPageHooked.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblListener2.Name" xml:space="preserve">
+    <value>lblListener2</value>
   </data>
-  <data name="&gt;&gt;tabPageHooked.Parent" xml:space="preserve">
-    <value>tabPanels</value>
+  <data name="&gt;&gt;lblListener2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPageHooked.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblListener2.Parent" xml:space="preserve">
+    <value>tabPageListener</value>
+  </data>
+  <data name="&gt;&gt;lblListener2.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <metadata name="tabPageDumps.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblDumps1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cboDumpFormats.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lstDumps.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnDumpSave.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnDumpShow.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtDumpContent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;lblDumps1.Name" xml:space="preserve">
+    <value>lblDumps1</value>
+  </data>
+  <data name="&gt;&gt;lblDumps1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDumps1.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;lblDumps1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cboDumpFormats.Name" xml:space="preserve">
+    <value>cboDumpFormats</value>
+  </data>
+  <data name="&gt;&gt;cboDumpFormats.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboDumpFormats.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;cboDumpFormats.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lstDumps.Name" xml:space="preserve">
+    <value>lstDumps</value>
+  </data>
+  <data name="&gt;&gt;lstDumps.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstDumps.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;lstDumps.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnDumpSave.Name" xml:space="preserve">
+    <value>btnDumpSave</value>
+  </data>
+  <data name="&gt;&gt;btnDumpSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDumpSave.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;btnDumpSave.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnDumpShow.Name" xml:space="preserve">
+    <value>btnDumpShow</value>
+  </data>
+  <data name="&gt;&gt;btnDumpShow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDumpShow.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;btnDumpShow.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txtDumpContent.Name" xml:space="preserve">
+    <value>txtDumpContent</value>
+  </data>
+  <data name="&gt;&gt;txtDumpContent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDumpContent.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;txtDumpContent.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="tabPageDumps.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>
   </data>
   <data name="tabPageDumps.Size" type="System.Drawing.Size, System.Drawing">
-    <value>792, 354</value>
+    <value>931, 447</value>
   </data>
   <data name="tabPageDumps.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -451,65 +871,2414 @@
     <value>tabPanels</value>
   </data>
   <data name="&gt;&gt;tabPageDumps.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="lstListenerTargets.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 97</value>
-  </data>
-  <data name="lstListenerTargets.Size" type="System.Drawing.Size, System.Drawing">
-    <value>780, 237</value>
-  </data>
-  <data name="lstListenerTargets.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lstListenerTargets.Name" xml:space="preserve">
-    <value>lstListenerTargets</value>
-  </data>
-  <data name="&gt;&gt;lstListenerTargets.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lstListenerTargets.Parent" xml:space="preserve">
-    <value>tabPageListener</value>
-  </data>
-  <data name="&gt;&gt;lstListenerTargets.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="clmName.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="clmName.Width" type="System.Int32, mscorlib">
-    <value>240</value>
-  </data>
-  <data name="clmType.Text" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="clmType.Width" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="clmStatus.Text" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="clmStatus.Width" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="clmPID.Text" xml:space="preserve">
-    <value>PID</value>
-  </data>
-  <data name="clmBits.Text" xml:space="preserve">
-    <value>Bits</value>
-  </data>
-  <data name="txtCLICommand.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="txtCLICommand.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
-  </data>
-  <data name="txtCLICommand.Size" type="System.Drawing.Size, System.Drawing">
-    <value>688, 25</value>
-  </data>
-  <data name="txtCLICommand.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
+  <metadata name="lblDumps1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblDumps1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 387</value>
+  </data>
+  <data name="lblDumps1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="lblDumps1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="lblDumps1.Text" xml:space="preserve">
+    <value>Format:</value>
+  </data>
+  <data name="lblDumps1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;lblDumps1.Name" xml:space="preserve">
+    <value>lblDumps1</value>
+  </data>
+  <data name="&gt;&gt;lblDumps1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDumps1.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;lblDumps1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="cboDumpFormats.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="cboDumpFormats.Location" type="System.Drawing.Point, System.Drawing">
+    <value>134, 387</value>
+  </data>
+  <data name="cboDumpFormats.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 23</value>
+  </data>
+  <data name="cboDumpFormats.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;cboDumpFormats.Name" xml:space="preserve">
+    <value>cboDumpFormats</value>
+  </data>
+  <data name="&gt;&gt;cboDumpFormats.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboDumpFormats.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;cboDumpFormats.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="lstDumps.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lstDumps.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 3</value>
+  </data>
+  <data name="lstDumps.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 378</value>
+  </data>
+  <data name="lstDumps.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lstDumps.Name" xml:space="preserve">
+    <value>lstDumps</value>
+  </data>
+  <data name="&gt;&gt;lstDumps.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstDumps.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;lstDumps.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="clmDumpsID.Text" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="clmDumpsID.Width" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="clmDumpsSize.Text" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="clmDumpsSource.Text" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="clmDumpsSource.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <metadata name="btnDumpSave.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnDumpSave.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnDumpSave.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDumpSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>134, 416</value>
+  </data>
+  <data name="btnDumpSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 25</value>
+  </data>
+  <data name="btnDumpSave.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btnDumpSave.Text" xml:space="preserve">
+    <value>Save...</value>
+  </data>
+  <data name="&gt;&gt;btnDumpSave.Name" xml:space="preserve">
+    <value>btnDumpSave</value>
+  </data>
+  <data name="&gt;&gt;btnDumpSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDumpSave.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;btnDumpSave.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="btnDumpShow.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnDumpShow.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnDumpShow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 416</value>
+  </data>
+  <data name="btnDumpShow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 25</value>
+  </data>
+  <data name="btnDumpShow.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnDumpShow.Text" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="&gt;&gt;btnDumpShow.Name" xml:space="preserve">
+    <value>btnDumpShow</value>
+  </data>
+  <data name="&gt;&gt;btnDumpShow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDumpShow.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;btnDumpShow.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="txtDumpContent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtDumpContent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>258, 3</value>
+  </data>
+  <data name="txtDumpContent.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtDumpContent.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="txtDumpContent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>670, 438</value>
+  </data>
+  <data name="txtDumpContent.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtDumpContent.Name" xml:space="preserve">
+    <value>txtDumpContent</value>
+  </data>
+  <data name="&gt;&gt;txtDumpContent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDumpContent.Parent" xml:space="preserve">
+    <value>tabPageDumps</value>
+  </data>
+  <data name="&gt;&gt;txtDumpContent.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <metadata name="tabPageMonitor.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="grpMonitorShell.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="grpMonitorKill.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblMonitor1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblMonitorCurrent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnMonitorCurrent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="grpMonitorDoll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblMonitor0.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;grpMonitorShell.Name" xml:space="preserve">
+    <value>grpMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorShell.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorShell.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorShell.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorKill.Name" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorKill.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorKill.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorKill.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor1.Name" xml:space="preserve">
+    <value>lblMonitor1</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor1.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Name" xml:space="preserve">
+    <value>lblMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Name" xml:space="preserve">
+    <value>btnMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorDoll.Name" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorDoll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorDoll.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorDoll.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor0.Name" xml:space="preserve">
+    <value>lblMonitor0</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor0.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor0.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="tabPageMonitor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="tabPageMonitor.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPageMonitor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>931, 447</value>
+  </data>
+  <data name="tabPageMonitor.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPageMonitor.Text" xml:space="preserve">
+    <value>Monitor </value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.Name" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageMonitor.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="grpMonitorShell.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblMonitor2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnMonitorShell.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtMonitorShell.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;lblMonitor2.Name" xml:space="preserve">
+    <value>lblMonitor2</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor2.Parent" xml:space="preserve">
+    <value>grpMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorShell.Name" xml:space="preserve">
+    <value>btnMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorShell.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorShell.Parent" xml:space="preserve">
+    <value>grpMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorShell.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtMonitorShell.Name" xml:space="preserve">
+    <value>txtMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;txtMonitorShell.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtMonitorShell.Parent" xml:space="preserve">
+    <value>grpMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;txtMonitorShell.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="grpMonitorShell.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 166</value>
+  </data>
+  <data name="grpMonitorShell.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 90</value>
+  </data>
+  <data name="grpMonitorShell.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="grpMonitorShell.Text" xml:space="preserve">
+    <value>System command (shell)</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorShell.Name" xml:space="preserve">
+    <value>grpMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorShell.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorShell.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorShell.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="lblMonitor2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblMonitor2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblMonitor2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 24</value>
+  </data>
+  <data name="lblMonitor2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="lblMonitor2.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="lblMonitor2.Text" xml:space="preserve">
+    <value>Command:</value>
+  </data>
+  <data name="lblMonitor2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor2.Name" xml:space="preserve">
+    <value>lblMonitor2</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor2.Parent" xml:space="preserve">
+    <value>grpMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="btnMonitorShell.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnMonitorShell.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnMonitorShell.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 55</value>
+  </data>
+  <data name="btnMonitorShell.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnMonitorShell.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnMonitorShell.Text" xml:space="preserve">
+    <value>Invoke</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorShell.Name" xml:space="preserve">
+    <value>btnMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorShell.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorShell.Parent" xml:space="preserve">
+    <value>grpMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorShell.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="txtMonitorShell.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtMonitorShell.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 24</value>
+  </data>
+  <data name="txtMonitorShell.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 25</value>
+  </data>
+  <data name="txtMonitorShell.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtMonitorShell.Name" xml:space="preserve">
+    <value>txtMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;txtMonitorShell.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtMonitorShell.Parent" xml:space="preserve">
+    <value>grpMonitorShell</value>
+  </data>
+  <data name="&gt;&gt;txtMonitorShell.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="grpMonitorKill.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnKillInvoke.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnKillBrowse.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtKillPID.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="optKillPID.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtKillName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="optKillName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;btnKillInvoke.Name" xml:space="preserve">
+    <value>btnKillInvoke</value>
+  </data>
+  <data name="&gt;&gt;btnKillInvoke.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnKillInvoke.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;btnKillInvoke.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnKillBrowse.Name" xml:space="preserve">
+    <value>btnKillBrowse</value>
+  </data>
+  <data name="&gt;&gt;btnKillBrowse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnKillBrowse.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;btnKillBrowse.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtKillPID.Name" xml:space="preserve">
+    <value>txtKillPID</value>
+  </data>
+  <data name="&gt;&gt;txtKillPID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtKillPID.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;txtKillPID.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;optKillPID.Name" xml:space="preserve">
+    <value>optKillPID</value>
+  </data>
+  <data name="&gt;&gt;optKillPID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optKillPID.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;optKillPID.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txtKillName.Name" xml:space="preserve">
+    <value>txtKillName</value>
+  </data>
+  <data name="&gt;&gt;txtKillName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtKillName.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;txtKillName.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;optKillName.Name" xml:space="preserve">
+    <value>optKillName</value>
+  </data>
+  <data name="&gt;&gt;optKillName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optKillName.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;optKillName.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="grpMonitorKill.Location" type="System.Drawing.Point, System.Drawing">
+    <value>376, 40</value>
+  </data>
+  <data name="grpMonitorKill.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 120</value>
+  </data>
+  <data name="grpMonitorKill.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="grpMonitorKill.Text" xml:space="preserve">
+    <value>Kill processes (kill)</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorKill.Name" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorKill.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorKill.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorKill.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="btnKillInvoke.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnKillInvoke.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnKillInvoke.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 86</value>
+  </data>
+  <data name="btnKillInvoke.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnKillInvoke.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnKillInvoke.Text" xml:space="preserve">
+    <value>Invoke</value>
+  </data>
+  <data name="&gt;&gt;btnKillInvoke.Name" xml:space="preserve">
+    <value>btnKillInvoke</value>
+  </data>
+  <data name="&gt;&gt;btnKillInvoke.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnKillInvoke.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;btnKillInvoke.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="btnKillBrowse.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnKillBrowse.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnKillBrowse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnKillBrowse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 55</value>
+  </data>
+  <data name="btnKillBrowse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnKillBrowse.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="btnKillBrowse.Text" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="&gt;&gt;btnKillBrowse.Name" xml:space="preserve">
+    <value>btnKillBrowse</value>
+  </data>
+  <data name="&gt;&gt;btnKillBrowse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnKillBrowse.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;btnKillBrowse.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="txtKillPID.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtKillPID.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtKillPID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 55</value>
+  </data>
+  <data name="txtKillPID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 25</value>
+  </data>
+  <data name="txtKillPID.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txtKillPID.Name" xml:space="preserve">
+    <value>txtKillPID</value>
+  </data>
+  <data name="&gt;&gt;txtKillPID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtKillPID.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;txtKillPID.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="optKillPID.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="optKillPID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="optKillPID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 55</value>
+  </data>
+  <data name="optKillPID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="optKillPID.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="optKillPID.Text" xml:space="preserve">
+    <value>PID:</value>
+  </data>
+  <data name="&gt;&gt;optKillPID.Name" xml:space="preserve">
+    <value>optKillPID</value>
+  </data>
+  <data name="&gt;&gt;optKillPID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optKillPID.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;optKillPID.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="txtKillName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtKillName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 24</value>
+  </data>
+  <data name="txtKillName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 25</value>
+  </data>
+  <data name="txtKillName.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtKillName.Name" xml:space="preserve">
+    <value>txtKillName</value>
+  </data>
+  <data name="&gt;&gt;txtKillName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtKillName.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;txtKillName.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="optKillName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="optKillName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="optKillName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 24</value>
+  </data>
+  <data name="optKillName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="optKillName.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="optKillName.Text" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="&gt;&gt;optKillName.Name" xml:space="preserve">
+    <value>optKillName</value>
+  </data>
+  <data name="&gt;&gt;optKillName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optKillName.Parent" xml:space="preserve">
+    <value>grpMonitorKill</value>
+  </data>
+  <data name="&gt;&gt;optKillName.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <metadata name="lblMonitor1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblMonitor1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 34</value>
+  </data>
+  <data name="lblMonitor1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>916, 3</value>
+  </data>
+  <data name="lblMonitor1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor1.Name" xml:space="preserve">
+    <value>lblMonitor1</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor1.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="lblMonitorCurrent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblMonitorCurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="lblMonitorCurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>813, 25</value>
+  </data>
+  <data name="lblMonitorCurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblMonitorCurrent.Text" xml:space="preserve">
+    <value>Current client: #0 EZFOREVER</value>
+  </data>
+  <data name="lblMonitorCurrent.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Name" xml:space="preserve">
+    <value>lblMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;lblMonitorCurrent.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="btnMonitorCurrent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnMonitorCurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>825, 6</value>
+  </data>
+  <data name="btnMonitorCurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnMonitorCurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnMonitorCurrent.Text" xml:space="preserve">
+    <value>End Client</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Name" xml:space="preserve">
+    <value>btnMonitorCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;btnMonitorCurrent.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="grpMonitorDoll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnDollInvoke.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnDollBrowse.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtDollPID.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="optDollAttach.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtDollCmdline.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="optDollLaunch.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;btnDollInvoke.Name" xml:space="preserve">
+    <value>btnDollInvoke</value>
+  </data>
+  <data name="&gt;&gt;btnDollInvoke.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollInvoke.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;btnDollInvoke.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnDollBrowse.Name" xml:space="preserve">
+    <value>btnDollBrowse</value>
+  </data>
+  <data name="&gt;&gt;btnDollBrowse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollBrowse.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;btnDollBrowse.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtDollPID.Name" xml:space="preserve">
+    <value>txtDollPID</value>
+  </data>
+  <data name="&gt;&gt;txtDollPID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDollPID.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;txtDollPID.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;optDollAttach.Name" xml:space="preserve">
+    <value>optDollAttach</value>
+  </data>
+  <data name="&gt;&gt;optDollAttach.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optDollAttach.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;optDollAttach.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txtDollCmdline.Name" xml:space="preserve">
+    <value>txtDollCmdline</value>
+  </data>
+  <data name="&gt;&gt;txtDollCmdline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDollCmdline.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;txtDollCmdline.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;optDollLaunch.Name" xml:space="preserve">
+    <value>optDollLaunch</value>
+  </data>
+  <data name="&gt;&gt;optDollLaunch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optDollLaunch.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;optDollLaunch.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="grpMonitorDoll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 40</value>
+  </data>
+  <data name="grpMonitorDoll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 120</value>
+  </data>
+  <data name="grpMonitorDoll.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="grpMonitorDoll.Text" xml:space="preserve">
+    <value>Create a new Doll client (doll)</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorDoll.Name" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorDoll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorDoll.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;grpMonitorDoll.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <metadata name="btnDollInvoke.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnDollInvoke.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDollInvoke.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 86</value>
+  </data>
+  <data name="btnDollInvoke.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnDollInvoke.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnDollInvoke.Text" xml:space="preserve">
+    <value>Invoke</value>
+  </data>
+  <data name="&gt;&gt;btnDollInvoke.Name" xml:space="preserve">
+    <value>btnDollInvoke</value>
+  </data>
+  <data name="&gt;&gt;btnDollInvoke.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollInvoke.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;btnDollInvoke.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="btnDollBrowse.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnDollBrowse.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnDollBrowse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDollBrowse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 55</value>
+  </data>
+  <data name="btnDollBrowse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnDollBrowse.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="btnDollBrowse.Text" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="&gt;&gt;btnDollBrowse.Name" xml:space="preserve">
+    <value>btnDollBrowse</value>
+  </data>
+  <data name="&gt;&gt;btnDollBrowse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollBrowse.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;btnDollBrowse.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="txtDollPID.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtDollPID.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtDollPID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 55</value>
+  </data>
+  <data name="txtDollPID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 25</value>
+  </data>
+  <data name="txtDollPID.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txtDollPID.Name" xml:space="preserve">
+    <value>txtDollPID</value>
+  </data>
+  <data name="&gt;&gt;txtDollPID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDollPID.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;txtDollPID.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="optDollAttach.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="optDollAttach.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="optDollAttach.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 55</value>
+  </data>
+  <data name="optDollAttach.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="optDollAttach.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="optDollAttach.Text" xml:space="preserve">
+    <value>PID:</value>
+  </data>
+  <data name="&gt;&gt;optDollAttach.Name" xml:space="preserve">
+    <value>optDollAttach</value>
+  </data>
+  <data name="&gt;&gt;optDollAttach.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optDollAttach.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;optDollAttach.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="txtDollCmdline.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtDollCmdline.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 24</value>
+  </data>
+  <data name="txtDollCmdline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 25</value>
+  </data>
+  <data name="txtDollCmdline.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtDollCmdline.Name" xml:space="preserve">
+    <value>txtDollCmdline</value>
+  </data>
+  <data name="&gt;&gt;txtDollCmdline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDollCmdline.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;txtDollCmdline.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="optDollLaunch.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="optDollLaunch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 24</value>
+  </data>
+  <data name="optDollLaunch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="optDollLaunch.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="optDollLaunch.Text" xml:space="preserve">
+    <value>Command:</value>
+  </data>
+  <data name="&gt;&gt;optDollLaunch.Name" xml:space="preserve">
+    <value>optDollLaunch</value>
+  </data>
+  <data name="&gt;&gt;optDollLaunch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optDollLaunch.Parent" xml:space="preserve">
+    <value>grpMonitorDoll</value>
+  </data>
+  <data name="&gt;&gt;optDollLaunch.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <metadata name="lblMonitor0.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblMonitor0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblMonitor0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 419</value>
+  </data>
+  <data name="lblMonitor0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>916, 25</value>
+  </data>
+  <data name="lblMonitor0.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="lblMonitor0.Text" xml:space="preserve">
+    <value>More actions can be achieved by manually entering commands.</value>
+  </data>
+  <data name="lblMonitor0.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor0.Name" xml:space="preserve">
+    <value>lblMonitor0</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor0.Parent" xml:space="preserve">
+    <value>tabPageMonitor</value>
+  </data>
+  <data name="&gt;&gt;lblMonitor0.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <metadata name="tabPageDoll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="grpDollBreak.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="grpDollLoaddll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="grpDollHooks.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblDoll1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblDollCurrent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnDollCurrent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblDoll0.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;grpDollBreak.Name" xml:space="preserve">
+    <value>grpDollBreak</value>
+  </data>
+  <data name="&gt;&gt;grpDollBreak.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpDollBreak.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;grpDollBreak.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpDollLoaddll.Name" xml:space="preserve">
+    <value>grpDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;grpDollLoaddll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpDollLoaddll.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;grpDollLoaddll.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;grpDollHooks.Name" xml:space="preserve">
+    <value>grpDollHooks</value>
+  </data>
+  <data name="&gt;&gt;grpDollHooks.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpDollHooks.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;grpDollHooks.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblDoll1.Name" xml:space="preserve">
+    <value>lblDoll1</value>
+  </data>
+  <data name="&gt;&gt;lblDoll1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDoll1.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;lblDoll1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Name" xml:space="preserve">
+    <value>lblDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Name" xml:space="preserve">
+    <value>btnDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblDoll0.Name" xml:space="preserve">
+    <value>lblDoll0</value>
+  </data>
+  <data name="&gt;&gt;lblDoll0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDoll0.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;lblDoll0.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="tabPageDoll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="tabPageDoll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>931, 447</value>
+  </data>
+  <data name="tabPageDoll.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabPageDoll.Text" xml:space="preserve">
+    <value>Doll    </value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.Name" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageDoll.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="grpDollBreak.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnDollBreak.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;btnDollBreak.Name" xml:space="preserve">
+    <value>btnDollBreak</value>
+  </data>
+  <data name="&gt;&gt;btnDollBreak.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollBreak.Parent" xml:space="preserve">
+    <value>grpDollBreak</value>
+  </data>
+  <data name="&gt;&gt;btnDollBreak.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grpDollBreak.Location" type="System.Drawing.Point, System.Drawing">
+    <value>376, 40</value>
+  </data>
+  <data name="grpDollBreak.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 60</value>
+  </data>
+  <data name="grpDollBreak.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="grpDollBreak.Text" xml:space="preserve">
+    <value>Suspend/resume execution (break)</value>
+  </data>
+  <data name="&gt;&gt;grpDollBreak.Name" xml:space="preserve">
+    <value>grpDollBreak</value>
+  </data>
+  <data name="&gt;&gt;grpDollBreak.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpDollBreak.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;grpDollBreak.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="btnDollBreak.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnDollBreak.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDollBreak.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="btnDollBreak.Size" type="System.Drawing.Size, System.Drawing">
+    <value>346, 25</value>
+  </data>
+  <data name="btnDollBreak.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnDollBreak.Text" xml:space="preserve">
+    <value>Invoke</value>
+  </data>
+  <data name="&gt;&gt;btnDollBreak.Name" xml:space="preserve">
+    <value>btnDollBreak</value>
+  </data>
+  <data name="&gt;&gt;btnDollBreak.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollBreak.Parent" xml:space="preserve">
+    <value>grpDollBreak</value>
+  </data>
+  <data name="&gt;&gt;btnDollBreak.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="grpDollLoaddll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblDoll2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnDollLoaddll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtDollLoaddll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;lblDoll2.Name" xml:space="preserve">
+    <value>lblDoll2</value>
+  </data>
+  <data name="&gt;&gt;lblDoll2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDoll2.Parent" xml:space="preserve">
+    <value>grpDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;lblDoll2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnDollLoaddll.Name" xml:space="preserve">
+    <value>btnDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;btnDollLoaddll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollLoaddll.Parent" xml:space="preserve">
+    <value>grpDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;btnDollLoaddll.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtDollLoaddll.Name" xml:space="preserve">
+    <value>txtDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;txtDollLoaddll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDollLoaddll.Parent" xml:space="preserve">
+    <value>grpDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;txtDollLoaddll.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="grpDollLoaddll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>376, 106</value>
+  </data>
+  <data name="grpDollLoaddll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 90</value>
+  </data>
+  <data name="grpDollLoaddll.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="grpDollLoaddll.Text" xml:space="preserve">
+    <value>Load module (loaddll)</value>
+  </data>
+  <data name="&gt;&gt;grpDollLoaddll.Name" xml:space="preserve">
+    <value>grpDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;grpDollLoaddll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpDollLoaddll.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;grpDollLoaddll.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="lblDoll2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblDoll2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDoll2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 24</value>
+  </data>
+  <data name="lblDoll2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="lblDoll2.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="lblDoll2.Text" xml:space="preserve">
+    <value>Module:</value>
+  </data>
+  <data name="lblDoll2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblDoll2.Name" xml:space="preserve">
+    <value>lblDoll2</value>
+  </data>
+  <data name="&gt;&gt;lblDoll2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDoll2.Parent" xml:space="preserve">
+    <value>grpDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;lblDoll2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="btnDollLoaddll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnDollLoaddll.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDollLoaddll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 55</value>
+  </data>
+  <data name="btnDollLoaddll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnDollLoaddll.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnDollLoaddll.Text" xml:space="preserve">
+    <value>Invoke</value>
+  </data>
+  <data name="&gt;&gt;btnDollLoaddll.Name" xml:space="preserve">
+    <value>btnDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;btnDollLoaddll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollLoaddll.Parent" xml:space="preserve">
+    <value>grpDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;btnDollLoaddll.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="txtDollLoaddll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtDollLoaddll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 24</value>
+  </data>
+  <data name="txtDollLoaddll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 25</value>
+  </data>
+  <data name="txtDollLoaddll.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtDollLoaddll.Name" xml:space="preserve">
+    <value>txtDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;txtDollLoaddll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDollLoaddll.Parent" xml:space="preserve">
+    <value>grpDollLoaddll</value>
+  </data>
+  <data name="&gt;&gt;txtDollLoaddll.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="grpDollHooks.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnHooksAdd.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnHooksRemove.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lstDollHooks.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;btnHooksAdd.Name" xml:space="preserve">
+    <value>btnHooksAdd</value>
+  </data>
+  <data name="&gt;&gt;btnHooksAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHooksAdd.Parent" xml:space="preserve">
+    <value>grpDollHooks</value>
+  </data>
+  <data name="&gt;&gt;btnHooksAdd.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnHooksRemove.Name" xml:space="preserve">
+    <value>btnHooksRemove</value>
+  </data>
+  <data name="&gt;&gt;btnHooksRemove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHooksRemove.Parent" xml:space="preserve">
+    <value>grpDollHooks</value>
+  </data>
+  <data name="&gt;&gt;btnHooksRemove.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lstDollHooks.Name" xml:space="preserve">
+    <value>lstDollHooks</value>
+  </data>
+  <data name="&gt;&gt;lstDollHooks.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstDollHooks.Parent" xml:space="preserve">
+    <value>grpDollHooks</value>
+  </data>
+  <data name="&gt;&gt;lstDollHooks.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="grpDollHooks.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 40</value>
+  </data>
+  <data name="grpDollHooks.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 402</value>
+  </data>
+  <data name="grpDollHooks.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="grpDollHooks.Text" xml:space="preserve">
+    <value>Hooks (hook/unhook)</value>
+  </data>
+  <data name="&gt;&gt;grpDollHooks.Name" xml:space="preserve">
+    <value>grpDollHooks</value>
+  </data>
+  <data name="&gt;&gt;grpDollHooks.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpDollHooks.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;grpDollHooks.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="btnHooksAdd.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnHooksAdd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnHooksAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>149, 371</value>
+  </data>
+  <data name="btnHooksAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnHooksAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btnHooksAdd.Text" xml:space="preserve">
+    <value>Add...</value>
+  </data>
+  <data name="&gt;&gt;btnHooksAdd.Name" xml:space="preserve">
+    <value>btnHooksAdd</value>
+  </data>
+  <data name="&gt;&gt;btnHooksAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHooksAdd.Parent" xml:space="preserve">
+    <value>grpDollHooks</value>
+  </data>
+  <data name="&gt;&gt;btnHooksAdd.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="btnHooksRemove.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnHooksRemove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnHooksRemove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>255, 371</value>
+  </data>
+  <data name="btnHooksRemove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnHooksRemove.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnHooksRemove.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;btnHooksRemove.Name" xml:space="preserve">
+    <value>btnHooksRemove</value>
+  </data>
+  <data name="&gt;&gt;btnHooksRemove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHooksRemove.Parent" xml:space="preserve">
+    <value>grpDollHooks</value>
+  </data>
+  <data name="&gt;&gt;btnHooksRemove.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="lstDollHooks.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lstDollHooks.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="lstDollHooks.Size" type="System.Drawing.Size, System.Drawing">
+    <value>349, 341</value>
+  </data>
+  <data name="lstDollHooks.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lstDollHooks.Name" xml:space="preserve">
+    <value>lstDollHooks</value>
+  </data>
+  <data name="&gt;&gt;lstDollHooks.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstDollHooks.Parent" xml:space="preserve">
+    <value>grpDollHooks</value>
+  </data>
+  <data name="&gt;&gt;lstDollHooks.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="clmHooksID.Text" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="clmHooksID.Width" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="clmHooksOep.Text" xml:space="preserve">
+    <value>OEP</value>
+  </data>
+  <data name="clmHooksOep.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="clmHooksName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="clmHooksName.Width" type="System.Int32, mscorlib">
+    <value>180</value>
+  </data>
+  <metadata name="lblDoll1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblDoll1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDoll1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 34</value>
+  </data>
+  <data name="lblDoll1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>916, 3</value>
+  </data>
+  <data name="lblDoll1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblDoll1.Name" xml:space="preserve">
+    <value>lblDoll1</value>
+  </data>
+  <data name="&gt;&gt;lblDoll1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDoll1.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;lblDoll1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="lblDollCurrent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblDollCurrent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDollCurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="lblDollCurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>813, 25</value>
+  </data>
+  <data name="lblDollCurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="lblDollCurrent.Text" xml:space="preserve">
+    <value>Current client: #1 Dummy.exe</value>
+  </data>
+  <data name="lblDollCurrent.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Name" xml:space="preserve">
+    <value>lblDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;lblDollCurrent.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="btnDollCurrent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnDollCurrent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDollCurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>825, 6</value>
+  </data>
+  <data name="btnDollCurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnDollCurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="btnDollCurrent.Text" xml:space="preserve">
+    <value>End Client</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Name" xml:space="preserve">
+    <value>btnDollCurrent</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;btnDollCurrent.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <metadata name="lblDoll0.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblDoll0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDoll0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 419</value>
+  </data>
+  <data name="lblDoll0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>916, 25</value>
+  </data>
+  <data name="lblDoll0.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="lblDoll0.Text" xml:space="preserve">
+    <value>More actions can be achieved by manually entering commands.</value>
+  </data>
+  <data name="lblDoll0.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;lblDoll0.Name" xml:space="preserve">
+    <value>lblDoll0</value>
+  </data>
+  <data name="&gt;&gt;lblDoll0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDoll0.Parent" xml:space="preserve">
+    <value>tabPageDoll</value>
+  </data>
+  <data name="&gt;&gt;lblDoll0.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <metadata name="tabPageHooked.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="grpHookedEval.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="grpHookedResults.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="pnlHookVerdict.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblHooked1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblHookedCurrent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblHooked0.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;grpHookedEval.Name" xml:space="preserve">
+    <value>grpHookedEval</value>
+  </data>
+  <data name="&gt;&gt;grpHookedEval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpHookedEval.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;grpHookedEval.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpHookedResults.Name" xml:space="preserve">
+    <value>grpHookedResults</value>
+  </data>
+  <data name="&gt;&gt;grpHookedResults.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpHookedResults.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;grpHookedResults.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;pnlHookVerdict.Name" xml:space="preserve">
+    <value>pnlHookVerdict</value>
+  </data>
+  <data name="&gt;&gt;pnlHookVerdict.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlHookVerdict.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;pnlHookVerdict.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblHooked1.Name" xml:space="preserve">
+    <value>lblHooked1</value>
+  </data>
+  <data name="&gt;&gt;lblHooked1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblHooked1.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;lblHooked1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lblHookedCurrent.Name" xml:space="preserve">
+    <value>lblHookedCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblHookedCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblHookedCurrent.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;lblHookedCurrent.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lblHooked0.Name" xml:space="preserve">
+    <value>lblHooked0</value>
+  </data>
+  <data name="&gt;&gt;lblHooked0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblHooked0.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;lblHooked0.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tabPageHooked.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="tabPageHooked.Size" type="System.Drawing.Size, System.Drawing">
+    <value>931, 447</value>
+  </data>
+  <data name="tabPageHooked.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabPageHooked.Text" xml:space="preserve">
+    <value>Hooked  </value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.Name" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.Parent" xml:space="preserve">
+    <value>tabPanels</value>
+  </data>
+  <data name="&gt;&gt;tabPageHooked.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="grpHookedEval.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtHookedEval.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnHookedEval.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;txtHookedEval.Name" xml:space="preserve">
+    <value>txtHookedEval</value>
+  </data>
+  <data name="&gt;&gt;txtHookedEval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHookedEval.Parent" xml:space="preserve">
+    <value>grpHookedEval</value>
+  </data>
+  <data name="&gt;&gt;txtHookedEval.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnHookedEval.Name" xml:space="preserve">
+    <value>btnHookedEval</value>
+  </data>
+  <data name="&gt;&gt;btnHookedEval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHookedEval.Parent" xml:space="preserve">
+    <value>grpHookedEval</value>
+  </data>
+  <data name="&gt;&gt;btnHookedEval.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grpHookedEval.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 356</value>
+  </data>
+  <data name="grpHookedEval.Size" type="System.Drawing.Size, System.Drawing">
+    <value>914, 60</value>
+  </data>
+  <data name="grpHookedEval.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="grpHookedEval.Text" xml:space="preserve">
+    <value>Evaluate expression (eval)</value>
+  </data>
+  <data name="&gt;&gt;grpHookedEval.Name" xml:space="preserve">
+    <value>grpHookedEval</value>
+  </data>
+  <data name="&gt;&gt;grpHookedEval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpHookedEval.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;grpHookedEval.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="txtHookedEval.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtHookedEval.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="txtHookedEval.Size" type="System.Drawing.Size, System.Drawing">
+    <value>796, 25</value>
+  </data>
+  <data name="txtHookedEval.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;txtHookedEval.Name" xml:space="preserve">
+    <value>txtHookedEval</value>
+  </data>
+  <data name="&gt;&gt;txtHookedEval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHookedEval.Parent" xml:space="preserve">
+    <value>grpHookedEval</value>
+  </data>
+  <data name="&gt;&gt;txtHookedEval.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="btnHookedEval.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnHookedEval.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btnHookedEval.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnHookedEval.Location" type="System.Drawing.Point, System.Drawing">
+    <value>808, 24</value>
+  </data>
+  <data name="btnHookedEval.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnHookedEval.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="btnHookedEval.Text" xml:space="preserve">
+    <value>Evaluate</value>
+  </data>
+  <data name="&gt;&gt;btnHookedEval.Name" xml:space="preserve">
+    <value>btnHookedEval</value>
+  </data>
+  <data name="&gt;&gt;btnHookedEval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHookedEval.Parent" xml:space="preserve">
+    <value>grpHookedEval</value>
+  </data>
+  <data name="&gt;&gt;btnHookedEval.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="grpHookedResults.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtHookedResults.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;txtHookedResults.Name" xml:space="preserve">
+    <value>txtHookedResults</value>
+  </data>
+  <data name="&gt;&gt;txtHookedResults.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHookedResults.Parent" xml:space="preserve">
+    <value>grpHookedResults</value>
+  </data>
+  <data name="&gt;&gt;txtHookedResults.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grpHookedResults.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 40</value>
+  </data>
+  <data name="grpHookedResults.Size" type="System.Drawing.Size, System.Drawing">
+    <value>914, 310</value>
+  </data>
+  <data name="grpHookedResults.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="grpHookedResults.Text" xml:space="preserve">
+    <value>Action results</value>
+  </data>
+  <data name="&gt;&gt;grpHookedResults.Name" xml:space="preserve">
+    <value>grpHookedResults</value>
+  </data>
+  <data name="&gt;&gt;grpHookedResults.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpHookedResults.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;grpHookedResults.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="txtHookedResults.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtHookedResults.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="txtHookedResults.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtHookedResults.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="txtHookedResults.Size" type="System.Drawing.Size, System.Drawing">
+    <value>902, 280</value>
+  </data>
+  <data name="txtHookedResults.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtHookedResults.Name" xml:space="preserve">
+    <value>txtHookedResults</value>
+  </data>
+  <data name="&gt;&gt;txtHookedResults.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHookedResults.Parent" xml:space="preserve">
+    <value>grpHookedResults</value>
+  </data>
+  <data name="&gt;&gt;txtHookedResults.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="pnlHookVerdict.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnVerdictApprove.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnVerdictReject.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnVerdictTerminate.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;btnVerdictApprove.Name" xml:space="preserve">
+    <value>btnVerdictApprove</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictApprove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictApprove.Parent" xml:space="preserve">
+    <value>pnlHookVerdict</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictApprove.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictReject.Name" xml:space="preserve">
+    <value>btnVerdictReject</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictReject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictReject.Parent" xml:space="preserve">
+    <value>pnlHookVerdict</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictReject.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictTerminate.Name" xml:space="preserve">
+    <value>btnVerdictTerminate</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictTerminate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictTerminate.Parent" xml:space="preserve">
+    <value>pnlHookVerdict</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictTerminate.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="pnlHookVerdict.Location" type="System.Drawing.Point, System.Drawing">
+    <value>611, 6</value>
+  </data>
+  <data name="pnlHookVerdict.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 25</value>
+  </data>
+  <data name="pnlHookVerdict.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;pnlHookVerdict.Name" xml:space="preserve">
+    <value>pnlHookVerdict</value>
+  </data>
+  <data name="&gt;&gt;pnlHookVerdict.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlHookVerdict.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;pnlHookVerdict.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="btnVerdictApprove.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnVerdictApprove.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btnVerdictApprove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnVerdictApprove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="btnVerdictApprove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnVerdictApprove.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnVerdictApprove.Text" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictApprove.Name" xml:space="preserve">
+    <value>btnVerdictApprove</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictApprove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictApprove.Parent" xml:space="preserve">
+    <value>pnlHookVerdict</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictApprove.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="btnVerdictReject.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnVerdictReject.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btnVerdictReject.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnVerdictReject.Location" type="System.Drawing.Point, System.Drawing">
+    <value>106, 0</value>
+  </data>
+  <data name="btnVerdictReject.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnVerdictReject.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="btnVerdictReject.Text" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictReject.Name" xml:space="preserve">
+    <value>btnVerdictReject</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictReject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictReject.Parent" xml:space="preserve">
+    <value>pnlHookVerdict</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictReject.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="btnVerdictTerminate.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnVerdictTerminate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btnVerdictTerminate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnVerdictTerminate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 0</value>
+  </data>
+  <data name="btnVerdictTerminate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="btnVerdictTerminate.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btnVerdictTerminate.Text" xml:space="preserve">
+    <value>Terminate</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictTerminate.Name" xml:space="preserve">
+    <value>btnVerdictTerminate</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictTerminate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictTerminate.Parent" xml:space="preserve">
+    <value>pnlHookVerdict</value>
+  </data>
+  <data name="&gt;&gt;btnVerdictTerminate.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="lblHooked1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblHooked1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblHooked1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 34</value>
+  </data>
+  <data name="lblHooked1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>916, 3</value>
+  </data>
+  <data name="lblHooked1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;lblHooked1.Name" xml:space="preserve">
+    <value>lblHooked1</value>
+  </data>
+  <data name="&gt;&gt;lblHooked1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblHooked1.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;lblHooked1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="lblHookedCurrent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblHookedCurrent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblHookedCurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="lblHookedCurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>599, 25</value>
+  </data>
+  <data name="lblHookedCurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="lblHookedCurrent.Text" xml:space="preserve">
+    <value>Current hook: #0 "WinExec" phase "before"</value>
+  </data>
+  <data name="lblHookedCurrent.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblHookedCurrent.Name" xml:space="preserve">
+    <value>lblHookedCurrent</value>
+  </data>
+  <data name="&gt;&gt;lblHookedCurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblHookedCurrent.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;lblHookedCurrent.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="lblHooked0.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblHooked0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblHooked0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 419</value>
+  </data>
+  <data name="lblHooked0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>916, 25</value>
+  </data>
+  <data name="lblHooked0.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="lblHooked0.Text" xml:space="preserve">
+    <value>More actions can be achieved by manually entering commands.</value>
+  </data>
+  <data name="lblHooked0.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;lblHooked0.Name" xml:space="preserve">
+    <value>lblHooked0</value>
+  </data>
+  <data name="&gt;&gt;lblHooked0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblHooked0.Parent" xml:space="preserve">
+    <value>tabPageHooked</value>
+  </data>
+  <data name="&gt;&gt;lblHooked0.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <metadata name="grpCLI.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtCLICommand.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnCLIExecute.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="&gt;&gt;txtCLICommand.Name" xml:space="preserve">
     <value>txtCLICommand</value>
   </data>
@@ -521,21 +3290,6 @@
   </data>
   <data name="&gt;&gt;txtCLICommand.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="btnCLIExecute.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="btnCLIExecute.Location" type="System.Drawing.Point, System.Drawing">
-    <value>703, 19</value>
-  </data>
-  <data name="btnCLIExecute.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 25</value>
-  </data>
-  <data name="btnCLIExecute.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="btnCLIExecute.Text" xml:space="preserve">
-    <value>Execute</value>
   </data>
   <data name="&gt;&gt;btnCLIExecute.Name" xml:space="preserve">
     <value>btnCLIExecute</value>
@@ -553,10 +3307,10 @@
     <value>Bottom</value>
   </data>
   <data name="grpCLI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 403</value>
+    <value>0, 503</value>
   </data>
   <data name="grpCLI.Size" type="System.Drawing.Size, System.Drawing">
-    <value>802, 50</value>
+    <value>942, 50</value>
   </data>
   <data name="grpCLI.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -576,419 +3330,89 @@
   <data name="&gt;&gt;grpCLI.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;btnListenerStart.Name" xml:space="preserve">
-    <value>btnListenerStart</value>
-  </data>
-  <data name="&gt;&gt;btnListenerStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnListenerStart.Parent" xml:space="preserve">
-    <value>grpListenerStart</value>
-  </data>
-  <data name="&gt;&gt;btnListenerStart.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;chkListenerStartIPv6.Name" xml:space="preserve">
-    <value>chkListenerStartIPv6</value>
-  </data>
-  <data name="&gt;&gt;chkListenerStartIPv6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkListenerStartIPv6.Parent" xml:space="preserve">
-    <value>grpListenerStart</value>
-  </data>
-  <data name="&gt;&gt;chkListenerStartIPv6.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtListenerStartPort.Name" xml:space="preserve">
-    <value>txtListenerStartPort</value>
-  </data>
-  <data name="&gt;&gt;txtListenerStartPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtListenerStartPort.Parent" xml:space="preserve">
-    <value>grpListenerStart</value>
-  </data>
-  <data name="&gt;&gt;txtListenerStartPort.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblListener1.Name" xml:space="preserve">
-    <value>lblListener1</value>
-  </data>
-  <data name="&gt;&gt;lblListener1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblListener1.Parent" xml:space="preserve">
-    <value>grpListenerStart</value>
-  </data>
-  <data name="&gt;&gt;lblListener1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="grpListenerStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>545, 6</value>
-  </data>
-  <data name="grpListenerStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 85</value>
-  </data>
-  <data name="grpListenerStart.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="grpListenerStart.Text" xml:space="preserve">
-    <value>Start Listener</value>
-  </data>
-  <data name="&gt;&gt;grpListenerStart.Name" xml:space="preserve">
-    <value>grpListenerStart</value>
-  </data>
-  <data name="&gt;&gt;grpListenerStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpListenerStart.Parent" xml:space="preserve">
-    <value>tabPageListener</value>
-  </data>
-  <data name="&gt;&gt;grpListenerStart.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lblListener1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
-  </data>
-  <data name="lblListener1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 25</value>
-  </data>
-  <data name="lblListener1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblListener1.Text" xml:space="preserve">
-    <value>Port</value>
-  </data>
-  <data name="lblListener1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;lblListener1.Name" xml:space="preserve">
-    <value>lblListener1</value>
-  </data>
-  <data name="&gt;&gt;lblListener1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblListener1.Parent" xml:space="preserve">
-    <value>grpListenerStart</value>
-  </data>
-  <data name="&gt;&gt;lblListener1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="txtListenerStartPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 21</value>
-  </data>
-  <data name="txtListenerStartPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 25</value>
-  </data>
-  <data name="txtListenerStartPort.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtListenerStartPort.Name" xml:space="preserve">
-    <value>txtListenerStartPort</value>
-  </data>
-  <data name="&gt;&gt;txtListenerStartPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtListenerStartPort.Parent" xml:space="preserve">
-    <value>grpListenerStart</value>
-  </data>
-  <data name="&gt;&gt;txtListenerStartPort.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="chkListenerStartIPv6.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="chkListenerStartIPv6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 52</value>
-  </data>
-  <data name="chkListenerStartIPv6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 25</value>
-  </data>
-  <data name="chkListenerStartIPv6.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="chkListenerStartIPv6.Text" xml:space="preserve">
-    <value>IPv6</value>
-  </data>
-  <data name="chkListenerStartIPv6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;chkListenerStartIPv6.Name" xml:space="preserve">
-    <value>chkListenerStartIPv6</value>
-  </data>
-  <data name="&gt;&gt;chkListenerStartIPv6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkListenerStartIPv6.Parent" xml:space="preserve">
-    <value>grpListenerStart</value>
-  </data>
-  <data name="&gt;&gt;chkListenerStartIPv6.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnListenerStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 51</value>
-  </data>
-  <data name="btnListenerStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 25</value>
-  </data>
-  <data name="btnListenerStart.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="btnListenerStart.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="&gt;&gt;btnListenerStart.Name" xml:space="preserve">
-    <value>btnListenerStart</value>
-  </data>
-  <data name="&gt;&gt;btnListenerStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnListenerStart.Parent" xml:space="preserve">
-    <value>grpListenerStart</value>
-  </data>
-  <data name="&gt;&gt;btnListenerStart.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblListener2.AutoSize" type="System.Boolean, mscorlib">
+  <metadata name="txtCLICommand.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <data name="txtCLICommand.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
-  <data name="lblListener2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 76</value>
+  <data name="txtCLICommand.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
   </data>
-  <data name="lblListener2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 15</value>
+  <data name="txtCLICommand.Size" type="System.Drawing.Size, System.Drawing">
+    <value>826, 25</value>
   </data>
-  <data name="lblListener2.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="lblListener2.Text" xml:space="preserve">
-    <value>Available Targets:</value>
-  </data>
-  <data name="&gt;&gt;lblListener2.Name" xml:space="preserve">
-    <value>lblListener2</value>
-  </data>
-  <data name="&gt;&gt;lblListener2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblListener2.Parent" xml:space="preserve">
-    <value>tabPageListener</value>
-  </data>
-  <data name="&gt;&gt;lblListener2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnMonitorCurrent.Name" xml:space="preserve">
-    <value>btnMonitorCurrent</value>
-  </data>
-  <data name="&gt;&gt;btnMonitorCurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMonitorCurrent.Parent" xml:space="preserve">
-    <value>grpMonitorCurrent</value>
-  </data>
-  <data name="&gt;&gt;btnMonitorCurrent.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblMonitorCurrent.Name" xml:space="preserve">
-    <value>lblMonitorCurrent</value>
-  </data>
-  <data name="&gt;&gt;lblMonitorCurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMonitorCurrent.Parent" xml:space="preserve">
-    <value>grpMonitorCurrent</value>
-  </data>
-  <data name="&gt;&gt;lblMonitorCurrent.ZOrder" xml:space="preserve">
+  <data name="txtCLICommand.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="grpMonitorCurrent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>425, 6</value>
+  <data name="&gt;&gt;txtCLICommand.Name" xml:space="preserve">
+    <value>txtCLICommand</value>
   </data>
-  <data name="grpMonitorCurrent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>361, 57</value>
+  <data name="&gt;&gt;txtCLICommand.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="grpMonitorCurrent.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;txtCLICommand.Parent" xml:space="preserve">
+    <value>grpCLI</value>
+  </data>
+  <data name="&gt;&gt;txtCLICommand.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="grpMonitorCurrent.Text" xml:space="preserve">
-    <value>Current Client</value>
+  <metadata name="btnCLIExecute.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnCLIExecute.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;grpMonitorCurrent.Name" xml:space="preserve">
-    <value>grpMonitorCurrent</value>
+  <data name="btnCLIExecute.Location" type="System.Drawing.Point, System.Drawing">
+    <value>838, 19</value>
   </data>
-  <data name="&gt;&gt;grpMonitorCurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpMonitorCurrent.Parent" xml:space="preserve">
-    <value>tabPageMonitor</value>
-  </data>
-  <data name="&gt;&gt;grpMonitorCurrent.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblMonitorCurrent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
-  </data>
-  <data name="lblMonitorCurrent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 25</value>
-  </data>
-  <data name="lblMonitorCurrent.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblMonitorCurrent.Text" xml:space="preserve">
-    <value>#0: EZFOREVER</value>
-  </data>
-  <data name="lblMonitorCurrent.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblMonitorCurrent.Name" xml:space="preserve">
-    <value>lblMonitorCurrent</value>
-  </data>
-  <data name="&gt;&gt;lblMonitorCurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMonitorCurrent.Parent" xml:space="preserve">
-    <value>grpMonitorCurrent</value>
-  </data>
-  <data name="&gt;&gt;lblMonitorCurrent.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnMonitorCurrent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>252, 21</value>
-  </data>
-  <data name="btnMonitorCurrent.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnCLIExecute.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
   </data>
-  <data name="btnMonitorCurrent.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="btnCLIExecute.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="btnMonitorCurrent.Text" xml:space="preserve">
-    <value>End Client</value>
+  <data name="btnCLIExecute.Text" xml:space="preserve">
+    <value>Execute</value>
   </data>
-  <data name="&gt;&gt;btnMonitorCurrent.Name" xml:space="preserve">
-    <value>btnMonitorCurrent</value>
+  <data name="&gt;&gt;btnCLIExecute.Name" xml:space="preserve">
+    <value>btnCLIExecute</value>
   </data>
-  <data name="&gt;&gt;btnMonitorCurrent.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnCLIExecute.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnMonitorCurrent.Parent" xml:space="preserve">
-    <value>grpMonitorCurrent</value>
+  <data name="&gt;&gt;btnCLIExecute.Parent" xml:space="preserve">
+    <value>grpCLI</value>
   </data>
-  <data name="&gt;&gt;btnMonitorCurrent.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnDollCurrent.Name" xml:space="preserve">
-    <value>btnDollCurrent</value>
-  </data>
-  <data name="&gt;&gt;btnDollCurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDollCurrent.Parent" xml:space="preserve">
-    <value>grpDollCurrent</value>
-  </data>
-  <data name="&gt;&gt;btnDollCurrent.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblDollCurrent.Name" xml:space="preserve">
-    <value>lblDollCurrent</value>
-  </data>
-  <data name="&gt;&gt;lblDollCurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDollCurrent.Parent" xml:space="preserve">
-    <value>grpDollCurrent</value>
-  </data>
-  <data name="&gt;&gt;lblDollCurrent.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnCLIExecute.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="grpDollCurrent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>425, 6</value>
+  <metadata name="tipError.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>142, 17</value>
+  </metadata>
+  <metadata name="dlgDumpSave.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>254, 17</value>
+  </metadata>
+  <data name="dlgDumpSave.Filter" xml:space="preserve">
+    <value>*.txt|*.txt|*.*|*.*</value>
   </data>
-  <data name="grpDollCurrent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>361, 57</value>
-  </data>
-  <data name="grpDollCurrent.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="grpDollCurrent.Text" xml:space="preserve">
-    <value>Current Client</value>
-  </data>
-  <data name="&gt;&gt;grpDollCurrent.Name" xml:space="preserve">
-    <value>grpDollCurrent</value>
-  </data>
-  <data name="&gt;&gt;grpDollCurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpDollCurrent.Parent" xml:space="preserve">
-    <value>tabPageDoll</value>
-  </data>
-  <data name="&gt;&gt;grpDollCurrent.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnDollCurrent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnDollCurrent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>252, 21</value>
-  </data>
-  <data name="btnDollCurrent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 25</value>
-  </data>
-  <data name="btnDollCurrent.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="btnDollCurrent.Text" xml:space="preserve">
-    <value>End Client</value>
-  </data>
-  <data name="&gt;&gt;btnDollCurrent.Name" xml:space="preserve">
-    <value>btnDollCurrent</value>
-  </data>
-  <data name="&gt;&gt;btnDollCurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDollCurrent.Parent" xml:space="preserve">
-    <value>grpDollCurrent</value>
-  </data>
-  <data name="&gt;&gt;btnDollCurrent.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblDollCurrent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblDollCurrent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
-  </data>
-  <data name="lblDollCurrent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 25</value>
-  </data>
-  <data name="lblDollCurrent.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblDollCurrent.Text" xml:space="preserve">
-    <value>#0: Dummy.exe</value>
-  </data>
-  <data name="lblDollCurrent.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;lblDollCurrent.Name" xml:space="preserve">
-    <value>lblDollCurrent</value>
-  </data>
-  <data name="&gt;&gt;lblDollCurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDollCurrent.Parent" xml:space="preserve">
-    <value>grpDollCurrent</value>
-  </data>
-  <data name="&gt;&gt;lblDollCurrent.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <metadata name="dlgFileLoadOpen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>414, 17</value>
+  </metadata>
+  <data name="dlgFileLoadOpen.Filter" xml:space="preserve">
+    <value>*.txt|*.txt|*.*|*.*</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>802, 453</value>
+    <value>942, 553</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -1044,35 +3468,101 @@
   <data name="&gt;&gt;mnuHelpAbout.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;clmName.Name" xml:space="preserve">
-    <value>clmName</value>
+  <data name="&gt;&gt;clmTargetsSelected.Name" xml:space="preserve">
+    <value>clmTargetsSelected</value>
   </data>
-  <data name="&gt;&gt;clmName.Type" xml:space="preserve">
+  <data name="&gt;&gt;clmTargetsSelected.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;clmType.Name" xml:space="preserve">
-    <value>clmType</value>
+  <data name="&gt;&gt;clmTargetsID.Name" xml:space="preserve">
+    <value>clmTargetsID</value>
   </data>
-  <data name="&gt;&gt;clmType.Type" xml:space="preserve">
+  <data name="&gt;&gt;clmTargetsID.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;clmStatus.Name" xml:space="preserve">
-    <value>clmStatus</value>
+  <data name="&gt;&gt;clmTargetsName.Name" xml:space="preserve">
+    <value>clmTargetsName</value>
   </data>
-  <data name="&gt;&gt;clmStatus.Type" xml:space="preserve">
+  <data name="&gt;&gt;clmTargetsName.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;clmPID.Name" xml:space="preserve">
-    <value>clmPID</value>
+  <data name="&gt;&gt;clmTargetsType.Name" xml:space="preserve">
+    <value>clmTargetsType</value>
   </data>
-  <data name="&gt;&gt;clmPID.Type" xml:space="preserve">
+  <data name="&gt;&gt;clmTargetsType.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;clmBits.Name" xml:space="preserve">
-    <value>clmBits</value>
+  <data name="&gt;&gt;clmTargetsStatus.Name" xml:space="preserve">
+    <value>clmTargetsStatus</value>
   </data>
-  <data name="&gt;&gt;clmBits.Type" xml:space="preserve">
+  <data name="&gt;&gt;clmTargetsStatus.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmTargetsPID.Name" xml:space="preserve">
+    <value>clmTargetsPID</value>
+  </data>
+  <data name="&gt;&gt;clmTargetsPID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmTargetsBits.Name" xml:space="preserve">
+    <value>clmTargetsBits</value>
+  </data>
+  <data name="&gt;&gt;clmTargetsBits.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmDumpsID.Name" xml:space="preserve">
+    <value>clmDumpsID</value>
+  </data>
+  <data name="&gt;&gt;clmDumpsID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmDumpsSize.Name" xml:space="preserve">
+    <value>clmDumpsSize</value>
+  </data>
+  <data name="&gt;&gt;clmDumpsSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmDumpsSource.Name" xml:space="preserve">
+    <value>clmDumpsSource</value>
+  </data>
+  <data name="&gt;&gt;clmDumpsSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmHooksID.Name" xml:space="preserve">
+    <value>clmHooksID</value>
+  </data>
+  <data name="&gt;&gt;clmHooksID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmHooksOep.Name" xml:space="preserve">
+    <value>clmHooksOep</value>
+  </data>
+  <data name="&gt;&gt;clmHooksOep.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clmHooksName.Name" xml:space="preserve">
+    <value>clmHooksName</value>
+  </data>
+  <data name="&gt;&gt;clmHooksName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tipError.Name" xml:space="preserve">
+    <value>tipError</value>
+  </data>
+  <data name="&gt;&gt;tipError.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dlgDumpSave.Name" xml:space="preserve">
+    <value>dlgDumpSave</value>
+  </data>
+  <data name="&gt;&gt;dlgDumpSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dlgFileLoadOpen.Name" xml:space="preserve">
+    <value>dlgFileLoadOpen</value>
+  </data>
+  <data name="&gt;&gt;dlgFileLoadOpen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FMain</value>

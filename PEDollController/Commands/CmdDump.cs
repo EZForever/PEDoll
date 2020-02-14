@@ -91,7 +91,13 @@ namespace PEDollController.Commands
             if(save == null)
             {
                 Logger.I(Program.GetResourceString("Commands.Dump.Title", id, dump.Source, dump.Data.Length, format));
-                Logger.I(formatter.ToScreen(dump.Data));
+
+                string formatted = formatter.ToScreen(dump.Data);
+                Logger.I(formatted);
+                Threads.Gui.theInstance.InvokeOn((FMain Me) =>
+                {
+                    Me.txtDumpContent.Text = formatted;
+                });
             }
             else
             {

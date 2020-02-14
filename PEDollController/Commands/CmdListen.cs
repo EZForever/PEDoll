@@ -67,6 +67,11 @@ namespace PEDollController.Commands
                 else
                     Logger.I(ipv6 ? "[{0}]:{1}" : "{0}:{1}", address.ToString(), port);
             }
+
+            Threads.Gui.theInstance.InvokeOn((FMain Me) =>
+            {
+                Me.pnlListenerStart.Enabled = false;
+            });
         }
     }
 }

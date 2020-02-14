@@ -5,29 +5,29 @@ using System.Collections.Generic;
 namespace PEDollController.Threads
 {
 
-    // BlockingQueue<T> provides blocking version of Enqueue() & Dequeue(), implementing basic thread safety
+    // BlockingQueue provides blocking version of Enqueue() & Dequeue(), implementing basic thread safety
     // Idea from: https://stackoverflow.com/a/530228
 
-    class BlockingQueue<T> : Queue<T>
+    static class BlockingQueue
     {
-        public void BlockingEnqueue(T item)
+        public static void BlockingEnqueue<T>(this Queue<T> queue, T item)
         {
-            lock(this)
+            lock(queue)
             {
-                this.Enqueue(item);
+                queue.Enqueue(item);
                 // If just recovered from empty state, send a pulse to the blocked GetCommand() thread
-                if (this.Count == 1)
-                    Monitor.PulseAll(this);
+                if (queue.Count == 1)
+                    Monitor.PulseAll(queue);
             }
         }
 
-        public T BlockingDequeue()
+        public static T BlockingDequeue<T>(this Queue<T> queue)
         {
-            lock(this)
+            lock(queue)
             {
-                if (this.Count == 0)
-                    Monitor.Wait(this);
-                return this.Dequeue();
+                if (queue.Count == 0)
+                    Monitor.Wait(queue);
+                return queue.Dequeue();
             }
         }
     }

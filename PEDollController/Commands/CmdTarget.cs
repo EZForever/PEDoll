@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using System.Collections.Generic;
 
 using Mono.Options;
@@ -93,7 +94,7 @@ namespace PEDollController.Commands
                 client.GetStatusString()
             ));
 
-            // TODO: Refresh GUI info pages (e.g. enable verdict page on a Hooked client)
+            Threads.CmdEngine.theInstance.RefreshGuiTargets();
         }
     }
 

@@ -16,6 +16,7 @@ extern "C" {
     extern const UINT_PTR HookStubBefore_len;
     extern const UINT_PTR HookStubBefore_HookOEPOffset;
     extern const UINT_PTR HookStubBefore_AddrOffset;
+    extern const UINT_PTR pushad_count;
 
     UINT_PTR DollThreadIsCurrent();
 

@@ -6,17 +6,8 @@
 #include "../libPuppet/PuppetClientTCP.h"
 #include "Thread.h"
 #include "Hook.h"
+#include "HookStub.h"
 #include "BoyerMoore.h"
-
-// Registers saved by the pushad instruction
-#ifdef _WIN64
-#   define PUSHAD_COUNT 10
-#else
-#   define PUSHAD_COUNT 8
-#endif
-// This should really be in HookStub_*.asm as a constant
-// But for some reason I can't get it compiled
-//#include "HookStub.h"
 
 inline void TPuppetSendAck(uint32_t status)
 {
@@ -155,7 +146,7 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
         case Puppet::PACKET_TYPE::CMD_CONTEXT:
         {
             uint32_t idx = ((Puppet::PACKET_CMD_CONTEXT*)packet)->idx;
-            if (idx >= PUSHAD_COUNT)
+            if (idx >= pushad_count)
             {
                 // Register index not valid
                 TPuppetSendAck(1);

@@ -20,7 +20,7 @@ uint32_t MonDollAttach(uint32_t pid)
     LPVOID libDollPath = NULL;
     HANDLE hTNew = NULL;
     if ((libDollPath = VirtualAllocEx(hProc, NULL, libDollPathSize, MEM_COMMIT, PAGE_READWRITE))
-        && WriteProcessMemory(hProc, libDollPath, ctx.libDollPath, libDollPathSize, &libDollPathSize)
+        && WriteProcessMemory(hProc, libDollPath, ctx.libDollPath, libDollPathSize, (SIZE_T*)&libDollPathSize)
         && DetourCopyPayloadToProcess(hProc, Puppet::PAYLOAD_SERVER_INFO, ctx.serverInfo, (DWORD)(strlen(ctx.serverInfo) + 1))
         && (hTNew = CreateRemoteThread(hProc, NULL, 0, (LPTHREAD_START_ROUTINE)LoadLibraryW, libDollPath, 0, NULL)))
     {

@@ -240,7 +240,7 @@ uword ax, cx, dx, bx, sp, bp, si, di, r8, r9
 	`r8` and `r9` are available only on a x64 client.
 
 --------------------------------------------------------------------------------
-dump	- (D) Displays or saves dumped data.
+dump	- Displays or saves dumped data.
 ----------
 Displays or saves dumped data.
 

@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Threading;
 using System.Reflection;
 using System.Windows.Forms;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using PEDollController.Threads;
@@ -37,7 +37,8 @@ namespace PEDollController
         public static void MyShow(this TabPage page)
         {
             if (!tabLounge.ContainsKey(page))
-                throw new ArgumentException();
+                return;
+                //throw new InvalidOperationException();
 
             TabControl parent = tabLounge[page].Item1;
             parent.TabPages.Insert(tabLounge[page].Item2, page);
@@ -48,7 +49,8 @@ namespace PEDollController
         {
             TabControl parent = page.Parent as TabControl;
             if (parent == null)
-                throw new ArgumentException();
+                return;
+                //throw new InvalidOperationException();
 
             tabLounge.Add(page, new Tuple<TabControl, int>(parent, parent.TabPages.IndexOf(page)));
             parent.TabPages.Remove(page);
@@ -58,7 +60,7 @@ namespace PEDollController
 
         public static event Action OnProgramEnd;
 
-        [STAThread]
+        //[STAThread]
         static void Main()
         {
             Console.ResetColor();
@@ -66,14 +68,14 @@ namespace PEDollController
 
             // Initialize CmdEngine, which receives and processes user commands
             CmdEngine.theTask.Start();
-            
-            // Initialize GUI
-            Gui.theTask.Start();
 
-            // Wait for CmdEngine or GUI to finish
-            Task.WaitAny(CmdEngine.theTask, Gui.theTask);
-            // XXX: Was `CmdEngine.theTask.Wait();` (i.e. Only wait for CmdEngine, allow Gui to end prematurely)
-            // Revert this change if also read commands from `Console.ReadLine()` (See XXX in CmdEngine.TaskMain())
+            // Initialize GUI
+            // NOTE: In order to let OLE dialogs able to work, GUI must run on a dedicated STA thread
+            Gui.theThread.SetApartmentState(ApartmentState.STA);
+            Gui.theThread.Start();
+
+            // Wait for CmdEngine to finish
+            CmdEngine.theTask.Wait();
 
             // Then finialize anything
             OnProgramEnd();

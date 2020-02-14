@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Net.Sockets;
+using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -48,7 +49,7 @@ namespace PEDollController.Threads
 
         TcpClient client;
         NetworkStream stream;
-        BlockingQueue<byte[]> rxQueue;
+        Queue<byte[]> rxQueue;
 
         public bool isMonitor;
         public bool isDead => !client.Connected;
@@ -94,11 +95,10 @@ namespace PEDollController.Threads
                 Logger.W(Program.GetResourceString("Threads.Client.Disconnected", clientName, e.Message));
                 stream.Close();
                 client.Close();
-                // TODO: Refresh targets' list
             }
 
             // Initialize packet receive queue
-            rxQueue = new BlockingQueue<byte[]>();
+            rxQueue = new Queue<byte[]>();
 
             // Initialize EvalEngine exports
             Exports = new Delegate[]
@@ -139,18 +139,29 @@ namespace PEDollController.Threads
                     CmdEngine.theInstance.targetLastDoll = idx;
             }
 
-            Logger.N(Program.GetResourceString("Threads.Client.Connected",
-                client.Client.RemoteEndPoint.ToString(),
-                idx,
-                clientName,
-                this.GetTypeString()
-            ));
-
-            // TODO: Refresh targets' list
+            if(clientName == null)
+            {
+                // Client died without completeing the MSG_ONLINE sequence.
+                // However this client will also get an entry
+                clientName = "???";
+            }
+            else
+            {
+                Logger.N(Program.GetResourceString("Threads.Client.Connected",
+                    client.Client.RemoteEndPoint.ToString(),
+                    idx,
+                    clientName,
+                    this.GetTypeString()
+                ));
+            }
         }
 
         void TaskMain()
         {
+            // DO NOT call this inside of the Client constructor
+            // At that time the instance is not recorded
+            CmdEngine.theInstance.RefreshGuiTargets();
+
             try
             {
                 while(true)
@@ -169,7 +180,8 @@ namespace PEDollController.Threads
             {
                 stream.Close();
                 client.Close();
-                // TODO: Refresh targets' list, refresh target state to DEAD
+
+                CmdEngine.theInstance.RefreshGuiTargets();
             }
         }
 
@@ -245,6 +257,8 @@ namespace PEDollController.Threads
                 (hookPhase == 0) ? "before" : "after"
             ));
 
+            CmdEngine.theInstance.RefreshGuiTargets();
+
             List<Dictionary<string, object>> actions = (hookPhase == 0) ? entry.beforeActions : entry.afterActions;
             string verdict = (hookPhase == 0) ? entry.beforeVerdict : entry.afterVerdict;
 
@@ -307,7 +321,7 @@ namespace PEDollController.Threads
             if(verdict == null)
             {
                 Logger.N(Program.GetResourceString("Threads.Client.VerdictWait"));
-                // TODO: Update target list
+                CmdEngine.theInstance.RefreshGuiTargets();
             }
             else
             {
@@ -549,7 +563,21 @@ namespace PEDollController.Threads
             CmdEngine.theInstance.dumps.Add(dumpEntry);
 
             Logger.N(Program.GetResourceString("Threads.Client.Dump", idx, dumpEntry.Data.Length));
-            // TODO: Update dump list
+            Gui.theInstance.InvokeOn((FMain Me) =>
+            {
+                Me.lstDumps.Items.Add(new ListViewItem(new string[] {
+                    idx.ToString(),
+                    dumpEntry.Data.Length.ToString(),
+                    this.clientName
+                }));
+
+                if(Me.lstDumps.Items.Count == 1)
+                {
+                    Me.lstDumps.Items[0].Selected = true;
+                    Me.btnDumpShow.Enabled = Me.btnDumpSave.Enabled = true;
+                }
+            });
+
             return idx;
         }
 
@@ -618,7 +646,8 @@ namespace PEDollController.Threads
             // Clear hook status
             hookOep = 0;
             hookPhase = 0;
-            // TODO: Refresh targets' list
+
+            CmdEngine.theInstance.RefreshGuiTargets();
         }
 
         public byte[] Receive()
