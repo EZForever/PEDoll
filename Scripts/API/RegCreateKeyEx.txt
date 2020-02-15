@@ -1,0 +1,3 @@
+target --doll
+hook advapi32!RegCreateKeyExA --stack=36 --before *
+hook advapi32!RegCreateKeyExW --stack=36 --before *

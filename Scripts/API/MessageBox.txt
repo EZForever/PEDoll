@@ -1,0 +1,4 @@
+target --doll
+hook user32!MessageBox --stack=16 --before --echo="lpText = {str(arg(1))}" --echo="lpCaption = {str(arg(2))}" *
+hook user32!MessageBoxA --stack=16 --before --echo="lpText = {str(arg(1))}" --echo="lpCaption = {str(arg(2))}" *
+hook user32!MessageBoxW --stack=16 --before --echo="lpText = {wstr(arg(1))}" --echo="lpCaption = {wstr(arg(2))}" *

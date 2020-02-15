@@ -1,0 +1,2 @@
+target --doll
+hook kernel32!WriteProcessMemory --stack=20 --before --dump={arg(2)},{arg(3)} *

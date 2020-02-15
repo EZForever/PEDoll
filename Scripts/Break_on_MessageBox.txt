@@ -1,0 +1,2 @@
+target --doll
+load MessageBox --after --verdict=approve

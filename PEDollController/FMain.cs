@@ -439,7 +439,7 @@ namespace PEDollController
         private void btnHooksRemove_Click(object sender, EventArgs e)
         {
             string cmd = String.Format("unhook {0}",
-                lstDollHooks.SelectedIndices[0]
+                lstDollHooks.SelectedItems[0].Text
             );
             Threads.CmdEngine.theInstance.AddCommand(cmd);
         }

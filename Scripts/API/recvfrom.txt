@@ -1,0 +1,3 @@
+target --doll
+# --dump={arg(1)},{(int)arg(2)}
+hook ws2_32!recvfrom --stack=24 --before *

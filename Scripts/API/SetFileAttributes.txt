@@ -1,0 +1,3 @@
+target --doll
+hook kernel32!SetFileAttributesA --stack=8 --before --echo="lpFileName = {str(arg(0))}" --echo="dwFileAttributes = {(uint)arg(1)}" *
+hook kernel32!SetFileAttributesW --stack=8 --before --echo="lpFileName = {wstr(arg(0))}" --echo="dwFileAttributes = {(uint)arg(1)}" *

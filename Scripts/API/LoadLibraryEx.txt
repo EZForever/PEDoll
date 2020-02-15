@@ -1,0 +1,3 @@
+target --doll
+hook kernel32!LoadLibraryExA --stack=12 --before --echo="lpLibFileName = {str(arg(0))}" *
+hook kernel32!LoadLibraryExW --stack=12 --before --echo="lpLibFileName = {wstr(arg(0))}" *

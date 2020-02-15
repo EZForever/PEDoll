@@ -1,0 +1,3 @@
+target --doll
+hook kernel32!CreateProcessA --stack=40 --before --echo="lpApplicationName = {str(arg(0))}" --echo="lpCommandLine = {str(arg(1))}" *
+hook kernel32!CreateProcessW --stack=40 --before --echo="lpApplicationName = {wstr(arg(0))}" --echo="lpCommandLine = {wstr(arg(1))}" *

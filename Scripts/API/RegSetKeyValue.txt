@@ -1,0 +1,3 @@
+target --doll
+hook advapi32!RegSetKeyValueA --stack=24 --before --echo="hKey = {arg(0)}" --echo="lpSubKey = {str(arg(1))}" --echo="lpValueName = {str(arg(2))}" --echo="dwType = {(int)arg(3)}" --dump={arg(4)},{(int)arg(5)} *
+hook advapi32!RegSetKeyValueA --stack=24 --before --echo="hKey = {arg(0)}" --echo="lpSubKey = {wstr(arg(1))}" --echo="lpValueName = {wstr(arg(2))}" --echo="dwType = {(int)arg(3)}" --dump={arg(4)},{(int)arg(5)} *

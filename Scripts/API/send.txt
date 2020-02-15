@@ -1,0 +1,2 @@
+target --doll
+hook ws2_32!send --stack=16 --before --dump={arg(1)},{(int)arg(2)} *

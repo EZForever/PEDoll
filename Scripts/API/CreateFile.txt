@@ -1,0 +1,3 @@
+target --doll
+hook kernel32!CreateFileA --stack=28 --before --echo="lpFileName = {str(arg(0))}" *
+hook kernel32!CreateFileW --stack=28 --before --echo="lpFileName = {wstr(arg(0))}" *

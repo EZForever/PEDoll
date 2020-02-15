@@ -1,0 +1,6 @@
+target --doll
+load CreateFile64 --verdict=approve --after --verdict=approve
+load WriteFile64 --verdict=reject --after --verdict=approve
+load DeleteFile64 --verdict=reject --after --verdict=approve
+load CreateProcess64 --verdict=reject --after --verdict=approve
+load ExitWindowsEx64 --verdict=reject --after --verdict=approve

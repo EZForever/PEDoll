@@ -1,0 +1,2 @@
+target --doll
+hook kernel32!WriteFile --stack=20 --before --dump={arg(1)},{(int)arg(2)} *

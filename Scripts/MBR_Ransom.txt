@@ -1,0 +1,6 @@
+target --doll
+load CreateFile --verdict=approve --after --verdict=approve
+load WriteFile --verdict=reject --after --verdict=approve
+load DeleteFile --verdict=reject --after --verdict=approve
+load CreateProcess --verdict=reject --after --verdict=approve
+load ExitWindowsEx --verdict=reject --after --verdict=approve

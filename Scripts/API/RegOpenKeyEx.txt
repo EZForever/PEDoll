@@ -1,0 +1,3 @@
+target --doll
+hook advapi32!RegOpenKeyExA --stack=20 --before --echo="hKey = {arg(0)}" --echo="lpSubKey = {str(arg(1))}" *
+hook advapi32!RegOpenKeyExW --stack=20 --before --echo="hKey = {arg(0)}" --echo="lpSubKey = {wstr(arg(1))}" *

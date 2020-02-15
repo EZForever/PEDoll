@@ -1,0 +1,2 @@
+target --doll
+hook OpenProcess --stack=12 --before --echo="dwProcessId = {(int)arg(2)}" *

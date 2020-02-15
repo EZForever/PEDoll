@@ -1,0 +1,2 @@
+target --doll
+hook user32!ExitWindowsEx --stack=8 --before *

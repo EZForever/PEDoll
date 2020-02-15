@@ -75,17 +75,19 @@ namespace PEDollController.Commands
             else if(lastMonitor)
                 target = Threads.CmdEngine.theInstance.targetLastMonitor;
 
-            if(target < 0 || target >= Threads.Client.theInstances.Count)
+            if(target < 0 || target >= Threads.Client.theInstances.Count || Threads.Client.theInstances[target].isDead)
                 throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotAvailable"));
 
             int targetLast = Threads.CmdEngine.theInstance.target;
             Threads.CmdEngine.theInstance.target = target;
-            if (Threads.Client.theInstances[targetLast].isMonitor)
-                Threads.CmdEngine.theInstance.targetLastMonitor = targetLast;
-            else
-                Threads.CmdEngine.theInstance.targetLastDoll = targetLast;
 
-            Threads.Client client = Threads.CmdEngine.theInstance.GetTargetClient();
+            Threads.Client clientLast = Threads.Client.theInstances[targetLast];
+            if (clientLast.isMonitor)
+                Threads.CmdEngine.theInstance.targetLastMonitor = clientLast.isDead ? target : targetLast;
+            else
+                Threads.CmdEngine.theInstance.targetLastDoll = clientLast.isDead ? target : targetLast;
+
+            Threads.Client client = Threads.Client.theInstances[target];
 
             Logger.I(Program.GetResourceString("Commands.Target.CurrentTarget",
                 target,

@@ -37,30 +37,6 @@ calling conventions:
 
 ----------
 
-https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Options
-Detailed information: https://github.com/mono/mono/blob/master/mcs/class/Mono.Options/Mono.Options/Options.cs#L40
-custom separator: { "--dump=,", (x, y) => ... }
-default parameters: { "<>", x => ... }
-
-----------
-
-C# has "lock(obj) { ...}"
-a "nothing-but-a-lock" object: "object theLock = new object();"
-
-----------
-
-Shift-Enter inputs newline in the Visual Studio resource editor
-
-Set Form.Localizable to True
-Change Language to write in values
-
-cmdline to search for untranslated strings (// TODO: "...")
-grep -r --include=*.cs "// TODO: \"" | sed 's/.*TODO: //g' | sort | uniq
-and their locations:
-grep -rn --include=*.cs "TODO: \"" | awk '{ print $1 "\t" $4 }' | sort -k2
-
-----------
-
 Examples of command `hook`:
 
 # (x64) Hooks WinExec(), print the command it trys to execute, then reject it
@@ -113,4 +89,20 @@ Call disassemble engine
 00000019
 ^ Total length
 bytes are dark gray, codes are white, others are default color
+
+----------
+
+Icons: The Noun Project
+https://thenounproject.com/term/marionette/39200/
+https://thenounproject.com/term/election-rigging/1680733/
+https://thenounproject.com/term/puppet/1605261/
+
+"[...]()" icon by ... from [the Noun Project](https://thenounproject.com/). CC BY 3.0.
+
+"[marionette](https://thenounproject.com/term/marionette/39200/)" icon by Juan Pablo Bravo from [the Noun Project](https://thenounproject.com/). CC BY 3.0.
+
+"marionette" icon by Juan Pablo Bravo from thenounproject.com. CC BY 3.0.
+
+Controller: "puppet controller" / "marionette control rod"
+Monitor: ???
 

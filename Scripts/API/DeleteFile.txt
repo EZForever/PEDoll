@@ -1,0 +1,3 @@
+target --doll
+hook kernel32!DeleteFileA --stack=4 --before --echo="lpFileName = {str(arg(0))}" *
+hook kernel32!DeleteFileW --stack=4 --before --echo="lpFileName = {str(arg(0))}" *
