@@ -43,7 +43,7 @@ namespace PEDollController
             // "Stack" GroupBox
 
             chkStack.Checked = false;
-            txtStackBytes.Text = (client.bits == 64) ? "32" : "0";
+            txtStackBytes.Text = "0";
             txtStackRet.Text = "0";
 
             // "Before" GroupBox

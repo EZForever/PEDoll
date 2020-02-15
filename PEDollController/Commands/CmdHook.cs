@@ -65,7 +65,7 @@ namespace PEDollController.Commands
             Threads.HookEntry entry = new Threads.HookEntry();
             entry.beforeActions = new List<Dictionary<string, object>>();
             entry.afterActions = new List<Dictionary<string, object>>();
-            entry.stack = 0xffffffffffffffff; // For the default value processing in Invoke()
+            entry.stack = entry.ret = 0;
 
             int state = 0; // FSM on option parsing; 0 - Begin, 1 - Convention/Stack, 2 - Before, 3 - After
 
@@ -258,10 +258,6 @@ namespace PEDollController.Commands
                 entry.convention = conventions[0];
             else if (Array.IndexOf(conventions, entry.convention) < 0)
                 throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotApplicable"));
-
-            // Set default stack offset for msvc convention ((4 * 8) instead of 0)
-            if (entry.stack == 0xffffffffffffffff)
-                entry.stack = (entry.convention == "msvc") ? (UInt64)(4 * 8) : 0;
 
             // If the hook already exists, overwrite anything but OEP instead
             foreach (Threads.HookEntry hook in client.hooks)
