@@ -129,7 +129,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>297, 213</value>
+    <value>316, 364</value>
   </data>
   <data name="btnOK.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
@@ -151,7 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOK.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <metadata name="btnCancel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -163,7 +163,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>403, 213</value>
+    <value>422, 364</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
@@ -184,22 +184,883 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <metadata name="grpFunction.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cboConvention.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lbl1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtAddr.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cboAddrMode.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;cboConvention.Name" xml:space="preserve">
+    <value>cboConvention</value>
+  </data>
+  <data name="&gt;&gt;cboConvention.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboConvention.Parent" xml:space="preserve">
+    <value>grpFunction</value>
+  </data>
+  <data name="&gt;&gt;cboConvention.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lbl1.Name" xml:space="preserve">
+    <value>lbl1</value>
+  </data>
+  <data name="&gt;&gt;lbl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl1.Parent" xml:space="preserve">
+    <value>grpFunction</value>
+  </data>
+  <data name="&gt;&gt;lbl1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;txtAddr.Name" xml:space="preserve">
+    <value>txtAddr</value>
+  </data>
+  <data name="&gt;&gt;txtAddr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAddr.Parent" xml:space="preserve">
+    <value>grpFunction</value>
+  </data>
+  <data name="&gt;&gt;txtAddr.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;cboAddrMode.Name" xml:space="preserve">
+    <value>cboAddrMode</value>
+  </data>
+  <data name="&gt;&gt;cboAddrMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboAddrMode.Parent" xml:space="preserve">
+    <value>grpFunction</value>
+  </data>
+  <data name="&gt;&gt;cboAddrMode.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="grpFunction.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="grpFunction.Size" type="System.Drawing.Size, System.Drawing">
+    <value>510, 88</value>
+  </data>
+  <data name="grpFunction.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="grpFunction.Text" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="&gt;&gt;grpFunction.Name" xml:space="preserve">
+    <value>grpFunction</value>
+  </data>
+  <data name="&gt;&gt;grpFunction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpFunction.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpFunction.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="cboAddrMode.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="cboAddrMode.Items" xml:space="preserve">
+    <value>Symbol:</value>
+  </data>
+  <data name="cboAddrMode.Items1" xml:space="preserve">
+    <value>Address:</value>
+  </data>
+  <data name="cboAddrMode.Items2" xml:space="preserve">
+    <value>Pattern:</value>
+  </data>
+  <data name="cboAddrMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="cboAddrMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="cboAddrMode.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cboAddrMode.Name" xml:space="preserve">
+    <value>cboAddrMode</value>
+  </data>
+  <data name="&gt;&gt;cboAddrMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboAddrMode.Parent" xml:space="preserve">
+    <value>grpFunction</value>
+  </data>
+  <data name="&gt;&gt;cboAddrMode.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="txtAddr.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtAddr.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 23</value>
+  </data>
+  <data name="txtAddr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>372, 25</value>
+  </data>
+  <data name="txtAddr.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtAddr.Name" xml:space="preserve">
+    <value>txtAddr</value>
+  </data>
+  <data name="&gt;&gt;txtAddr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAddr.Parent" xml:space="preserve">
+    <value>grpFunction</value>
+  </data>
+  <data name="&gt;&gt;txtAddr.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="lbl1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lbl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 54</value>
+  </data>
+  <data name="lbl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="lbl1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="lbl1.Text" xml:space="preserve">
+    <value>Convention:</value>
+  </data>
+  <data name="lbl1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lbl1.Name" xml:space="preserve">
+    <value>lbl1</value>
+  </data>
+  <data name="&gt;&gt;lbl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl1.Parent" xml:space="preserve">
+    <value>grpFunction</value>
+  </data>
+  <data name="&gt;&gt;lbl1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="cboConvention.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="cboConvention.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 54</value>
+  </data>
+  <data name="cboConvention.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="cboConvention.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;cboConvention.Name" xml:space="preserve">
+    <value>cboConvention</value>
+  </data>
+  <data name="&gt;&gt;cboConvention.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboConvention.Parent" xml:space="preserve">
+    <value>grpFunction</value>
+  </data>
+  <data name="&gt;&gt;cboConvention.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="grpStack.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lbl3.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtStackRet.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="chkStack.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lbl2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtStackBytes.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;lbl3.Name" xml:space="preserve">
+    <value>lbl3</value>
+  </data>
+  <data name="&gt;&gt;lbl3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl3.Parent" xml:space="preserve">
+    <value>grpStack</value>
+  </data>
+  <data name="&gt;&gt;lbl3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtStackRet.Name" xml:space="preserve">
+    <value>txtStackRet</value>
+  </data>
+  <data name="&gt;&gt;txtStackRet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtStackRet.Parent" xml:space="preserve">
+    <value>grpStack</value>
+  </data>
+  <data name="&gt;&gt;txtStackRet.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;chkStack.Name" xml:space="preserve">
+    <value>chkStack</value>
+  </data>
+  <data name="&gt;&gt;chkStack.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkStack.Parent" xml:space="preserve">
+    <value>grpStack</value>
+  </data>
+  <data name="&gt;&gt;chkStack.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lbl2.Name" xml:space="preserve">
+    <value>lbl2</value>
+  </data>
+  <data name="&gt;&gt;lbl2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl2.Parent" xml:space="preserve">
+    <value>grpStack</value>
+  </data>
+  <data name="&gt;&gt;lbl2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txtStackBytes.Name" xml:space="preserve">
+    <value>txtStackBytes</value>
+  </data>
+  <data name="&gt;&gt;txtStackBytes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtStackBytes.Parent" xml:space="preserve">
+    <value>grpStack</value>
+  </data>
+  <data name="&gt;&gt;txtStackBytes.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="grpStack.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 106</value>
+  </data>
+  <data name="grpStack.Size" type="System.Drawing.Size, System.Drawing">
+    <value>510, 64</value>
+  </data>
+  <data name="grpStack.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;grpStack.Name" xml:space="preserve">
+    <value>grpStack</value>
+  </data>
+  <data name="&gt;&gt;grpStack.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpStack.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpStack.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="lbl2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lbl2.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lbl2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbl2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="lbl2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="lbl2.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="lbl2.Text" xml:space="preserve">
+    <value>Stack bytes:</value>
+  </data>
+  <data name="lbl2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lbl2.Name" xml:space="preserve">
+    <value>lbl2</value>
+  </data>
+  <data name="&gt;&gt;lbl2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl2.Parent" xml:space="preserve">
+    <value>grpStack</value>
+  </data>
+  <data name="&gt;&gt;lbl2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="txtStackBytes.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtStackBytes.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtStackBytes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 23</value>
+  </data>
+  <data name="txtStackBytes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 25</value>
+  </data>
+  <data name="txtStackBytes.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtStackBytes.Name" xml:space="preserve">
+    <value>txtStackBytes</value>
+  </data>
+  <data name="&gt;&gt;txtStackBytes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtStackBytes.Parent" xml:space="preserve">
+    <value>grpStack</value>
+  </data>
+  <data name="&gt;&gt;txtStackBytes.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="chkStack.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="chkStack.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkStack.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 0</value>
+  </data>
+  <data name="chkStack.Size" type="System.Drawing.Size, System.Drawing">
+    <value>341, 19</value>
+  </data>
+  <data name="chkStack.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="chkStack.Text" xml:space="preserve">
+    <value>Stack parameters (for verdict "reject")</value>
+  </data>
+  <data name="&gt;&gt;chkStack.Name" xml:space="preserve">
+    <value>chkStack</value>
+  </data>
+  <data name="&gt;&gt;chkStack.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkStack.Parent" xml:space="preserve">
+    <value>grpStack</value>
+  </data>
+  <data name="&gt;&gt;chkStack.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="lbl3.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lbl3.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lbl3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbl3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>258, 24</value>
+  </data>
+  <data name="lbl3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="lbl3.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lbl3.Text" xml:space="preserve">
+    <value>Return value:</value>
+  </data>
+  <data name="lbl3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lbl3.Name" xml:space="preserve">
+    <value>lbl3</value>
+  </data>
+  <data name="&gt;&gt;lbl3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl3.Parent" xml:space="preserve">
+    <value>grpStack</value>
+  </data>
+  <data name="&gt;&gt;lbl3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="txtStackRet.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtStackRet.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtStackRet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>384, 23</value>
+  </data>
+  <data name="txtStackRet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 25</value>
+  </data>
+  <data name="txtStackRet.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;txtStackRet.Name" xml:space="preserve">
+    <value>txtStackRet</value>
+  </data>
+  <data name="&gt;&gt;txtStackRet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtStackRet.Parent" xml:space="preserve">
+    <value>grpStack</value>
+  </data>
+  <data name="&gt;&gt;txtStackRet.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="chkBefore.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="chkBefore.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkBefore.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkBefore.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 0</value>
+  </data>
+  <data name="chkBefore.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 19</value>
+  </data>
+  <data name="chkBefore.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="chkBefore.Text" xml:space="preserve">
+    <value>"Before" actions</value>
+  </data>
+  <data name="&gt;&gt;chkBefore.Name" xml:space="preserve">
+    <value>chkBefore</value>
+  </data>
+  <data name="&gt;&gt;chkBefore.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkBefore.Parent" xml:space="preserve">
+    <value>grpBefore</value>
+  </data>
+  <data name="&gt;&gt;chkBefore.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="grpBefore.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="chkBeforeVerdict.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cboBeforeVerdict.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtBeforeAction.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;chkBeforeVerdict.Name" xml:space="preserve">
+    <value>chkBeforeVerdict</value>
+  </data>
+  <data name="&gt;&gt;chkBeforeVerdict.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkBeforeVerdict.Parent" xml:space="preserve">
+    <value>grpBefore</value>
+  </data>
+  <data name="&gt;&gt;chkBeforeVerdict.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cboBeforeVerdict.Name" xml:space="preserve">
+    <value>cboBeforeVerdict</value>
+  </data>
+  <data name="&gt;&gt;cboBeforeVerdict.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboBeforeVerdict.Parent" xml:space="preserve">
+    <value>grpBefore</value>
+  </data>
+  <data name="&gt;&gt;cboBeforeVerdict.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtBeforeAction.Name" xml:space="preserve">
+    <value>txtBeforeAction</value>
+  </data>
+  <data name="&gt;&gt;txtBeforeAction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtBeforeAction.Parent" xml:space="preserve">
+    <value>grpBefore</value>
+  </data>
+  <data name="&gt;&gt;txtBeforeAction.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="grpBefore.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 176</value>
+  </data>
+  <data name="grpBefore.Size" type="System.Drawing.Size, System.Drawing">
+    <value>510, 88</value>
+  </data>
+  <data name="grpBefore.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;grpBefore.Name" xml:space="preserve">
+    <value>grpBefore</value>
+  </data>
+  <data name="&gt;&gt;grpBefore.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpBefore.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpBefore.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="cboBeforeVerdict.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="cboBeforeVerdict.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboBeforeVerdict.Items" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="cboBeforeVerdict.Items1" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="cboBeforeVerdict.Items2" xml:space="preserve">
+    <value>Terminate</value>
+  </data>
+  <data name="cboBeforeVerdict.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 55</value>
+  </data>
+  <data name="cboBeforeVerdict.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="cboBeforeVerdict.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;cboBeforeVerdict.Name" xml:space="preserve">
+    <value>cboBeforeVerdict</value>
+  </data>
+  <data name="&gt;&gt;cboBeforeVerdict.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboBeforeVerdict.Parent" xml:space="preserve">
+    <value>grpBefore</value>
+  </data>
+  <data name="&gt;&gt;cboBeforeVerdict.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="txtBeforeAction.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtBeforeAction.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtBeforeAction.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 24</value>
+  </data>
+  <data name="txtBeforeAction.Size" type="System.Drawing.Size, System.Drawing">
+    <value>495, 25</value>
+  </data>
+  <data name="txtBeforeAction.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;txtBeforeAction.Name" xml:space="preserve">
+    <value>txtBeforeAction</value>
+  </data>
+  <data name="&gt;&gt;txtBeforeAction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtBeforeAction.Parent" xml:space="preserve">
+    <value>grpBefore</value>
+  </data>
+  <data name="&gt;&gt;txtBeforeAction.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="chkBeforeVerdict.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="chkBeforeVerdict.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="chkBeforeVerdict.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 55</value>
+  </data>
+  <data name="chkBeforeVerdict.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="chkBeforeVerdict.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="chkBeforeVerdict.Text" xml:space="preserve">
+    <value>Verdict:</value>
+  </data>
+  <data name="&gt;&gt;chkBeforeVerdict.Name" xml:space="preserve">
+    <value>chkBeforeVerdict</value>
+  </data>
+  <data name="&gt;&gt;chkBeforeVerdict.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkBeforeVerdict.Parent" xml:space="preserve">
+    <value>grpBefore</value>
+  </data>
+  <data name="&gt;&gt;chkBeforeVerdict.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="grpAfter.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="chkAfterVerdict.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cboAfterVerdict.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtAfterAction.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="chkAfter.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;chkAfterVerdict.Name" xml:space="preserve">
+    <value>chkAfterVerdict</value>
+  </data>
+  <data name="&gt;&gt;chkAfterVerdict.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkAfterVerdict.Parent" xml:space="preserve">
+    <value>grpAfter</value>
+  </data>
+  <data name="&gt;&gt;chkAfterVerdict.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cboAfterVerdict.Name" xml:space="preserve">
+    <value>cboAfterVerdict</value>
+  </data>
+  <data name="&gt;&gt;cboAfterVerdict.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboAfterVerdict.Parent" xml:space="preserve">
+    <value>grpAfter</value>
+  </data>
+  <data name="&gt;&gt;cboAfterVerdict.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtAfterAction.Name" xml:space="preserve">
+    <value>txtAfterAction</value>
+  </data>
+  <data name="&gt;&gt;txtAfterAction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAfterAction.Parent" xml:space="preserve">
+    <value>grpAfter</value>
+  </data>
+  <data name="&gt;&gt;txtAfterAction.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;chkAfter.Name" xml:space="preserve">
+    <value>chkAfter</value>
+  </data>
+  <data name="&gt;&gt;chkAfter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkAfter.Parent" xml:space="preserve">
+    <value>grpAfter</value>
+  </data>
+  <data name="&gt;&gt;chkAfter.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="grpAfter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 270</value>
+  </data>
+  <data name="grpAfter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>510, 88</value>
+  </data>
+  <data name="grpAfter.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;grpAfter.Name" xml:space="preserve">
+    <value>grpAfter</value>
+  </data>
+  <data name="&gt;&gt;grpAfter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpAfter.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpAfter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="chkAfterVerdict.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="chkAfterVerdict.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="chkAfterVerdict.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkAfterVerdict.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 55</value>
+  </data>
+  <data name="chkAfterVerdict.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="chkAfterVerdict.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="chkAfterVerdict.Text" xml:space="preserve">
+    <value>Verdict:</value>
+  </data>
+  <data name="&gt;&gt;chkAfterVerdict.Name" xml:space="preserve">
+    <value>chkAfterVerdict</value>
+  </data>
+  <data name="&gt;&gt;chkAfterVerdict.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkAfterVerdict.Parent" xml:space="preserve">
+    <value>grpAfter</value>
+  </data>
+  <data name="&gt;&gt;chkAfterVerdict.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="cboAfterVerdict.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="cboAfterVerdict.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboAfterVerdict.Items" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="cboAfterVerdict.Items1" xml:space="preserve">
+    <value>Terminate</value>
+  </data>
+  <data name="cboAfterVerdict.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 55</value>
+  </data>
+  <data name="cboAfterVerdict.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="cboAfterVerdict.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;cboAfterVerdict.Name" xml:space="preserve">
+    <value>cboAfterVerdict</value>
+  </data>
+  <data name="&gt;&gt;cboAfterVerdict.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboAfterVerdict.Parent" xml:space="preserve">
+    <value>grpAfter</value>
+  </data>
+  <data name="&gt;&gt;cboAfterVerdict.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="txtAfterAction.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="txtAfterAction.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtAfterAction.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 24</value>
+  </data>
+  <data name="txtAfterAction.Size" type="System.Drawing.Size, System.Drawing">
+    <value>495, 25</value>
+  </data>
+  <data name="txtAfterAction.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;txtAfterAction.Name" xml:space="preserve">
+    <value>txtAfterAction</value>
+  </data>
+  <data name="&gt;&gt;txtAfterAction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAfterAction.Parent" xml:space="preserve">
+    <value>grpAfter</value>
+  </data>
+  <data name="&gt;&gt;txtAfterAction.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="chkAfter.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="chkAfter.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkAfter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkAfter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 0</value>
+  </data>
+  <data name="chkAfter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 19</value>
+  </data>
+  <data name="chkAfter.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="chkAfter.Text" xml:space="preserve">
+    <value>"After" actions</value>
+  </data>
+  <data name="&gt;&gt;chkAfter.Name" xml:space="preserve">
+    <value>chkAfter</value>
+  </data>
+  <data name="&gt;&gt;chkAfter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkAfter.Parent" xml:space="preserve">
+    <value>grpAfter</value>
+  </data>
+  <data name="&gt;&gt;chkAfter.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>800, 450</value>
+    <value>532, 403</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Add hook...</value>
+    <value>Install a new hook...</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FDlgAddHook</value>

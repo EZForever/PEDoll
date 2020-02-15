@@ -25,7 +25,7 @@ namespace PEDollController
             tabPageDoll.MyHide();
         }
 
-        private void ShowTipError(Control control, string msg = "\n")
+        public void ShowTipError(Control control, string msg = "\n")
         {
             tipError.Show(msg, control, new Point(0, control.Height), 1200);
         }
@@ -178,10 +178,10 @@ namespace PEDollController
 
         private void btnListenerStart_Click(object sender, EventArgs e)
         {
-            int port;
+            ushort port;
             try
             {
-                port = Convert.ToInt32(txtListenerStartPort.Text);
+                port = Convert.ToUInt16(txtListenerStartPort.Text);
             }
             catch
             {
@@ -304,7 +304,7 @@ namespace PEDollController
             {
                 try
                 {
-                    Convert.ToInt32(txtDollPID.Text);
+                    Convert.ToUInt32(txtDollPID.Text);
                 }
                 catch
                 {
@@ -351,7 +351,7 @@ namespace PEDollController
             {
                 try
                 {
-                    Convert.ToInt32(txtKillPID.Text);
+                    Convert.ToUInt32(txtKillPID.Text);
                 }
                 catch
                 {
