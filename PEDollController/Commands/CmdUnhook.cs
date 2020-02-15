@@ -58,9 +58,9 @@ namespace PEDollController.Commands
             // Remove entry from client's hooks
             //client.hooks.Remove(entry); // This will cause following hooks' IDs change
             client.hooks[id] = new Threads.HookEntry();
-            // TODO: Refresh hook list
 
             Logger.I(Program.GetResourceString("Commands.Unhook.Uninstalled", id, entry.name));
+            Threads.Gui.theInstance.InvokeOn((FMain Me) => Me.RefreshGuiHooks());
         }
     }
 }

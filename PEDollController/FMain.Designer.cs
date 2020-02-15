@@ -69,6 +69,7 @@
             this.txtDumpContent = new System.Windows.Forms.TextBox();
             this.tabPageMonitor = new System.Windows.Forms.TabPage();
             this.grpMonitorShell = new System.Windows.Forms.GroupBox();
+            this.chkMonitorShellKeep = new System.Windows.Forms.CheckBox();
             this.lblMonitor2 = new System.Windows.Forms.Label();
             this.btnMonitorShell = new System.Windows.Forms.Button();
             this.txtMonitorShell = new System.Windows.Forms.TextBox();
@@ -208,6 +209,7 @@
             // 
             this.mnuHelpAbout.Name = "mnuHelpAbout";
             resources.ApplyResources(this.mnuHelpAbout, "mnuHelpAbout");
+            this.mnuHelpAbout.Click += new System.EventHandler(this.mnuHelpAbout_Click);
             // 
             // tabPanels
             // 
@@ -416,12 +418,19 @@
             // 
             // grpMonitorShell
             // 
+            this.grpMonitorShell.Controls.Add(this.chkMonitorShellKeep);
             this.grpMonitorShell.Controls.Add(this.lblMonitor2);
             this.grpMonitorShell.Controls.Add(this.btnMonitorShell);
             this.grpMonitorShell.Controls.Add(this.txtMonitorShell);
             resources.ApplyResources(this.grpMonitorShell, "grpMonitorShell");
             this.grpMonitorShell.Name = "grpMonitorShell";
             this.grpMonitorShell.TabStop = false;
+            // 
+            // chkMonitorShellKeep
+            // 
+            resources.ApplyResources(this.chkMonitorShellKeep, "chkMonitorShellKeep");
+            this.chkMonitorShellKeep.Name = "chkMonitorShellKeep";
+            this.chkMonitorShellKeep.UseVisualStyleBackColor = true;
             // 
             // lblMonitor2
             // 
@@ -433,6 +442,7 @@
             resources.ApplyResources(this.btnMonitorShell, "btnMonitorShell");
             this.btnMonitorShell.Name = "btnMonitorShell";
             this.btnMonitorShell.UseVisualStyleBackColor = true;
+            this.btnMonitorShell.Click += new System.EventHandler(this.btnMonitorShell_Click);
             // 
             // txtMonitorShell
             // 
@@ -456,12 +466,14 @@
             resources.ApplyResources(this.btnKillInvoke, "btnKillInvoke");
             this.btnKillInvoke.Name = "btnKillInvoke";
             this.btnKillInvoke.UseVisualStyleBackColor = true;
+            this.btnKillInvoke.Click += new System.EventHandler(this.btnKillInvoke_Click);
             // 
             // btnKillBrowse
             // 
             resources.ApplyResources(this.btnKillBrowse, "btnKillBrowse");
             this.btnKillBrowse.Name = "btnKillBrowse";
             this.btnKillBrowse.UseVisualStyleBackColor = true;
+            this.btnKillBrowse.Click += new System.EventHandler(this.btnKillBrowse_Click);
             // 
             // txtKillPID
             // 
@@ -504,6 +516,7 @@
             resources.ApplyResources(this.btnMonitorCurrent, "btnMonitorCurrent");
             this.btnMonitorCurrent.Name = "btnMonitorCurrent";
             this.btnMonitorCurrent.UseVisualStyleBackColor = true;
+            this.btnMonitorCurrent.Click += new System.EventHandler(this.btnMonitorCurrent_Click);
             // 
             // grpMonitorDoll
             // 
@@ -522,12 +535,14 @@
             resources.ApplyResources(this.btnDollInvoke, "btnDollInvoke");
             this.btnDollInvoke.Name = "btnDollInvoke";
             this.btnDollInvoke.UseVisualStyleBackColor = true;
+            this.btnDollInvoke.Click += new System.EventHandler(this.btnDollInvoke_Click);
             // 
             // btnDollBrowse
             // 
             resources.ApplyResources(this.btnDollBrowse, "btnDollBrowse");
             this.btnDollBrowse.Name = "btnDollBrowse";
             this.btnDollBrowse.UseVisualStyleBackColor = true;
+            this.btnDollBrowse.Click += new System.EventHandler(this.btnDollBrowse_Click);
             // 
             // txtDollPID
             // 
@@ -584,6 +599,7 @@
             resources.ApplyResources(this.btnDollBreak, "btnDollBreak");
             this.btnDollBreak.Name = "btnDollBreak";
             this.btnDollBreak.UseVisualStyleBackColor = true;
+            this.btnDollBreak.Click += new System.EventHandler(this.btnDollBreak_Click);
             // 
             // grpDollLoaddll
             // 
@@ -604,6 +620,7 @@
             resources.ApplyResources(this.btnDollLoaddll, "btnDollLoaddll");
             this.btnDollLoaddll.Name = "btnDollLoaddll";
             this.btnDollLoaddll.UseVisualStyleBackColor = true;
+            this.btnDollLoaddll.Click += new System.EventHandler(this.btnDollLoaddll_Click);
             // 
             // txtDollLoaddll
             // 
@@ -624,12 +641,14 @@
             resources.ApplyResources(this.btnHooksAdd, "btnHooksAdd");
             this.btnHooksAdd.Name = "btnHooksAdd";
             this.btnHooksAdd.UseVisualStyleBackColor = true;
+            this.btnHooksAdd.Click += new System.EventHandler(this.btnHooksAdd_Click);
             // 
             // btnHooksRemove
             // 
             resources.ApplyResources(this.btnHooksRemove, "btnHooksRemove");
             this.btnHooksRemove.Name = "btnHooksRemove";
             this.btnHooksRemove.UseVisualStyleBackColor = true;
+            this.btnHooksRemove.Click += new System.EventHandler(this.btnHooksRemove_Click);
             // 
             // lstDollHooks
             // 
@@ -674,6 +693,7 @@
             resources.ApplyResources(this.btnDollCurrent, "btnDollCurrent");
             this.btnDollCurrent.Name = "btnDollCurrent";
             this.btnDollCurrent.UseVisualStyleBackColor = true;
+            this.btnDollCurrent.Click += new System.EventHandler(this.btnDollCurrent_Click);
             // 
             // lblDoll0
             // 
@@ -704,12 +724,14 @@
             // 
             resources.ApplyResources(this.txtHookedEval, "txtHookedEval");
             this.txtHookedEval.Name = "txtHookedEval";
+            this.txtHookedEval.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHookedEval_KeyPress);
             // 
             // btnHookedEval
             // 
             resources.ApplyResources(this.btnHookedEval, "btnHookedEval");
             this.btnHookedEval.Name = "btnHookedEval";
             this.btnHookedEval.UseVisualStyleBackColor = true;
+            this.btnHookedEval.Click += new System.EventHandler(this.btnHookedEval_Click);
             // 
             // grpHookedResults
             // 
@@ -737,18 +759,21 @@
             resources.ApplyResources(this.btnVerdictApprove, "btnVerdictApprove");
             this.btnVerdictApprove.Name = "btnVerdictApprove";
             this.btnVerdictApprove.UseVisualStyleBackColor = true;
+            this.btnVerdictApprove.Click += new System.EventHandler(this.btnVerdictApprove_Click);
             // 
             // btnVerdictReject
             // 
             resources.ApplyResources(this.btnVerdictReject, "btnVerdictReject");
             this.btnVerdictReject.Name = "btnVerdictReject";
             this.btnVerdictReject.UseVisualStyleBackColor = true;
+            this.btnVerdictReject.Click += new System.EventHandler(this.btnVerdictReject_Click);
             // 
             // btnVerdictTerminate
             // 
             resources.ApplyResources(this.btnVerdictTerminate, "btnVerdictTerminate");
             this.btnVerdictTerminate.Name = "btnVerdictTerminate";
             this.btnVerdictTerminate.UseVisualStyleBackColor = true;
+            this.btnVerdictTerminate.Click += new System.EventHandler(this.btnVerdictTerminate_Click);
             // 
             // lblHooked1
             // 
@@ -925,7 +950,6 @@
         private System.Windows.Forms.Label lblDoll0;
         private System.Windows.Forms.Label lblHooked0;
         private System.Windows.Forms.GroupBox grpHookedResults;
-        private System.Windows.Forms.TextBox txtHookedResults;
         private System.Windows.Forms.GroupBox grpHookedEval;
         private System.Windows.Forms.Button btnHookedEval;
         private System.Windows.Forms.TextBox txtHookedEval;
@@ -946,6 +970,8 @@
         internal System.Windows.Forms.Button btnDumpShow;
         private System.Windows.Forms.SaveFileDialog dlgDumpSave;
         private System.Windows.Forms.OpenFileDialog dlgFileLoadOpen;
+        private System.Windows.Forms.CheckBox chkMonitorShellKeep;
+        internal System.Windows.Forms.TextBox txtHookedResults;
     }
 }
 

@@ -160,7 +160,7 @@ namespace PEDollController.Threads
         {
             // DO NOT call this inside of the Client constructor
             // At that time the instance is not recorded
-            CmdEngine.theInstance.RefreshGuiTargets();
+            Gui.theInstance.InvokeOn((FMain Me) => Me.RefreshGuiTargets());
 
             try
             {
@@ -181,7 +181,7 @@ namespace PEDollController.Threads
                 stream.Close();
                 client.Close();
 
-                CmdEngine.theInstance.RefreshGuiTargets();
+                Gui.theInstance.InvokeOn((FMain Me) => Me.RefreshGuiTargets());
             }
         }
 
@@ -257,12 +257,13 @@ namespace PEDollController.Threads
                 (hookPhase == 0) ? "before" : "after"
             ));
 
-            CmdEngine.theInstance.RefreshGuiTargets();
+            Gui.theInstance.InvokeOn((FMain Me) => Me.RefreshGuiTargets());
 
             List<Dictionary<string, object>> actions = (hookPhase == 0) ? entry.beforeActions : entry.afterActions;
             string verdict = (hookPhase == 0) ? entry.beforeVerdict : entry.afterVerdict;
 
-            foreach(Dictionary<string, object> action in actions)
+            Gui.theInstance.InvokeOn((FMain Me) => Me.txtHookedResults.Clear());
+            foreach (Dictionary<string, object> action in actions)
             {
                 try
                 {
@@ -270,8 +271,9 @@ namespace PEDollController.Threads
                     {
                         case "echo":
                         {
-                            string evalEcho = EvalEngine.EvalString(this, (string)action["echo"]);
-                            Logger.N(Program.GetResourceString("Threads.Client.Echo", evalEcho));
+                            string result = Program.GetResourceString("Threads.Client.Echo", EvalEngine.EvalString(this, (string)action["echo"]));
+                            Logger.N(result);
+                            Gui.theInstance.InvokeOn((FMain Me) => Me.txtHookedResults.Text += (result + Environment.NewLine));
                             break;
                         }
                         case "dump":
@@ -307,7 +309,10 @@ namespace PEDollController.Threads
                             string evalKey = EvalEngine.EvalString(this, (string)action["key"]);
                             string evalValue = EvalEngine.EvalString(this, (string)action["value"]);
                             this.context.Add(evalKey, evalValue);
-                            Logger.N(Program.GetResourceString("Threads.Client.Ctx", evalKey, evalValue));
+
+                            string result = Program.GetResourceString("Threads.Client.Ctx", evalKey, evalValue);
+                            Logger.N(result);
+                            Gui.theInstance.InvokeOn((FMain Me) => Me.txtHookedResults.Text += (result + Environment.NewLine));
                             break;
                         }
                     }
@@ -321,7 +326,7 @@ namespace PEDollController.Threads
             if(verdict == null)
             {
                 Logger.N(Program.GetResourceString("Threads.Client.VerdictWait"));
-                CmdEngine.theInstance.RefreshGuiTargets();
+                Gui.theInstance.InvokeOn((FMain Me) => Me.RefreshGuiTargets());
             }
             else
             {
@@ -562,7 +567,8 @@ namespace PEDollController.Threads
             dumpEntry.Data = blob;
             CmdEngine.theInstance.dumps.Add(dumpEntry);
 
-            Logger.N(Program.GetResourceString("Threads.Client.Dump", idx, dumpEntry.Data.Length));
+            string result = Program.GetResourceString("Threads.Client.Dump", idx, dumpEntry.Data.Length);
+            Logger.N(result);
             Gui.theInstance.InvokeOn((FMain Me) =>
             {
                 Me.lstDumps.Items.Add(new ListViewItem(new string[] {
@@ -576,6 +582,8 @@ namespace PEDollController.Threads
                     Me.lstDumps.Items[0].Selected = true;
                     Me.btnDumpShow.Enabled = Me.btnDumpSave.Enabled = true;
                 }
+
+                Me.txtHookedResults.Text += (result + Environment.NewLine);
             });
 
             return idx;
@@ -647,7 +655,7 @@ namespace PEDollController.Threads
             hookOep = 0;
             hookPhase = 0;
 
-            CmdEngine.theInstance.RefreshGuiTargets();
+            Gui.theInstance.InvokeOn((FMain Me) => Me.RefreshGuiTargets());
         }
 
         public byte[] Receive()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using System.Collections.Generic;
 
 namespace PEDollController.Commands
@@ -37,6 +38,11 @@ namespace PEDollController.Commands
 
             Logger.I(Program.GetResourceString("Commands.Ps.Header"));
 
+            Threads.Gui.theInstance.InvokeOn((FDlgBrowsePID Me) =>
+            {
+                Me.lstPs.Items.Clear();
+            });
+
             // Obtain entries
             Puppet.PACKET_INTEGER pktInt;
             while(true)
@@ -47,7 +53,21 @@ namespace PEDollController.Commands
 
                 string name = Puppet.Util.DeserializeString(client.Expect(Puppet.PACKET_TYPE.STRING));
                 Logger.I(Program.GetResourceString("Commands.Ps.Format", pktInt.data, name));
+
+                Threads.Gui.theInstance.InvokeOn((FDlgBrowsePID Me) =>
+                {
+                    Me.lstPs.Items.Add(new ListViewItem(new string[] {
+                        pktInt.data.ToString(),
+                        name
+                    }));
+                });
             }
+
+            Threads.Gui.theInstance.InvokeOn((FDlgBrowsePID Me) =>
+            {
+                Me.lstPs.Items[0].Selected = true;
+                Me.UseWaitCursor = false;
+            });
         }
     }
 }

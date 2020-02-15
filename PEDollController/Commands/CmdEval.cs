@@ -11,6 +11,14 @@ namespace PEDollController.Commands
 
     class CmdEval : ICommand
     {
+
+        static string RemoveQuotes(string x)
+        {
+            return (x[0] == '"' && x[x.Length - 1] == '"') ? x.Substring(1, x.Length - 2) : x;
+        }
+
+        // ----------
+
         public string HelpResId() => "Commands.Help.Eval";
         public string HelpShortResId() => "Commands.HelpShort.Eval";
 
@@ -30,7 +38,7 @@ namespace PEDollController.Commands
             return new Dictionary<string, object>()
             {
                 { "verb", "eval" },
-                { "expr", expr }
+                { "expr", RemoveQuotes(expr) }
             };
         }
 
@@ -40,7 +48,14 @@ namespace PEDollController.Commands
             if(client.hookOep == 0)
                 throw new ArgumentException(Program.GetResourceString("Threads.CmdEngine.TargetNotApplicable"));
 
-            Logger.I(Threads.EvalEngine.EvalString(client, (string)options["expr"]));
+            string expr = (string)options["expr"];
+            string result = Program.GetResourceString(
+                "Threads.Client.Eval",
+                expr,
+                Threads.EvalEngine.EvalString(client, expr)
+            );
+            Logger.I(result);
+            Threads.Gui.theInstance.InvokeOn((FMain Me) => Me.txtHookedResults.Text += (result + Environment.NewLine));
         }
     }
 }

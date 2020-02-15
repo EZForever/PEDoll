@@ -14,21 +14,21 @@ namespace PEDollController.Commands
 
     class CmdHook : ICommand
     {
-        // These are only for validating inputs at parse-time
+        // These are for validating inputs at parse-time
 
-        static readonly string[] conventionsX86 = {
+        public static readonly string[] conventionsX86 = {
             "stdcall", "cdecl", "fastcall"
         };
 
-        static readonly string[] conventionsX64 = {
+        public static readonly string[] conventionsX64 = {
             "msvc", "gcc"
         };
 
-        static readonly string[] verdictsBefore = {
+        public static readonly string[] verdictsBefore = {
             "approve", "reject", "terminate"
         };
 
-        static readonly string[] verdictsAfter = {
+        public static readonly string[] verdictsAfter = {
             "approve", "terminate"
         };
 
@@ -316,9 +316,9 @@ namespace PEDollController.Commands
             // Add entry to client's hooks
             int id = client.hooks.Count;
             client.hooks.Add(entry);
-            // TODO: Refresh hook list
 
             Logger.I(Program.GetResourceString("Commands.Hook.Installed", id, entry.name, client.OepToString(entry.oep)));
+            Threads.Gui.theInstance.InvokeOn((FMain Me) => Me.RefreshGuiHooks());
         }
     }
 }

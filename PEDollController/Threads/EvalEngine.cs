@@ -54,6 +54,7 @@ namespace PEDollController.Threads
                 case "UInt64":
                     format = "0x{0:x16}"; break;
                 case "Boolean":
+                case "SByte":
                 case "Int16":
                 case "Int32":
                 case "Int64":

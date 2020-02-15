@@ -13,6 +13,9 @@ namespace PEDollController.Threads
         // ----------
 
         FMain winMain;
+        public FDlgAbout dlgAbout;
+        public FDlgAddHook dlgAddHook;
+        public FDlgBrowsePID dlgBrowsePID;
 
         Gui()
         {
@@ -22,6 +25,9 @@ namespace PEDollController.Threads
 
             Program.OnProgramEnd += Program_OnProgramEnd;
             winMain = new FMain();
+            dlgAbout = new FDlgAbout();
+            dlgAddHook = new FDlgAddHook();
+            dlgBrowsePID = new FDlgBrowsePID();
         }
 
         ~Gui()
@@ -45,6 +51,7 @@ namespace PEDollController.Threads
 
         // Prototype: void InvokeOnProc(T Me) / (T Me) => { ... }
         // Threads.Gui.InvokeOn((FMain Me) => { ... });
+        // NOTE: Nothing will happen if the selected form is not visible
         public void InvokeOn<T>(Action<T> method) where T : Form
         {
             foreach (T frm in Application.OpenForms.Cast<Form>().Where(frm => frm is T))

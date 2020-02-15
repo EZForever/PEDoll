@@ -94,7 +94,7 @@ namespace PEDollController.Commands
                 client.GetStatusString()
             ));
 
-            Threads.CmdEngine.theInstance.RefreshGuiTargets();
+            Threads.Gui.theInstance.InvokeOn((FMain Me) => Me.RefreshGuiTargets());
         }
     }
 

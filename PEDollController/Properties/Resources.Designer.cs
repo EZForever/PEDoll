@@ -806,6 +806,15 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
+        ///   查找类似 eval: {0} =&gt; {1} 的本地化字符串。
+        /// </summary>
+        internal static string Threads_Client_Eval {
+            get {
+                return ResourceManager.GetString("Threads.Client.Eval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Client &quot;{0}&quot; hooked on #{1} &quot;{2}&quot; - phase &quot;{3}&quot;. 的本地化字符串。
         /// </summary>
         internal static string Threads_Client_Hooked {

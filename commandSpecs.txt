@@ -158,7 +158,7 @@ Expressions in the strings are formatted based on their values' type:
 
 Unsigned integers and `byte`s:
 	Zero-padded hexadecimal display.
-Signed integers:
+Signed integers and `sbyte`s:
 	Decimal display.
 Strings:
 	String embraced with double-quotes.

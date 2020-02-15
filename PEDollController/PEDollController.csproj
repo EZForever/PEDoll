@@ -85,6 +85,24 @@
     <Compile Include="Commands\Commandline.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Util.cs" />
+    <Compile Include="FDlgAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FDlgAbout.Designer.cs">
+      <DependentUpon>FDlgAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FDlgAddHook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FDlgAddHook.Designer.cs">
+      <DependentUpon>FDlgAddHook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FDlgBrowsePID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FDlgBrowsePID.Designer.cs">
+      <DependentUpon>FDlgBrowsePID.cs</DependentUpon>
+    </Compile>
     <Compile Include="FMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +130,15 @@
     <Compile Include="Threads\Client.cs" />
     <Compile Include="Threads\CmdEngine.cs" />
     <Compile Include="Threads\EvalEngine.cs" />
+    <EmbeddedResource Include="FDlgAbout.resx">
+      <DependentUpon>FDlgAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FDlgAddHook.resx">
+      <DependentUpon>FDlgAddHook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FDlgBrowsePID.resx">
+      <DependentUpon>FDlgBrowsePID.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Threads\EvalEngineContext.cs" />
     <Compile Include="Threads\Gui.cs" />
     <Compile Include="Threads\Listener.cs" />
