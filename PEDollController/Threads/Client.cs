@@ -549,8 +549,10 @@ namespace PEDollController.Threads
                 // Value is from stack
 
                 // Calculate stack ptr
-                UInt64 ptr = eval_getContext(4) + (UInt64)wordsize; // Argument stack base
-                ptr += (UInt64)ptrOffset;
+                UInt64 ptr = eval_getContext(4) // Preserved SP value
+                    + (UInt64)wordsize // Skip HookOEP
+                    + (UInt64)wordsize // Skip return address
+                    + (UInt64)ptrOffset;
 
                 val = eval_poi(ptr);
             }

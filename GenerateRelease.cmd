@@ -1,5 +1,6 @@
 @echo off
 
+
 set "RELEASEDIR=%tmp%\PEDollRelease"
 
 
@@ -17,12 +18,19 @@ set "RELEASEDIR=%tmp%\PEDollRelease"
 
 	md %RELEASEDIR%
 
-	call :buildController Debug ^
-	&& call :buildMonitor x86 Debug ^
-	&& call :buildMonitor x64 Debug
+	call :buildAll Debug
+	::call :buildAll Release
 
 	start explorer %RELEASEDIR%
 	popd
+goto :eof
+
+
+:: call :buildAll Debug
+:buildAll
+	call :buildController %1 ^
+	&& call :buildMonitor x86 %1 ^
+	&& call :buildMonitor x64 %1
 goto :eof
 
 
@@ -30,21 +38,21 @@ goto :eof
 :buildController
 	set PLATFORMDIR=PEDollController\bin
 
-	msbuild PEDoll.sln -p:Platform="Any CPU";Configuration=%1
+	msbuild PEDoll.sln -t:PEDollController -p:Platform="Any CPU";Configuration=%1
 	if %ERRORLEVEL% neq 0 (
 		goto :eof
 	)
 
-	if not exist "%RELEASEDIR%\Controller" (
-		md "%RELEASEDIR%\Controller"
+	if not exist "%RELEASEDIR%\%1" (
+		md "%RELEASEDIR%\%1"
 	)
+	
+	md "%RELEASEDIR%\%1\Controller"
 
-	md "%RELEASEDIR%\Controller\%1"
+	xcopy /e %PLATFORMDIR%\%1 "%RELEASEDIR%\%1\Controller\"
+	xcopy /e /i Scripts "%RELEASEDIR%\%1\Controller\Scripts"
 
-	xcopy /e %PLATFORMDIR%\%1 "%RELEASEDIR%\Controller\%1\"
-	xcopy /e /i Scripts "%RELEASEDIR%\Controller\%1\Scripts"
-
-	wsl ./GenerateAPIx64.sh "%RELEASEDIR%\Controller\%1\Scripts\API"
+	wsl ./GenerateAPIx64.sh "%RELEASEDIR%\%1\Controller\Scripts\API"
 goto :eof
 
 
@@ -57,23 +65,23 @@ goto :eof
 		set PLATFORMDIR=x64
 	)
 
-	msbuild PEDoll.sln -p:Platform=%1;Configuration=%2
+	msbuild PEDoll.sln -t:PEDollMonitor -p:Platform=%1;Configuration=%2
 	if %ERRORLEVEL% neq 0 (
 		goto :eof
 	)
 
-	if not exist "%RELEASEDIR%\Monitor_%1" (
-		md "%RELEASEDIR%\Monitor_%1"
+	if not exist "%RELEASEDIR%\%2" (
+		md "%RELEASEDIR%\%2"
 	)
+	
+	md "%RELEASEDIR%\%2\Monitor_%1"
 
-	md "%RELEASEDIR%\Monitor_%1\%2"
-
-	copy %PLATFORMDIR%\%2\PEDollMonitor.exe "%RELEASEDIR%\Monitor_%1\%2\"
-	copy %PLATFORMDIR%\%2\libDoll.dll "%RELEASEDIR%\Monitor_%1\%2\"
+	copy %PLATFORMDIR%\%2\PEDollMonitor.exe "%RELEASEDIR%\%2\Monitor_%1\"
+	copy %PLATFORMDIR%\%2\libDoll.dll "%RELEASEDIR%\%2\Monitor_%1\"
 
 	if %2 equ Debug (
-		copy %PLATFORMDIR%\%2\PEDollMonitor.pdb "%RELEASEDIR%\Monitor_%1\%2\"
-		copy %PLATFORMDIR%\%2\libDoll.pdb "%RELEASEDIR%\Monitor_%1\%2\"
+		copy %PLATFORMDIR%\%2\PEDollMonitor.pdb "%RELEASEDIR%\%2\Monitor_%1\"
+		copy %PLATFORMDIR%\%2\libDoll.pdb "%RELEASEDIR%\%2\Monitor_%1\"
 	)
 
 goto :eof

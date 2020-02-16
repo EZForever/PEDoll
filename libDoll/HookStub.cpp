@@ -55,7 +55,7 @@ extern "C" void DollOnHook(UINT_PTR* context)
         // Rejected
         // Parameters are set by TPuppetOnRecv*()
         context[0] = (UINT_PTR)hook->pBeforeDeny;
-        context[1] = (UINT_PTR)hook->pBeforeB;
+        context[1] = (UINT_PTR)hook->pBeforeB; // Comment this line to disable "after" phase on a rejected "before" phase
     }
     else
     {

@@ -12,7 +12,7 @@ public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
 ; pushad/popad are not supported on x64 :(
 ; sequence: rax, rcx, rdx, rbx, rbp, rsp, rdi, rsi, r8, r9
 
-pushad macro
+pushall macro
     push rax
     mov rax, rsp
     add rax, 8
@@ -28,7 +28,7 @@ pushad macro
     push r9
 endm
 
-popad macro
+popall macro
     pop r9
     pop r8
     pop rdi
@@ -40,9 +40,7 @@ popad macro
     pop rcx
     ;   rax == original rsp
     ;   stack == (original rax), (red zone...)
-    xor rax, [rsp]
-    xor [rsp], rax
-    xor rax, [rsp]
+    xchg rax, [rsp]
     ;   swap(rax, [rsp])
     ;   stack == (original rsp), (red zone...)
     pop rsp
@@ -55,9 +53,7 @@ pushimm64 macro x
     mov rax, x
     ;   rax == x
     ;   stack == (original rax), (red zone...)
-    xor rax, [rsp]
-    xor [rsp], rax
-    xor rax, [rsp]
+    xchg rax, [rsp]
     ;   swap(rax, [rsp])
     ;   stack == (x), (red zone...)
 endm
@@ -74,7 +70,7 @@ HookStubBefore:
 HookStubBefore_end:
 
 HookStubA:
-    pushad
+    pushall
 
     sub rsp, 8 * 4
     lea rax, DollThreadIsCurrent
@@ -92,7 +88,7 @@ HookStubA:
     call rax
     add rsp, 8 * 4
 
-    popad
+    popall
 
     ret
 
@@ -109,12 +105,12 @@ __HookStubA_isDoll:
     add rcx, 8 * 10
     mov [rcx], rdx
 
-    popad
+    popall
 
     ret
 
 HookStubB:
-    pushad
+    pushall
 
     mov rcx, rsp
     add rcx, 8 * 10
@@ -124,12 +120,12 @@ HookStubB:
     call rax
     add rsp, 8 * 4
 
-    popad
+    popall
 
     ret
 
 HookStubOnDeny:
-    pushad
+    pushall
 
     mov rcx, rsp
     add rcx, 8 * 10
@@ -154,7 +150,7 @@ HookStubOnDeny:
 
     mov [rsp + 8 * 9], rdx ; offset pushad::eax
 
-    popad
+    popall
 
     add rsp, 8
 
@@ -171,9 +167,9 @@ HookStubBefore_HookOEPOffset \
 
 ; Offset to address pointer placeholder
 HookStubBefore_AddrOffset \
-    dq 26
+    dq 18
 
-; Registers saved by the pushad instruction
+; Registers saved by the pushad/pushall instruction
 pushad_count \
     dq 10
 

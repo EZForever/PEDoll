@@ -397,13 +397,16 @@ EXPR		The expression to be evaluated.
 
 An "expression" is a C# expression embraced with braces, e.g. {(uint)poi(ax)+4}
 
-The types, methods and fields from namespaces "System" and "System.Linq",
-among with the following, are provided:
+The types from these namespaces:
+	System,
+	System.Linq,
+	System.Collections.Generic,
+among with the following methods and fields, are provided:
 
 (type alias) word
 	A integer of the native word size (`int` on x86 or `long` on x64).
 (type alias) uword
-	Similar to `word` but unsigned.
+	Similar to `word` but unsigned (`uint` on x86 or `ulong` on x64).
 string str(uword PTR)
 	Returns the C-style string PTR points to.
 string wstr(uword PTR)

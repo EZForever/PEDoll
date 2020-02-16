@@ -164,15 +164,16 @@ namespace PEDollController.Properties {
         ///
         ///An &quot;expression&quot; is a C# expression embraced with braces, e.g. {(uint)poi(ax)+4}
         ///
-        ///The types, methods and fields from namespaces &quot;System&quot; and &quot;System.Linq&quot;,
-        ///among with the following, are provided:
+        ///The types from these namespaces:
+        ///	System,
+        ///	System.Linq,
+        ///	System.Collections.Generic,
+        ///among with the following methods and fields, are provided:
         ///
         ///(type alias) word
         ///	A integer of the native word size (`int` on x86 or `long` on x64).
         ///(type alias) uword
-        ///	Similar to `word` but unsigned.
-        ///string str(uword PTR)
-        ///	Returns the C-style string PTR points to.
+        ///	Similar to `word` but unsigned (`uint` on x86 or `ulong` on x64).
         ///st [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string Commands_Help_Eval {

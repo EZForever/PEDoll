@@ -10,6 +10,19 @@ public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
 
 .code
 
+; pushall/popall macro saves/restores literally all general-purpose registers
+
+pushall macro
+    pushad
+endm
+
+; NOTE: popad will NOT restore esp's value from stack
+; https://c9x.me/x86/html/file_module_x86_id_249.html
+popall macro
+    popad
+    mov esp, [esp - 4 * 5] ; rev offset pushad::esp
+endm
+
 ; Before: Each API keeps a copy, work as the "Detoured function"
 ; Purpose is to provide HookOEP
 ; Context (Before A):
@@ -29,7 +42,7 @@ HookStubBefore_end:
 ; Context:
 ;     stack == (HookOEP), (return addr), (red zone...)
 HookStubA:
-    pushad
+    pushall
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     lea eax, DollThreadIsCurrent
     call eax
@@ -49,7 +62,7 @@ HookStubA:
     add esp, 4
     ;   DollOnHook(&HookOEP)
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (newOEP), (return addr), (red zone...)
-    popad
+    popall
     ;   stack == (newOEP), (return addr), (red zone...)
     ret
     ;   Hand control over to newOEP
@@ -70,8 +83,8 @@ __HookStubA_isDoll:
     mov ecx, esp
     add ecx, 4 * 8
     mov [ecx], edx
-    ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (pTrampoline), (return addr), (red zone...)
-    popad
+    ;   stack == (pushall: eax, ecx, edx, ebx, esp, ebp, esi, edi), (pTrampoline), (return addr), (red zone...)
+    popall
     ;   stack == (pTrampoline), (return addr), (red zone...)
     ret
     ;   Hand control over to pTrampoline
@@ -94,7 +107,7 @@ HookStubB:
     add esp, 4
     ;   DollOnAfterHook(&HookOEP)
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (return addr), (red zone...)
-    popad
+    popall
     ;   stack == (return addr), (red zone...)
     ret
     ;   Hand control over to caller code
@@ -106,7 +119,7 @@ HookStubB:
 ; NOTE: should act like a __nakedcall function, except that a stack balance will apply
 ; NOTE: Stack balance is happened in the "red zone"
 HookStubOnDeny:
-    pushad
+    pushall
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     mov ecx, esp
     add ecx, 4 * 8
@@ -136,7 +149,7 @@ HookStubOnDeny:
     ;   edx == denyAX
     mov [esp + 4 * 7], edx ; offset pushad::eax
     ;   stack == (pushad: eaxModded, ecx, edx, ebx, espModded, ebp, esi, edi), (HookOEP), (return addr), [stack balance area], (return addr), (red zone...)
-    popad
+    popall
     ;   Magic happens since we modifyed esp
     ;   stack == (stack balance area the size of HookOEP), (return addr), (red zone...)
     add esp, 4
@@ -159,7 +172,7 @@ HookStubBefore_HookOEPOffset \
 HookStubBefore_AddrOffset \
     dd 6
 
-; Registers saved by the pushad instruction
+; Registers saved by the pushad/pushall instruction
 pushad_count \
     dd 8
 

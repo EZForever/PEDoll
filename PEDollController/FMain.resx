@@ -1681,7 +1681,7 @@
     <value>OEP</value>
   </data>
   <data name="clmHooksOep.Width" type="System.Int32, mscorlib">
-    <value>90</value>
+    <value>120</value>
   </data>
   <data name="clmHooksName.Text" xml:space="preserve">
     <value>Name</value>
