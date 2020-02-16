@@ -735,6 +735,26 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Controller {
+            get {
+                object obj = ResourceManager.GetObject("Controller", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Splash {
+            get {
+                object obj = ResourceManager.GetObject("Splash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Action &quot;{0}&quot; failed: {1} 的本地化字符串。
         /// </summary>
         internal static string Threads_Client_ActionError {
@@ -996,7 +1016,7 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
-        ///   查找类似 PEDoll Controller v{0}
+        ///   查找类似 PEDoll Controller v{0} Indev
         /// 的本地化字符串。
         /// </summary>
         internal static string UI_Cli_Banner {
@@ -1021,6 +1041,15 @@ namespace PEDollController.Properties {
         internal static string UI_Cli_Format {
             get {
                 return ResourceManager.GetString("UI.Cli.Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 PEDoll v{0} Indev 的本地化字符串。
+        /// </summary>
+        internal static string UI_Gui_Banner {
+            get {
+                return ResourceManager.GetString("UI.Gui.Banner", resourceCulture);
             }
         }
         

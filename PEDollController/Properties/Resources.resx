@@ -117,330 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Commands.Invalid" xml:space="preserve">
-    <value>Invalid command `{0}`. Try `help {1}`.</value>
-  </data>
-  <data name="Commands.Unknown" xml:space="preserve">
-    <value>Unknown command `{0}`.</value>
-  </data>
-  <data name="Commands.IOError" xml:space="preserve">
-    <value>I/O exception {0}: {1}</value>
-  </data>
-  <data name="Commands.Win32Error" xml:space="preserve">
-    <value>Win32 Error {0}: {1}</value>
-  </data>
-  <data name="Commands.ParensMismatch" xml:space="preserve">
-    <value>Parens mismatch.</value>
-  </data>
-  <data name="Commands.Incomplete" xml:space="preserve">
-    <value>String incomplete.</value>
-  </data>
-  <data name="Commands.Dump.Header" xml:space="preserve">
-    <value>#    Size   Client
-----+------+---------------------------</value>
-  </data>
-  <data name="Commands.Dump.Format" xml:space="preserve">
-    <value>{0,-4} {1,-6} {2}</value>
-  </data>
-  <data name="Commands.Dump.Title" xml:space="preserve">
-    <value>Dump #{0} from client "{1}" ({2} bytes), under format "{3}":
-</value>
-  </data>
-  <data name="Commands.Hook.Header" xml:space="preserve">
-    <value>#    OEP                Name
-----+------------------+-------------------------</value>
-  </data>
-  <data name="Commands.Hook.Format" xml:space="preserve">
-    <value>{0,-4} {1,-18} {2}</value>
-  </data>
-  <data name="Commands.Hook.HookExists" xml:space="preserve">
-    <value>Warning: Hook under name "{0}" already exists. Overwriting its settings.</value>
-  </data>
-  <data name="Commands.Hook.Installed" xml:space="preserve">
-    <value>Hook #{0} "{1}" installed at {2}.</value>
-  </data>
-  <data name="Commands.Listen.AlreadyStarted" xml:space="preserve">
-    <value>The listener has already been started.</value>
-  </data>
-  <data name="Commands.Listen.AvailableAddresses" xml:space="preserve">
-    <value>Available addresses:
-</value>
-  </data>
-  <data name="Commands.Ps.Header" xml:space="preserve">
-    <value>PID      Name
---------+--------------------------------</value>
-  </data>
-  <data name="Commands.Ps.Format" xml:space="preserve">
-    <value>{0,-8} {1}</value>
-  </data>
-  <data name="Commands.Target.Header" xml:space="preserve">
-    <value>  #    Name                             Type     Status   PID      Bits
--+----+--------------------------------+--------+--------+--------+----</value>
-  </data>
-  <data name="Commands.Target.Format" xml:space="preserve">
-    <value>{0} {1,-4} {2,-32} {3,-8} {4,-8} {5,-8} {6,-4}</value>
-  </data>
-  <data name="Commands.Target.CurrentTarget" xml:space="preserve">
-    <value>Current target is #{0} "{1}" ({2}, {3}).</value>
-  </data>
-  <data name="Commands.Unhook.NotFound" xml:space="preserve">
-    <value>The specified hook does not exist.</value>
-  </data>
-  <data name="Commands.Unhook.Uninstalled" xml:space="preserve">
-    <value>Hook #{0} "{1}" removed.</value>
-  </data>
-  <data name="Threads.Client.Disconnected" xml:space="preserve">
-    <value>Client "{0}" disconnected, reason: {1}</value>
-  </data>
-  <data name="Threads.Client.Connected" xml:space="preserve">
-    <value>New client from {0}: #{1} "{2}" ({3}).</value>
-  </data>
-  <data name="Threads.Client.Hooked" xml:space="preserve">
-    <value>Client "{0}" hooked on #{1} "{2}" - phase "{3}".</value>
-  </data>
-  <data name="Threads.Client.ActionError" xml:space="preserve">
-    <value>Action "{0}" failed: {1}</value>
-  </data>
-  <data name="Threads.Client.MalformedPacket" xml:space="preserve">
-    <value>Malformed libPuppet packet.</value>
-  </data>
-  <data name="Threads.Client.StringReadWarning" xml:space="preserve">
-    <value>Warning: Reading string: Truncated incomplete string.</value>
-  </data>
-  <data name="Threads.Client.StringTooLongWarning" xml:space="preserve">
-    <value>Warning: Reading string: Truncated long string.</value>
-  </data>
-  <data name="Threads.Client.MemoryReadError" xml:space="preserve">
-    <value>Error reading memory.</value>
-  </data>
-  <data name="Threads.Client.MemoryReadWarning" xml:space="preserve">
-    <value>Warning: Reading memory: Size expected = {0}, got = {1}</value>
-  </data>
-  <data name="Threads.Client.ContextReadError" xml:space="preserve">
-    <value>Error reading register #{0}.</value>
-  </data>
-  <data name="Threads.Client.DictionaryReadError" xml:space="preserve">
-    <value>Dictionary entry "{0}" not found.</value>
-  </data>
-  <data name="Threads.Client.Type.Doll" xml:space="preserve">
-    <value>Doll</value>
-  </data>
-  <data name="Threads.Client.Type.Monitor" xml:space="preserve">
-    <value>Monitor</value>
-  </data>
-  <data name="Threads.Client.Status.Alive" xml:space="preserve">
-    <value>Alive</value>
-  </data>
-  <data name="Threads.Client.Status.Dead" xml:space="preserve">
-    <value>Dead</value>
-  </data>
-  <data name="Threads.Client.Status.Hooked" xml:space="preserve">
-    <value>Hooked</value>
-  </data>
-  <data name="Threads.Client.Echo" xml:space="preserve">
-    <value>echo: {0}</value>
-  </data>
-  <data name="Threads.Client.Dump" xml:space="preserve">
-    <value>dump: Dump #{0} created ({1} bytes).</value>
-  </data>
-  <data name="Threads.Client.Ctx" xml:space="preserve">
-    <value>ctx: Dictionary entry created: {0} =&gt; {1}.</value>
-  </data>
-  <data name="Threads.Client.Eval" xml:space="preserve">
-    <value>eval: {0} =&gt; {1}</value>
-  </data>
-  <data name="Threads.Client.TypeMismatch" xml:space="preserve">
-    <value>Expression type mismatch.</value>
-  </data>
-  <data name="Threads.Client.Verdict" xml:space="preserve">
-    <value>verdict: Executing verdict "{0}".</value>
-  </data>
-  <data name="Threads.Client.VerdictWait" xml:space="preserve">
-    <value>verdict: Waiting for verdict</value>
-  </data>
-  <data name="Threads.CmdEngine.TargetNotApplicable" xml:space="preserve">
-    <value>Requested operation is not applicable to the specified target.</value>
-  </data>
-  <data name="Threads.CmdEngine.TargetNotAvailable" xml:space="preserve">
-    <value>The specified target is dead or does not exist.</value>
-  </data>
-  <data name="Threads.EvalEngine.Empty" xml:space="preserve">
-    <value>Empty expression.</value>
-  </data>
-  <data name="Threads.EvalEngine.InvalidType" xml:space="preserve">
-    <value>Cannot evaluate expression of type {0}.</value>
-  </data>
-  <data name="Threads.EvalEngine.CompileError" xml:space="preserve">
-    <value>Compile error: {0}</value>
-  </data>
-  <data name="Threads.EvalEngine.RuntimeError" xml:space="preserve">
-    <value>Runtime exception {0}: {1}</value>
-  </data>
-  <data name="UI.Cli.Banner" xml:space="preserve">
-    <value>PEDoll Controller v{0}
-</value>
-  </data>
-  <data name="UI.Cli.CtrlC" xml:space="preserve">
-    <value>
-[ Ctrl-C received, press any key to stop the engine... ]</value>
-  </data>
-  <data name="UI.Cli.Format" xml:space="preserve">
-    <value>&gt; {0}</value>
-  </data>
-  <data name="Commands.HelpShort.Header" xml:space="preserve">
-    <value>For more information on a specific command, type `help COMMAND`.
-All the commands are case-sensitive.
-</value>
-  </data>
-  <data name="Commands.HelpShort.Break" xml:space="preserve">
-    <value>break	- (D) Breaks or continues the process's execution.</value>
-  </data>
-  <data name="Commands.HelpShort.Doll" xml:space="preserve">
-    <value>doll	- (M) Creates a new Doll client.</value>
-  </data>
-  <data name="Commands.HelpShort.Dump" xml:space="preserve">
-    <value>dump	- Displays or saves dumped data.</value>
-  </data>
-  <data name="Commands.HelpShort.End" xml:space="preserve">
-    <value>end	- (M/D) Ends the client, stopping its process.</value>
-  </data>
-  <data name="Commands.HelpShort.Eval" xml:space="preserve">
-    <value>eval	- (D) Evaluates a expression on current context.</value>
-  </data>
-  <data name="Commands.HelpShort.Exit" xml:space="preserve">
-    <value>exit	- Quits the Controller, end all connected clients.</value>
-  </data>
-  <data name="Commands.HelpShort.Help" xml:space="preserve">
-    <value>help	- Provides help information for commands.</value>
-  </data>
-  <data name="Commands.HelpShort.Hook" xml:space="preserve">
-    <value>hook	- (D) Installs a new hook and set its actions.</value>
-  </data>
-  <data name="Commands.HelpShort.Kill" xml:space="preserve">
-    <value>kill	- (M) Terminates process(es) with PID or name.</value>
-  </data>
-  <data name="Commands.HelpShort.Listen" xml:space="preserve">
-    <value>listen	- Starts to listen for clients.</value>
-  </data>
-  <data name="Commands.HelpShort.Load" xml:space="preserve">
-    <value>load	- Executes commands from a script.</value>
-  </data>
-  <data name="Commands.HelpShort.LoadDll" xml:space="preserve">
-    <value>loaddll	- (D) Loads a module into the process's address space.</value>
-  </data>
-  <data name="Commands.HelpShort.Ps" xml:space="preserve">
-    <value>ps	- (M) Displays a list of running processes.</value>
-  </data>
-  <data name="Commands.HelpShort.Rem" xml:space="preserve">
-    <value>rem	- Records comments (remarks) in a script file.</value>
-  </data>
-  <data name="Commands.HelpShort.Shell" xml:space="preserve">
-    <value>shell	- (M) Starts a instance of command interpreter.</value>
-  </data>
-  <data name="Commands.HelpShort.Target" xml:space="preserve">
-    <value>target	- Gets or sets the target client.</value>
-  </data>
-  <data name="Commands.HelpShort.Unhook" xml:space="preserve">
-    <value>unhook	- (D) Uninstalls a hook.</value>
-  </data>
-  <data name="Commands.HelpShort.Verdict" xml:space="preserve">
-    <value>verdict	- (D) Verdicts an activated hook.</value>
-  </data>
-  <data name="Commands.Help.Break" xml:space="preserve">
-    <value>Breaks or continues the process's execution.
-
-break
-
-This command toggles the execution state between running and suspended.
-For a newly-created Doll process, it's state is running.
-For a newly-attached Doll process, it's state is suspended.
-</value>
-  </data>
-  <data name="Commands.Help.Doll" xml:space="preserve">
-    <value>Creates a new Doll client by creating or attaching to a process.
-
-doll CMDLINE
-doll --attach PID
-
-CMDLINE		Create a new process by running CMDLINE.
-PID		Attach to process PID.
-		Use `ps` to get the list of available PIDs.
-</value>
-  </data>
-  <data name="Commands.Help.Dump" xml:space="preserve">
-    <value>Displays or saves dumped data.
-
-dump
-dump ID [--format=FORMAT] [--save=SAVEFILE]
-
-Type `hook` without any arguments displays a list of dumped data.
-
-ID		ID of the dump to operate.
-FORMAT		Show or save data under FORMAT. Possible formats are:
-		hex(default), raw, ansi, unicode, utf8, x86, x64
-SAVEFILE	Save the data to SAVEFILE instead of displaying them.
-		SAVEFILE will be overwritten if it exists.
-</value>
-  </data>
-  <data name="Commands.Help.End" xml:space="preserve">
-    <value>Ends the client, stopping its process.
-
-end
-</value>
-  </data>
-  <data name="Commands.Help.Eval" xml:space="preserve">
-    <value>Evaluates a expression on current context.
-
-eval EXPR
-
-EXPR		The expression to be evaluated.
-
-An "expression" is a C# expression embraced with braces, e.g. {(uint)poi(ax)+4}
-
-The types from these namespaces:
-	System,
-	System.Linq,
-	System.Collections.Generic,
-among with the following methods and fields, are provided:
-
-(type alias) word
-	A integer of the native word size (`int` on x86 or `long` on x64).
-(type alias) uword
-	Similar to `word` but unsigned (`uint` on x86 or `ulong` on x64).
-string str(uword PTR)
-	Returns the C-style string PTR points to.
-string wstr(uword PTR)
-	Returns the C-style wide-char string PTR points to.
-string ctx(string KEY)
-	Returns the entry under key KEY in context dictionary.
-byte[] mem(uword PTR, uint LEN)
-	Returns a binary blob of length &lt;= LEN pointer PTR points to.
-uword poi(uword PTR)
-	Returns the integer pointer PTR points to as a `uword`.
-uword arg(uint INDEX)
-	Returns the value of function argument at zero-based index INDEX.
-int dump(byte[] BLOB)
-	Dumps BLOB, then returns the index of the dump entry.
-uword ax, cx, dx, bx, sp, bp, si, di, r8, r9
-	The value of the corresponding register. Readonly.
-	`r8` and `r9` are available only on a x64 client.
-</value>
-  </data>
-  <data name="Commands.Help.Exit" xml:space="preserve">
-    <value>Quits the Controller, end all connected clients.
-
-exit
-</value>
-  </data>
-  <data name="Commands.Help.Help" xml:space="preserve">
-    <value>Provides help information for commands.
-
-help [COMMAND]
-
-COMMAND		Display help information for command COMMAND.
-		If omitted, display a list of available commands.
-</value>
-  </data>
   <data name="Commands.Help.Hook" xml:space="preserve">
     <value>Installs a new hook and set its actions.
 
@@ -499,6 +175,203 @@ Any other type:
 For help information on expressions, type `help eval`.
 </value>
   </data>
+  <data name="Threads.Client.MalformedPacket" xml:space="preserve">
+    <value>Malformed libPuppet packet.</value>
+  </data>
+  <data name="UI.Gui.Banner" xml:space="preserve">
+    <value>PEDoll v{0} Indev</value>
+  </data>
+  <data name="Commands.HelpShort.Hook" xml:space="preserve">
+    <value>hook	- (D) Installs a new hook and set its actions.</value>
+  </data>
+  <data name="Threads.Client.Hooked" xml:space="preserve">
+    <value>Client "{0}" hooked on #{1} "{2}" - phase "{3}".</value>
+  </data>
+  <data name="Commands.Help.Eval" xml:space="preserve">
+    <value>Evaluates a expression on current context.
+
+eval EXPR
+
+EXPR		The expression to be evaluated.
+
+An "expression" is a C# expression embraced with braces, e.g. {(uint)poi(ax)+4}
+
+The types from these namespaces:
+	System,
+	System.Linq,
+	System.Collections.Generic,
+among with the following methods and fields, are provided:
+
+(type alias) word
+	A integer of the native word size (`int` on x86 or `long` on x64).
+(type alias) uword
+	Similar to `word` but unsigned (`uint` on x86 or `ulong` on x64).
+string str(uword PTR)
+	Returns the C-style string PTR points to.
+string wstr(uword PTR)
+	Returns the C-style wide-char string PTR points to.
+string ctx(string KEY)
+	Returns the entry under key KEY in context dictionary.
+byte[] mem(uword PTR, uint LEN)
+	Returns a binary blob of length &lt;= LEN pointer PTR points to.
+uword poi(uword PTR)
+	Returns the integer pointer PTR points to as a `uword`.
+uword arg(uint INDEX)
+	Returns the value of function argument at zero-based index INDEX.
+int dump(byte[] BLOB)
+	Dumps BLOB, then returns the index of the dump entry.
+uword ax, cx, dx, bx, sp, bp, si, di, r8, r9
+	The value of the corresponding register. Readonly.
+	`r8` and `r9` are available only on a x64 client.
+</value>
+  </data>
+  <data name="Commands.HelpShort.Dump" xml:space="preserve">
+    <value>dump	- Displays or saves dumped data.</value>
+  </data>
+  <data name="UI.Cli.Format" xml:space="preserve">
+    <value>&gt; {0}</value>
+  </data>
+  <data name="Threads.CmdEngine.TargetNotApplicable" xml:space="preserve">
+    <value>Requested operation is not applicable to the specified target.</value>
+  </data>
+  <data name="Threads.Client.Status.Hooked" xml:space="preserve">
+    <value>Hooked</value>
+  </data>
+  <data name="Commands.Hook.Installed" xml:space="preserve">
+    <value>Hook #{0} "{1}" installed at {2}.</value>
+  </data>
+  <data name="Commands.Help.Unhook" xml:space="preserve">
+    <value>unhook ID
+
+ID		ID of the hook.
+</value>
+  </data>
+  <data name="Threads.Client.ActionError" xml:space="preserve">
+    <value>Action "{0}" failed: {1}</value>
+  </data>
+  <data name="Commands.Hook.HookExists" xml:space="preserve">
+    <value>Warning: Hook under name "{0}" already exists. Overwriting its settings.</value>
+  </data>
+  <data name="Commands.HelpShort.Kill" xml:space="preserve">
+    <value>kill	- (M) Terminates process(es) with PID or name.</value>
+  </data>
+  <data name="Threads.Client.Type.Monitor" xml:space="preserve">
+    <value>Monitor</value>
+  </data>
+  <data name="Threads.Client.TypeMismatch" xml:space="preserve">
+    <value>Expression type mismatch.</value>
+  </data>
+  <data name="Commands.Help.End" xml:space="preserve">
+    <value>Ends the client, stopping its process.
+
+end
+</value>
+  </data>
+  <data name="Commands.Help.LoadDll" xml:space="preserve">
+    <value>Loads a module into the process's address space.
+
+loaddll MODULE
+
+MODULE		The module path passed to LoadLibrary().
+
+Internally, `loaddll` calls LoadLibrary() on a new thread.
+Call `loaddll` with libDoll will cause nothing but must never be attempted.
+</value>
+  </data>
+  <data name="UI.Cli.CtrlC" xml:space="preserve">
+    <value>
+[ Ctrl-C received, press any key to stop the engine... ]</value>
+  </data>
+  <data name="Threads.Client.Echo" xml:space="preserve">
+    <value>echo: {0}</value>
+  </data>
+  <data name="Commands.IOError" xml:space="preserve">
+    <value>I/O exception {0}: {1}</value>
+  </data>
+  <data name="Threads.EvalEngine.Empty" xml:space="preserve">
+    <value>Empty expression.</value>
+  </data>
+  <data name="Commands.Help.Shell" xml:space="preserve">
+    <value>Starts a instance of command interpreter (%COMSPEC%, usually CMD.EXE).
+
+shell [ARGUMENTS ...]
+
+ARGUMENTS	Arguments passed to %COMSPEC%.
+</value>
+  </data>
+  <data name="Commands.Unhook.NotFound" xml:space="preserve">
+    <value>The specified hook does not exist.</value>
+  </data>
+  <data name="Commands.HelpShort.Load" xml:space="preserve">
+    <value>load	- Executes commands from a script.</value>
+  </data>
+  <data name="Threads.Client.StringTooLongWarning" xml:space="preserve">
+    <value>Warning: Reading string: Truncated long string.</value>
+  </data>
+  <data name="Commands.Target.CurrentTarget" xml:space="preserve">
+    <value>Current target is #{0} "{1}" ({2}, {3}).</value>
+  </data>
+  <data name="UI.Gui.Title.Monitor" xml:space="preserve">
+    <value>Current client: #{0} {1}</value>
+  </data>
+  <data name="Commands.HelpShort.Eval" xml:space="preserve">
+    <value>eval	- (D) Evaluates a expression on current context.</value>
+  </data>
+  <data name="Commands.HelpShort.Unhook" xml:space="preserve">
+    <value>unhook	- (D) Uninstalls a hook.</value>
+  </data>
+  <data name="Commands.HelpShort.Help" xml:space="preserve">
+    <value>help	- Provides help information for commands.</value>
+  </data>
+  <data name="Commands.Hook.Header" xml:space="preserve">
+    <value>#    OEP                Name
+----+------------------+-------------------------</value>
+  </data>
+  <data name="Commands.Incomplete" xml:space="preserve">
+    <value>String incomplete.</value>
+  </data>
+  <data name="Commands.HelpShort.Ps" xml:space="preserve">
+    <value>ps	- (M) Displays a list of running processes.</value>
+  </data>
+  <data name="Commands.HelpShort.End" xml:space="preserve">
+    <value>end	- (M/D) Ends the client, stopping its process.</value>
+  </data>
+  <data name="Commands.Invalid" xml:space="preserve">
+    <value>Invalid command `{0}`. Try `help {1}`.</value>
+  </data>
+  <data name="Commands.Help.Break" xml:space="preserve">
+    <value>Breaks or continues the process's execution.
+
+break
+
+This command toggles the execution state between running and suspended.
+For a newly-created Doll process, it's state is running.
+For a newly-attached Doll process, it's state is suspended.
+</value>
+  </data>
+  <data name="Commands.Ps.Format" xml:space="preserve">
+    <value>{0,-8} {1}</value>
+  </data>
+  <data name="UI.Gui.Ready" xml:space="preserve">
+    <value>Initialization complete, Type `help` for more information.
+Start the Listener via GUI or command `listen`.
+</value>
+  </data>
+  <data name="Commands.HelpShort.Shell" xml:space="preserve">
+    <value>shell	- (M) Starts a instance of command interpreter.</value>
+  </data>
+  <data name="Commands.HelpShort.Rem" xml:space="preserve">
+    <value>rem	- Records comments (remarks) in a script file.</value>
+  </data>
+  <data name="Threads.CmdEngine.TargetNotAvailable" xml:space="preserve">
+    <value>The specified target is dead or does not exist.</value>
+  </data>
+  <data name="Commands.HelpShort.Verdict" xml:space="preserve">
+    <value>verdict	- (D) Verdicts an activated hook.</value>
+  </data>
+  <data name="Threads.Client.DictionaryReadError" xml:space="preserve">
+    <value>Dictionary entry "{0}" not found.</value>
+  </data>
   <data name="Commands.Help.Kill" xml:space="preserve">
     <value>Terminates process(es) with PID or name.
 
@@ -510,16 +383,125 @@ PID		The PID of the process to be terminated.
 NAME		Terminate all processes with name NAME.
 </value>
   </data>
-  <data name="Commands.Help.Listen" xml:space="preserve">
-    <value>Starts to listen for clients and displays addresses listening on.
-
-listen [--ipv6] [PORT]
-
---ipv6		Listens on IPv6 interfaces, instead of IPv4 ones.
-PORT		The listening port. Default to 31415.
-
-This command may successfully execute only once; any subsequent call will fail.
+  <data name="Threads.Client.Status.Dead" xml:space="preserve">
+    <value>Dead</value>
+  </data>
+  <data name="Threads.Client.MemoryReadError" xml:space="preserve">
+    <value>Error reading memory.</value>
+  </data>
+  <data name="Commands.Dump.Title" xml:space="preserve">
+    <value>Dump #{0} from client "{1}" ({2} bytes), under format "{3}":
 </value>
+  </data>
+  <data name="Commands.HelpShort.Header" xml:space="preserve">
+    <value>For more information on a specific command, type `help COMMAND`.
+All the commands are case-sensitive.
+</value>
+  </data>
+  <data name="Threads.Client.Eval" xml:space="preserve">
+    <value>eval: {0} =&gt; {1}</value>
+  </data>
+  <data name="Threads.Client.Status.Alive" xml:space="preserve">
+    <value>Alive</value>
+  </data>
+  <data name="Commands.HelpShort.LoadDll" xml:space="preserve">
+    <value>loaddll	- (D) Loads a module into the process's address space.</value>
+  </data>
+  <data name="Commands.HelpShort.Listen" xml:space="preserve">
+    <value>listen	- Starts to listen for clients.</value>
+  </data>
+  <data name="Commands.Dump.Header" xml:space="preserve">
+    <value>#    Size   Client
+----+------+---------------------------</value>
+  </data>
+  <data name="Commands.Dump.Format" xml:space="preserve">
+    <value>{0,-4} {1,-6} {2}</value>
+  </data>
+  <data name="Commands.Help.Verdict" xml:space="preserve">
+    <value>verdict {approve|reject|terminate}
+
+approve		Continue the execution.
+reject		Reject the call to the function and immediately return.
+		Refer to `help hook` for information about stack balancing.
+terminate	Terminate the client process.
+</value>
+  </data>
+  <data name="Commands.Help.Exit" xml:space="preserve">
+    <value>Quits the Controller, end all connected clients.
+
+exit
+</value>
+  </data>
+  <data name="Threads.Client.VerdictWait" xml:space="preserve">
+    <value>verdict: Waiting for verdict</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Splash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Threads.Client.MemoryReadWarning" xml:space="preserve">
+    <value>Warning: Reading memory: Size expected = {0}, got = {1}</value>
+  </data>
+  <data name="Threads.Client.Connected" xml:space="preserve">
+    <value>New client from {0}: #{1} "{2}" ({3}).</value>
+  </data>
+  <data name="Threads.EvalEngine.CompileError" xml:space="preserve">
+    <value>Compile error: {0}</value>
+  </data>
+  <data name="Threads.Client.StringReadWarning" xml:space="preserve">
+    <value>Warning: Reading string: Truncated incomplete string.</value>
+  </data>
+  <data name="Commands.Help.Help" xml:space="preserve">
+    <value>Provides help information for commands.
+
+help [COMMAND]
+
+COMMAND		Display help information for command COMMAND.
+		If omitted, display a list of available commands.
+</value>
+  </data>
+  <data name="Commands.ParensMismatch" xml:space="preserve">
+    <value>Parens mismatch.</value>
+  </data>
+  <data name="Commands.Listen.AlreadyStarted" xml:space="preserve">
+    <value>The listener has already been started.</value>
+  </data>
+  <data name="Commands.Listen.AvailableAddresses" xml:space="preserve">
+    <value>Available addresses:
+</value>
+  </data>
+  <data name="Commands.Hook.Format" xml:space="preserve">
+    <value>{0,-4} {1,-18} {2}</value>
+  </data>
+  <data name="UI.Gui.Title.Doll" xml:space="preserve">
+    <value>Current client: #{0} {1}</value>
+  </data>
+  <data name="Commands.HelpShort.Exit" xml:space="preserve">
+    <value>exit	- Quits the Controller, end all connected clients.</value>
+  </data>
+  <data name="Threads.Client.Dump" xml:space="preserve">
+    <value>dump: Dump #{0} created ({1} bytes).</value>
+  </data>
+  <data name="Threads.Client.Type.Doll" xml:space="preserve">
+    <value>Doll</value>
+  </data>
+  <data name="Commands.Help.Dump" xml:space="preserve">
+    <value>Displays or saves dumped data.
+
+dump
+dump ID [--format=FORMAT] [--save=SAVEFILE]
+
+Type `hook` without any arguments displays a list of dumped data.
+
+ID		ID of the dump to operate.
+FORMAT		Show or save data under FORMAT. Possible formats are:
+		hex(default), raw, ansi, unicode, utf8, x86, x64
+SAVEFILE	Save the data to SAVEFILE instead of displaying them.
+		SAVEFILE will be overwritten if it exists.
+</value>
+  </data>
+  <data name="UI.Gui.Dump.Format" xml:space="preserve">
+    <value>Dump_#{0}_{1}.txt</value>
   </data>
   <data name="Commands.Help.Load" xml:space="preserve">
     <value>Executes commands from a script.
@@ -535,22 +517,15 @@ ARGUMENTS	Arguments passed to the script.
 		given the command ends with a single `*`.
 </value>
   </data>
-  <data name="Commands.Help.LoadDll" xml:space="preserve">
-    <value>Loads a module into the process's address space.
-
-loaddll MODULE
-
-MODULE		The module path passed to LoadLibrary().
-
-Internally, `loaddll` calls LoadLibrary() on a new thread.
-Call `loaddll` with libDoll will cause nothing but must never be attempted.
+  <data name="Commands.HelpShort.Break" xml:space="preserve">
+    <value>break	- (D) Breaks or continues the process's execution.</value>
+  </data>
+  <data name="UI.Cli.Banner" xml:space="preserve">
+    <value>PEDoll Controller v{0} Indev
 </value>
   </data>
-  <data name="Commands.Help.Ps" xml:space="preserve">
-    <value>Displays a list of running processes.
-
-ps
-</value>
+  <data name="Commands.HelpShort.Doll" xml:space="preserve">
+    <value>doll	- (M) Creates a new Doll client.</value>
   </data>
   <data name="Commands.Help.Rem" xml:space="preserve">
     <value>Records comments (remarks) in a script file.
@@ -559,13 +534,31 @@ rem [...]
 #[...]
 </value>
   </data>
-  <data name="Commands.Help.Shell" xml:space="preserve">
-    <value>Starts a instance of command interpreter (%COMSPEC%, usually CMD.EXE).
+  <data name="Commands.Help.Doll" xml:space="preserve">
+    <value>Creates a new Doll client by creating or attaching to a process.
 
-shell [ARGUMENTS ...]
+doll CMDLINE
+doll --attach PID
 
-ARGUMENTS	Arguments passed to %COMSPEC%.
+CMDLINE		Create a new process by running CMDLINE.
+PID		Attach to process PID.
+		Use `ps` to get the list of available PIDs.
 </value>
+  </data>
+  <data name="Commands.Unknown" xml:space="preserve">
+    <value>Unknown command `{0}`.</value>
+  </data>
+  <data name="Commands.Help.Ps" xml:space="preserve">
+    <value>Displays a list of running processes.
+
+ps
+</value>
+  </data>
+  <data name="Threads.Client.Verdict" xml:space="preserve">
+    <value>verdict: Executing verdict "{0}".</value>
+  </data>
+  <data name="Threads.Client.ContextReadError" xml:space="preserve">
+    <value>Error reading register #{0}.</value>
   </data>
   <data name="Commands.Help.Target" xml:space="preserve">
     <value>Gets or sets the target client.
@@ -580,36 +573,53 @@ ID		The new target client's ID.
 --monitor	Set target to last targeted Monitor client.
 </value>
   </data>
-  <data name="Commands.Help.Unhook" xml:space="preserve">
-    <value>unhook ID
-
-ID		ID of the hook.
-</value>
-  </data>
-  <data name="Commands.Help.Verdict" xml:space="preserve">
-    <value>verdict {approve|reject|terminate}
-
-approve		Continue the execution.
-reject		Reject the call to the function and immediately return.
-		Refer to `help hook` for information about stack balancing.
-terminate	Terminate the client process.
-</value>
-  </data>
-  <data name="UI.Gui.Ready" xml:space="preserve">
-    <value>Initialization complete, Type `help` for more information.
-Start the Listener via GUI or command `listen`.
-</value>
-  </data>
-  <data name="UI.Gui.Title.Doll" xml:space="preserve">
-    <value>Current client: #{0} {1}</value>
+  <data name="Commands.Target.Header" xml:space="preserve">
+    <value>  #    Name                             Type     Status   PID      Bits
+-+----+--------------------------------+--------+--------+--------+----</value>
   </data>
   <data name="UI.Gui.Title.Hooked" xml:space="preserve">
     <value>Current hook: #{0} "{1}" phase "{2}"</value>
   </data>
-  <data name="UI.Gui.Title.Monitor" xml:space="preserve">
-    <value>Current client: #{0} {1}</value>
+  <data name="Commands.Ps.Header" xml:space="preserve">
+    <value>PID      Name
+--------+--------------------------------</value>
   </data>
-  <data name="UI.Gui.Dump.Format" xml:space="preserve">
-    <value>Dump_#{0}_{1}.txt</value>
+  <data name="Commands.Win32Error" xml:space="preserve">
+    <value>Win32 Error {0}: {1}</value>
+  </data>
+  <data name="Commands.Unhook.Uninstalled" xml:space="preserve">
+    <value>Hook #{0} "{1}" removed.</value>
+  </data>
+  <data name="Threads.EvalEngine.RuntimeError" xml:space="preserve">
+    <value>Runtime exception {0}: {1}</value>
+  </data>
+  <data name="Commands.HelpShort.Target" xml:space="preserve">
+    <value>target	- Gets or sets the target client.</value>
+  </data>
+  <data name="Threads.EvalEngine.InvalidType" xml:space="preserve">
+    <value>Cannot evaluate expression of type {0}.</value>
+  </data>
+  <data name="Commands.Target.Format" xml:space="preserve">
+    <value>{0} {1,-4} {2,-32} {3,-8} {4,-8} {5,-8} {6,-4}</value>
+  </data>
+  <data name="Threads.Client.Disconnected" xml:space="preserve">
+    <value>Client "{0}" disconnected, reason: {1}</value>
+  </data>
+  <data name="Commands.Help.Listen" xml:space="preserve">
+    <value>Starts to listen for clients and displays addresses listening on.
+
+listen [--ipv6] [PORT]
+
+--ipv6		Listens on IPv6 interfaces, instead of IPv4 ones.
+PORT		The listening port. Default to 31415.
+
+This command may successfully execute only once; any subsequent call will fail.
+</value>
+  </data>
+  <data name="Threads.Client.Ctx" xml:space="preserve">
+    <value>ctx: Dictionary entry created: {0} =&gt; {1}.</value>
+  </data>
+  <data name="Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Controller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

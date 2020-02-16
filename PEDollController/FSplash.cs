@@ -8,12 +8,12 @@ namespace PEDollController
         public FSplash()
         {
             InitializeComponent();
+            lblBanner.Text = Program.GetResourceString("UI.Gui.Banner", Program.Version);
         }
 
         private void tmrClose_Tick(object sender, EventArgs e)
         {
             this.Close();
         }
-
     }
 }

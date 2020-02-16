@@ -4,6 +4,7 @@
 #include "../libPuppet/libPuppet.h"
 #include "../libPuppet/PuppetClientTCP.h"
 #include "SetPrivilege.h"
+#include "GetFileVersion.h"
 
 void __cdecl TPuppet(void*);
 
@@ -46,7 +47,11 @@ void MonPanic(const wchar_t* msg)
 
 int main(int argc, char* argv[])
 {
-    std::cout << "PEDoll Monitor InDev" << std::endl << std::endl;
+    std::string version;
+    if (!GetFileVersion(NULL, version))
+        version = "???";
+
+    std::cout << "PEDoll Monitor v" << version << " InDev" << std::endl << std::endl;
 
     // Pre-initialize all contexts for isr_sigint()
     ctx.puppet = NULL;

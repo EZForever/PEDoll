@@ -59,12 +59,13 @@ namespace PEDollController
         #endregion
 
         public static event Action OnProgramEnd;
+        public static string Version => Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
 
         //[STAThread]
         static void Main()
         {
             Console.ResetColor();
-            Logger.H(GetResourceString("UI.Cli.Banner", Assembly.GetExecutingAssembly().GetName().Version.ToString(3)));
+            Logger.H(GetResourceString("UI.Cli.Banner", Version));
 
             // Initialize CmdEngine, which receives and processes user commands
             CmdEngine.theTask.Start();
