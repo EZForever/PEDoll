@@ -18,8 +18,8 @@ set "RELEASEDIR=%tmp%\PEDollRelease"
 
 	md %RELEASEDIR%
 
-	call :buildAll Debug
-	::call :buildAll Release
+	::call :buildAll Debug
+	call :buildAll Release
 
 	start explorer %RELEASEDIR%
 	popd
@@ -65,7 +65,7 @@ goto :eof
 		set PLATFORMDIR=x64
 	)
 
-	msbuild PEDoll.sln -t:PEDollMonitor -p:Platform=%1;Configuration=%2
+	msbuild PEDoll.sln -t:PEDollMonitor,libDoll -p:Platform=%1;Configuration=%2
 	if %ERRORLEVEL% neq 0 (
 		goto :eof
 	)
@@ -77,11 +77,8 @@ goto :eof
 	md "%RELEASEDIR%\%2\Monitor_%1"
 
 	copy %PLATFORMDIR%\%2\PEDollMonitor.exe "%RELEASEDIR%\%2\Monitor_%1\"
+	copy %PLATFORMDIR%\%2\PEDollMonitor.pdb "%RELEASEDIR%\%2\Monitor_%1\"
 	copy %PLATFORMDIR%\%2\libDoll.dll "%RELEASEDIR%\%2\Monitor_%1\"
-
-	if %2 equ Debug (
-		copy %PLATFORMDIR%\%2\PEDollMonitor.pdb "%RELEASEDIR%\%2\Monitor_%1\"
-		copy %PLATFORMDIR%\%2\libDoll.pdb "%RELEASEDIR%\%2\Monitor_%1\"
-	)
+	copy %PLATFORMDIR%\%2\libDoll.pdb "%RELEASEDIR%\%2\Monitor_%1\"
 
 goto :eof
