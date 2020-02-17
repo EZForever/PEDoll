@@ -95,8 +95,8 @@ namespace PEDollController.Properties {
         ///break
         ///
         ///This command toggles the execution state between running and suspended.
-        ///For a newly-created Doll process, it&apos;s state is running.
-        ///For a newly-attached Doll process, it&apos;s state is suspended.
+        ///For a newly-created Doll process, the first attempt of breaking might have no
+        ///effect on the process&apos;s execution.
         /// 的本地化字符串。
         /// </summary>
         internal static string Commands_Help_Break {
@@ -132,7 +132,7 @@ namespace PEDollController.Properties {
         ///
         ///ID		ID of the dump to operate.
         ///FORMAT		Show or save data under FORMAT. Possible formats are:
-        ///		hex(default), raw, ansi, unicode, utf8, x86, x64
+        ///		hex(default), raw, ansi, unicode, utf8, 8086, x86, x64
         ///SAVEFILE	Save the data to SAVEFILE instead of displaying them.
         ///		SAVEFILE will be overwritten if it exists.
         /// 的本地化字符串。
@@ -220,9 +220,9 @@ namespace PEDollController.Properties {
         ///Type `hook` without any arguments displays a list of hooks.
         ///Call `hook` on an existing hook will overwrite its convention and actions.
         ///
-        ///MODULE		The target module to search for symbol NAME.
-        ///		If omitted, default to the first module containing symbol NAME.
-        ///SYMBOL		The function&apos;s symbol name (e.g. WinExec o [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///MODULE		The target module to search for symbol SYMBOL.
+        ///		If omitted, default to the first module containing the symbol.
+        ///SYMBOL		The function&apos;s symbol name (e.g. WinExec  [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string Commands_Help_Hook {
             get {
@@ -360,7 +360,9 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
-        ///   查找类似 unhook ID
+        ///   查找类似 Uninstalls a hook.
+        ///
+        ///unhook ID
         ///
         ///ID		ID of the hook.
         /// 的本地化字符串。
@@ -372,7 +374,9 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
-        ///   查找类似 verdict {approve|reject|terminate}
+        ///   查找类似 Verdicts an activated hook.
+        ///
+        ///verdict {approve|reject|terminate}
         ///
         ///approve		Continue the execution.
         ///reject		Reject the call to the function and immediately return.
@@ -1063,7 +1067,7 @@ namespace PEDollController.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Initialization complete, Type `help` for more information.
+        ///   查找类似 Initialization complete, type `help` for more information.
         ///Start the Listener via GUI or command `listen`.
         /// 的本地化字符串。
         /// </summary>

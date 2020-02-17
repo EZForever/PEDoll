@@ -118,510 +118,506 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Commands.Help.Hook" xml:space="preserve">
-    <value>Installs a new hook and set its actions.
+    <value>安装一个钩子，并设定其激活时进行的操作。
 
 hook
 hook {[MODULE!]SYMBOL|0xADDR|*PATTERN}
      [--convention=CONVENTION] [--stack=STACK[,RETURN]]
      [--before [ACTION ...]] [--after [ACTION ...]]
 
-Type `hook` without any arguments displays a list of hooks.
-Call `hook` on an existing hook will overwrite its convention and actions.
+不带参数执行本命令，则显示所有钩子的列表。
+在已存在的钩子上重新安装钩子，将覆盖钩子的约定、栈平衡及操作设定。
 
-MODULE		The target module to search for symbol SYMBOL.
-		If omitted, default to the first module containing the symbol.
-SYMBOL		The function's symbol name (e.g. WinExec or kernel32!Sleep).
-ADDR		The function's virtual address (e.g. 0x401000).
-PATTERN		The hexadecimal pattern of the function (e.g. *8B4C240885D2).
-CONVENTION	The function's calling convention. Possible conventions are:
-		x86 client: stdcall(default), cdecl, fastcall
-		x64 client: msvc(default), gcc
-STACK		Count of bytes poped from stack when the function returns.
-		Default to 0.
-RETURN		The value to return on a Rejected verdict.
-		Default to 0.
-ACTION		An action to perform on an activated hook.
-		Possible actions are:
-		--echo=ECHO			- Display a string.
-		--dump=DUMPADDR,DUMPSIZE	- Dump data to storage.
-		--ctx=CTXKEY,CTXVALUE		- Add an entry to dictionary.
-		--verdict=VERDICT		- Set the default verdict.
-		Actions may appear more than once.
-ECHO		A string, may contain expressions, to be displayed.
-DUMPADDR	A expression that evaluates to a `uword` value, as the address.
-DUMPSIZE	A expression that evaluates to an integer value, as the size.
-CTXKEY		A string, may contain expressions, as the key.
-CTXVALUE	A string, may contain expressions, as the value.
-VERDICT		The verdict. Refer to `help verdict` for possible values.
-		If omitted, the hook waits for user reply.
+MODULE		寻找符号SYMBOL时要搜索的模块。
+		如果省略本参数，则搜索所有模块，取第一个找到的符号。
+SYMBOL		待挂钩函数的符号名（如 WinExec 或 kernel32!Sleep）。
+ADDR		待挂钩函数的虚拟地址（如 0x401000）。
+PATTERN		待挂钩函数的十六进制特征码（如 *8B4C240885D2）。
+CONVENTION	待挂钩函数的调用约定。可用的调用约定为：
+		x86 客户端：stdcall（默认）, cdecl, fastcall
+		x64 客户端：msvc（默认）, gcc
+STACK		待挂钩函数返回时，栈顶指针的偏移量。默认值为0。
+RETURN		驳回待挂钩函数的执行时，应设定的返回值。默认值为0。
+ACTION		钩子被激活时应进行的操作。
+		可用的操作为：
+		--echo=ECHO			- 显示一个字符串。
+		--dump=DUMPADDR,DUMPSIZE	- 转储内存数据。
+		--ctx=CTXKEY,CTXVALUE		- 向上下文字典添加条目。
+		--verdict=VERDICT		- 设定默认判定值。
+		任一操作可出现不止一次。
+ECHO		待显示的、可能包含表达式的字符串。
+DUMPADDR	计算结果为`uword`类型的表达式，作为转储数据的地址。
+DUMPSIZE	计算结果为整型的表达式，作为转储数据的长度。
+CTXKEY		作为字典条目的键、可能包含表达式的字符串。
+CTXVALUE	作为字典条目的值、可能包含表达式的字符串。
+VERDICT		判定值。有关可能的值，请参考`help verdict`。
+		如果省略本操作，进程将在钩子被激活时中断，等待用户判定。
 
-Expressions in the strings are formatted based on their values' type:
+字符串中的表达式将根据其计算结果的类型进行格式化：
 
-Unsigned integers and `byte`s:
-	Zero-padded hexadecimal display.
-Signed integers and `sbyte`s:
-	Decimal display.
-Strings:
-	String embraced with double-quotes.
-`char`s:
-	Character embraced with quotes.
-`bool`s:
-	"True" or "False", respectively.
-Array of above types:
-	Comma-separated formatted elements, embraced with braces.
-Any other type:
-	Triggers an evaluation error.
+无符号整型及`byte`：
+	以零扩展的十六进制数。
+有符号整型及`sbyte`：
+	十进制数。
+字符串：
+	以双引号括起的字符串。
+`char`：
+	以单引号括起的字符。
+`bool`：
+	“True”或“False”。
+上述类型值的数组：
+	以花括号括起的、以逗号分隔的各元素格式化的结果。
+任何其它类型：
+	触发计算错误。
 
-For help information on expressions, type `help eval`.
+有关表达式的帮助信息，请输入`help eval`。
 </value>
   </data>
   <data name="Threads.Client.MalformedPacket" xml:space="preserve">
-    <value>Malformed libPuppet packet.</value>
+    <value>libPuppet数据包格式错误。</value>
   </data>
   <data name="UI.Gui.Banner" xml:space="preserve">
     <value>PEDoll v{0} Indev</value>
   </data>
   <data name="Commands.HelpShort.Hook" xml:space="preserve">
-    <value>hook	- (D) Installs a new hook and set its actions.</value>
+    <value>hook	- (D) 安装一个钩子，并设定其激活时进行的操作。</value>
   </data>
   <data name="Threads.Client.Hooked" xml:space="preserve">
-    <value>Client "{0}" hooked on #{1} "{2}" - phase "{3}".</value>
+    <value>客户端“{0}”钩子激活：#{1} “{2}”-“{3}”阶段。</value>
   </data>
   <data name="Commands.Help.Eval" xml:space="preserve">
-    <value>Evaluates a expression on current context.
+    <value>在当前钩子的上下文中计算表达式。
 
 eval EXPR
 
-EXPR		The expression to be evaluated.
+EXPR		待计算的表达式。
 
-An "expression" is a C# expression embraced with braces, e.g. {(uint)poi(ax)+4}
+“表达式”是指使用花括号括起的、符合C#语法的表达式，如{(uint)poi(ax)+4}。
 
-The types from these namespaces:
-	System,
-	System.Linq,
-	System.Collections.Generic,
-among with the following methods and fields, are provided:
+下列命名空间中的类型：
+	System
+	System.Linq
+	System.Collections.Generic
+以及下列方法及字段，均可以在表达式中使用：
 
-(type alias) word
-	A integer of the native word size (`int` on x86 or `long` on x64).
-(type alias) uword
-	Similar to `word` but unsigned (`uint` on x86 or `ulong` on x64).
+（类型别名） word
+	与CPU字长等长的有符号整型（对于x86为`int`，对于x64为`long`）。
+（类型别名） uword
+	与CPU字长等长的无符号整型（对于x86为`uint`，对于x64为`ulong`）。
 string str(uword PTR)
-	Returns the C-style string PTR points to.
+	返回指针PTR所指向的C语言风格字符串。
 string wstr(uword PTR)
-	Returns the C-style wide-char string PTR points to.
+	返回指针PTR所指向的C语言风格宽字符字符串。
 string ctx(string KEY)
-	Returns the entry under key KEY in context dictionary.
+	返回上下文字典中键KEY所对应的值。
 byte[] mem(uword PTR, uint LEN)
-	Returns a binary blob of length &lt;= LEN pointer PTR points to.
+	返回指针PTR所指向的、长度不超过LEN的内存数据。
 uword poi(uword PTR)
-	Returns the integer pointer PTR points to as a `uword`.
+	返回指针PTR所指向的`uword`值。
 uword arg(uint INDEX)
-	Returns the value of function argument at zero-based index INDEX.
+	返回函数的第INDEX个（从零开始计数）参数的值。
 int dump(byte[] BLOB)
-	Dumps BLOB, then returns the index of the dump entry.
+	转储BLOB中的数据，并返回其在转储列表中的ID。
 uword ax, cx, dx, bx, sp, bp, si, di, r8, r9
-	The value of the corresponding register. Readonly.
-	`r8` and `r9` are available only on a x64 client.
+	对应的寄存器的值。只读。
+	`r8`及`r9`仅在x64客户端上可用。
 </value>
   </data>
   <data name="Commands.HelpShort.Dump" xml:space="preserve">
-    <value>dump	- Displays or saves dumped data.</value>
+    <value>dump	- 显示或保存已转储的数据。</value>
   </data>
   <data name="UI.Cli.Format" xml:space="preserve">
     <value>&gt; {0}</value>
   </data>
   <data name="Threads.CmdEngine.TargetNotApplicable" xml:space="preserve">
-    <value>Requested operation is not applicable to the specified target.</value>
+    <value>请求的操作不适用于当前指定的目标。</value>
   </data>
   <data name="Threads.Client.Status.Hooked" xml:space="preserve">
-    <value>Hooked</value>
+    <value>激活</value>
   </data>
   <data name="Commands.Hook.Installed" xml:space="preserve">
-    <value>Hook #{0} "{1}" installed at {2}.</value>
+    <value>钩子 #{0} “{1}”已安装于 {2} 。</value>
   </data>
   <data name="Commands.Help.Unhook" xml:space="preserve">
-    <value>Uninstalls a hook.
+    <value>移除指定的钩子。
 
 unhook ID
 
-ID		ID of the hook.
+ID		钩子的ID。
 </value>
   </data>
   <data name="Threads.Client.ActionError" xml:space="preserve">
-    <value>Action "{0}" failed: {1}</value>
+    <value>操作“{0}”失败：{1}</value>
   </data>
   <data name="Commands.Hook.HookExists" xml:space="preserve">
-    <value>Warning: Hook under name "{0}" already exists. Overwriting its settings.</value>
+    <value>警告：名称为“{0}”的钩子已经存在。覆盖其设置。</value>
   </data>
   <data name="Commands.HelpShort.Kill" xml:space="preserve">
-    <value>kill	- (M) Terminates process(es) with PID or name.</value>
+    <value>kill	- (M) 终止PID或进程名对应的进程。</value>
   </data>
   <data name="Threads.Client.Type.Monitor" xml:space="preserve">
-    <value>Monitor</value>
+    <value>监控端</value>
   </data>
   <data name="Threads.Client.TypeMismatch" xml:space="preserve">
-    <value>Expression type mismatch.</value>
+    <value>表达式计算结果类型不匹配。</value>
   </data>
   <data name="Commands.Help.End" xml:space="preserve">
-    <value>Ends the client, stopping its process.
+    <value>结束客户端，终止其对应的进程。
 
 end
 </value>
   </data>
   <data name="Commands.Help.LoadDll" xml:space="preserve">
-    <value>Loads a module into the process's address space.
+    <value>在当前进程的地址空间中装载模块。
 
 loaddll MODULE
 
-MODULE		The module path passed to LoadLibrary().
+MODULE		传递给LoadLibrary()的模块文件路径。
 
-Internally, `loaddll` calls LoadLibrary() on a new thread.
-Call `loaddll` with libDoll will cause nothing but must never be attempted.
+在内部实现上，本命令在当前进程中创建一个新线程，并在其中调用LoadLibrary()。
+使用本命令装载受控端模块（libDoll.dll）不会造成任何后果，但绝不能尝试。
 </value>
   </data>
   <data name="UI.Cli.CtrlC" xml:space="preserve">
     <value>
-[ Ctrl-C received, press any key to stop the engine... ]</value>
+[ 接受到 Ctrl-C 信号，按任意键结束命令引擎…… ]</value>
   </data>
   <data name="Threads.Client.Echo" xml:space="preserve">
     <value>echo: {0}</value>
   </data>
   <data name="Commands.IOError" xml:space="preserve">
-    <value>I/O exception {0}: {1}</value>
+    <value>I/O 异常 {0}: {1}</value>
   </data>
   <data name="Threads.EvalEngine.Empty" xml:space="preserve">
-    <value>Empty expression.</value>
+    <value>表达式为空。</value>
   </data>
   <data name="Commands.Help.Shell" xml:space="preserve">
-    <value>Starts a instance of command interpreter (%COMSPEC%, usually CMD.EXE).
+    <value>启动系统命令解释器（%COMSPEC%，通常为CMD.EXE）。
 
 shell [ARGUMENTS ...]
 
-ARGUMENTS	Arguments passed to %COMSPEC%.
+ARGUMENTS	传递给%COMSPEC%的参数。
 </value>
   </data>
   <data name="Commands.Unhook.NotFound" xml:space="preserve">
-    <value>The specified hook does not exist.</value>
+    <value>指定的钩子不存在。</value>
   </data>
   <data name="Commands.HelpShort.Load" xml:space="preserve">
-    <value>load	- Executes commands from a script.</value>
+    <value>load	- 从脚本文件读取并执行命令。</value>
   </data>
   <data name="Threads.Client.StringTooLongWarning" xml:space="preserve">
-    <value>Warning: Reading string: Truncated long string.</value>
+    <value>警告：读取字符串：截断了过长的字符串。</value>
   </data>
   <data name="Commands.Target.CurrentTarget" xml:space="preserve">
-    <value>Current target is #{0} "{1}" ({2}, {3}).</value>
+    <value>当前目标为 #{0} “{1}”（{2}，{3}）。</value>
   </data>
   <data name="UI.Gui.Title.Monitor" xml:space="preserve">
-    <value>Current client: #{0} {1}</value>
+    <value>当前客户端：#{0} {1}</value>
   </data>
   <data name="Commands.HelpShort.Eval" xml:space="preserve">
-    <value>eval	- (D) Evaluates a expression on current context.</value>
+    <value>eval	- (D) 在当前钩子的上下文中计算表达式。</value>
   </data>
   <data name="Commands.HelpShort.Unhook" xml:space="preserve">
-    <value>unhook	- (D) Uninstalls a hook.</value>
+    <value>unhook	- (D) 移除指定的钩子。</value>
   </data>
   <data name="Commands.HelpShort.Help" xml:space="preserve">
-    <value>help	- Provides help information for commands.</value>
+    <value>help	- 提供命令的帮助信息。</value>
   </data>
   <data name="Commands.Hook.Header" xml:space="preserve">
-    <value>#    OEP                Name
+    <value>#    入口点             名称
 ----+------------------+-------------------------</value>
   </data>
   <data name="Commands.Incomplete" xml:space="preserve">
-    <value>String incomplete.</value>
+    <value>字符串不完整。</value>
   </data>
   <data name="Commands.HelpShort.Ps" xml:space="preserve">
-    <value>ps	- (M) Displays a list of running processes.</value>
+    <value>ps	- (M) 显示所有进程的列表。</value>
   </data>
   <data name="Commands.HelpShort.End" xml:space="preserve">
-    <value>end	- (M/D) Ends the client, stopping its process.</value>
+    <value>end	- (M/D) 结束客户端，终止其对应的进程。</value>
   </data>
   <data name="Commands.Invalid" xml:space="preserve">
-    <value>Invalid command `{0}`. Try `help {1}`.</value>
+    <value>命令`{0}`无效。输入`help {1}`获取帮助。</value>
   </data>
   <data name="Commands.Help.Break" xml:space="preserve">
-    <value>Breaks or continues the process's execution.
+    <value>中断或继续进程的执行。
 
 break
 
-This command toggles the execution state between running and suspended.
-For a newly-created Doll process, the first attempt of breaking might have no
-effect on the process's execution.
+本命令会使进程的执行状态在“中断”和“执行”间切换。
+对于新启动的受控端进程，第一次中断操作可能不会影响程序的执行。
 </value>
   </data>
   <data name="Commands.Ps.Format" xml:space="preserve">
     <value>{0,-8} {1}</value>
   </data>
   <data name="UI.Gui.Ready" xml:space="preserve">
-    <value>Initialization complete, type `help` for more information.
-Start the Listener via GUI or command `listen`.
+    <value>初始化完毕，输入`help`获取更多信息。
+通过GUI或`listen`命令启动监听器。
 </value>
   </data>
   <data name="Commands.HelpShort.Shell" xml:space="preserve">
-    <value>shell	- (M) Starts a instance of command interpreter.</value>
+    <value>shell	- (M) 启动系统命令解释器。</value>
   </data>
   <data name="Commands.HelpShort.Rem" xml:space="preserve">
-    <value>rem	- Records comments (remarks) in a script file.</value>
+    <value>rem	- 将本行的剩余部分视为注释。</value>
   </data>
   <data name="Threads.CmdEngine.TargetNotAvailable" xml:space="preserve">
-    <value>The specified target is dead or does not exist.</value>
+    <value>指定的目标已离线或不存在。</value>
   </data>
   <data name="Commands.HelpShort.Verdict" xml:space="preserve">
-    <value>verdict	- (D) Verdicts an activated hook.</value>
+    <value>verdict	- (D) 判定当前激活的钩子。</value>
   </data>
   <data name="Threads.Client.DictionaryReadError" xml:space="preserve">
-    <value>Dictionary entry "{0}" not found.</value>
+    <value>找不到上下文字典项“{0}”。</value>
   </data>
   <data name="Commands.Help.Kill" xml:space="preserve">
-    <value>Terminates process(es) with PID or name.
+    <value>终止PID或进程名对应的进程。
 
 kill PID
 kill --all NAME
 
-PID		The PID of the process to be terminated.
-		Use `ps` to get the list of available PIDs.
-NAME		Terminate all processes with name NAME.
+PID		终止ID为PID的进程。
+		使用`ps`命令获取所有进程的PID。
+NAME		终止进程名为NAME的所有进程。
 </value>
   </data>
   <data name="Threads.Client.Status.Dead" xml:space="preserve">
-    <value>Dead</value>
+    <value>离线</value>
   </data>
   <data name="Threads.Client.MemoryReadError" xml:space="preserve">
-    <value>Error reading memory.</value>
+    <value>读取内存出错。</value>
   </data>
   <data name="Commands.Dump.Title" xml:space="preserve">
-    <value>Dump #{0} from client "{1}" ({2} bytes), under format "{3}":
+    <value>来自客户端“{1}”的转储数据 #{0}（{2} 字节），显示格式“{3}”：
 </value>
   </data>
   <data name="Commands.HelpShort.Header" xml:space="preserve">
-    <value>For more information on a specific command, type `help COMMAND`.
-All the commands are case-sensitive.
+    <value>有关某个命令的详细信息，请输入`help COMMAND`。
+所有命令均区分大小写。
 </value>
   </data>
   <data name="Threads.Client.Eval" xml:space="preserve">
     <value>eval: {0} =&gt; {1}</value>
   </data>
   <data name="Threads.Client.Status.Alive" xml:space="preserve">
-    <value>Alive</value>
+    <value>在线</value>
   </data>
   <data name="Commands.HelpShort.LoadDll" xml:space="preserve">
-    <value>loaddll	- (D) Loads a module into the process's address space.</value>
+    <value>loaddll	- (D) 在当前进程的地址空间中装载模块。</value>
   </data>
   <data name="Commands.HelpShort.Listen" xml:space="preserve">
-    <value>listen	- Starts to listen for clients.</value>
+    <value>listen	- 启动监听器，等待客户端连接。</value>
   </data>
   <data name="Commands.Dump.Header" xml:space="preserve">
-    <value>#    Size   Client
+    <value>#    长度   客户端
 ----+------+---------------------------</value>
   </data>
   <data name="Commands.Dump.Format" xml:space="preserve">
     <value>{0,-4} {1,-6} {2}</value>
   </data>
   <data name="Commands.Help.Verdict" xml:space="preserve">
-    <value>Verdicts an activated hook.
+    <value>判定当前激活的钩子。
 
 verdict {approve|reject|terminate}
 
-approve		Continue the execution.
-reject		Reject the call to the function and immediately return.
-		Refer to `help hook` for information about stack balancing.
-terminate	Terminate the client process.
+approve		继续程序的执行。
+reject		驳回对挂钩函数的调用并立即返回。
+		有关栈平衡的信息，请参考`help hook`。
+terminate	结束当前进程。
 </value>
   </data>
   <data name="Commands.Help.Exit" xml:space="preserve">
-    <value>Quits the Controller, end all connected clients.
+    <value>退出主控端，结束所有已连接的客户端。
 
 exit
 </value>
   </data>
   <data name="Threads.Client.VerdictWait" xml:space="preserve">
-    <value>verdict: Waiting for verdict</value>
+    <value>verdict: 等待用户判定</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Splash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Threads.Client.MemoryReadWarning" xml:space="preserve">
-    <value>Warning: Reading memory: Size expected = {0}, got = {1}</value>
+    <value>警告：读取内存：数据长度 {1} 小于预期值 {0}。</value>
   </data>
   <data name="Threads.Client.Connected" xml:space="preserve">
-    <value>New client from {0}: #{1} "{2}" ({3}).</value>
+    <value>来自 {0} 的客户端连接：#{1} “{2}”（{3}）。</value>
   </data>
   <data name="Threads.EvalEngine.CompileError" xml:space="preserve">
-    <value>Compile error: {0}</value>
+    <value>编译错误：{0}</value>
   </data>
   <data name="Threads.Client.StringReadWarning" xml:space="preserve">
-    <value>Warning: Reading string: Truncated incomplete string.</value>
+    <value>警告：读取字符串：截断了不完整的字符串。</value>
   </data>
   <data name="Commands.Help.Help" xml:space="preserve">
-    <value>Provides help information for commands.
+    <value>提供命令的帮助信息。
 
 help [COMMAND]
 
-COMMAND		Display help information for command COMMAND.
-		If omitted, display a list of available commands.
+COMMAND		显示命令COMMAND的帮助信息。
+		如果省略本参数，则显示所有命令的列表。
 </value>
   </data>
   <data name="Commands.ParensMismatch" xml:space="preserve">
-    <value>Parens mismatch.</value>
+    <value>括号不匹配。</value>
   </data>
   <data name="Commands.Listen.AlreadyStarted" xml:space="preserve">
-    <value>The listener has already been started.</value>
+    <value>监听器已经启动。</value>
   </data>
   <data name="Commands.Listen.AvailableAddresses" xml:space="preserve">
-    <value>Available addresses:
+    <value>可用的连接地址：
 </value>
   </data>
   <data name="Commands.Hook.Format" xml:space="preserve">
     <value>{0,-4} {1,-18} {2}</value>
   </data>
   <data name="UI.Gui.Title.Doll" xml:space="preserve">
-    <value>Current client: #{0} {1}</value>
+    <value>当前客户端：#{0} {1}</value>
   </data>
   <data name="Commands.HelpShort.Exit" xml:space="preserve">
-    <value>exit	- Quits the Controller, end all connected clients.</value>
+    <value>exit	- 退出主控端，结束所有已连接的客户端。</value>
   </data>
   <data name="Threads.Client.Dump" xml:space="preserve">
-    <value>dump: Dump #{0} created ({1} bytes).</value>
+    <value>dump: 数据转储 #{0} 已创建（{1} 字节）。</value>
   </data>
   <data name="Threads.Client.Type.Doll" xml:space="preserve">
-    <value>Doll</value>
+    <value>受控端</value>
   </data>
   <data name="Commands.Help.Dump" xml:space="preserve">
-    <value>Displays or saves dumped data.
+    <value>显示或保存已转储的数据。
 
 dump
 dump ID [--format=FORMAT] [--save=SAVEFILE]
 
-Type `hook` without any arguments displays a list of dumped data.
+不带参数执行本命令，则显示所有已转储数据的列表。
 
-ID		ID of the dump to operate.
-FORMAT		Show or save data under FORMAT. Possible formats are:
-		hex(default), raw, ansi, unicode, utf8, 8086, x86, x64
-SAVEFILE	Save the data to SAVEFILE instead of displaying them.
-		SAVEFILE will be overwritten if it exists.
+ID		已转储数据的ID。
+FORMAT		使用FORMAT格式显示或保存数据。可用的格式为：
+		hex（默认）, raw, ansi, unicode, utf8, 8086, x86, x64
+SAVEFILE	将数据保存到文件SAVEFILE。
+		如果SAVEFILE存在，其内容将被覆盖。
 </value>
   </data>
   <data name="UI.Gui.Dump.Format" xml:space="preserve">
     <value>Dump_#{0}_{1}.txt</value>
   </data>
   <data name="Commands.Help.Load" xml:space="preserve">
-    <value>Executes commands from a script.
+    <value>从脚本文件读取并执行命令。
 
 load SCRIPT [ARGUMENTS ...]
 
-SCRIPT		The script file to execute.
-		If embraced with double-quotes, SCRIPT is treated as a path;
-		otherwise, SCRIPT is the name (w/ or w/o extension) of a script
-		in "Scripts" folder (preferred) or "Scripts\API" folder.
-ARGUMENTS	Arguments passed to the script.
-		The arguments will be inserted into any command in the script,
-		given the command ends with a single `*`.
+SCRIPT		待执行的脚本文件。
+		如果使用双引号括起本参数，SCRIPT被视为文件的完整路径；
+		否则，SCRIPT被视为“Scripts”文件夹（优先查找）或“Scripts\API”
+		文件夹中脚本文件的名称（可以不包含扩展名）。
+ARGUMENTS	传递给脚本文件的参数。
+		这些参数会被追加到脚本文件中任何以“*”结尾的命令之后。
 </value>
   </data>
   <data name="Commands.HelpShort.Break" xml:space="preserve">
-    <value>break	- (D) Breaks or continues the process's execution.</value>
+    <value>break	- (D) 中断或继续进程的执行。</value>
   </data>
   <data name="UI.Cli.Banner" xml:space="preserve">
     <value>PEDoll Controller v{0} Indev
 </value>
   </data>
   <data name="Commands.HelpShort.Doll" xml:space="preserve">
-    <value>doll	- (M) Creates a new Doll client.</value>
+    <value>doll	- (M) 创建新受控端。</value>
   </data>
   <data name="Commands.Help.Rem" xml:space="preserve">
-    <value>Records comments (remarks) in a script file.
+    <value>将本行的剩余部分视为注释。
 
 rem [...]
 #[...]
 </value>
   </data>
   <data name="Commands.Help.Doll" xml:space="preserve">
-    <value>Creates a new Doll client by creating or attaching to a process.
+    <value>通过启动新进程或附加到进程的方式，创建新受控端。
 
 doll CMDLINE
 doll --attach PID
 
-CMDLINE		Create a new process by running CMDLINE.
-PID		Attach to process PID.
-		Use `ps` to get the list of available PIDs.
+CMDLINE		运行CMDLINE，并将其作为新受控端。
+PID		附加到ID为PID的进程，并将其作为新受控端。
+		使用`ps`命令获取所有进程的PID。
 </value>
   </data>
   <data name="Commands.Unknown" xml:space="preserve">
-    <value>Unknown command `{0}`.</value>
+    <value>命令`{0}`未知。</value>
   </data>
   <data name="Commands.Help.Ps" xml:space="preserve">
-    <value>Displays a list of running processes.
+    <value>显示所有进程的列表。
 
 ps
 </value>
   </data>
   <data name="Threads.Client.Verdict" xml:space="preserve">
-    <value>verdict: Executing verdict "{0}".</value>
+    <value>verdict: 执行判定“{0}”。</value>
   </data>
   <data name="Threads.Client.ContextReadError" xml:space="preserve">
-    <value>Error reading register #{0}.</value>
+    <value>读取{0}号寄存器出错。</value>
   </data>
   <data name="Commands.Help.Target" xml:space="preserve">
-    <value>Gets or sets the target client.
+    <value>获取或设定命令的操作目标。
 
 target [ID]
 target --doll
 target --monitor
 
-ID		The new target client's ID.
-		If omitted, displays a list of connected clients.
---doll		Set target to last targeted Doll client.
---monitor	Set target to last targeted Monitor client.
+ID		操作目标的ID。
+		如果省略本参数，则显示所有已连接客户端的列表。
+--doll		设定操作目标为上一个受控端操作目标。
+--monitor	设定操作目标为上一个监控端操作目标。
 </value>
   </data>
   <data name="Commands.Target.Header" xml:space="preserve">
-    <value>  #    Name                             Type     Status   PID      Bits
+    <value>  #    名称                             类别     状态     PID      位数
 -+----+--------------------------------+--------+--------+--------+----</value>
   </data>
   <data name="UI.Gui.Title.Hooked" xml:space="preserve">
-    <value>Current hook: #{0} "{1}" phase "{2}"</value>
+    <value>当前钩子：#{0} “{1}”，“{2}”阶段</value>
   </data>
   <data name="Commands.Ps.Header" xml:space="preserve">
-    <value>PID      Name
+    <value>PID      进程名
 --------+--------------------------------</value>
   </data>
   <data name="Commands.Win32Error" xml:space="preserve">
-    <value>Win32 Error {0}: {1}</value>
+    <value>Win32 错误 {0}: {1}</value>
   </data>
   <data name="Commands.Unhook.Uninstalled" xml:space="preserve">
-    <value>Hook #{0} "{1}" removed.</value>
+    <value>钩子 #{0} “{1}”已移除。</value>
   </data>
   <data name="Threads.EvalEngine.RuntimeError" xml:space="preserve">
-    <value>Runtime exception {0}: {1}</value>
+    <value>运行时异常 {0}: {1}</value>
   </data>
   <data name="Commands.HelpShort.Target" xml:space="preserve">
-    <value>target	- Gets or sets the target client.</value>
+    <value>target	- 获取或设定命令的操作目标。</value>
   </data>
   <data name="Threads.EvalEngine.InvalidType" xml:space="preserve">
-    <value>Cannot evaluate expression of type {0}.</value>
+    <value>无法计算类型为 {0} 的表达式。</value>
   </data>
   <data name="Commands.Target.Format" xml:space="preserve">
-    <value>{0} {1,-4} {2,-32} {3,-8} {4,-8} {5,-8} {6,-4}</value>
+    <value>{0} {1,-4} {2,-32} {3,-5} {4,-6} {5,-8} {6,-4}</value>
   </data>
   <data name="Threads.Client.Disconnected" xml:space="preserve">
-    <value>Client "{0}" disconnected, reason: {1}</value>
+    <value>客户端“{0}”断开连接，原因：{1}</value>
   </data>
   <data name="Commands.Help.Listen" xml:space="preserve">
-    <value>Starts to listen for clients and displays addresses listening on.
+    <value>启动监听器并显示监听地址，等待客户端连接。
 
 listen [--ipv6] [PORT]
 
---ipv6		Listens on IPv6 interfaces, instead of IPv4 ones.
-PORT		The listening port. Default to 31415.
+--ipv6		监听IPv6连接而非IPv4连接。
+PORT		监听端口。默认值为31415。
 
-This command may successfully execute only once; any subsequent call will fail.
+本命令只可被成功地执行一次；启动监听器后执行此命令会失败。
 </value>
   </data>
   <data name="Threads.Client.Ctx" xml:space="preserve">
-    <value>ctx: Dictionary entry created: {0} =&gt; {1}.</value>
+    <value>ctx: 上下文字典条目已创建：{0} =&gt; {1}。</value>
   </data>
   <data name="Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Controller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

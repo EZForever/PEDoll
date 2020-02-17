@@ -46,13 +46,11 @@ goto :eof
 	if not exist "%RELEASEDIR%\%1" (
 		md "%RELEASEDIR%\%1"
 	)
-	
-	md "%RELEASEDIR%\%1\Controller"
 
-	xcopy /e %PLATFORMDIR%\%1 "%RELEASEDIR%\%1\Controller\"
-	xcopy /e /i Scripts "%RELEASEDIR%\%1\Controller\Scripts"
+	xcopy /e %PLATFORMDIR%\%1 "%RELEASEDIR%\%1\"
+	xcopy /e /i Scripts "%RELEASEDIR%\%1\Scripts"
 
-	wsl ./GenerateAPIx64.sh "%RELEASEDIR%\%1\Controller\Scripts\API"
+	wsl ./GenerateAPIx64.sh "%RELEASEDIR%\%1\Scripts\API"
 goto :eof
 
 

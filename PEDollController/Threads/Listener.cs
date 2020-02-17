@@ -27,10 +27,17 @@ namespace PEDollController.Threads
             }
         }
 
-        TcpListener listener;
+        // ----------
+
+        public TcpListener listener;
+        public bool ipv6;
+        public int port;
 
         Listener(bool ipv6, int port)
         {
+            this.ipv6 = ipv6;
+            this.port = port;
+
             // IPv6Any without IPv6Only will listen on both v4 & v6 interfaces
             listener = new TcpListener(ipv6 ? IPAddress.IPv6Any : IPAddress.Any, port);
             listener.Start();

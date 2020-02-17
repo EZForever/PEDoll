@@ -127,8 +127,8 @@ hook {[MODULE!]SYMBOL|0xADDR|*PATTERN}
 Type `hook` without any arguments displays a list of hooks.
 Call `hook` on an existing hook will overwrite its convention and actions.
 
-MODULE		The target module to search for symbol NAME.
-		If omitted, default to the first module containing symbol NAME.
+MODULE		The target module to search for symbol SYMBOL.
+		If omitted, default to the first module containing the symbol.
 SYMBOL		The function's symbol name (e.g. WinExec or kernel32!Sleep).
 ADDR		The function's virtual address (e.g. 0x401000).
 PATTERN		The hexadecimal pattern of the function (e.g. *8B4C240885D2).
@@ -176,6 +176,8 @@ For help information on expressions, type `help eval`.
 --------------------------------------------------------------------------------
 unhook	- (D) Uninstalls a hook.
 ----------
+Uninstalls a hook.
+
 unhook ID
 
 ID		ID of the hook.
@@ -188,8 +190,8 @@ Breaks or continues the process's execution.
 break
 
 This command toggles the execution state between running and suspended.
-For a newly-created Doll process, it's state is running.
-For a newly-attached Doll process, it's state is suspended.
+For a newly-created Doll process, the first attempt of breaking might have no
+effect on the process's execution.
 
 --------------------------------------------------------------------------------
 loaddll	- (D) Loads a module into the process's address space.
@@ -254,13 +256,15 @@ Type `hook` without any arguments displays a list of dumped data.
 
 ID		ID of the dump to operate.
 FORMAT		Show or save data under FORMAT. Possible formats are:
-		hex(default), raw, ansi, unicode, utf8, x86, x64
+		hex(default), raw, ansi, unicode, utf8, 8086, x86, x64
 SAVEFILE	Save the data to SAVEFILE instead of displaying them.
 		SAVEFILE will be overwritten if it exists.
 
 --------------------------------------------------------------------------------
 verdict	- (D) Verdicts an activated hook.
 ----------
+Verdicts an activated hook.
+
 verdict {approve|reject|terminate}
 
 approve		Continue the execution.

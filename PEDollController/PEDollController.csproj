@@ -142,6 +142,9 @@
     <EmbeddedResource Include="FDlgBrowsePID.resx">
       <DependentUpon>FDlgBrowsePID.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Threads\EvalEngineContext.cs" />
     <Compile Include="Threads\Gui.cs" />
     <Compile Include="Threads\Listener.cs" />

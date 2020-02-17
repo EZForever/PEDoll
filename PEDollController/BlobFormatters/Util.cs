@@ -2,6 +2,8 @@
 using System.Text;
 using System.Collections.Generic;
 
+using Gee.External.Capstone.X86;
+
 namespace PEDollController.BlobFormatters
 {
     static class Util
@@ -15,8 +17,9 @@ namespace PEDollController.BlobFormatters
             { "unicode", new FmtText(Encoding.Unicode) },
             { "utf8", new FmtText(Encoding.UTF8) },
 
-            { "x86", new FmtX86(false) },
-            { "x64", new FmtX86(true) },
+            { "8086", new FmtX86(X86DisassembleMode.Bit16) },
+            { "x86", new FmtX86(X86DisassembleMode.Bit32) },
+            { "x64", new FmtX86(X86DisassembleMode.Bit64) },
         };
     }
 }

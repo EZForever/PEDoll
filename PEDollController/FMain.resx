@@ -124,6 +124,48 @@
     <value>True</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mnuFileLoad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 26</value>
+  </data>
+  <data name="mnuFileLoad.Text" xml:space="preserve">
+    <value>&amp;Load script...</value>
+  </data>
+  <data name="mnuFileSpr1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>337, 6</value>
+  </data>
+  <data name="mnuFileMonitorX86.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 26</value>
+  </data>
+  <data name="mnuFileMonitorX86.Text" xml:space="preserve">
+    <value>Launch Monitor on localhost (x&amp;86)</value>
+  </data>
+  <data name="mnuFileMonitorX64.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 26</value>
+  </data>
+  <data name="mnuFileMonitorX64.Text" xml:space="preserve">
+    <value>Launch Monitor on localhost (x&amp;64)</value>
+  </data>
+  <data name="mnuFileSpr2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>337, 6</value>
+  </data>
+  <data name="mnuFileExit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 26</value>
+  </data>
+  <data name="mnuFileExit.Text" xml:space="preserve">
+    <value>&amp;Exit</value>
+  </data>
+  <data name="mnuFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 24</value>
+  </data>
+  <data name="mnuFile.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="mnuHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 24</value>
+  </data>
+  <data name="mnuHelp.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
   <data name="mnuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -145,33 +187,6 @@
   </data>
   <data name="&gt;&gt;mnuStrip.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="mnuFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 24</value>
-  </data>
-  <data name="mnuFile.Text" xml:space="preserve">
-    <value>&amp;File</value>
-  </data>
-  <data name="mnuFileLoad.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 26</value>
-  </data>
-  <data name="mnuFileLoad.Text" xml:space="preserve">
-    <value>&amp;Load script...</value>
-  </data>
-  <data name="mnuFileSpr1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 6</value>
-  </data>
-  <data name="mnuFileExit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 26</value>
-  </data>
-  <data name="mnuFileExit.Text" xml:space="preserve">
-    <value>&amp;Exit</value>
-  </data>
-  <data name="mnuHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 24</value>
-  </data>
-  <data name="mnuHelp.Text" xml:space="preserve">
-    <value>&amp;Help</value>
   </data>
   <data name="mnuHelpCommands.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 26</value>
@@ -4155,6 +4170,24 @@
   </data>
   <data name="&gt;&gt;dlgFileLoadOpen.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuFileMonitorX86.Name" xml:space="preserve">
+    <value>mnuFileMonitorX86</value>
+  </data>
+  <data name="&gt;&gt;mnuFileMonitorX86.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuFileMonitorX64.Name" xml:space="preserve">
+    <value>mnuFileMonitorX64</value>
+  </data>
+  <data name="&gt;&gt;mnuFileMonitorX64.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuFileSpr2.Name" xml:space="preserve">
+    <value>mnuFileSpr2</value>
+  </data>
+  <data name="&gt;&gt;mnuFileSpr2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FMain</value>

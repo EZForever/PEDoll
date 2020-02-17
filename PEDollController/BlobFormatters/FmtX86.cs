@@ -10,9 +10,9 @@ namespace PEDollController.BlobFormatters
     {
         CapstoneX86Disassembler disassembler;
 
-        public FmtX86(bool isX64)
+        public FmtX86(X86DisassembleMode mode)
         {
-            disassembler = CapstoneDisassembler.CreateX86Disassembler(isX64 ? X86DisassembleMode.Bit64 : X86DisassembleMode.Bit32);
+            disassembler = CapstoneDisassembler.CreateX86Disassembler(mode);
             disassembler.DisassembleSyntax = DisassembleSyntax.Intel;
 
             // Represent invalid instructions as "db 0x.."

@@ -2,6 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Drawing;
+using System.Threading;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace PEDollController
@@ -50,6 +52,35 @@ namespace PEDollController
             dlgFileLoadOpen.InitialDirectory = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Scripts");
         }
 
+        private void LaunchMonitor(string platform)
+        {
+            if (Threads.Listener.theInstance == null)
+            {
+                // If listener hasn't been started, start it with default parameters
+                Threads.CmdEngine.theInstance.AddCommand("listen");
+
+                // Wait for the listener to really become ready
+                while (Threads.Listener.theInstance == null || Threads.Listener.theInstance.listener == null)
+                    Thread.Sleep(0);
+            }
+            
+            try
+            {
+                // $self\Monitor_{x86|x64}\PEDollMonitor.exe
+                string selfPath = Path.GetDirectoryName(Application.ExecutablePath);
+                string monitorPath = Path.Combine(selfPath, "Monitor_" + platform, "PEDollMonitor.exe");
+
+                string arg = String.Format(Threads.Listener.theInstance.ipv6 ? "[::1]:{0}" : "127.0.0.1:{0}", Threads.Listener.theInstance.port);
+
+                Process.Start("cmd", String.Format("/c start \"PEDoll Monitor\" /min \"{0}\" {1}", monitorPath, arg));
+                //Process.Start("cmd", String.Format("/k \"{0}\" {1}", monitorPath, arg));
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message, "PEDoll", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private void mnuFileLoad_Click(object sender, EventArgs e)
         {
             if (dlgFileLoadOpen.ShowDialog() != DialogResult.OK)
@@ -59,6 +90,16 @@ namespace PEDollController
                 dlgFileLoadOpen.FileName
             );
             Threads.CmdEngine.theInstance.AddCommand(cmd);
+        }
+
+        private void mnuFileMonitorX86_Click(object sender, EventArgs e)
+        {
+            LaunchMonitor("x86");
+        }
+
+        private void mnuFileMonitorX64_Click(object sender, EventArgs e)
+        {
+            LaunchMonitor("x64");
         }
 
         private void mnuFileExit_Click(object sender, EventArgs e)

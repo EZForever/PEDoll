@@ -128,6 +128,9 @@
             this.tipError = new System.Windows.Forms.ToolTip(this.components);
             this.dlgDumpSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgFileLoadOpen = new System.Windows.Forms.OpenFileDialog();
+            this.mnuFileMonitorX86 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileMonitorX64 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileSpr2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuStrip.SuspendLayout();
             this.tabPanels.SuspendLayout();
             this.tabPageListener.SuspendLayout();
@@ -164,6 +167,9 @@
             this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFileLoad,
             this.mnuFileSpr1,
+            this.mnuFileMonitorX86,
+            this.mnuFileMonitorX64,
+            this.mnuFileSpr2,
             this.mnuFileExit});
             this.mnuFile.Name = "mnuFile";
             resources.ApplyResources(this.mnuFile, "mnuFile");
@@ -825,6 +831,23 @@
             // 
             resources.ApplyResources(this.dlgFileLoadOpen, "dlgFileLoadOpen");
             // 
+            // mnuFileMonitorX86
+            // 
+            this.mnuFileMonitorX86.Name = "mnuFileMonitorX86";
+            resources.ApplyResources(this.mnuFileMonitorX86, "mnuFileMonitorX86");
+            this.mnuFileMonitorX86.Click += new System.EventHandler(this.mnuFileMonitorX86_Click);
+            // 
+            // mnuFileMonitorX64
+            // 
+            this.mnuFileMonitorX64.Name = "mnuFileMonitorX64";
+            resources.ApplyResources(this.mnuFileMonitorX64, "mnuFileMonitorX64");
+            this.mnuFileMonitorX64.Click += new System.EventHandler(this.mnuFileMonitorX64_Click);
+            // 
+            // mnuFileSpr2
+            // 
+            this.mnuFileSpr2.Name = "mnuFileSpr2";
+            resources.ApplyResources(this.mnuFileSpr2, "mnuFileSpr2");
+            // 
             // FMain
             // 
             resources.ApplyResources(this, "$this");
@@ -972,6 +995,9 @@
         private System.Windows.Forms.OpenFileDialog dlgFileLoadOpen;
         private System.Windows.Forms.CheckBox chkMonitorShellKeep;
         internal System.Windows.Forms.TextBox txtHookedResults;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileMonitorX86;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileMonitorX64;
+        private System.Windows.Forms.ToolStripSeparator mnuFileSpr2;
     }
 }
 
