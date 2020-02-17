@@ -38,13 +38,13 @@
             // 
             // lstPs
             // 
+            resources.ApplyResources(this.lstPs, "lstPs");
             this.lstPs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.clmPID,
             this.clmName});
             this.lstPs.FullRowSelect = true;
             this.lstPs.GridLines = true;
             this.lstPs.HideSelection = false;
-            resources.ApplyResources(this.lstPs, "lstPs");
             this.lstPs.MultiSelect = false;
             this.lstPs.Name = "lstPs";
             this.lstPs.UseCompatibleStateImageBehavior = false;
@@ -60,8 +60,8 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.btnCancel, "btnCancel");
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);

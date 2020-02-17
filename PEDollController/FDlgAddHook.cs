@@ -208,7 +208,7 @@ namespace PEDollController
             }
 
             string argAfter = chkAfter.Checked
-                ? String.Format("--After {0} {1}", txtAfterAction.Text, chkAfterVerdict.Checked ? ("--verdict=" + argAfterVerdict) : String.Empty)
+                ? String.Format("--after {0} {1}", txtAfterAction.Text, chkAfterVerdict.Checked ? ("--verdict=" + argAfterVerdict) : String.Empty)
                 : String.Empty;
 
             string cmd = String.Format(

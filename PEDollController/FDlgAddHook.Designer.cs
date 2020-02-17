@@ -32,21 +32,21 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.grpFunction = new System.Windows.Forms.GroupBox();
-            this.cboAddrMode = new System.Windows.Forms.ComboBox();
-            this.txtAddr = new System.Windows.Forms.TextBox();
-            this.lbl1 = new System.Windows.Forms.Label();
             this.cboConvention = new System.Windows.Forms.ComboBox();
+            this.lbl1 = new System.Windows.Forms.Label();
+            this.txtAddr = new System.Windows.Forms.TextBox();
+            this.cboAddrMode = new System.Windows.Forms.ComboBox();
             this.grpStack = new System.Windows.Forms.GroupBox();
-            this.lbl2 = new System.Windows.Forms.Label();
-            this.txtStackBytes = new System.Windows.Forms.TextBox();
-            this.chkStack = new System.Windows.Forms.CheckBox();
             this.lbl3 = new System.Windows.Forms.Label();
             this.txtStackRet = new System.Windows.Forms.TextBox();
+            this.chkStack = new System.Windows.Forms.CheckBox();
+            this.lbl2 = new System.Windows.Forms.Label();
+            this.txtStackBytes = new System.Windows.Forms.TextBox();
             this.chkBefore = new System.Windows.Forms.CheckBox();
             this.grpBefore = new System.Windows.Forms.GroupBox();
+            this.chkBeforeVerdict = new System.Windows.Forms.CheckBox();
             this.cboBeforeVerdict = new System.Windows.Forms.ComboBox();
             this.txtBeforeAction = new System.Windows.Forms.TextBox();
-            this.chkBeforeVerdict = new System.Windows.Forms.CheckBox();
             this.grpAfter = new System.Windows.Forms.GroupBox();
             this.chkAfterVerdict = new System.Windows.Forms.CheckBox();
             this.cboAfterVerdict = new System.Windows.Forms.ComboBox();
@@ -83,6 +83,23 @@
             this.grpFunction.Name = "grpFunction";
             this.grpFunction.TabStop = false;
             // 
+            // cboConvention
+            // 
+            this.cboConvention.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboConvention.FormattingEnabled = true;
+            resources.ApplyResources(this.cboConvention, "cboConvention");
+            this.cboConvention.Name = "cboConvention";
+            // 
+            // lbl1
+            // 
+            resources.ApplyResources(this.lbl1, "lbl1");
+            this.lbl1.Name = "lbl1";
+            // 
+            // txtAddr
+            // 
+            resources.ApplyResources(this.txtAddr, "txtAddr");
+            this.txtAddr.Name = "txtAddr";
+            // 
             // cboAddrMode
             // 
             this.cboAddrMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -93,23 +110,6 @@
             resources.GetString("cboAddrMode.Items2")});
             resources.ApplyResources(this.cboAddrMode, "cboAddrMode");
             this.cboAddrMode.Name = "cboAddrMode";
-            // 
-            // txtAddr
-            // 
-            resources.ApplyResources(this.txtAddr, "txtAddr");
-            this.txtAddr.Name = "txtAddr";
-            // 
-            // lbl1
-            // 
-            resources.ApplyResources(this.lbl1, "lbl1");
-            this.lbl1.Name = "lbl1";
-            // 
-            // cboConvention
-            // 
-            this.cboConvention.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboConvention.FormattingEnabled = true;
-            resources.ApplyResources(this.cboConvention, "cboConvention");
-            this.cboConvention.Name = "cboConvention";
             // 
             // grpStack
             // 
@@ -122,23 +122,6 @@
             this.grpStack.Name = "grpStack";
             this.grpStack.TabStop = false;
             // 
-            // lbl2
-            // 
-            resources.ApplyResources(this.lbl2, "lbl2");
-            this.lbl2.Name = "lbl2";
-            // 
-            // txtStackBytes
-            // 
-            resources.ApplyResources(this.txtStackBytes, "txtStackBytes");
-            this.txtStackBytes.Name = "txtStackBytes";
-            // 
-            // chkStack
-            // 
-            resources.ApplyResources(this.chkStack, "chkStack");
-            this.chkStack.Name = "chkStack";
-            this.chkStack.UseVisualStyleBackColor = true;
-            this.chkStack.CheckedChanged += new System.EventHandler(this.chkStack_CheckedChanged);
-            // 
             // lbl3
             // 
             resources.ApplyResources(this.lbl3, "lbl3");
@@ -148,6 +131,23 @@
             // 
             resources.ApplyResources(this.txtStackRet, "txtStackRet");
             this.txtStackRet.Name = "txtStackRet";
+            // 
+            // chkStack
+            // 
+            resources.ApplyResources(this.chkStack, "chkStack");
+            this.chkStack.Name = "chkStack";
+            this.chkStack.UseVisualStyleBackColor = true;
+            this.chkStack.CheckedChanged += new System.EventHandler(this.chkStack_CheckedChanged);
+            // 
+            // lbl2
+            // 
+            resources.ApplyResources(this.lbl2, "lbl2");
+            this.lbl2.Name = "lbl2";
+            // 
+            // txtStackBytes
+            // 
+            resources.ApplyResources(this.txtStackBytes, "txtStackBytes");
+            this.txtStackBytes.Name = "txtStackBytes";
             // 
             // chkBefore
             // 
@@ -166,6 +166,13 @@
             this.grpBefore.Name = "grpBefore";
             this.grpBefore.TabStop = false;
             // 
+            // chkBeforeVerdict
+            // 
+            resources.ApplyResources(this.chkBeforeVerdict, "chkBeforeVerdict");
+            this.chkBeforeVerdict.Name = "chkBeforeVerdict";
+            this.chkBeforeVerdict.UseVisualStyleBackColor = true;
+            this.chkBeforeVerdict.CheckedChanged += new System.EventHandler(this.chkBeforeVerdict_CheckedChanged);
+            // 
             // cboBeforeVerdict
             // 
             this.cboBeforeVerdict.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -181,13 +188,6 @@
             // 
             resources.ApplyResources(this.txtBeforeAction, "txtBeforeAction");
             this.txtBeforeAction.Name = "txtBeforeAction";
-            // 
-            // chkBeforeVerdict
-            // 
-            resources.ApplyResources(this.chkBeforeVerdict, "chkBeforeVerdict");
-            this.chkBeforeVerdict.Name = "chkBeforeVerdict";
-            this.chkBeforeVerdict.UseVisualStyleBackColor = true;
-            this.chkBeforeVerdict.CheckedChanged += new System.EventHandler(this.chkBeforeVerdict_CheckedChanged);
             // 
             // grpAfter
             // 

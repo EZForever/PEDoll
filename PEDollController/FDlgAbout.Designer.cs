@@ -40,8 +40,8 @@
             // 
             // picIcon
             // 
-            this.picIcon.Image = global::PEDollController.Properties.Resources.Controller;
             resources.ApplyResources(this.picIcon, "picIcon");
+            this.picIcon.Image = global::PEDollController.Properties.Resources.Controller;
             this.picIcon.Name = "picIcon";
             this.picIcon.TabStop = false;
             // 

@@ -136,11 +136,23 @@
     <EmbeddedResource Include="FDlgAbout.resx">
       <DependentUpon>FDlgAbout.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FDlgAbout.zh-CN.resx">
+      <DependentUpon>FDlgAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FDlgAddHook.resx">
+      <DependentUpon>FDlgAddHook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FDlgAddHook.zh-CN.resx">
       <DependentUpon>FDlgAddHook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FDlgBrowsePID.resx">
       <DependentUpon>FDlgBrowsePID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FDlgBrowsePID.zh-CN.resx">
+      <DependentUpon>FDlgBrowsePID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMain.zh-CN.resx">
+      <DependentUpon>FMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.zh-CN.resx">
       <SubType>Designer</SubType>
