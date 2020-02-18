@@ -50,7 +50,10 @@ goto :eof
 	xcopy /e %PLATFORMDIR%\%1 "%RELEASEDIR%\%1\"
 	xcopy /e /i Scripts "%RELEASEDIR%\%1\Scripts"
 
-	wsl ./GenerateAPIx64.sh "%RELEASEDIR%\%1\Scripts\API"
+	:: Generate x64 API script (Scripts\API\*64.txt) from x86 scripts
+	pushd "%RELEASEDIR%\%1\Scripts\API"
+	powershell -Command "ls *.txt | foreach { (cat $_.FullName -Raw) -Replace ' --stack=\d+','' > ($_.BaseName + '64.txt') }"
+	popd
 goto :eof
 
 
