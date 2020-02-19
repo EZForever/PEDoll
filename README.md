@@ -54,9 +54,9 @@ See ["FAQ" on project wiki][wiki/faq].
 
 ## License
 
-[The MIT License](LICENSE.txt).
+[The MIT License.](LICENSE.txt)
 
-[wiki]: https://github.com/matrixcascade/PeDoll/wiki
-[wiki/faq]: https://github.com/matrixcascade/PeDoll/wiki/FAQ
-[wiki/example]: https://github.com/matrixcascade/PeDoll/wiki/Simple-Example
+[wiki]: https://github.com/EZForever/PEDoll/wiki
+[wiki/faq]: https://github.com/EZForever/PEDoll/wiki/FAQ
+[wiki/example]: https://github.com/EZForever/PEDoll/wiki/Simple-Example
 

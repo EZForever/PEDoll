@@ -10,7 +10,7 @@ PEDoll由三部分组成：
 
 - **主控端（Controller）** 接受客户端的连接请求，并提供命令行及图形界面供用户对客户端及钩子进行管理。
 - **监控端（Monitor）** 运行在目标机器上（主控端所在的机器，或一台虚拟机），主要目的是通过启动新进程或附加到进程的方式，创建新受控端。
-- **受控端（Doll）** 是指被注入了*受控端模块*（*libDoll*, `libDoll.dll`）的进程。受控端模块与主控端进行通信、安装内联钩子并当钩子被激活时相应主控端的命令。
+- **受控端（Doll）** 是指被注入了*受控端模块*（*libDoll*，`libDoll.dll`）的进程。受控端模块与主控端进行通信、安装内联钩子并当钩子被激活时相应主控端的命令。
 
 这三部分通过基于TCP协议的*Puppet Protocol*相互通信。
 
@@ -54,9 +54,9 @@ PEDoll的工作原理是对受控端进程所使用的Windows API或内部过程
 
 ## 开源许可证
 
-[The MIT License](LICENSE.txt)。
+[The MIT License.](LICENSE.txt)
 
-[wiki]: https://github.com/matrixcascade/PeDoll/wiki/Home.zh-CN
-[wiki/faq]: https://github.com/matrixcascade/PeDoll/wiki/FAQ.zh-CN
-[wiki/example]: https://github.com/matrixcascade/PeDoll/wiki/Simple-Example.zh-CN
+[wiki]: https://github.com/EZForever/PEDoll/wiki/Home.zh-CN
+[wiki/faq]: https://github.com/EZForever/PEDoll/wiki/FAQ.zh-CN
+[wiki/example]: https://github.com/EZForever/PEDoll/wiki/Simple-Example.zh-CN
 
