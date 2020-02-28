@@ -37,13 +37,15 @@ void MonPanic(const char* msg)
     isr_sigint(SIGTERM);
 }
 
+/*
+// stdout is set to multi-byte mode after the first call to std::cout
+// Using std::wcout or std::wcerr may cause trouble
 void MonPanic(const wchar_t* msg)
 {
-    // FIXME: stdout is set to multi-byte mode after the first call to std::cout
-    // Using std::wcout or std::wcerr may cause trouble
     std::wcerr << msg << std::endl;
     isr_sigint(SIGTERM);
 }
+*/
 
 int main(int argc, char* argv[])
 {
@@ -105,12 +107,8 @@ int main(int argc, char* argv[])
 
     std::cout << "Initialization complete, press Ctrl-C to stop" << std::endl;
 
-    while (true)
-    {
-        // An experiment: Yield execution if possible, sleep otherwise
-        if(!SwitchToThread())
-            Sleep(1000);
-    }
+    // Suspend current thread
+    Sleep(INFINITE);
 
     return 42; // Not reached
 }

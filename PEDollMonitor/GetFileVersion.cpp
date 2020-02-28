@@ -44,6 +44,11 @@ BOOL GetFileVersion(HMODULE hModule, std::string& str)
         << (fileInfo->dwFileVersionLS >> 16);
     //<< '.'
     //<< (fileInfo->dwFileVersionLS & 0xffff);
+
+    // For versions between release tags, a "*" is appended after the version string
+    if (fileInfo->dwFileVersionLS & 0xffff)
+        builder << '*';
+
     builder >> str;
 
     delete[] verInfo;

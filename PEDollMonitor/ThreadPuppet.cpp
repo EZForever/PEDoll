@@ -105,7 +105,7 @@ void __cdecl TPuppet(void* arg)
         MonPanic(e.what());
     }
     if (!ctx.puppet)
-        MonPanic(L"TPuppet(): ClientTCPInitialize() failed");
+        MonPanic("TPuppet(): ClientTCPInitialize() failed");
 
     // Prepare MSG_ONLINE packet & current process name
     Puppet::PACKET_MSG_ONLINE packetOnline;

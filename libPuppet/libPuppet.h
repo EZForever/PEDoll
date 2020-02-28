@@ -289,12 +289,8 @@ namespace Puppet {
         ~IPuppet() {}
 
         // errno of last faulty action
-        // FIXME: This is just a polyfill, will need a new idea for error handling
+        // XXX: libPuppet really did nothing about error handling (this value is set but unused)
         int lastError = 0;
-
-        // For a server: Start waiting for a client
-        // For a client: Establish connection to a server
-        virtual void start() = 0;
 
         // Send a packet to connected server/client
         virtual void send(const PACKET& packet) = 0;

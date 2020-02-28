@@ -299,7 +299,10 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
             }
             else
             {
-                CloseHandle((HANDLE)hTNew);
+                // Quoting from MSDN (https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/beginthread-beginthreadex#remarks):
+                // "_endthread automatically closes the thread handle, whereas _endthreadex does not.
+                //  Therefore, when you use _beginthread and _endthread, do not explicitly close the thread handle by calling the Win32 CloseHandle API."
+                //CloseHandle((HANDLE)hTNew);
                 TPuppetSendAck(0);
             }
 

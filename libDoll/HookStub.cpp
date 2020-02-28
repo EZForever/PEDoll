@@ -75,6 +75,7 @@ extern "C" void DollOnAfterHook(UINT_PTR* context)
     // unregister current thread
 
     LIBDOLL_HOOK* hook = (LIBDOLL_HOOK*)DollHookGetCurrent(context);
+    hook->context = context;
 
     // FIXME: MSG_ONHOOK should not really be sent at here, since TPuppet may send other packets at the same time and cause data corruption
     // Replied ACK is received & processed by TPuppetOnRecv()

@@ -10,6 +10,12 @@ public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
 
 .code
 
+; Machine's work size, in bytes
+WORDSZ equ @WordSize
+
+; Registers saved by the pushad/pushall instruction, as a macro for usage in assembly code
+PUSHAD_CNT equ 8
+
 ; pushall/popall macro saves/restores literally all general-purpose registers
 
 pushall macro
@@ -50,7 +56,7 @@ HookStubA:
     ;   eax == ret
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     mov ecx, esp
-    add ecx, 4 * 8
+    add ecx, WORDSZ * PUSHAD_CNT
     ;   ecx == &HookOEP
     test eax, eax
     jnz __HookStubA_isDoll
@@ -59,7 +65,7 @@ HookStubA:
     push ecx
     lea eax, DollOnHook
     call eax
-    add esp, 4
+    add esp, WORDSZ
     ;   DollOnHook(&HookOEP)
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (newOEP), (return addr), (red zone...)
     popall
@@ -74,14 +80,14 @@ __HookStubA_isDoll:
     push ecx
     lea eax, DollHookGetCurrent
     call eax
-    add esp, 4
+    add esp, WORDSZ
     ;   DollHookGetCurrent(&HookOEP)
     ;   eax == &LIBDOLL_HOOK
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
-    mov edx, [eax + 4 * 0] ; offset LIBDOLL_HOOK::pTrampoline
+    mov edx, [eax + WORDSZ * 0] ; offset LIBDOLL_HOOK::pTrampoline
     ;   edx == pTrampoline
     mov ecx, esp
-    add ecx, 4 * 8
+    add ecx, WORDSZ * PUSHAD_CNT
     mov [ecx], edx
     ;   stack == (pushall: eax, ecx, edx, ebx, esp, ebp, esi, edi), (pTrampoline), (return addr), (red zone...)
     popall
@@ -95,16 +101,16 @@ __HookStubA_isDoll:
 ; Context:
 ;     stack == (HookOEP), (red zone...)
 HookStubB:
-    pushad
+    pushall
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (red zone...)
     mov ecx, esp
-    add ecx, 4 * 8
+    add ecx, WORDSZ * PUSHAD_CNT
     ;   ecx == &HookOEP
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (red zone...)
     push ecx
     lea eax, DollOnAfterHook
     call eax
-    add esp, 4
+    add esp, WORDSZ
     ;   DollOnAfterHook(&HookOEP)
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (return addr), (red zone...)
     popall
@@ -122,22 +128,22 @@ HookStubOnDeny:
     pushall
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     mov ecx, esp
-    add ecx, 4 * 8
+    add ecx, WORDSZ * PUSHAD_CNT
     ;   ecx == &HookOEP
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     push ecx
     lea eax, DollHookGetCurrent
     call eax
-    add esp, 4
+    add esp, WORDSZ
     ;   DollHookGetCurrent(&HookOEP)
     ;   eax == &LIBDOLL_HOOK
     ;   stack == (pushad: eax, ecx, edx, ebx, esp, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
-    mov edx, [eax + 4 * 1] ; offset LIBDOLL_HOOK::denySPOffset
+    mov edx, [eax + WORDSZ * 1] ; offset LIBDOLL_HOOK::denySPOffset
     ;   edx == denySPOffset
-    add [esp + 4 * 3], edx ; offset pushad::esp
+    add [esp + WORDSZ * 3], edx ; offset pushad::esp
     ;   stack == (pushad: eax, ecx, edx, ebx, espModded, ebp, esi, edi), (HookOEP), (return addr), (red zone...)
     mov ecx, esp
-    add ecx, 4 * (8 + 1) ; &(return addr)
+    add ecx, WORDSZ * (PUSHAD_CNT + 1) ; &(return addr)
     ;   ecx == &(return addr)
     mov esi, [ecx]
     ;   esi == return addr
@@ -145,14 +151,14 @@ HookStubOnDeny:
     mov [ecx + edx], esi
     ; return addr sent to where it should be
     ;   stack == (pushad: eax, ecx, edx, ebx, espModded, ebp, esi, edi), (HookOEP), (return addr), [stack balance area], (return addr), (red zone...)
-    mov edx, [eax + 4 * 2] ; offset LIBDOLL_HOOK::denyAX
+    mov edx, [eax + WORDSZ * 2] ; offset LIBDOLL_HOOK::denyAX
     ;   edx == denyAX
-    mov [esp + 4 * 7], edx ; offset pushad::eax
+    mov [esp + WORDSZ * 7], edx ; offset pushad::eax
     ;   stack == (pushad: eaxModded, ecx, edx, ebx, espModded, ebp, esi, edi), (HookOEP), (return addr), [stack balance area], (return addr), (red zone...)
     popall
     ;   Magic happens since we modifyed esp
     ;   stack == (stack balance area the size of HookOEP), (return addr), (red zone...)
-    add esp, 4
+    add esp, WORDSZ
     ;   stack == (return addr), (red zone...)
     ret
     ;   Hand control back to caller code

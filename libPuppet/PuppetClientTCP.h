@@ -25,7 +25,6 @@ namespace Puppet {
 
         // IPuppet implemention
 
-        void start();
         void send(const PACKET& packet);
         PACKET* recv();
     };

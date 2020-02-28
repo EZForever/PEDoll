@@ -10,7 +10,7 @@ namespace PEDollController
 {
     static class Program
     {
-        #region GetResourceString()
+        #region GetResourceString() & GetVersionString()
 
         public static string GetResourceString(string resId)
         {
@@ -23,6 +23,17 @@ namespace PEDollController
         public static string GetResourceString(string resId, params object[] args)
         {
             return String.Format(GetResourceString(resId), args);
+        }
+
+        public static string GetVersionString()
+        {
+            Version ver = Assembly.GetExecutingAssembly().GetName().Version;
+
+            // For versions between release tags, a "*" is appended after the version string
+            string ret = ver.ToString(3);
+            if (ver.Revision != 0)
+                ret += "*";
+            return ret;
         }
 
         #endregion
@@ -59,13 +70,12 @@ namespace PEDollController
         #endregion
 
         public static event Action OnProgramEnd;
-        public static string Version => Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
 
         //[STAThread]
         static void Main()
         {
             Console.ResetColor();
-            Logger.H(GetResourceString("UI.Cli.Banner", Version));
+            Logger.H(GetResourceString("UI.Cli.Banner", GetVersionString()));
 
             // Initialize CmdEngine, which receives and processes user commands
             CmdEngine.theTask.Start();

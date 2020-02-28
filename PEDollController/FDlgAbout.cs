@@ -8,7 +8,7 @@ namespace PEDollController
         public FDlgAbout()
         {
             InitializeComponent();
-            lblBanner.Text = Program.GetResourceString("UI.Gui.Banner", Program.Version);
+            lblBanner.Text = Program.GetResourceString("UI.Gui.Banner", Program.GetVersionString());
         }
 
         private void btnOK_Click(object sender, EventArgs e)

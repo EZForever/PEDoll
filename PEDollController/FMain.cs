@@ -502,6 +502,8 @@ namespace PEDollController
                 txtDollLoaddll.Text
             );
             Threads.CmdEngine.theInstance.AddCommand(cmd);
+
+            txtDollLoaddll.Text = String.Empty;
         }
 
         #endregion

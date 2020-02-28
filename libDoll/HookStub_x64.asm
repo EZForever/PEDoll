@@ -9,6 +9,20 @@ public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
 
 .code
 
+; Machine's work size, in bytes
+; Could have used @WordSize (https://docs.microsoft.com/en-us/cpp/assembler/masm/at-wordsize) but it is not supported in x64
+WORDSZ equ 8
+
+; Registers saved by the pushad/pushall instruction, as a macro for usage in assembly code
+PUSHAD_CNT equ 10
+
+; Size of register shadow space
+; NOTE: The `sub/add rsp, 8 * 4`s around calling a function are MANDATORY
+;    That's the "shadow space" left for the caller function
+;    Under Debug it's safe to remove them, but under Release this space may get utilized
+;    See https://stackoverflow.com/a/30194393 for details
+SHADOWSZ equ WORDSZ * 4
+
 ; pushad/popad are not supported on x64 :(
 ; sequence: rax, rcx, rdx, rbx, rbp, rsp, rdi, rsi, r8, r9
 
@@ -58,11 +72,6 @@ pushimm64 macro x
     ;   stack == (x), (red zone...)
 endm
 
-; NOTE: The `sub/add rsp, 8 * 4`s around calling a function are MANDATORY
-;    That's the "shadow space" left for the caller function
-;    Under Debug it's safe to remove them, but under Release this space may get utilized
-;    See https://stackoverflow.com/a/30194393 for details
-
 HookStubBefore:
     pushimm64 0CCCCCCCCCCCCCCCCh ; HookOEP placeholder
     pushimm64 0CCCCCCCCCCCCCCCCh ; Address pointer placeholder
@@ -72,21 +81,21 @@ HookStubBefore_end:
 HookStubA:
     pushall
 
-    sub rsp, 8 * 4
+    sub rsp, SHADOWSZ
     lea rax, DollThreadIsCurrent
     call rax
-    add rsp, 8 * 4
+    add rsp, SHADOWSZ
 
     mov rcx, rsp
-    add rcx, 8 * 10
+    add rcx, WORDSZ * PUSHAD_CNT
 
     test rax, rax
     jnz __HookStubA_isDoll
 
-    sub rsp, 8 * 4
+    sub rsp, SHADOWSZ
     lea rax, DollOnHook
     call rax
-    add rsp, 8 * 4
+    add rsp, SHADOWSZ
 
     popall
 
@@ -94,15 +103,15 @@ HookStubA:
 
 __HookStubA_isDoll:
 
-    sub rsp, 8 * 4
+    sub rsp, SHADOWSZ
     lea rax, DollHookGetCurrent
     call rax
-    add rsp, 8 * 4
+    add rsp, SHADOWSZ
 
-    mov rdx, [rax + 4 * 0] ; offset LIBDOLL_HOOK::pTrampoline
+    mov rdx, [rax + WORDSZ * 0] ; offset LIBDOLL_HOOK::pTrampoline
 
     mov rcx, rsp
-    add rcx, 8 * 10
+    add rcx, WORDSZ * PUSHAD_CNT
     mov [rcx], rdx
 
     popall
@@ -113,12 +122,12 @@ HookStubB:
     pushall
 
     mov rcx, rsp
-    add rcx, 8 * 10
+    add rcx, WORDSZ * PUSHAD_CNT
 
-    sub rsp, 8 * 4
+    sub rsp, SHADOWSZ
     lea rax, DollOnAfterHook
     call rax
-    add rsp, 8 * 4
+    add rsp, SHADOWSZ
 
     popall
 
@@ -128,31 +137,31 @@ HookStubOnDeny:
     pushall
 
     mov rcx, rsp
-    add rcx, 8 * 10
+    add rcx, WORDSZ * PUSHAD_CNT
 
-    sub rsp, 8 * 4
+    sub rsp, SHADOWSZ
     lea rax, DollHookGetCurrent
     call rax
-    add rsp, 8 * 4
+    add rsp, SHADOWSZ
 
-    mov rdx, [rax + 8 * 1] ; offset LIBDOLL_HOOK::denySPOffset
+    mov rdx, [rax + WORDSZ * 1] ; offset LIBDOLL_HOOK::denySPOffset
 
-    add [rsp + 8 * 5], edx ; offset pushad::rsp
+    add [rsp + WORDSZ * 5], edx ; offset pushad::rsp
 
     mov rcx, rsp
-    add rcx, 8 * (10 + 1) ; &(return addr)
+    add rcx, WORDSZ * (PUSHAD_CNT + 1) ; &(return addr)
 
     mov rsi, [rcx]
 
     mov [rcx + rdx], rsi
 
-    mov rdx, [rax + 8 * 2] ; offset LIBDOLL_HOOK::denyAX
+    mov rdx, [rax + WORDSZ * 2] ; offset LIBDOLL_HOOK::denyAX
 
-    mov [rsp + 8 * 9], rdx ; offset pushad::eax
+    mov [rsp + WORDSZ * 9], rdx ; offset pushad::eax
 
     popall
 
-    add rsp, 8
+    add rsp, WORDSZ
 
     ret
 
@@ -171,6 +180,6 @@ HookStubBefore_AddrOffset \
 
 ; Registers saved by the pushad/pushall instruction
 pushad_count \
-    dq 10
+    dq PUSHAD_CNT
 
 end

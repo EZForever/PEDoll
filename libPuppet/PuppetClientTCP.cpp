@@ -55,6 +55,9 @@ namespace Puppet {
             addr = (SOCKADDR*)a;
             addrSize = sizeof(*a);
         }
+
+        ret = ::connect(clientSocket, addr, addrSize); // Blocks
+        ASSERT(!ret, "connect(): connect() failed");
     }
 
     PuppetClientTCP::~PuppetClientTCP()
@@ -69,17 +72,6 @@ namespace Puppet {
 
         // __declspec(nothrow) is default on destructors - warning C2497
         //ASSERT(!WSACleanup(), "~(): WSACleanup() failed");
-    }
-
-    void PuppetClientTCP::start()
-    {
-        if (clientSocket == INVALID_SOCKET)
-            return; // FIXME: How to tell if a connection has ended?
-
-        int ret;
-
-        ret = ::connect(clientSocket, addr, addrSize); // Blocks
-        ASSERT(!ret, "connect(): connect() failed");
     }
 
     void PuppetClientTCP::send(const PACKET& packet)
@@ -155,7 +147,6 @@ namespace Puppet {
         PuppetClientTCP* puppet = NULL;
         try {
             puppet = new Puppet::PuppetClientTCP(port, str, ipv6);
-            puppet->start();
         }
         catch (const std::runtime_error &) {
             delete puppet;

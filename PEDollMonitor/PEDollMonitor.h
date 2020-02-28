@@ -12,7 +12,7 @@ struct MONITOR_CTX {
 
 // Called on a fatal error
 void MonPanic(const char* msg);
-void MonPanic(const wchar_t* msg);
+//void MonPanic(const wchar_t* msg);
 
 // Global context
 extern MONITOR_CTX ctx;
