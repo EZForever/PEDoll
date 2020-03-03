@@ -21,7 +21,7 @@ namespace PEDollController.BlobFormatters
             catch(Exception e)
             {
                 if (e is ArgumentException || e is DecoderFallbackException)
-                    throw new ArgumentException(String.Format("BlobFormatters.Text.DecodeError"));
+                    throw new ArgumentException(e.Message);
                 else
                     throw;
             }

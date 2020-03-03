@@ -50,12 +50,13 @@ namespace PEDollController.Threads
         TcpClient client;
         NetworkStream stream;
         Queue<byte[]> rxQueue;
+        bool rxForceDirect;
 
-        public bool isMonitor;
         public bool isDead => !client.Connected;
-        public int bits;
-        public int pid;
-        public string clientName;
+        public readonly bool isMonitor;
+        public readonly int bits;
+        public readonly int pid;
+        public readonly string clientName;
 
         public UInt64 hookOep;
         public UInt32 hookPhase;
@@ -99,6 +100,9 @@ namespace PEDollController.Threads
 
             // Initialize packet receive queue
             rxQueue = new Queue<byte[]>();
+
+            // rxForceDirect is for overwrite Except()'s behavior in OnHook() calling client exports
+            rxForceDirect = false;
 
             // Initialize EvalEngine exports
             Exports = new Delegate[]
@@ -222,6 +226,8 @@ namespace PEDollController.Threads
             switch (Puppet.Util.Deserialize<Puppet.PACKET>(buffer).type)
             {
                 case Puppet.PACKET_TYPE.MSG_ONHOOK:
+                    // XXX: Check if current hook is finished?
+
                     // Set hookPhase
                     hookPhase = Puppet.Util.Deserialize<Puppet.PACKET_MSG_ONHOOK>(buffer).phase;
 
@@ -233,9 +239,13 @@ namespace PEDollController.Threads
                     // Reply with ACK
                     this.Send(Puppet.Util.Serialize(new Puppet.PACKET_ACK(0)));
 
-                    // NOTE: OnHook() Must run in another thread, since it uses EvalEngine, which indirectly wait for packets.
-                    // Make EvalEngine directly wait for packets will cause trouble in command `eval`.
-                    new Task(OnHook).Start();
+                    // NOTE:
+                    //    OnHook() Must run in another thread, since it uses EvalEngine, which indirectly wait for packets.
+                    //    Make EvalEngine directly wait for packets will cause trouble in command `eval`.
+                    //    OnHook() on a unattended thread will cause tons of synchronization problems.
+                    rxForceDirect = true;
+                    OnHook();
+                    rxForceDirect = false;
                     break;
                 default:
                     // Save packet for command usage
@@ -246,9 +256,7 @@ namespace PEDollController.Threads
 
         void OnHook()
         {
-            HookEntry entry = hooks.Where(x => x.oep == hookOep).FirstOrDefault();
-            if (entry.name == null) // Uninitialized
-                throw new IOException(Program.GetResourceString("Threads.Client.UnknownHook"));
+            HookEntry entry = hooks.Where(x => x.oep == hookOep).First();
 
             Logger.N(Program.GetResourceString("Threads.Client.Hooked",
                 this.clientName,
@@ -579,12 +587,6 @@ namespace PEDollController.Threads
                     this.clientName
                 }));
 
-                if(Me.lstDumps.Items.Count == 1)
-                {
-                    Me.lstDumps.Items[0].Selected = true;
-                    Me.btnDumpShow.Enabled = Me.btnDumpSave.Enabled = true;
-                }
-
                 Me.txtHookedResults.Text += (result + Environment.NewLine);
             });
 
@@ -667,6 +669,8 @@ namespace PEDollController.Threads
 
         public byte[] Expect(Puppet.PACKET_TYPE type, bool direct = false)
         {
+            direct = direct || rxForceDirect;
+
             byte[] buffer = direct ? ReceiveDirect() : Receive();
             if (buffer == null)
                 return null;

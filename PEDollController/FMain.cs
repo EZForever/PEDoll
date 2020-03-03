@@ -124,7 +124,7 @@ namespace PEDollController
         private void SendCmd()
         {
             Threads.CmdEngine.theInstance.AddCommand(txtCLICommand.Text);
-            txtCLICommand.Text = String.Empty;
+            txtCLICommand.Clear();
         }
 
         private void btnCLIExecute_Click(object sender, EventArgs e)
@@ -262,6 +262,11 @@ namespace PEDollController
             cboDumpFormats.SelectedIndex = 0;
         }
 
+        private void lstDumps_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnDumpShow.Enabled = btnDumpSave.Enabled = (lstDumps.SelectedItems.Count != 0);
+        }
+
         private void ShowDump()
         {
             string cmd = String.Format("dump {0} --format={1}",
@@ -361,7 +366,8 @@ namespace PEDollController
             );
             Threads.CmdEngine.theInstance.AddCommand(cmd);
 
-            txtDollCmdline.Text = txtDollPID.Text = String.Empty;
+            txtDollCmdline.Clear();
+            txtDollPID.Clear();
         }
 
         private void optKillName_CheckedChanged(object sender, EventArgs e)
@@ -408,7 +414,8 @@ namespace PEDollController
             );
             Threads.CmdEngine.theInstance.AddCommand(cmd);
 
-            txtKillName.Text = txtKillPID.Text = String.Empty;
+            txtKillName.Clear();
+            txtKillPID.Clear();
         }
 
         private void btnMonitorShell_Click(object sender, EventArgs e)
@@ -419,7 +426,7 @@ namespace PEDollController
             );
             Threads.CmdEngine.theInstance.AddCommand(cmd);
 
-            txtMonitorShell.Text = String.Empty;
+            txtMonitorShell.Clear();
         }
 
         #endregion
@@ -503,7 +510,7 @@ namespace PEDollController
             );
             Threads.CmdEngine.theInstance.AddCommand(cmd);
 
-            txtDollLoaddll.Text = String.Empty;
+            txtDollLoaddll.Clear();
         }
 
         #endregion
@@ -516,7 +523,7 @@ namespace PEDollController
                 txtHookedEval.Text
             );
             Threads.CmdEngine.theInstance.AddCommand(cmd);
-            txtHookedEval.Text = String.Empty;
+            txtHookedEval.Clear();
         }
 
         private void btnVerdictApprove_Click(object sender, EventArgs e)

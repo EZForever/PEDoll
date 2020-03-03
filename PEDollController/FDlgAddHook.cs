@@ -34,7 +34,7 @@ namespace PEDollController
             // "Function" GroupBox
 
             cboAddrMode.SelectedIndex = 0;
-            txtAddr.Text = String.Empty;
+            txtAddr.Clear();
 
             cboConvention.Items.Clear();
             cboConvention.Items.AddRange(client.bits == 64 ? Commands.CmdHook.conventionsX64 : Commands.CmdHook.conventionsX86);
@@ -49,13 +49,13 @@ namespace PEDollController
             // "Before" GroupBox
 
             chkBefore.Checked = chkBeforeVerdict.Checked = false;
-            txtBeforeAction.Text = String.Empty;
+            txtBeforeAction.Clear();
             cboBeforeVerdict.SelectedIndex = 0;
 
             // "After" GroupBox
 
             chkAfter.Checked = chkAfterVerdict.Checked = false;
-            txtAfterAction.Text = String.Empty;
+            txtAfterAction.Clear();
             cboAfterVerdict.SelectedIndex = 0;
         }
 
