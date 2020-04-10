@@ -347,8 +347,7 @@ ARGUMENTS	Arguments passed to %COMSPEC%.
 break
 
 This command toggles the execution state between running and suspended.
-For a newly-created Doll process, the first attempt of breaking might have no
-effect on the process's execution.
+A new Doll client is always put suspended by libDoll.
 </value>
   </data>
   <data name="Commands.Ps.Format" xml:space="preserve">

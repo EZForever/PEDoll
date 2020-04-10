@@ -95,8 +95,7 @@ namespace PEDollController.Properties {
         ///break
         ///
         ///This command toggles the execution state between running and suspended.
-        ///For a newly-created Doll process, the first attempt of breaking might have no
-        ///effect on the process&apos;s execution.
+        ///A new Doll client is always put suspended by libDoll.
         /// 的本地化字符串。
         /// </summary>
         internal static string Commands_Help_Break {

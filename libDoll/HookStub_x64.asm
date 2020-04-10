@@ -14,8 +14,8 @@ public pushad_count
 WORDSZ equ 8
 
 ; Registers saved by the pushall macro, as a macro for usage in assembly code
-; Currently: rax, rcx, rdx, rbx, rbp, rsp, rdi, rsi, r8, r9, rflags
-PUSHAD_CNT equ 11
+; Currently: rax, rcx, rdx, rbx, rbp, rsp, rdi, rsi, r8, r9, rflags, (garbage)
+PUSHAD_CNT equ 12
 
 ; Size of register shadow space
 ; NOTE: The `sub/add rsp, 8 * 4`s around calling a function are MANDATORY
@@ -42,9 +42,13 @@ pushall macro
     push r8
     push r9
     pushfq
+    push rax
+    ;   Stack alignment is also MANDATORY when it comes to optimized STL functions
+    ;   pushall must maintain an even number of push operations, so here's a garbage value
 endm
 
 popall macro
+    pop rax ; the garbage value
     popfq
     pop r9
     pop r8
@@ -149,7 +153,7 @@ HookStubOnDeny:
 
     mov rdx, [rax + WORDSZ * 1] ; offset LIBDOLL_HOOK::denySPOffset
 
-    add [rsp + WORDSZ * 6], edx ; offset pushad::rsp
+    add [rsp + WORDSZ * 7], edx ; offset pushad::rsp
 
     mov rcx, rsp
     add rcx, WORDSZ * (PUSHAD_CNT + 1) ; &(return addr)
@@ -160,7 +164,7 @@ HookStubOnDeny:
 
     mov rdx, [rax + WORDSZ * 2] ; offset LIBDOLL_HOOK::denyAX
 
-    mov [rsp + WORDSZ * 10], rdx ; offset pushad::eax
+    mov [rsp + WORDSZ * 11], rdx ; offset pushad::eax
 
     popall
 

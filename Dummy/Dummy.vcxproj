@@ -149,6 +149,11 @@
   <ItemGroup>
     <ClCompile Include="Dummy.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libDoll\libDoll.vcxproj">
+      <Project>{2efb5550-99ed-473c-9132-ca2a04042d15}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

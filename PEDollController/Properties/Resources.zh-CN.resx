@@ -345,7 +345,7 @@ ARGUMENTS	传递给%COMSPEC%的参数。
 break
 
 本命令会使进程的执行状态在“中断”和“执行”间切换。
-对于新启动的受控端进程，第一次中断操作可能不会影响程序的执行。
+新受控端总是自动被受控端模块置于“中断”状态。
 </value>
   </data>
   <data name="Commands.Ps.Format" xml:space="preserve">

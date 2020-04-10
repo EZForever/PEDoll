@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// FIXME: Debug build of this dummy does not work
 #define DETOUR_PAYLOAD
 
 #ifdef DETOUR_PAYLOAD
@@ -34,21 +35,17 @@ static PAYLOAD_SERVER_INFO payload = {
 };
 #pragma data_seg()
 
+extern "C" int DollDllHelloWorld();
+
 #endif // DETOUR_PAYLOAD
 
 int main()
 {
     cout << "sizeof(UINT_PTR) = " << sizeof(UINT_PTR) << endl;
+    cout << "&payload = " << &payload << endl;
 
 #   ifdef DETOUR_PAYLOAD
-
-    HMODULE hDollDLL = LoadLibrary(L"libDoll.dll");
-    if (!hDollDLL)
-    {
-        cerr << "LoadLibrary() failed" << endl;
-        return 1;
-    }
-
+    DollDllHelloWorld();
 #   endif // DETOUR_PAYLOAD
 
     getchar();
@@ -56,7 +53,6 @@ int main()
     int ret = WinExec("ver", SW_SHOW);
     cout << "ret = " << ret << endl;
 
-    FreeLibrary(hDollDLL);
     return 0;
 }
 
