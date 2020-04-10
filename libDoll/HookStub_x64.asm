@@ -9,12 +9,13 @@ public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
 
 .code
 
-; Machine's work size, in bytes
+; Machine's word size, in bytes
 ; Could have used @WordSize (https://docs.microsoft.com/en-us/cpp/assembler/masm/at-wordsize) but it is not supported in x64
 WORDSZ equ 8
 
-; Registers saved by the pushad/pushall instruction, as a macro for usage in assembly code
-PUSHAD_CNT equ 10
+; Registers saved by the pushall macro, as a macro for usage in assembly code
+; Currently: rax, rcx, rdx, rbx, rbp, rsp, rdi, rsi, r8, r9, rflags
+PUSHAD_CNT equ 11
 
 ; Size of register shadow space
 ; NOTE: The `sub/add rsp, 8 * 4`s around calling a function are MANDATORY
@@ -24,12 +25,12 @@ PUSHAD_CNT equ 10
 SHADOWSZ equ WORDSZ * 4
 
 ; pushad/popad are not supported on x64 :(
-; sequence: rax, rcx, rdx, rbx, rbp, rsp, rdi, rsi, r8, r9
 
+; NOTE: this macro corrupts rax
 pushall macro
     push rax
     mov rax, rsp
-    add rax, 8
+    lea rax, [rax + WORDSZ] ; lea instead of add to avoid flag corruption
     ;   rax == original rsp
     push rcx
     push rdx
@@ -40,9 +41,11 @@ pushall macro
     push rdi
     push r8
     push r9
+    pushfq
 endm
 
 popall macro
+    popfq
     pop r9
     pop r8
     pop rdi
@@ -146,7 +149,7 @@ HookStubOnDeny:
 
     mov rdx, [rax + WORDSZ * 1] ; offset LIBDOLL_HOOK::denySPOffset
 
-    add [rsp + WORDSZ * 5], edx ; offset pushad::rsp
+    add [rsp + WORDSZ * 6], edx ; offset pushad::rsp
 
     mov rcx, rsp
     add rcx, WORDSZ * (PUSHAD_CNT + 1) ; &(return addr)
@@ -157,7 +160,7 @@ HookStubOnDeny:
 
     mov rdx, [rax + WORDSZ * 2] ; offset LIBDOLL_HOOK::denyAX
 
-    mov [rsp + WORDSZ * 9], rdx ; offset pushad::eax
+    mov [rsp + WORDSZ * 10], rdx ; offset pushad::eax
 
     popall
 
