@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 
 using Mono.Options;
@@ -68,7 +69,32 @@ namespace PEDollController.Commands
                 throw new ArgumentException(e.Message);
             }
         }
-        
+
+        public static string RemoveQuotes(string x, bool doUnescape = false)
+        {
+            if (!x.StartsWith("\"") || !x.EndsWith("\""))
+                return x;
+
+            string content = x.Substring(1, x.Length - 2);
+            if (!doUnescape)
+                return content;
+
+            StringBuilder builder = new StringBuilder();
+            bool isEscaped = false;
+            foreach(char c in content)
+            {
+                if (!isEscaped && c == '\\')
+                    isEscaped = true;
+                else
+                    builder.Append(c);
+            }
+
+            if (isEscaped)
+                throw new ArgumentException(Program.GetResourceString("Commands.Incomplete"));
+
+            return builder.ToString();
+        }
+
         public static string Win32ErrorToMessage(int code)
         {
             return Program.GetResourceString("Commands.Win32Error", code, new System.ComponentModel.Win32Exception(code).Message);

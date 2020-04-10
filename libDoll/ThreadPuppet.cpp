@@ -156,7 +156,7 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
                 TPuppetSendAck(0);
 
                 // 0 -> -1, 1 -> -2, ...
-                TPuppetSendInteger(*(hook->context - idx - 1));
+                TPuppetSendInteger(hook->context[(int)~idx]);
             }
             break;
         }

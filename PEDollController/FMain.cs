@@ -519,7 +519,7 @@ namespace PEDollController
 
         private void SendEval()
         {
-            string cmd = String.Format("eval \"{0}\"",
+            string cmd = String.Format("eval {{{0}}}",
                 txtHookedEval.Text
             );
             Threads.CmdEngine.theInstance.AddCommand(cmd);

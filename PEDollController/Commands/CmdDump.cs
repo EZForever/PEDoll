@@ -38,7 +38,7 @@ namespace PEDollController.Commands
                     "save=",
                     x =>
                     {
-                        save = x;
+                        save = Util.RemoveQuotes(x);
                     }
                 },
                 {

@@ -20,7 +20,7 @@ namespace PEDollController.Commands
 
             OptionSet options = new OptionSet()
             {
-                { "<>", x => module = x }
+                { "<>", x => module = Util.RemoveQuotes(x) }
             };
             Util.ParseOptions(cmd, options);
 

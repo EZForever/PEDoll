@@ -38,17 +38,12 @@ namespace PEDollController.Commands
                 throw new ArgumentException("symbol/before/after");
         }
 
-        static string RemoveQuotes(string x)
-        {
-            return (x[0] == '"' && x[x.Length - 1] == '"') ? x.Substring(1, x.Length - 2) : x;
-        }
-
         // "*8B4C240885D2" => (byte[]){ 0x8B, 0x4C, 0x24, 0x08, 0x85, 0xD2 }
         static byte[] PatternToBinary(string pattern)
         {
             List<byte> ret = new List<byte>();
 
-            // NOTE: This ignores a hex digit if they come in odds
+            // NOTE: This ignores a hex digit if they come in odds; this is intentional
             for(int i = 1; i < pattern.Length; i += 2)
                 ret.Add(Convert.ToByte(pattern.Substring(i, 2), 16));
 
@@ -129,7 +124,7 @@ namespace PEDollController.Commands
 
                         (state == 2 ? entry.beforeActions : entry.afterActions).Add(new Dictionary<string, object>() {
                             { "verb", "echo" },
-                            { "echo", RemoveQuotes(x) }
+                            { "echo", Util.RemoveQuotes(x, true) }
                         });
                     }
                 },
@@ -157,8 +152,8 @@ namespace PEDollController.Commands
 
                         (state == 2 ? entry.beforeActions : entry.afterActions).Add(new Dictionary<string, object>() {
                             { "verb", "ctx" },
-                            { "key", RemoveQuotes(x) },
-                            { "value", RemoveQuotes(y) }
+                            { "key", Util.RemoveQuotes(x, true) },
+                            { "value", Util.RemoveQuotes(y, true) }
                         });
                     }
                 },
