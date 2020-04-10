@@ -1,6 +1,9 @@
 #include "pch.h"
+#include "HookStub.h"
 #include "libDoll.h"
 #include "Thread.h"
+
+#include "../Detours/repo/src/detours.h"
 
 extern "C" UINT_PTR DollThreadIsCurrent()
 {
@@ -97,6 +100,29 @@ extern "C" void DollOnAfterHook(UINT_PTR* context)
     }
 
     LeaveCriticalSection(&ctx.lockHook);
+
+    DollThreadUnregisterCurrent();
+}
+
+extern "C" void DollOnEPHook(UINT_PTR* context)
+{
+    // Unhook first
+    DetourTransactionBegin();
+    DetourDetach(&ctx.pEP, &HookStubEP);
+    DetourTransactionCommit();
+
+    // By now the trampoline is destroyed by Detours, so we need to jump (again) to EP manually
+    *context = (UINT_PTR)ctx.pEP;
+
+    // Hooks may exist after returning from WaitForSingleObject()
+    DollThreadRegisterCurrent();
+
+    // Wait for approval
+    WaitForSingleObject(ctx.hEvtEP, INFINITE);
+
+    // By now the EP event is useless and can be destroyed
+    CloseHandle(ctx.hEvtEP);
+    ctx.hEvtEP = INVALID_HANDLE_VALUE;
 
     DollThreadUnregisterCurrent();
 }

@@ -53,6 +53,9 @@ struct LIBDOLL_CTX {
     UINT_PTR waitingHookOEP;
     CRITICAL_SECTION lockHook;
 
+    void* pEP;
+    HANDLE hEvtEP;
+
     GET_CURRENT_THREAD_ID pRealGetCurrentThreadId;
 
 };

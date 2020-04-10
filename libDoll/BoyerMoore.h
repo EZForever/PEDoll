@@ -1,7 +1,7 @@
 #pragma once
 
 // The Boyer-Moore binary searcher
-class BoyerMoore
+class BoyerMoore final
 {
 private:
 

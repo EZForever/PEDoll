@@ -12,6 +12,7 @@ extern "C" {
     extern char HookStubA;
     extern char HookStubB;
     extern char HookStubOnDeny;
+    extern char HookStubEP;
 
     extern const UINT_PTR HookStubBefore_len;
     extern const UINT_PTR HookStubBefore_HookOEPOffset;
@@ -30,6 +31,9 @@ extern "C" {
 
     // Same as DollOnHook() but context[0] = [out]returnAddr and context[1] is now gone
     void DollOnAfterHook(UINT_PTR* context);
+
+    // context[0] = [out]returnAddr
+    void DollOnEPHook(UINT_PTR* context);
 
 }
 

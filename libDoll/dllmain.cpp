@@ -2,6 +2,7 @@
 #include "libDoll.h"
 
 #include "../Detours/repo/src/detours.h"
+#include "HookStub.h"
 #include "Thread.h"
 #include "Hook.h"
 
@@ -26,15 +27,41 @@ char* DollDllFindServerInfo()
     return NULL;
 }
 
-BOOL DollDllAttach()
+BOOL DollDllAttach(BOOL isInjectedByDetours)
 {
     // This will get updated if DetourAttach() / DetourDetach() happened on GetCurrentThreadId
     // Initialize this before usage in DollThreadSuspendAll()
     ctx.pRealGetCurrentThreadId = GetCurrentThreadId;
 
-    // Suspend any victim thread, in case of attaching
-    // There should be no libDoll threads for now
-    DollThreadSuspendAll(false);
+    if (isInjectedByDetours)
+    {
+        // Set up a one-time hook at the entry point of the main executable
+        // NOTE: Try to DollThreadSuspendAll() now will just suspend DLL loader threads on Windows 10, thus breaking the first "break"
+        // NOTE: DetourCreateProcessWithDllEx() will erase the original IAT, so we'll always be the first DLL initializing
+
+        // Get & store EP
+        MODULEINFO mi;
+        GetModuleInformation(GetCurrentProcess(), GetModuleHandle(NULL), &mi, sizeof(MODULEINFO));
+        ctx.pEP = mi.EntryPoint;
+
+        // Initialize the EP event
+        ctx.hEvtEP = CreateEvent(NULL, TRUE, FALSE, NULL);
+
+        // Set the actual hook
+        DetourTransactionBegin();
+        DetourAttach(&ctx.pEP, &HookStubEP);
+        DetourTransactionCommit();
+    }
+    else
+    {
+        // Suspend any victim thread, in case of attaching
+        // There should be no libDoll threads for now
+        DollThreadSuspendAll(false);
+
+        // Invalidate states meant for other situations
+        ctx.pEP = NULL;
+        ctx.hEvtEP = INVALID_HANDLE_VALUE;
+    }
 
     // Initialize all the global contexts
 
@@ -65,9 +92,6 @@ BOOL DollDllAttach()
     }
     ctx.hTPuppet = (HANDLE)hTPuppet;
 
-    // This is not happened until a CMD_BREAK
-    //DollThreadResumeAll();
-    
     return TRUE;
 }
 
@@ -107,15 +131,16 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     {
     case DLL_PROCESS_ATTACH:
     {
-        // Restore IAT modifyed by inject procedure
+        // Restore IAT modified by inject procedure
         // It is here, not in DollDllAttach(), because IAT must be restored before any API call
-        // Ignore any errors though, since the injection can be done in ways other than DetourCreateProcessWithDllEx()
-        DetourRestoreAfterWith();
+        // If any error occurs, the injection might be done in ways other than DetourCreateProcessWithDllEx()
+        BOOL isInjectedByDetours = DetourRestoreAfterWith();
 
-        // Try my best to avoid infinite loop
-        DisableThreadLibraryCalls(hModule);
+        // XXX: DisableThreadLibraryCalls() will interfere with a statically-linked CRT
+        // https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-disablethreadlibrarycalls#remarks
+        //DisableThreadLibraryCalls(hModule);
 
-        return DollDllAttach();
+        return DollDllAttach(isInjectedByDetours);
     }
     case DLL_PROCESS_DETACH:
     {

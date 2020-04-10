@@ -1,12 +1,12 @@
 .model flat, C
 
 ; Machine code (functions) disguised as bytes
-extern DollThreadIsCurrent:byte, DollHookGetCurrent:byte, \
-    DollOnHook:byte, DollOnAfterHook:byte
+extern DollThreadIsCurrent:byte, DollHookGetCurrent:byte
+extern DollOnHook:byte, DollOnAfterHook:byte, DollOnEPHook:byte
 
-public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
-    HookStubBefore_len, HookStubBefore_HookOEPOffset, HookStubBefore_AddrOffset, \
-    pushad_count
+public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, HookStubEP
+public HookStubBefore_len, HookStubBefore_HookOEPOffset, HookStubBefore_AddrOffset
+public pushad_count
 
 .code
 
@@ -166,6 +166,32 @@ HookStubOnDeny:
     ;   stack == (return addr), (red zone...)
     ret
     ;   Hand control back to caller code
+    ;   stack == (red zone...)
+
+; Entry of EP hook: Standalone, called after DLL initialization
+;     Check if current thread a libDoll thread. If not so, save current context then hand execution over to C function
+; Context:
+;     stack == (red zone...)
+HookStubEP:
+    push eax
+    ;   Reserve space for incoming jump address
+    ;   stack == (return addr), (red zone...)
+    pushall
+    ;   stack == (pushall), (return addr), (red zone...)
+    mov ecx, esp
+    add ecx, WORDSZ * PUSHAD_CNT
+    ;   ecx == &return addr
+    ;   stack == (pushall), (return addr), (red zone...)
+    push ecx
+    lea eax, DollOnEPHook
+    call eax
+    add esp, WORDSZ
+    ;   DollOnEPHook(&return addr)
+    ;   stack == (pushall), (return addr), (red zone...)
+    popall
+    ;   stack == (return addr), (red zone...)
+    ret
+    ;   Hand control over to EP
     ;   stack == (red zone...)
 
 .const

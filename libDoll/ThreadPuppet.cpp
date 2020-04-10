@@ -272,13 +272,21 @@ void TPuppetOnRecv(Puppet::PACKET* packet)
         }
         case Puppet::PACKET_TYPE::CMD_BREAK:
         {
-            if (ctx.suspendedThreads.size())
+            if (ctx.hEvtEP != INVALID_HANDLE_VALUE)
             {
-                DollThreadResumeAll();
+                // EP of the main execuable is waiting for approval
+                SetEvent(ctx.hEvtEP);
             }
             else
             {
-                DollThreadSuspendAll(true);
+                if (ctx.suspendedThreads.size())
+                {
+                    DollThreadResumeAll();
+                }
+                else
+                {
+                    DollThreadSuspendAll(true);
+                }
             }
 
             TPuppetSendAck(0);

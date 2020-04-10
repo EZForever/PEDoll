@@ -1,11 +1,11 @@
 ; This file is translated from HookStub_x86.asm
 ; All the comments are identital to the x86 counterpart.
-extern DollThreadIsCurrent:byte, DollHookGetCurrent:byte, \
-    DollOnHook:byte, DollOnAfterHook:byte
+extern DollThreadIsCurrent:byte, DollHookGetCurrent:byte
+extern DollOnHook:byte, DollOnAfterHook:byte, DollOnEPHook:byte
 
-public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, \
-    HookStubBefore_len, HookStubBefore_HookOEPOffset, HookStubBefore_AddrOffset, \
-    pushad_count
+public HookStubBefore, HookStubA, HookStubB, HookStubOnDeny, HookStubEP
+public HookStubBefore_len, HookStubBefore_HookOEPOffset, HookStubBefore_AddrOffset
+public pushad_count
 
 .code
 
@@ -165,6 +165,23 @@ HookStubOnDeny:
     popall
 
     add rsp, WORDSZ
+
+    ret
+
+HookStubEP:
+    push rax
+
+    pushall
+
+    mov rcx, rsp
+    add rcx, WORDSZ * PUSHAD_CNT
+
+    sub rsp, SHADOWSZ
+    lea rax, DollOnEPHook
+    call rax
+    add rsp, SHADOWSZ
+
+    popall
 
     ret
 
