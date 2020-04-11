@@ -58,8 +58,7 @@ HookStubA:
     ;   DollThreadIsCurrent()
     ;   eax == ret
     ;   stack == (pushall), (HookOEP), (return addr), (red zone...)
-    mov ecx, esp
-    add ecx, WORDSZ * PUSHAD_CNT
+    lea ecx, [esp + WORDSZ * PUSHAD_CNT]
     ;   ecx == &HookOEP
     test eax, eax
     jnz __HookStubA_isDoll
@@ -89,9 +88,7 @@ __HookStubA_isDoll:
     ;   stack == (pushall), (HookOEP), (return addr), (red zone...)
     mov edx, [eax + WORDSZ * 0] ; offset LIBDOLL_HOOK::pTrampoline
     ;   edx == pTrampoline
-    mov ecx, esp
-    add ecx, WORDSZ * PUSHAD_CNT
-    mov [ecx], edx
+    mov [esp + WORDSZ * PUSHAD_CNT], edx
     ;   stack == (pushall), (pTrampoline), (return addr), (red zone...)
     popall
     ;   stack == (pTrampoline), (return addr), (red zone...)
@@ -130,8 +127,7 @@ HookStubB:
 HookStubOnDeny:
     pushall
     ;   stack == (pushall), (HookOEP), (return addr), (red zone...)
-    mov ecx, esp
-    add ecx, WORDSZ * PUSHAD_CNT
+    lea ecx, [esp + WORDSZ * PUSHAD_CNT]
     ;   ecx == &HookOEP
     ;   stack == (pushall), (HookOEP), (return addr), (red zone...)
     push ecx
@@ -145,8 +141,7 @@ HookStubOnDeny:
     ;   edx == denySPOffset
     add [esp + WORDSZ * 4], edx ; offset pushad::esp
     ;   stack == (pushall with esp modified), (HookOEP), (return addr), (red zone...)
-    mov ecx, esp
-    add ecx, WORDSZ * (PUSHAD_CNT + 1) ; &(return addr)
+    lea ecx, [esp + WORDSZ * (PUSHAD_CNT + 1)] ; &(return addr)
     ;   ecx == &(return addr)
     mov esi, [ecx]
     ;   esi == return addr
@@ -162,14 +157,14 @@ HookStubOnDeny:
     ;   Magic happens since we modifyed esp
     ;   stack == (stack balance area the size of HookOEP), (return addr), (red zone...)
     lea esp, [esp + WORDSZ]
-    ; lea instead if add to avoid flag corruption
+    ; lea instead of add to avoid flag corruption
     ;   stack == (return addr), (red zone...)
     ret
     ;   Hand control back to caller code
     ;   stack == (red zone...)
 
 ; Entry of EP hook: Standalone, called after DLL initialization
-;     Check if current thread a libDoll thread. If not so, save current context then hand execution over to C function
+;     Save current context then hand execution over to C function
 ; Context:
 ;     stack == (red zone...)
 HookStubEP:
@@ -178,8 +173,7 @@ HookStubEP:
     ;   stack == (return addr), (red zone...)
     pushall
     ;   stack == (pushall), (return addr), (red zone...)
-    mov ecx, esp
-    add ecx, WORDSZ * PUSHAD_CNT
+    lea ecx, [esp + WORDSZ * PUSHAD_CNT]
     ;   ecx == &return addr
     ;   stack == (pushall), (return addr), (red zone...)
     push ecx

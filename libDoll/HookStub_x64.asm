@@ -93,8 +93,7 @@ HookStubA:
     call rax
     add rsp, SHADOWSZ
 
-    mov rcx, rsp
-    add rcx, WORDSZ * PUSHAD_CNT
+    lea rcx, [rsp + WORDSZ * PUSHAD_CNT]
 
     test rax, rax
     jnz __HookStubA_isDoll
@@ -117,9 +116,7 @@ __HookStubA_isDoll:
 
     mov rdx, [rax + WORDSZ * 0] ; offset LIBDOLL_HOOK::pTrampoline
 
-    mov rcx, rsp
-    add rcx, WORDSZ * PUSHAD_CNT
-    mov [rcx], rdx
+    mov [rsp + WORDSZ * PUSHAD_CNT], rdx
 
     popall
 
@@ -143,8 +140,7 @@ HookStubB:
 HookStubOnDeny:
     pushall
 
-    mov rcx, rsp
-    add rcx, WORDSZ * PUSHAD_CNT
+    lea rcx, [rsp + WORDSZ * PUSHAD_CNT]
 
     sub rsp, SHADOWSZ
     lea rax, DollHookGetCurrent
@@ -153,10 +149,9 @@ HookStubOnDeny:
 
     mov rdx, [rax + WORDSZ * 1] ; offset LIBDOLL_HOOK::denySPOffset
 
-    add [rsp + WORDSZ * 7], edx ; offset pushad::rsp
+    add [rsp + WORDSZ * 7], rdx ; offset pushad::rsp
 
-    mov rcx, rsp
-    add rcx, WORDSZ * (PUSHAD_CNT + 1) ; &(return addr)
+    lea rcx, [rsp + WORDSZ * (PUSHAD_CNT + 1)] ; &(return addr)
 
     mov rsi, [rcx]
 
@@ -177,8 +172,7 @@ HookStubEP:
 
     pushall
 
-    mov rcx, rsp
-    add rcx, WORDSZ * PUSHAD_CNT
+    lea rcx, [rsp + WORDSZ * PUSHAD_CNT]
 
     sub rsp, SHADOWSZ
     lea rax, DollOnEPHook
