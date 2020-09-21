@@ -11,9 +11,8 @@ namespace Puppet {
     {
         uint32_t packetSize = (uint32_t)(sizeof(PACKET_STRING) + sizeof(wchar_t) * (wcslen(data) + 1));
         PACKET_STRING* packet = (PACKET_STRING*)new char[packetSize];
-        // Packet created that way will not call the constructor
+        new (packet) PACKET_STRING; // Call constructor to initialize header
         packet->size = packetSize;
-        packet->type = PACKET_TYPE::STRING;
         wcscpy_s(packet->data, wcslen(data) + 1, data);
         return packet;
     }
@@ -22,9 +21,8 @@ namespace Puppet {
     {
         uint32_t packetSize = (uint32_t)(sizeof(PACKET_BINARY) + size);
         PACKET_BINARY* packet = (PACKET_BINARY*)new char[packetSize];
-        // Packet created that way will not call the constructor
+        new (packet) PACKET_BINARY; // Call constructor to initialize header
         packet->size = packetSize;
-        packet->type = PACKET_TYPE::BINARY;
         memcpy(packet->data, data, size);
         return packet;
     }
